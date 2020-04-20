@@ -1,0 +1,6 @@
+name: Factions-Caribe
+main: com.redefocus.factionscaribe.FactionsCaribe
+version: 1.0-SNAPSHOT
+author: Gutyerrez
+depend:
+  - Api
