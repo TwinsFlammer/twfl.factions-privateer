@@ -10,17 +10,18 @@ import org.bukkit.World;
 import org.bukkit.entity.Player;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class CaribeUser extends SpigotUser {
     @Getter
     @Setter
-    private Double money;
+    private Double money = 0.0;
 
     @Getter
     private final CustomBoard customBoard;
 
     @Setter
-    private Boolean invisible, god;
+    private Boolean invisible = false, god = false;
 
     @Getter
     private final List<Integer> teleportRequests = Lists.newArrayList();
@@ -43,5 +44,11 @@ public class CaribeUser extends SpigotUser {
 
     public Boolean isGod() {
         return this.god;
+    }
+
+    public Long getTeleportTime() {
+        if (this.isVIP()) return 0L;
+
+        return TimeUnit.SECONDS.toMillis(3);
     }
 }
