@@ -56,12 +56,12 @@ public class HomeDao<T extends Home> extends Table {
                         ")" +
                         " VALUES " +
                         "(" +
-                        "%s," +
-                        "%s," +
-                        "%s," +
-                        "%s," +
-                        "%s" +
-                        "');",
+                        "'%s'," +
+                        "'%s'," +
+                        "'%s'," +
+                        "'%s'," +
+                        "'%s'" +
+                        ");",
                 this.getTableName(),
                 home.getUserId(),
                 home.getName(),
