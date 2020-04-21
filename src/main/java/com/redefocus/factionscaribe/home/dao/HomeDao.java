@@ -61,7 +61,7 @@ public class HomeDao<T extends Home> extends Table {
                         "%s," +
                         "%s," +
                         "%s" +
-                        ");",
+                        "');",
                 this.getTableName(),
                 home.getUserId(),
                 home.getName(),
