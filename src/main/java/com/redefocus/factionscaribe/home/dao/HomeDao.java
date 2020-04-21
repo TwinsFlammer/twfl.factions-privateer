@@ -21,7 +21,7 @@ public class HomeDao<T extends Home> extends Table {
 
     @Override
     public String getTableName() {
-        return "server_factions_caribe_homes";
+        return "server_home";
     }
 
     @Override
