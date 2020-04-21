@@ -52,15 +52,15 @@ public class HomeDao<T extends Home> extends Table {
                         "`user_id`," +
                         "`name`," +
                         "`server_id`," +
-                        "`location`" +
+                        "`location`," +
                         "`state`" +
                         ")" +
                         " VALUES " +
                         "(" +
-                        "'%s'" +
-                        "'%s'" +
-                        "'%s'" +
-                        "'%s'" +
+                        "'%s'," +
+                        "'%s'," +
+                        "'%s'," +
+                        "'%s'," +
                         "'%s'" +
                         ");",
                 this.getTableName(),
