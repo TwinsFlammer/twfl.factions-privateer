@@ -7,6 +7,9 @@ import com.redefocus.common.shared.permissions.user.data.User;
 import com.redefocus.factionscaribe.user.data.CaribeUser;
 import org.bukkit.command.CommandSender;
 
+/**
+ * @author SrGutyerrez
+ */
 public class VanishCommand extends CustomCommand {
     public VanishCommand() {
         super(
