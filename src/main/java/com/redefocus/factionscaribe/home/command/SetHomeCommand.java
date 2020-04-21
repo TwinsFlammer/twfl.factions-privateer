@@ -44,6 +44,7 @@ public class SetHomeCommand extends CustomCommand {
             );
             return;
         }
+
         HomeDao<Home> homeDao = new HomeDao<>();
 
         if(caribeUser.hasHome(name)) {
