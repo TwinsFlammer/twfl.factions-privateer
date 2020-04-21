@@ -1,5 +1,6 @@
 package com.redefocus.factionscaribe.home.dao;
 
+import com.redefocus.api.spigot.SpigotAPI;
 import com.redefocus.api.spigot.util.serialize.LocationSerialize;
 import com.redefocus.common.shared.databases.mysql.dao.Table;
 import com.redefocus.factionscaribe.home.data.Home;
@@ -16,7 +17,7 @@ public class HomeDao<T extends Home> extends Table {
 
     @Override
     public String getDatabaseName() {
-        return "general";
+        return SpigotAPI.getInstance().getDefaultDatabaseName("server");
     }
 
     @Override
