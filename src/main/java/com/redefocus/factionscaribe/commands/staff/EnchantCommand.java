@@ -12,6 +12,9 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
+/**
+ * @author SrGutyerrez
+ */
 public class EnchantCommand extends CustomCommand {
     public EnchantCommand() {
         super(
