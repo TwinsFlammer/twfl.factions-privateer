@@ -72,6 +72,24 @@ public class CaribeUser extends SpigotUser {
         return TimeUnit.SECONDS.toMillis(3);
     }
 
+    public Boolean hasHome(String name) {
+        Home home = this.getHomes().stream()
+                .filter(Objects::nonNull)
+                .filter(home1 -> home1.getName().equalsIgnoreCase(name))
+                .findFirst()
+                .orElse(null);
+
+        return home != null;
+    }
+
+    public Home getHome(String name) {
+        return this.getHomes().stream()
+                .filter(Objects::nonNull)
+                .filter(home1 -> home1.getName().equalsIgnoreCase(name))
+                .findFirst()
+                .orElse(null);
+    }
+
     public List<Home> getPublicHomes() {
         return this.getHomes().stream()
                 .filter(Objects::nonNull)
