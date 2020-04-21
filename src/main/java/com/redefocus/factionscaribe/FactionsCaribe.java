@@ -6,6 +6,9 @@ import com.redefocus.factionscaribe.user.data.CaribeUser;
 import com.redefocus.factionscaribe.user.factory.CaribeUserFactory;
 import lombok.Getter;
 
+/**
+ * @author SrGutyerrez
+ */
 public class FactionsCaribe extends FocusPlugin {
     @Getter
     private static FactionsCaribe instance;
