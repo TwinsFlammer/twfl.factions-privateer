@@ -49,7 +49,6 @@ public class CaribeUser extends SpigotUser {
 
         Set<Home> homes = homeDao.findAll(keys);
         this.homes = Lists.newArrayList(homes);
-
     }
 
     public World getWorld() {
