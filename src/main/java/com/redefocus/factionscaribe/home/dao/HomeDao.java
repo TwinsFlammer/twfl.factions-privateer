@@ -68,7 +68,7 @@ public class HomeDao<T extends Home> extends Table {
                 home.getName(),
                 home.getServerId(),
                 LocationSerialize.toString(home.getLocation()),
-                home.getState()
+                home.getState().toString()
         );
         try (
                 Connection connection = this.getConnection();
@@ -90,7 +90,24 @@ public class HomeDao<T extends Home> extends Table {
 
     @Override
     public <K, V, U, I> void update(HashMap<K, V> keys, U key, I value) {
+        String where = this.generateWhere(keys);
 
+        String query = String.format(
+                "UPDATE %s SET %s WHERE `%s`=%s",
+                this.getTableName(),
+                where,
+                key,
+                value
+        );
+
+        try (
+                Connection connection = this.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(query);
+        ) {
+            preparedStatement.executeUpdate();
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
     }
 
     public <K, V> T findOne(HashMap<K, V> keys) {
