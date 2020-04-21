@@ -40,7 +40,7 @@ public class CaribeUser extends SpigotUser {
     public CaribeUser(User user) {
         super(user);
 
-        this.customBoard = new CustomBoard();
+        this.customBoard = /*new CustomBoard()*/null;
 
         HomeDao<Home> homeDao = new HomeDao<>();
 
