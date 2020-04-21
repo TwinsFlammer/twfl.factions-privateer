@@ -1,15 +1,14 @@
-package com.redefocus.factionscaribe.commands.staff;
+package com.redefocus.factionscaribe.commands.staff.clear.command;
 
 import com.redefocus.api.spigot.commands.CustomCommand;
 import com.redefocus.api.spigot.commands.enums.CommandRestriction;
 import com.redefocus.common.shared.permissions.group.GroupNames;
 import com.redefocus.common.shared.permissions.user.data.User;
 import com.redefocus.factionscaribe.FactionsCaribe;
+import com.redefocus.factionscaribe.commands.staff.clear.channel.ClearChannel;
 import com.redefocus.factionscaribe.user.data.CaribeUser;
-import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
-import org.bukkit.inventory.PlayerInventory;
+import org.json.simple.JSONObject;
 
 /**
  * @author SrGutyerrez
@@ -27,17 +26,13 @@ public class ClearCommand extends CustomCommand {
     public void onCommand(CommandSender commandSender, User user, String[] args) {
         switch (args.length) {
             case 0: {
-                Player player = (Player) commandSender;
-
-                this.clear(player);
+                this.clear(user);
 
                 commandSender.sendMessage("§aVocê teve seu inventário totalmente limpo!");
                 return;
             }
             case 1: {
                 String targetName = args[0];
-
-                Player targetPlayer = Bukkit.getPlayerExact(targetName);
 
                 CaribeUser targetUser = FactionsCaribe.getInstance().getCaribeUserFactory().getUser(targetName);
 
@@ -51,7 +46,12 @@ public class ClearCommand extends CustomCommand {
                     return;
                 }
 
-                this.clear(targetPlayer);
+                if (!targetUser.isLogged()) {
+                    commandSender.sendMessage("§cVocê não pode interagir com usuários não autenticados.");
+                    return;
+                }
+
+                this.clear(targetUser);
 
                 commandSender.sendMessage(
                         String.format(
@@ -64,11 +64,13 @@ public class ClearCommand extends CustomCommand {
         }
     }
 
-    void clear(Player player) {
-        PlayerInventory playerInventory = player.getInventory();
+    void clear(User user) {
+        JSONObject jsonObject = new JSONObject();
 
-        playerInventory.clear();
+        jsonObject.put("user_id", user.getId());
 
-        playerInventory.setArmorContents(null);
+        ClearChannel clearChannel = new ClearChannel();
+
+        clearChannel.sendMessage(jsonObject.toString());
     }
 }
