@@ -9,6 +9,9 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * @author SrGutyerrez
+ */
 public class Enchantments {
     private static final HashMap<String, Enchantment> ENCHANTMENTS = Maps.newHashMap();
     private static final HashMap<String, Enchantment> ALIASENCHANTMENTS = Maps.newHashMap();
