@@ -54,8 +54,6 @@ public class TpHereCommand extends CustomCommand {
                 0L
         );
 
-        // testando 2
-
         teleportRequest.start();
 
         commandSender.sendMessage(
