@@ -5,7 +5,6 @@ import com.redefocus.api.spigot.SpigotAPI;
 import com.redefocus.api.spigot.util.serialize.LocationSerialize;
 import com.redefocus.common.shared.databases.mysql.dao.Table;
 import com.redefocus.factionscaribe.home.data.Home;
-import com.redefocus.factionscaribe.home.manager.HomeManager;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -21,7 +20,7 @@ public class HomeDao<T extends Home> extends Table {
 
     @Override
     public String getDatabaseName() {
-        return SpigotAPI.getInstance().getDefaultDatabaseName("server");
+        return "server";
     }
 
     @Override
@@ -37,10 +36,10 @@ public class HomeDao<T extends Home> extends Table {
                                 "(" +
                                 "`id` INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT," +
                                 "`user_id` INTEGER NOT NULL," +
-                                "`name` VARCHAR(256) NOT NULL," +
+                                "`name` VARCHAR(32) NOT NULL," +
                                 "`server_id` INTEGER NOT NULL," +
-                                "`location` TEXT NOT NULL," +
-                                "`state` BOOLEAN NOT NULL" +
+                                "`location` VARCHAR(255) NOT NULL," +
+                                "`state` VARCHAR(7) NOT NULL" +
                                 ");",
                         this.getTableName()
                 )
@@ -75,10 +74,9 @@ public class HomeDao<T extends Home> extends Table {
         try (
                 Connection connection = this.getConnection();
                 PreparedStatement preparedStatement = connection.prepareStatement(query);
+                ResultSet resultSet = preparedStatement.executeQuery();
         ) {
             preparedStatement.execute();
-
-            ResultSet resultSet = preparedStatement.getGeneratedKeys();
 
             if (resultSet.next()) {
                 return (T) new Home(
@@ -96,13 +94,14 @@ public class HomeDao<T extends Home> extends Table {
         return null;
     }
 
+    @Override
+    public <K, V, U, I> void update(HashMap<K, V> keys, U key, I value) {
+
+    }
+
     public <K, V extends Integer> Set<T> findAll(K key, V value) {
         String query = String.format(
-                "SELECT * FROM %s" +
-                        " WHERE " +
-                        "`%s`" +
-                        "=" +
-                        "%d",
+                "SELECT * FROM %s WHERE `%s`=%d",
                 this.getTableName(),
                 key,
                 value
@@ -111,13 +110,13 @@ public class HomeDao<T extends Home> extends Table {
         try (
                 Connection connection = this.getConnection();
                 PreparedStatement preparedStatement = connection.prepareStatement(query);
+                ResultSet resultSet = preparedStatement.executeQuery();
         ) {
             preparedStatement.execute();
-            ResultSet resultSet = preparedStatement.getGeneratedKeys();
 
             while (resultSet.next()) {
-                T home = new HomeManager<T>().toHome(resultSet);
-                homes.add(home);
+                Home home = Home.toHome(resultSet);
+                homes.add((T) home);
             }
         }
         catch (SQLException exception) {
