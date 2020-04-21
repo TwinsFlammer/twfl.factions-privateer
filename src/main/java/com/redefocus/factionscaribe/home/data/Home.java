@@ -1,6 +1,5 @@
 package com.redefocus.factionscaribe.home.data;
 
-import com.massivecraft.factions.Perm;
 import com.massivecraft.factions.Rel;
 import com.massivecraft.factions.entity.BoardColl;
 import com.massivecraft.factions.entity.Faction;
@@ -10,17 +9,16 @@ import com.massivecraft.massivecore.ps.PS;
 import com.redefocus.api.spigot.util.serialize.LocationSerialize;
 import com.redefocus.factionscaribe.home.enums.HomeState;
 import com.redefocus.factionscaribe.user.data.CaribeUser;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.experimental.var;
+
 import org.bukkit.Chunk;
 import org.bukkit.Location;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.HashMap;
-import java.util.Set;
 
 /**
  * @author oNospher
@@ -56,11 +54,11 @@ public class Home {
         MPlayer mPlayer = MPlayer.get(caribeUser.getUniqueId());
         Faction at = BoardColl.get().getFactionAt(PS.valueOf(chunk));
 
-        if (at == null || at.isNone()) return true;
         return isAllowed(mPlayer.getFaction(), at);
     }
 
     private Boolean isAllowed(Faction faction, Faction at) {
+        if (at == null || at.isNone()) return true;
         if(faction.equals(at)) return true;
         if(!(faction.getRelationWish(at) == Rel.ALLY)) return false;
         return at.getPerms().get(MPerm.getPermHome()).contains(Rel.ALLY);
