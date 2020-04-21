@@ -47,8 +47,8 @@ public class TpHereCommand extends CustomCommand {
         Server server = SpigotAPI.getCurrentServer();
 
         TeleportRequest teleportRequest = new TeleportRequest(
-                user.getId(),
                 targetUser.getId(),
+                user.getId(),
                 null,
                 server.getId(),
                 0L
