@@ -9,6 +9,9 @@ import org.bukkit.GameMode;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+/**
+ * @author SrGutyerrez
+ */
 public class GamemodeCommand extends CustomCommand {
     public GamemodeCommand() {
         super(
