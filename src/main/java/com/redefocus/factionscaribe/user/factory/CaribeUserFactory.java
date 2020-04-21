@@ -7,6 +7,9 @@ import com.redefocus.factionscaribe.user.data.CaribeUser;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * @author SrGutyerrez
+ */
 public class CaribeUserFactory<U extends CaribeUser> extends AbstractUserFactory<U> {
     private List<U> users = Lists.newArrayList();
 
