@@ -56,14 +56,14 @@ public class HomeDao<T extends Home> extends Table {
                         ")" +
                         " VALUES " +
                         "(" +
-                        "%d," +
-                        "'%s'," +
-                        "%d," +
-                        "'%s'," +
-                        "'%s'" +
+                        "%s," +
+                        "%s," +
+                        "%s," +
+                        "%s," +
+                        "%s" +
                         ");",
                 this.getTableName(),
-                home.getServerId(),
+                home.getUserId(),
                 home.getName(),
                 home.getServerId(),
                 LocationSerialize.toString(home.getLocation()),
