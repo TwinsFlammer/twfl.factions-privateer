@@ -12,8 +12,8 @@ import org.bukkit.entity.Player;
 /**
  * @author SrGutyerrez
  */
-public class GamemodeCommand extends CustomCommand {
-    public GamemodeCommand() {
+public class GameModeCommand extends CustomCommand {
+    public GameModeCommand() {
         super(
                 "gamemode",
                 CommandRestriction.IN_GAME,
@@ -50,6 +50,10 @@ public class GamemodeCommand extends CustomCommand {
                 targetPlayer.setGameMode(gameMode);
 
                 commandSender.sendMessage("§aO modo de jogo de " + targetPlayer.getName() + " foi atualizado para " + gameMode.name().toLowerCase() + ".");
+                return;
+            }
+            default: {
+                commandSender.sendMessage("§cUtilize /gamemode <modo>.");
                 return;
             }
         }
