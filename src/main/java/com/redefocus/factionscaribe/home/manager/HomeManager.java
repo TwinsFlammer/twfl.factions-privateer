@@ -10,10 +10,10 @@ import java.sql.SQLException;
 /**
  * @author oNospher
  **/
-public class HomeManager {
+public class HomeManager<T extends Home> {
 
-    public Home toHome(ResultSet resultSet) throws SQLException {
-        return new Home(
+    public T toHome(ResultSet resultSet) throws SQLException {
+        return (T) new Home(
                 resultSet.getInt("id"),
                 resultSet.getInt("user_id"),
                 resultSet.getString("name"),
