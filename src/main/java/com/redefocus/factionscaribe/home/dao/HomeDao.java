@@ -76,18 +76,12 @@ public class HomeDao<T extends Home> extends Table {
         ) {
             preparedStatement.execute();
 
+            HashMap<String, Object> hashMap = new HashMap<>();
 
+            hashMap.put("user_id", home.getUserId());
+            hashMap.put("name", home.getName());
 
-            /*if (resultSet.next()) {
-                return (T) new Home(
-                        resultSet.getInt("id"),
-                        home.getUserId(),
-                        home.getName(),
-                        home.getServerId(),
-                        home.getLocation(),
-                        home.getState()
-                );
-            }*/
+            return this.findOne(hashMap);
         } catch (SQLException exception) {
             exception.printStackTrace();
         }
@@ -99,28 +93,53 @@ public class HomeDao<T extends Home> extends Table {
 
     }
 
-    public <K, V,  U, I, T> Set<T> findAll(HashMap<K, V> keys) {
+    public <K, V> T findOne(HashMap<K, V> keys) {
         String query = String.format(
                 "SELECT * FROM %s WHERE %s;",
                 this.getTableName(),
                 this.generateParameters(keys)
         );
-        Set<T> homes = Sets.newConcurrentHashSet();
+
         try (
                 Connection connection = this.getConnection();
                 PreparedStatement preparedStatement = connection.prepareStatement(query);
-                ResultSet resultSet = preparedStatement.executeQuery();
         ) {
-            preparedStatement.execute();
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                return (T) Home.toHome(resultSet);
+            }
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+
+        return null;
+    }
+
+    public <K, V, U, I, T> Set<T> findAll(HashMap<K, V> keys) {
+        String query = String.format(
+                "SELECT * FROM %s WHERE %s;",
+                this.getTableName(),
+                this.generateParameters(keys)
+        );
+
+        Set<T> homes = Sets.newConcurrentHashSet();
+
+        try (
+                Connection connection = this.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(query);
+        ) {
+            ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
                 Home home = Home.toHome(resultSet);
+
                 homes.add((T) home);
             }
-        }
-        catch (SQLException exception) {
+        } catch (SQLException exception) {
             exception.printStackTrace();
         }
+
         return homes;
     }
 }
