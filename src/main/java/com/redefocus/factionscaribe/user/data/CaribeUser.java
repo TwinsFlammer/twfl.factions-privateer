@@ -4,14 +4,17 @@ import com.google.common.collect.Lists;
 import com.redefocus.api.spigot.scoreboard.CustomBoard;
 import com.redefocus.api.spigot.user.data.SpigotUser;
 import com.redefocus.common.shared.permissions.user.data.User;
+import com.redefocus.factionscaribe.home.dao.HomeDao;
 import com.redefocus.factionscaribe.home.data.Home;
 import lombok.Getter;
 import lombok.Setter;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
@@ -19,6 +22,7 @@ import java.util.stream.Collectors;
  * @author SrGutyerrez
  */
 public class CaribeUser extends SpigotUser {
+
     @Getter
     @Setter
     private Double money = 0.0;
@@ -33,12 +37,18 @@ public class CaribeUser extends SpigotUser {
     private final List<Integer> teleportRequests = Lists.newArrayList();
 
     @Getter
-    private final List<Home> homes = Lists.newArrayList();
+    private List<Home> homes;
 
     public CaribeUser(User user) {
         super(user);
 
         this.customBoard = new CustomBoard();
+
+        HomeDao<Home> homeDao = new HomeDao<>();
+
+        Set<Home> homes = homeDao.findAll("user_id", this.getId());
+
+        this.homes = Lists.newArrayList(homes);
     }
 
     public World getWorld() {
