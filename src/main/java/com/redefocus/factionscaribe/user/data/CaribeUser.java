@@ -1,6 +1,7 @@
 package com.redefocus.factionscaribe.user.data;
 
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import com.redefocus.api.spigot.scoreboard.CustomBoard;
 import com.redefocus.api.spigot.user.data.SpigotUser;
 import com.redefocus.common.shared.permissions.user.data.User;
@@ -11,10 +12,7 @@ import lombok.Setter;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
@@ -46,7 +44,11 @@ public class CaribeUser extends SpigotUser {
 
         HomeDao<Home> homeDao = new HomeDao<>();
 
-        Set<Home> homes = homeDao.findAll("user_id", this.getId());
+        HashMap<String, Object> keys = Maps.newHashMap();
+
+        keys.put("user_id", this.getId());
+
+        Set<Home> homes = homeDao.findAll(keys);
 
         this.homes = Lists.newArrayList(homes);
     }
