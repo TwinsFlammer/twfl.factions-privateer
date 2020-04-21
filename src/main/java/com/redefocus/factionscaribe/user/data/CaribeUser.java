@@ -12,6 +12,9 @@ import org.bukkit.entity.Player;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * @author SrGutyerrez
+ */
 public class CaribeUser extends SpigotUser {
     @Getter
     @Setter
