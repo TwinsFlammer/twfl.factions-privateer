@@ -1,6 +1,5 @@
 package com.redefocus.factionscaribe.commands.staff;
 
-import com.redefocus.api.spigot.SpigotAPI;
 import com.redefocus.api.spigot.commands.CustomCommand;
 import com.redefocus.api.spigot.commands.enums.CommandRestriction;
 import com.redefocus.api.spigot.teleport.data.TeleportRequest;
@@ -29,7 +28,6 @@ public class TpCommand extends CustomCommand {
 
         String targetName = args[0];
 
-        CaribeUser caribeUser = FactionsCaribe.getInstance().getCaribeUserFactory().getUser(user.getId());
         CaribeUser targetUser = FactionsCaribe.getInstance().getCaribeUserFactory().getUser(targetName);
 
         if (targetUser == null) {
@@ -42,7 +40,7 @@ public class TpCommand extends CustomCommand {
             return;
         }
 
-        Server server = SpigotAPI.getCurrentServer();
+        Server server = targetUser.getServer();
 
         TeleportRequest teleportRequest = new TeleportRequest(
                 user.getId(),
@@ -57,7 +55,7 @@ public class TpCommand extends CustomCommand {
         commandSender.sendMessage(
                 String.format(
                         "§aTeleportando-se para %s§a.",
-                        caribeUser.getPrefix() + caribeUser.getDisplayName()
+                        targetUser.getPrefix() + targetUser.getDisplayName()
                 )
         );
     }
