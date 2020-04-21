@@ -1,7 +1,6 @@
 package com.redefocus.factionscaribe.home.data;
 
 import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import org.bukkit.Location;
 
