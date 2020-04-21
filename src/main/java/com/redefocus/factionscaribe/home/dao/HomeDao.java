@@ -1,7 +1,6 @@
 package com.redefocus.factionscaribe.home.dao;
 
 import com.google.common.collect.Sets;
-import com.redefocus.api.spigot.SpigotAPI;
 import com.redefocus.api.spigot.util.serialize.LocationSerialize;
 import com.redefocus.common.shared.databases.mysql.dao.Table;
 import com.redefocus.factionscaribe.home.data.Home;
@@ -74,11 +73,12 @@ public class HomeDao<T extends Home> extends Table {
         try (
                 Connection connection = this.getConnection();
                 PreparedStatement preparedStatement = connection.prepareStatement(query);
-                ResultSet resultSet = preparedStatement.executeQuery();
         ) {
             preparedStatement.execute();
 
-            if (resultSet.next()) {
+
+
+            /*if (resultSet.next()) {
                 return (T) new Home(
                         resultSet.getInt("id"),
                         home.getUserId(),
@@ -87,7 +87,7 @@ public class HomeDao<T extends Home> extends Table {
                         home.getLocation(),
                         home.getState()
                 );
-            }
+            }*/
         } catch (SQLException exception) {
             exception.printStackTrace();
         }
@@ -99,12 +99,11 @@ public class HomeDao<T extends Home> extends Table {
 
     }
 
-    public <K, V extends Integer> Set<T> findAll(K key, V value) {
+    public <K, V,  U, I, T> Set<T> findAll(HashMap<K, V> keys) {
         String query = String.format(
-                "SELECT * FROM %s WHERE `%s`=%d",
+                "SELECT * FROM %s WHERE %s;",
                 this.getTableName(),
-                key,
-                value
+                this.generateParameters(keys)
         );
         Set<T> homes = Sets.newConcurrentHashSet();
         try (
