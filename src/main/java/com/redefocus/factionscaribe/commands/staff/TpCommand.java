@@ -10,6 +10,9 @@ import com.redefocus.factionscaribe.FactionsCaribe;
 import com.redefocus.factionscaribe.user.data.CaribeUser;
 import org.bukkit.command.CommandSender;
 
+/**
+ * @author SrGutyerrez
+ */
 public class TpCommand extends CustomCommand {
     public TpCommand() {
         super(
