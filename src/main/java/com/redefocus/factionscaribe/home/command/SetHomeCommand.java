@@ -5,6 +5,7 @@ import com.redefocus.api.spigot.commands.enums.CommandRestriction;
 import com.redefocus.api.spigot.util.serialize.LocationSerialize;
 import com.redefocus.common.shared.permissions.group.GroupNames;
 import com.redefocus.common.shared.permissions.user.data.User;
+import com.redefocus.factionscaribe.FactionsCaribe;
 import com.redefocus.factionscaribe.home.dao.HomeDao;
 import com.redefocus.factionscaribe.home.data.Home;
 import com.redefocus.factionscaribe.home.enums.HomeState;
@@ -32,7 +33,7 @@ public class SetHomeCommand extends CustomCommand {
             sender.sendMessage("§cUtilize /sethome <home>");
             return;
         }
-        CaribeUser caribeUser = (CaribeUser) user;
+        CaribeUser caribeUser = FactionsCaribe.getInstance().getCaribeUserFactory().getUser(user.getId());
         String name = args[0];
 
         if(name.length() > 32) {
