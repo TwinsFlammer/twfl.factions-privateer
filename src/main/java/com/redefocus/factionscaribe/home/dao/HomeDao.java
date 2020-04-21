@@ -1,6 +1,5 @@
 package com.redefocus.factionscaribe.home.dao;
 
-import com.google.common.collect.Sets;
 import com.redefocus.api.spigot.SpigotAPI;
 import com.redefocus.api.spigot.util.serialize.LocationSerialize;
 import com.redefocus.common.shared.databases.mysql.dao.Table;
@@ -10,7 +9,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Set;
 
 /**
  * @author oNospher
@@ -94,8 +92,4 @@ public class HomeDao<T extends Home> extends Table {
         return null;
     }
 
-    public <K, V> Set<T> findAll(K key, V value) {
-        Set<T> homes = Sets.newConcurrentHashSet();
-        return homes;
-    }
 }
