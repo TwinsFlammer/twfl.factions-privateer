@@ -83,11 +83,11 @@ public class MemoryCommand extends CustomCommand {
     }
 
     Long totalMem() {
-        return Runtime.getRuntime().totalMemory() / 1048576;
+        return Runtime.getRuntime().totalMemory();
     }
 
     Long usedMem() {
         Runtime runtime = Runtime.getRuntime();
-        return (runtime.totalMemory() - Runtime.getRuntime().freeMemory()) / 1048576;
+        return (runtime.totalMemory() - Runtime.getRuntime().freeMemory());
     }
 }
