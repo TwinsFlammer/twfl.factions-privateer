@@ -15,6 +15,9 @@ import java.lang.management.ManagementFactory;
 import java.lang.management.OperatingSystemMXBean;
 import java.text.DecimalFormat;
 
+/**
+ * @author SrGutyerrez
+ */
 public class MemoryCommand extends CustomCommand {
     public MemoryCommand() {
         super(
