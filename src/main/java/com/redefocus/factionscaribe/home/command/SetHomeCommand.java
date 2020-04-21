@@ -44,17 +44,18 @@ public class SetHomeCommand extends CustomCommand {
             );
             return;
         }
-        if(caribeUser.hasHome(name)) {
-            HomeDao<Home> homeDao = new HomeDao<>();
+        HomeDao<Home> homeDao = new HomeDao<>();
 
+        if(caribeUser.hasHome(name)) {
             Home home = caribeUser.getHome(name);
+
             home.setLocation(caribeUser.getPlayer().getLocation());
             home.setServerId(caribeUser.getServer().getId());
 
             HashMap<String, Object> hashMap = new HashMap<>();
+
             hashMap.put("location", LocationSerialize.toString(caribeUser.getPlayer().getLocation()));
             hashMap.put("server_id", caribeUser.getServer().getId());
-
             homeDao.update(hashMap, "id", home.getId());
 
             sender.sendMessage(
@@ -65,7 +66,6 @@ public class SetHomeCommand extends CustomCommand {
             );
             return;
         }
-        HomeDao<Home> homeDao = new HomeDao<>();
 
         Home home = homeDao.insert(
                 new Home(
@@ -77,7 +77,9 @@ public class SetHomeCommand extends CustomCommand {
                         HomeState.PRIVATE
                 )
         );
+
         caribeUser.getHomes().add(home);
+
         sender.sendMessage(
                 String.format(
                         "§aVocê setou a home %s com sucesso.",
