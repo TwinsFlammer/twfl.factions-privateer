@@ -1,20 +1,12 @@
 package com.redefocus.factionscaribe.home.data;
 
-import com.massivecraft.factions.Rel;
-import com.massivecraft.factions.entity.BoardColl;
-import com.massivecraft.factions.entity.Faction;
-import com.massivecraft.factions.entity.MPerm;
-import com.massivecraft.factions.entity.MPlayer;
-import com.massivecraft.massivecore.ps.PS;
 import com.redefocus.api.spigot.util.serialize.LocationSerialize;
 import com.redefocus.factionscaribe.home.enums.HomeState;
-import com.redefocus.factionscaribe.user.data.CaribeUser;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
-import org.bukkit.Chunk;
 import org.bukkit.Location;
 
 import java.sql.ResultSet;
@@ -48,7 +40,7 @@ public class Home {
         return !isPublic();
     }
 
-    public Boolean canTeleport(CaribeUser caribeUser) {
+   /* public Boolean canTeleport(CaribeUser caribeUser) {
         Chunk chunk = location.getChunk();
 
         MPlayer mPlayer = MPlayer.get(caribeUser.getUniqueId());
@@ -62,7 +54,7 @@ public class Home {
         if(faction.equals(at)) return true;
         if(!(faction.getRelationWish(at) == Rel.ALLY)) return false;
         return at.getPerms().get(MPerm.getPermHome()).contains(Rel.ALLY);
-    }
+    } */
 
     public static Home toHome(ResultSet resultSet) throws SQLException {
         String preLocation = resultSet.getString("location");
