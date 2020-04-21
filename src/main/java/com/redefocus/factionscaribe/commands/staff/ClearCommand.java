@@ -11,6 +11,9 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.PlayerInventory;
 
+/**
+ * @author SrGutyerrez
+ */
 public class ClearCommand extends CustomCommand {
     public ClearCommand() {
         super(
