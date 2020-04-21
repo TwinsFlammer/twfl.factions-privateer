@@ -62,10 +62,8 @@ public class Home {
 
     private Boolean isAllowed(Faction faction, Faction at) {
         if(faction.equals(at)) return true;
-        if(faction.getRelationWish(at) == Rel.ALLY) {
-            return at.getPerms().get(MPerm.getPermHome()).contains(Rel.ALLY);
-        }
-        return false;
+        if(!(faction.getRelationWish(at) == Rel.ALLY)) return false;
+        return at.getPerms().get(MPerm.getPermHome()).contains(Rel.ALLY);
     }
 
     public static Home toHome(ResultSet resultSet) throws SQLException {
