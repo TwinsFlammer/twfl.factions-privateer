@@ -85,7 +85,7 @@ public class SetHomeCommand extends CustomCommand {
         sender.sendMessage(
                 String.format(
                         "§aVocê setou a home %s com sucesso.",
-                        32
+                        name
                 )
         );
     }
