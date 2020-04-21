@@ -58,10 +58,10 @@ public class HomeDao<T extends Home> extends Table {
                         " VALUES " +
                         "(" +
                         "%d," +
-                        "%s," +
+                        "'%s'," +
                         "%d," +
-                        "%s," +
-                        "%s" +
+                        "'%s'," +
+                        "'%s'" +
                         ");",
                 this.getTableName(),
                 home.getUserId(),
