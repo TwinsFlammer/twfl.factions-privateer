@@ -1,6 +1,7 @@
 package com.redefocus.factionscaribe.home.data;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.Setter;
 import org.bukkit.Location;
 
@@ -8,6 +9,7 @@ import org.bukkit.Location;
  * @author oNospher
  **/
 @AllArgsConstructor
+@Getter
 public class Home {
 
     private final Integer id;
@@ -30,8 +32,6 @@ public class Home {
     public Boolean isPrivate() {
         return !isPublic();
     }
-
-
 
     enum State {
         PUBLIC,
