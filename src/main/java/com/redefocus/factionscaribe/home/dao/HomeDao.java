@@ -5,6 +5,7 @@ import com.redefocus.api.spigot.SpigotAPI;
 import com.redefocus.api.spigot.util.serialize.LocationSerialize;
 import com.redefocus.common.shared.databases.mysql.dao.Table;
 import com.redefocus.factionscaribe.home.data.Home;
+import com.redefocus.factionscaribe.home.manager.HomeManager;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -95,8 +96,33 @@ public class HomeDao<T extends Home> extends Table {
         return null;
     }
 
-    public <K, V> Set<T> findAll(K key, V value) {
+    public <K, V extends Integer> Set<T> findAll(K key, V value) {
+        String query = String.format(
+                "SELECT * FROM %s" +
+                        " WHERE " +
+                        "`%s`" +
+                        "=" +
+                        "%d",
+                this.getTableName(),
+                key,
+                value
+        );
         Set<T> homes = Sets.newConcurrentHashSet();
+        try (
+                Connection connection = this.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(query);
+        ) {
+            preparedStatement.execute();
+            ResultSet resultSet = preparedStatement.getGeneratedKeys();
+
+            while (resultSet.next()) {
+                T home = new HomeManager<T>().toHome(resultSet);
+                homes.add(home);
+            }
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+        }
         return homes;
     }
 }
