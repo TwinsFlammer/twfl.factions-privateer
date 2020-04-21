@@ -45,12 +45,11 @@ public class CaribeUser extends SpigotUser {
         HomeDao<Home> homeDao = new HomeDao<>();
 
         HashMap<String, Object> keys = Maps.newHashMap();
-
         keys.put("user_id", this.getId());
 
         Set<Home> homes = homeDao.findAll(keys);
-
         this.homes = Lists.newArrayList(homes);
+
     }
 
     public World getWorld() {
