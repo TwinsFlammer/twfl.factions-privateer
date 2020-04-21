@@ -1,5 +1,6 @@
 package com.redefocus.factionscaribe.home.data;
 
+import com.redefocus.factionscaribe.home.enums.HomeState;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -23,18 +24,13 @@ public class Home {
     private Location location;
 
     @Setter
-    private State state;
+    private HomeState state;
 
     public Boolean isPublic() {
-        return state == State.PUBLIC;
+        return state == HomeState.PUBLIC;
     }
 
     public Boolean isPrivate() {
         return !isPublic();
-    }
-
-    enum State {
-        PUBLIC,
-        PRIVATE;
     }
 }
