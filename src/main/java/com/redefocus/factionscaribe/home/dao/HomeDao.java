@@ -38,7 +38,7 @@ public class HomeDao<T extends Home> extends Table {
                                 "`name` VARCHAR(32) NOT NULL," +
                                 "`server_id` INTEGER NOT NULL," +
                                 "`location` VARCHAR(255) NOT NULL," +
-                                "`state` VARCHAR(7) NOT NULL" +
+                                "`state` VARCHAR(12) NOT NULL" +
                                 ");",
                         this.getTableName()
                 )
@@ -62,7 +62,7 @@ public class HomeDao<T extends Home> extends Table {
                         "%d," +
                         "%s," +
                         "%s" +
-                        ")",
+                        ");",
                 this.getTableName(),
                 home.getUserId(),
                 home.getName(),
@@ -70,6 +70,7 @@ public class HomeDao<T extends Home> extends Table {
                 LocationSerialize.toString(home.getLocation()),
                 home.getState().toString()
         );
+        System.out.println(query);
         try (
                 Connection connection = this.getConnection();
                 PreparedStatement preparedStatement = connection.prepareStatement(query);
