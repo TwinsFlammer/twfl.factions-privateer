@@ -47,7 +47,8 @@ public class HomeDao<T extends Home> extends Table {
 
     public T insert(T home) {
         String query = String.format(
-                "INSERT INTO %s (" +
+                "INSERT INTO %s " +
+                        "(" +
                         "`user_id`," +
                         "`name`," +
                         "`server_id`," +
@@ -56,12 +57,12 @@ public class HomeDao<T extends Home> extends Table {
                         ")" +
                         " VALUES " +
                         "(" +
-                        "'%s'," +
-                        "'%s'," +
-                        "'%s'," +
-                        "'%s'," +
-                        "'%s'" +
-                        ");",
+                        "%d," +
+                        "%s," +
+                        "%d," +
+                        "%s," +
+                        "%s" +
+                        ")",
                 this.getTableName(),
                 home.getUserId(),
                 home.getName(),
