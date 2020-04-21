@@ -35,7 +35,7 @@ public class CaribeUser extends SpigotUser {
     private final List<Integer> teleportRequests = Lists.newArrayList();
 
     @Getter
-    private List<Home> homes;
+    private final List<Home> homes;
 
     public CaribeUser(User user) {
         super(user);
