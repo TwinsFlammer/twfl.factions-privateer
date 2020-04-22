@@ -2,13 +2,16 @@ package com.redefocus.factionscaribe.user.data;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import com.redefocus.api.spigot.SpigotAPI;
 import com.redefocus.api.spigot.scoreboard.CustomBoard;
 import com.redefocus.api.spigot.user.data.SpigotUser;
 import com.redefocus.common.shared.permissions.user.data.User;
+import com.redefocus.common.shared.server.data.Server;
 import com.redefocus.factionscaribe.home.dao.HomeDao;
 import com.redefocus.factionscaribe.home.data.Home;
 import lombok.Getter;
 import lombok.Setter;
+import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 
@@ -51,10 +54,69 @@ public class CaribeUser extends SpigotUser {
         this.homes = Lists.newArrayList(homes);
     }
 
+    public void addHome(Home home) {
+        this.homes.add(home);
+    }
+
+    public Integer getServerId() {
+        Server server = this.getServer();
+
+        return server.getId();
+    }
+
+    public Long getTeleportTime() {
+        if (this.isVIP()) return 0L;
+
+        return TimeUnit.SECONDS.toMillis(3);
+    }
+
+    public Location getLocation() {
+        Player player = this.getPlayer();
+
+        return player.getLocation();
+    }
+
     public World getWorld() {
         Player player = this.getPlayer();
 
         return player.getWorld();
+    }
+
+    public Home getHomeExact(String name) {
+        return this.getHomes().stream()
+                .filter(Objects::nonNull)
+                .filter(home1 -> home1.getName().equalsIgnoreCase(name))
+                .findFirst()
+                .orElse(null);
+    }
+
+    public Home getHome(String name) {
+        return this.homes.stream()
+                .filter(Objects::nonNull)
+                .filter(home1 -> home1.getName().equalsIgnoreCase(name))
+                .findFirst()
+                .orElseGet(() -> new Home(
+                        0,
+                        this.getId(),
+                        name,
+                        SpigotAPI.getRootServerId(),
+                        null,
+                        Home.State.PRIVATE
+                ));
+    }
+
+    public List<Home> getPublicHomes() {
+        return this.homes.stream()
+                .filter(Objects::nonNull)
+                .filter(Home::isPublic)
+                .collect(Collectors.toList());
+    }
+
+    public List<Home> getPrivateHomes() {
+        return this.homes.stream()
+                .filter(Objects::nonNull)
+                .filter(Home::isPrivate)
+                .collect(Collectors.toList());
     }
 
     public Boolean isInvisible() {
@@ -65,12 +127,6 @@ public class CaribeUser extends SpigotUser {
         return this.god;
     }
 
-    public Long getTeleportTime() {
-        if (this.isVIP()) return 0L;
-
-        return TimeUnit.SECONDS.toMillis(3);
-    }
-
     public Boolean hasHome(String name) {
         Home home = this.getHomes().stream()
                 .filter(Objects::nonNull)
@@ -79,27 +135,5 @@ public class CaribeUser extends SpigotUser {
                 .orElse(null);
 
         return home != null;
-    }
-
-    public Home getHome(String name) {
-        return this.getHomes().stream()
-                .filter(Objects::nonNull)
-                .filter(home1 -> home1.getName().equalsIgnoreCase(name))
-                .findFirst()
-                .orElse(null);
-    }
-
-    public List<Home> getPublicHomes() {
-        return this.getHomes().stream()
-                .filter(Objects::nonNull)
-                .filter(Home::isPublic)
-                .collect(Collectors.toList());
-    }
-
-    public List<Home> getPrivateHomes() {
-        return this.getHomes().stream()
-                .filter(Objects::nonNull)
-                .filter(Home::isPrivate)
-                .collect(Collectors.toList());
     }
 }
