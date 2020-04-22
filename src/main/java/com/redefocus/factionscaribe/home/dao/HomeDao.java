@@ -112,7 +112,7 @@ public class HomeDao<T extends Home> extends Table {
     }
 
     public <K, V> T findOne(HashMap<K, V> keys) {
-        String where = this.generateWhere(keys).replaceAll(",", " AND");
+        String where = this.generateParameters(keys).replaceAll(",", " AND");
 
         String query = String.format(
                 "SELECT * FROM %s WHERE %s;",
