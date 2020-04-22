@@ -1,7 +1,6 @@
 package com.redefocus.factionscaribe.home.data;
 
 import com.redefocus.api.spigot.util.serialize.LocationSerialize;
-import com.redefocus.factionscaribe.home.enums.HomeState;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -18,7 +17,6 @@ import java.sql.SQLException;
 @AllArgsConstructor
 @Getter
 public class Home {
-
     private final Integer id;
     private final Integer userId;
     private final String name;
@@ -30,10 +28,10 @@ public class Home {
     private Location location;
 
     @Setter
-    private HomeState state;
+    private State state;
 
     public Boolean isPublic() {
-        return state == HomeState.PUBLIC;
+        return state == State.PUBLIC;
     }
 
     public Boolean isPrivate() {
@@ -60,7 +58,7 @@ public class Home {
         String preLocation = resultSet.getString("location");
         Location location = LocationSerialize.toLocation(preLocation);
         String preState = resultSet.getString("state");
-        HomeState state = HomeState.valueOf(preState);
+        State state = State.valueOf(preState);
         return new Home(
                 resultSet.getInt("id"),
                 resultSet.getInt("user_id"),
@@ -69,5 +67,10 @@ public class Home {
                 location,
                 state
         );
+    }
+
+    public enum State {
+        PUBLIC,
+        PRIVATE
     }
 }
