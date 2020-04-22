@@ -58,6 +58,18 @@ public class CaribeUser extends SpigotUser {
         this.homes.add(home);
     }
 
+    public String getRolePrefix() {
+        return "";
+    }
+
+    public String getFactionName() {
+        return "";
+    }
+
+    public String getFactionTag() {
+        return "";
+    }
+
     public Integer getServerId() {
         Server server = this.getServer();
 
