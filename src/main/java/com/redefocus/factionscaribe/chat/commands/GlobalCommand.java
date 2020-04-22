@@ -5,6 +5,7 @@ import com.redefocus.api.spigot.commands.enums.CommandRestriction;
 import com.redefocus.common.shared.cooldown.manager.CooldownManager;
 import com.redefocus.common.shared.permissions.group.GroupNames;
 import com.redefocus.common.shared.permissions.user.data.User;
+import com.redefocus.common.shared.util.TimeFormatter;
 import org.bukkit.command.CommandSender;
 
 /**
@@ -22,7 +23,12 @@ public class GlobalCommand extends CustomCommand {
     @Override
     public void onCommand(CommandSender commandSender, User user, String[] args) {
         if (CooldownManager.inCooldown(user, "CHAT_GLOBAL")) {
-            commandSender.sendMessage("");
+            commandSender.sendMessage(
+                    String.format(
+                            "",
+                            TimeFormatter.formatMinimized(CooldownManager.getRemainingTime(user, "CHAT_GLOBAL"))
+                    )
+            );
             return;
         }
     }
