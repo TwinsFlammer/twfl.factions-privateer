@@ -90,7 +90,7 @@ public class SetHomeCommand extends CustomCommand {
 
         commandSender.sendMessage(
                 String.format(
-                        "§aPronto! Sua home foi definida com sucesso. Para voltar para esta localização utilize \"§f/home %s§a\".",
+                        "§aHome '%s' criada com sucesso.",
                         name
                 )
         );
