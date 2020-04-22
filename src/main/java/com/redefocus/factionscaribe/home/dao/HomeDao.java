@@ -111,6 +111,11 @@ public class HomeDao<T extends Home> extends Table {
         }
     }
 
+    @Override
+    public <K, V> void delete(K key, V value) {
+        super.delete(key, value);
+    }
+
     public <K, V> T findOne(HashMap<K, V> keys) {
         String where = this.generateParameters(keys).replaceAll(",", " AND");
 
