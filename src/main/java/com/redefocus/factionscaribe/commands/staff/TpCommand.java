@@ -5,6 +5,7 @@ import com.redefocus.api.spigot.commands.enums.CommandRestriction;
 import com.redefocus.api.spigot.teleport.data.TeleportRequest;
 import com.redefocus.common.shared.permissions.group.GroupNames;
 import com.redefocus.common.shared.permissions.user.data.User;
+import com.redefocus.common.shared.report.manager.ReportReasonManager;
 import com.redefocus.common.shared.server.data.Server;
 import com.redefocus.factionscaribe.FactionsCaribe;
 import com.redefocus.factionscaribe.user.data.CaribeUser;
@@ -40,6 +41,11 @@ public class TpCommand extends CustomCommand {
 
         if (!targetUser.isOnline()) {
             commandSender.sendMessage("§cEste usuário não está online.");
+            return;
+        }
+
+        if(!user.hasGroup(GroupNames.COORDINATOR) && user.getReports().isEmpty()) {
+            commandSender.sendMessage("§cEste usuário não foi reportado nenhuma vez.");
             return;
         }
 
