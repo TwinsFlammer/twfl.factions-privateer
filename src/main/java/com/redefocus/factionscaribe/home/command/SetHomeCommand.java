@@ -1,5 +1,6 @@
 package com.redefocus.factionscaribe.home.command;
 
+import com.google.common.collect.Maps;
 import com.redefocus.api.spigot.commands.CustomCommand;
 import com.redefocus.api.spigot.commands.enums.CommandRestriction;
 import com.redefocus.api.spigot.util.serialize.LocationSerialize;
@@ -8,7 +9,6 @@ import com.redefocus.common.shared.permissions.user.data.User;
 import com.redefocus.factionscaribe.FactionsCaribe;
 import com.redefocus.factionscaribe.home.dao.HomeDao;
 import com.redefocus.factionscaribe.home.data.Home;
-import com.redefocus.factionscaribe.home.enums.HomeState;
 import com.redefocus.factionscaribe.user.data.CaribeUser;
 import org.bukkit.command.CommandSender;
 
@@ -18,6 +18,7 @@ import java.util.HashMap;
  * @author oNospher
  **/
 public class SetHomeCommand extends CustomCommand {
+    private final Integer MAX_HOME_NAME_LENGHT = 32;
 
     public SetHomeCommand() {
         super(
@@ -28,19 +29,19 @@ public class SetHomeCommand extends CustomCommand {
     }
 
     @Override
-    public void onCommand(CommandSender sender, User user, String[] args) {
+    public void onCommand(CommandSender commandSender, User user, String[] args) {
         if(args.length != 1) {
-            sender.sendMessage("§cUtilize /sethome <home>");
+            commandSender.sendMessage("§cUtilize /sethome <home>");
             return;
         }
         CaribeUser caribeUser = FactionsCaribe.getInstance().getCaribeUserFactory().getUser(user.getId());
         String name = args[0];
 
-        if(name.length() > 32) {
-            sender.sendMessage(
+        if(name.length() > this.MAX_HOME_NAME_LENGHT) {
+            commandSender.sendMessage(
                     String.format(
-                            "§cO nome da home tem que ter menos de %s caracteres.",
-                            32
+                            "§cO nome da home tem que ter no máximo %d.",
+                            this.MAX_HOME_NAME_LENGHT
                     )
             );
             return;
@@ -48,43 +49,33 @@ public class SetHomeCommand extends CustomCommand {
 
         HomeDao<Home> homeDao = new HomeDao<>();
 
-        if(caribeUser.hasHome(name)) {
-            Home home = caribeUser.getHome(name);
+        Home home = caribeUser.getHome(name);
 
-            home.setLocation(caribeUser.getPlayer().getLocation());
-            home.setServerId(caribeUser.getServer().getId());
+        home.setLocation(caribeUser.getLocation());
+        home.setServerId(caribeUser.getServerId());
 
-            HashMap<String, Object> hashMap = new HashMap<>();
+        if (caribeUser.hasHome(name)) {
+            HashMap<String, Object> keys = Maps.newHashMap();
 
-            hashMap.put("location", LocationSerialize.toString(caribeUser.getPlayer().getLocation()));
-            hashMap.put("server_id", caribeUser.getServer().getId());
-            homeDao.update(hashMap, "id", home.getId());
+            keys.put("location", LocationSerialize.toString(
+                    caribeUser.getLocation()
+            ));
+            keys.put("server_id", home.getServerId());
 
-            sender.sendMessage(
-                    String.format(
-                            "§aVocê atualizou a home %s com sucesso.",
-                            home.getName()
-                    )
+            homeDao.update(
+                    keys,
+                    "id",
+                    home.getId()
             );
-            return;
+        } else {
+            home = homeDao.insert(home);
+
+            caribeUser.addHome(home);
         }
 
-        Home home = homeDao.insert(
-                new Home(
-                        0,
-                        caribeUser.getId(),
-                        name,
-                        caribeUser.getServer().getId(),
-                        caribeUser.getPlayer().getLocation(),
-                        HomeState.PRIVATE
-                )
-        );
-
-        caribeUser.getHomes().add(home);
-
-        sender.sendMessage(
+        commandSender.sendMessage(
                 String.format(
-                        "§aVocê setou a home %s com sucesso.",
+                        "§aPronto! Sua home foi definida com sucesso. Para voltar para esta localização utilize \"§f/home %s§a\".",
                         name
                 )
         );
