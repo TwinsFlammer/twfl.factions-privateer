@@ -17,6 +17,7 @@ import java.sql.SQLException;
 @AllArgsConstructor
 @Getter
 public class Home {
+
     private final Integer id;
     private final Integer userId;
     private final String name;
