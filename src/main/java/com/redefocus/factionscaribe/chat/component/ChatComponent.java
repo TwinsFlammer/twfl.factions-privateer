@@ -1,17 +1,16 @@
-package com.redefocus.factionscaribe.chat.base;
+package com.redefocus.factionscaribe.chat.component;
 
-import com.redefocus.api.spigot.util.JSONText;
+import com.redefocus.api.spigot.util.jsontext.data.JSONText;
 import com.redefocus.factionscaribe.chat.enums.Channel;
 import com.redefocus.factionscaribe.user.data.CaribeUser;
-import org.bukkit.entity.Player;
 
 /**
  * @author SrGutyerrez
  */
-public abstract class ChatBase {
+public abstract class ChatComponent {
     private final JSONText jsonText;
 
-    public ChatBase(Channel channel, CaribeUser user, String message) {
+    public ChatComponent(Channel channel, CaribeUser user, String message) {
         JSONText jsonText;
 
         switch (channel) {
@@ -62,7 +61,7 @@ public abstract class ChatBase {
         this.jsonText = jsonText;
     }
 
-    public void send(Player player) {
-        this.jsonText.send(player);
+    public void send(CaribeUser caribeUser) {
+        caribeUser.sendMessage(this.jsonText);
     }
 }
