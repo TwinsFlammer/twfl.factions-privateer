@@ -111,9 +111,22 @@ public class HomeDao<T extends Home> extends Table {
         }
     }
 
-    @Override
-    public <K, V> void delete(K key, V value) {
-        super.delete(key, value);
+    public <K, V extends Integer> void delete(K key, V value) {
+        String query = String.format(
+                "DELETE FROM `%s` WHERE `%s`=%d;",
+                this.getTableName(),
+                key,
+                value
+        );
+
+        try (
+                Connection connection = this.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(query);
+        ) {
+            preparedStatement.executeUpdate();
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
     }
 
     public <K, V> T findOne(HashMap<K, V> keys) {
