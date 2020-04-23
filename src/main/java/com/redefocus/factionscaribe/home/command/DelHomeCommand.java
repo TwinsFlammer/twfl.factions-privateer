@@ -5,6 +5,8 @@ import com.redefocus.api.spigot.commands.enums.CommandRestriction;
 import com.redefocus.common.shared.permissions.group.GroupNames;
 import com.redefocus.common.shared.permissions.user.data.User;
 import com.redefocus.factionscaribe.FactionsCaribe;
+import com.redefocus.factionscaribe.home.dao.HomeDao;
+import com.redefocus.factionscaribe.home.data.Home;
 import com.redefocus.factionscaribe.user.data.CaribeUser;
 import org.bukkit.command.CommandSender;
 
@@ -29,6 +31,22 @@ public class DelHomeCommand extends CustomCommand {
         }
         CaribeUser caribeUser = FactionsCaribe.getInstance().getCaribeUserFactory().getUser(user.getId());
         String name = args[0];
+        Home home = caribeUser.getHomeExact(name);
+
+        if(home == null) {
+            commandSender.sendMessage("§cEssa home não existe.");
+            return;
+        }
+
+        HomeDao<Home> homeDao = new HomeDao<>();
+        homeDao.delete("id", home.getId());
+
+        commandSender.sendMessage(
+                String.format(
+                        "§eA home \"%s\" foi deletada com sucesso.",
+                        home.getName()
+                )
+        );
 
     }
 }
