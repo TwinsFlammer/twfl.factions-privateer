@@ -33,14 +33,14 @@ public class PublicCommand extends CustomCommand {
         }
 
         CaribeUser caribeUser = FactionsCaribe.getInstance().getCaribeUserFactory().getUser(user.getId());
-
         String name = args[0];
-        Home home = caribeUser.getHomeExact(name);
 
-        if(home == null) {
+        if(!caribeUser.hasHome(name)) {
             commandSender.sendMessage("§cEsta home não existe.");
             return;
         }
+
+        Home home = caribeUser.getHomeExact(name);
 
         if(home.isPublic()) {
             commandSender.sendMessage("§cEsta home já é pública.");
