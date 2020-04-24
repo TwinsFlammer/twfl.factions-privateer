@@ -29,6 +29,7 @@ public class DelHomeCommand extends CustomCommand {
             commandSender.sendMessage("§cUtilize /delhome <home>");
             return;
         }
+
         CaribeUser caribeUser = FactionsCaribe.getInstance().getCaribeUserFactory().getUser(user.getId());
         String name = args[0];
         Home home = caribeUser.getHomeExact(name);
