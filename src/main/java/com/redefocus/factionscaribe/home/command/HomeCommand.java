@@ -8,6 +8,7 @@ import com.redefocus.factionscaribe.FactionsCaribe;
 import com.redefocus.factionscaribe.chat.component.ChatComponent;
 import com.redefocus.factionscaribe.chat.enums.Channel;
 import com.redefocus.factionscaribe.home.component.HomeComponent;
+import com.redefocus.factionscaribe.home.data.Home;
 import com.redefocus.factionscaribe.user.data.CaribeUser;
 import org.bukkit.command.CommandSender;
 
@@ -41,6 +42,8 @@ public class HomeCommand extends CustomCommand {
                         return;
                     }
                     try {
+                        String name = argument.split(":")[1];
+                        Home home = caribeTarget.getHomeExact(name);
 
                     } catch (Exception exception) {
                         HomeComponent homeComponent = new HomeComponent(caribeTarget) {
