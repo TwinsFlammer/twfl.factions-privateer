@@ -95,7 +95,7 @@ public class CaribeUser extends SpigotUser {
     }
 
     public Home getHomeExact(String name) {
-        return this.getHomes().stream()
+        return this.homes.stream()
                 .filter(Objects::nonNull)
                 .filter(home1 -> home1.getName().equalsIgnoreCase(name))
                 .findFirst()
