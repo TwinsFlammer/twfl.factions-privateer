@@ -31,6 +31,10 @@ public class CaribeUser extends SpigotUser {
     @Getter
     private final CustomBoard customBoard;
 
+    @Getter
+    @Setter
+    private Long combatDuration;
+
     @Setter
     private Boolean invisible = false, god = false;
 
@@ -147,5 +151,9 @@ public class CaribeUser extends SpigotUser {
                 .orElse(null);
 
         return home != null;
+    }
+
+    public Boolean inCombat() {
+        return this.combatDuration >= System.currentTimeMillis();
     }
 }
