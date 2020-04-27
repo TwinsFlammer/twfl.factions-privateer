@@ -4,12 +4,15 @@ import com.redefocus.api.spigot.util.serialize.LocationSerialize;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 import org.bukkit.Location;
+import org.bukkit.World;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 
 /**
  * @author oNospher
@@ -25,11 +28,55 @@ public class Home {
     @Setter
     private Integer serverId;
 
+    @Getter
+    private String factionId;
+
     @Setter
     private Location location;
 
     @Setter
     private State state;
+
+    public String getFancyLocation() {
+        DecimalFormat decimalFormat = new DecimalFormat("###,###");
+
+        Double x = this.location.getX(), y = this.location.getY(), z = this.location.getZ();
+
+        return String.format(
+                "x:%s y:%s z:%s",
+                decimalFormat.format(x),
+                decimalFormat.format(y),
+                decimalFormat.format(z)
+        );
+    }
+
+    public String getWorldName() {
+        Location location = this.location;
+
+        World world = location.getWorld();
+
+        return world.getName();
+    }
+
+    public static Home toHome(ResultSet resultSet) throws SQLException {
+        String preLocation = resultSet.getString("location");
+
+        Location location = LocationSerialize.toLocation(preLocation);
+
+        String preState = resultSet.getString("state");
+
+        State state = State.valueOf(preState);
+
+        return new Home(
+                resultSet.getInt("id"),
+                resultSet.getInt("user_id"),
+                resultSet.getString("name"),
+                resultSet.getInt("server_id"),
+                resultSet.getString("faction_id"),
+                location,
+                state
+        );
+    }
 
     public Boolean isPublic() {
         return state == State.PUBLIC;
@@ -39,39 +86,16 @@ public class Home {
         return !isPublic();
     }
 
-   /* public Boolean canTeleport(CaribeUser caribeUser) {
-        Chunk chunk = location.getChunk();
-
-        MPlayer mPlayer = MPlayer.get(caribeUser.getUniqueId());
-        Faction at = BoardColl.get().getFactionAt(PS.valueOf(chunk));
-
-        return isAllowed(mPlayer.getFaction(), at);
-    }
-
-    private Boolean isAllowed(Faction faction, Faction at) {
-        if (at == null || at.isNone()) return true;
-        if(faction.equals(at)) return true;
-        if(!(faction.getRelationWish(at) == Rel.ALLY)) return false;
-        return at.getPerms().get(MPerm.getPermHome()).contains(Rel.ALLY);
-    } */
-
-    public static Home toHome(ResultSet resultSet) throws SQLException {
-        String preLocation = resultSet.getString("location");
-        Location location = LocationSerialize.toLocation(preLocation);
-        String preState = resultSet.getString("state");
-        State state = State.valueOf(preState);
-        return new Home(
-                resultSet.getInt("id"),
-                resultSet.getInt("user_id"),
-                resultSet.getString("name"),
-                resultSet.getInt("server_id"),
-                location,
-                state
-        );
-    }
-
+    @RequiredArgsConstructor
     public enum State {
-        PUBLIC,
-        PRIVATE
+        PUBLIC(
+                "publica"
+        ),
+        PRIVATE(
+                "particular"
+        );
+
+        @Getter
+        private final String name;
     }
 }
