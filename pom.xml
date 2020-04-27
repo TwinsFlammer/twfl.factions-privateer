@@ -7,6 +7,11 @@
     <artifactId>factions-caribe</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <properties>
+        <massivecraft.groupId>com.massivecraft</massivecraft.groupId>
+        <massivecraft.version>2.13.6</massivecraft.version>
+    </properties>
+
     <parent>
         <groupId>com.redefocus</groupId>
         <artifactId>super</artifactId>
@@ -27,6 +32,18 @@
             <groupId>${project.groupId}</groupId>
             <artifactId>api-spigot</artifactId>
             <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <!-- massivecore -->
+        <dependency>
+            <groupId>${massivecraft.groupId}</groupId>
+            <artifactId>MassiveCore</artifactId>
+            <version>${massivecraft.version}</version>
+        </dependency>
+        <!-- factions -->
+        <dependency>
+            <groupId>${massivecraft.groupId}</groupId>
+            <artifactId>Factions</artifactId>
+            <version>${massivecraft.version}</version>
         </dependency>
     </dependencies>
 
