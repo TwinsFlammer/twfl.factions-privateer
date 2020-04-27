@@ -24,7 +24,17 @@ public abstract class ChatComponent {
                         .text("§f")
                         .next()
                         .text(user.getDisplayName())
-                        .hoverText("")
+                        .hoverText(
+                                "§6Nick: §f" +
+                                "\n" +
+                                "§6Facção: §f" +
+                                "\n" +
+                                "§6KDR: §f" +
+                                "\n" +
+                                "§6Poder: §f" +
+                                "\n" +
+                                "§6Coins: §f"
+                        )
                         .next()
                         .text(channel.getColor() + ": ")
                         .next()
