@@ -14,12 +14,12 @@ import java.util.concurrent.TimeUnit;
 @Getter
 public enum Channel {
     LOCAL(
-            "L",
+            "l",
             ChatColor.YELLOW,
             TimeUnit.SECONDS.toMillis(3)
     ),
     GLOBAL(
-            "G",
+            "g",
             ChatColor.GRAY,
             TimeUnit.SECONDS.toMillis(10)
     ),
