@@ -2,6 +2,10 @@ package com.redefocus.factionscaribe.user.data;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import com.massivecraft.factions.Rel;
+import com.massivecraft.factions.entity.Faction;
+import com.massivecraft.factions.entity.MPerm;
+import com.massivecraft.factions.entity.MPlayer;
 import com.redefocus.api.spigot.SpigotAPI;
 import com.redefocus.api.spigot.scoreboard.CustomBoard;
 import com.redefocus.api.spigot.user.data.SpigotUser;
@@ -117,6 +121,7 @@ public class CaribeUser extends SpigotUser {
                         name,
                         SpigotAPI.getRootServerId(),
                         null,
+                        null,
                         Home.State.PRIVATE
                 ));
     }
@@ -151,6 +156,19 @@ public class CaribeUser extends SpigotUser {
                 .orElse(null);
 
         return home != null;
+    }
+
+    public Boolean canTeleport(Home home) {
+        MPlayer mPlayer = MPlayer.get(this.getUniqueId());
+
+        Faction faction = mPlayer.getFaction();
+        Faction factionAt = Faction.get(home.getFactionId());
+
+        if (factionAt == null || factionAt.isNone() || faction.equals(factionAt)) return true;
+
+        if (!(faction.getRelationWish(factionAt).equals(Rel.ALLY))) return false;
+
+        return factionAt.getPerms().get(MPerm.getPermHome()).contains(Rel.ALLY);
     }
 
     public Boolean inCombat() {
