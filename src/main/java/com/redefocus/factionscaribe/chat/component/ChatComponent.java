@@ -44,7 +44,8 @@ public abstract class ChatComponent {
                         .next()
                         .text(channel.getColor() + ": ")
                         .next()
-                        .text(message);
+                        .text(message)
+                        .next();
                 break;
             }
             case ALLY: {
@@ -58,7 +59,8 @@ public abstract class ChatComponent {
                 .next()
                 .text("§f" + user.getDisplayName())
                 .next()
-                .text("§f: " + message);
+                .text("§f: " + message)
+                .next();
                 break;
             }
             case FACTION: {
@@ -67,7 +69,8 @@ public abstract class ChatComponent {
                         .next()
                         .text("§f" + user.getDisplayName())
                         .next()
-                        .text(": §b" + message);
+                        .text(": §b" + message)
+                        .next();
                 break;
             }
             default:
