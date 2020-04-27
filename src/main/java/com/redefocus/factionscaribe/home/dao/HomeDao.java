@@ -37,6 +37,7 @@ public class HomeDao<T extends Home> extends Table {
                                 "`user_id` INTEGER NOT NULL," +
                                 "`name` VARCHAR(32) NOT NULL," +
                                 "`server_id` INTEGER NOT NULL," +
+                                "`faction_id` VARCHAR(32) NOT NULL," +
                                 "`location` VARCHAR(255) NOT NULL," +
                                 "`state` VARCHAR(12) NOT NULL" +
                                 ");",
