@@ -44,7 +44,7 @@ public abstract class ChatComponent {
                         .next()
                         .text(channel.getColor() + ": ")
                         .next()
-                        .text(message)
+                        .text(channel.getColor() + message)
                         .next();
                 break;
             }
