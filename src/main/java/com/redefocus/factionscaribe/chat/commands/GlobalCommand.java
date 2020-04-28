@@ -7,6 +7,7 @@ import com.redefocus.api.spigot.util.action.data.CustomAction;
 import com.redefocus.common.shared.cooldown.manager.CooldownManager;
 import com.redefocus.common.shared.permissions.group.GroupNames;
 import com.redefocus.common.shared.permissions.user.data.User;
+import com.redefocus.common.shared.preference.Preference;
 import com.redefocus.common.shared.util.Helper;
 import com.redefocus.common.shared.util.TimeFormatter;
 import com.redefocus.factionscaribe.FactionsCaribe;
@@ -86,10 +87,14 @@ public class GlobalCommand extends CustomCommand {
             }
         };
 
-        SpigotAPI.getUsers().forEach(user1 -> {
-            CaribeUser caribeUser1 = FactionsCaribe.getInstance().getCaribeUserFactory().getUser(user1.getId());
+        SpigotAPI.getUsers()
+                .stream()
+                .filter(user1 -> user1.isEnabled(Preference.CHAT_GLOBAL))
+                .filter(user1 -> !user1.isIgnoring(user))
+                .forEach(user1 -> {
+                    CaribeUser caribeUser1 = FactionsCaribe.getInstance().getCaribeUserFactory().getUser(user1.getId());
 
-            chatComponent.send(caribeUser1);
-        });
+                    chatComponent.send(caribeUser1);
+                });
     }
 }
