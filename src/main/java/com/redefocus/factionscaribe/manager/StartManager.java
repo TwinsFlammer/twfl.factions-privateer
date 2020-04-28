@@ -58,6 +58,8 @@ class ListenerManager {
                         exception.printStackTrace();
                     }
                 }
+            } else {
+                System.out.println("Contém: " + clazz);
             }
         });
     }
