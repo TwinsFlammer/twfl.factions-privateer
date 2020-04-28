@@ -8,8 +8,11 @@ import com.redefocus.common.shared.databases.redis.channel.data.Channel;
 import com.redefocus.common.shared.databases.redis.handler.JedisMessageListener;
 import com.redefocus.common.shared.util.ClassGetter;
 import com.redefocus.factionscaribe.FactionsCaribe;
+import com.redefocus.factionscaribe.mcmmo.listeners.*;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Listener;
+
+import java.util.Arrays;
 
 /**
  * @author SrGutyerrez
@@ -32,17 +35,28 @@ public class StartManager {
 
 class ListenerManager {
     ListenerManager() {
+        Class<?>[] blacklisted = {
+                BlockListener.class,
+                PlayerListener.class,
+                EntityListener.class,
+                InventoryListener.class,
+                SelfListener.class,
+                WorldListener.class
+        };
+        
         ClassGetter.getClassesForPackage(FactionsCaribe.class).forEach(clazz -> {
-            if (Listener.class.isAssignableFrom(clazz)) {
-                try {
-                    Listener listener = (Listener) clazz.newInstance();
+            if (!Arrays.asList(blacklisted).contains(clazz)) {
+                if (Listener.class.isAssignableFrom(clazz)) {
+                    try {
+                        Listener listener = (Listener) clazz.newInstance();
 
-                    Bukkit.getPluginManager().registerEvents(
-                            listener,
-                            FactionsCaribe.getInstance()
-                    );
-                } catch (InstantiationException | IllegalAccessException exception) {
-                    exception.printStackTrace();
+                        Bukkit.getPluginManager().registerEvents(
+                                listener,
+                                FactionsCaribe.getInstance()
+                        );
+                    } catch (InstantiationException | IllegalAccessException exception) {
+                        exception.printStackTrace();
+                    }
                 }
             }
         });
