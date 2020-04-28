@@ -80,17 +80,8 @@ public class AsyncPlayerChatListener implements Listener {
 
         String message = event.getMessage();
 
-        ChatComponent chatComponent = new ChatComponent(Channel.LOCAL, caribeUser, message) {
-            @Override
-            public void send(CaribeUser caribeUser) {
-                super.send(caribeUser);
-            }
-        };
+        ChatComponent chatComponent = new ChatComponent(Channel.LOCAL, caribeUser, message) { };
 
-        players.forEach(player1 -> {
-            CaribeUser caribeUser1 = FactionsCaribe.getInstance().getCaribeUserFactory().getUser(player.getUniqueId());
-
-            chatComponent.send(caribeUser1);
-        });
+        players.forEach(chatComponent::send);
     }
 }
