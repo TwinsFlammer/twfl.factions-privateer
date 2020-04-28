@@ -4,6 +4,7 @@ import com.redefocus.api.spigot.util.action.data.CustomAction;
 import com.redefocus.common.shared.cooldown.manager.CooldownManager;
 import com.redefocus.common.shared.permissions.user.data.User;
 import com.redefocus.common.shared.permissions.user.manager.UserManager;
+import com.redefocus.common.shared.preference.Preference;
 import com.redefocus.common.shared.util.TimeFormatter;
 import com.redefocus.factionscaribe.FactionsCaribe;
 import com.redefocus.factionscaribe.chat.component.ChatComponent;
@@ -16,19 +17,24 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 /**
  * @author SrGutyerrez
  */
 public class AsyncPlayerChatListener implements Listener {
+    private static final String OBJECT_NAME = "CHAT_LOCAL";
+
     @EventHandler
     public void onMessage(AsyncPlayerChatEvent event) {
         Player player = event.getPlayer();
 
         User user = UserManager.getUser(player.getUniqueId());
 
-        if (CooldownManager.inCooldown(user, "CHAT_LOCAL")) {
+        event.setCancelled(true);
+
+        if (CooldownManager.inCooldown(user, AsyncPlayerChatListener.OBJECT_NAME)) {
             new CustomAction()
                     .text(
                             String.format(
@@ -47,6 +53,11 @@ public class AsyncPlayerChatListener implements Listener {
                 .filter(entity -> !entity.hasMetadata("NPC"))
                 .filter(entity -> entity.getType().equals(EntityType.PLAYER))
                 .map(entity -> (Player) entity)
+                .filter(player1 -> {
+                    User user1 = UserManager.getUser(player1.getUniqueId());
+
+                    return user1.isEnabled(Preference.CHAT_LOCAL) && !user1.isIgnoring(user);
+                })
                 .collect(Collectors.toList());
 
         if (players.isEmpty()) {
@@ -58,6 +69,12 @@ public class AsyncPlayerChatListener implements Listener {
                     .send(player);
             return;
         }
+
+        CooldownManager.startCooldown(
+                user,
+                TimeUnit.SECONDS.toMillis(3),
+                AsyncPlayerChatListener.OBJECT_NAME
+        );
 
         CaribeUser caribeUser = FactionsCaribe.getInstance().getCaribeUserFactory().getUser(user.getUniqueId());
 
