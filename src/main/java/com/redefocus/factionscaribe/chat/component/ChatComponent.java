@@ -5,6 +5,7 @@ import com.massivecraft.factions.entity.MPlayer;
 import com.redefocus.api.spigot.util.jsontext.data.JSONText;
 import com.redefocus.factionscaribe.chat.enums.Channel;
 import com.redefocus.factionscaribe.user.data.CaribeUser;
+import org.bukkit.entity.Player;
 
 /**
  * @author SrGutyerrez
@@ -82,5 +83,9 @@ public abstract class ChatComponent {
 
     public void send(CaribeUser caribeUser) {
         caribeUser.sendMessage(this.jsonText);
+    }
+
+    public void send(Player player) {
+        this.jsonText.send(player);
     }
 }
