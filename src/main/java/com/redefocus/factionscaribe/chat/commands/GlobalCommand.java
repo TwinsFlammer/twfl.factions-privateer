@@ -80,12 +80,7 @@ public class GlobalCommand extends CustomCommand {
 
         String message = Helper.toMessage(args);
 
-        ChatComponent chatComponent = new ChatComponent(Channel.GLOBAL, caribeUser, message) {
-            @Override
-            public void send(CaribeUser caribeUser) {
-                super.send(caribeUser);
-            }
-        };
+        ChatComponent chatComponent = new ChatComponent(Channel.GLOBAL, caribeUser, message) { };
 
         SpigotAPI.getUsers()
                 .stream()
