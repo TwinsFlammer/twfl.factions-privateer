@@ -45,7 +45,11 @@ class ListenerManager {
         };
         
         ClassGetter.getClassesForPackage(FactionsCaribe.class).forEach(clazz -> {
+            System.out.println(clazz);
+
             if (!Arrays.asList(blacklisted).contains(clazz)) {
+                System.out.println("Registrando: " + clazz);
+
                 if (Listener.class.isAssignableFrom(clazz)) {
                     try {
                         Listener listener = (Listener) clazz.newInstance();
