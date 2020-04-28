@@ -38,6 +38,11 @@ public class GlobalCommand extends CustomCommand {
             return;
         }
 
+        if (args.length == 0) {
+            commandSender.sendMessage("§cUtilize /g <mensagem>.");
+            return;
+        }
+
         CaribeUser caribeUser = FactionsCaribe.getInstance().getCaribeUserFactory().getUser(user.getId());
 
         String message = Helper.toMessage(args);
