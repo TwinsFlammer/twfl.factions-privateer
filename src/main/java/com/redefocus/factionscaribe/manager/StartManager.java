@@ -8,16 +8,31 @@ import com.redefocus.common.shared.databases.redis.channel.data.Channel;
 import com.redefocus.common.shared.databases.redis.handler.JedisMessageListener;
 import com.redefocus.common.shared.util.ClassGetter;
 import com.redefocus.factionscaribe.FactionsCaribe;
+import com.redefocus.factionscaribe.mcmmo.config.AutoUpdateConfigLoader;
+import com.redefocus.factionscaribe.mcmmo.config.Config;
+import com.redefocus.factionscaribe.mcmmo.config.ConfigLoader;
 import com.redefocus.factionscaribe.mcmmo.listeners.*;
+import com.redefocus.factionscaribe.mcmmo.runnables.party.PartyAutoKickTask;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Listener;
-
-import java.util.Arrays;
 
 /**
  * @author SrGutyerrez
  */
 public class StartManager {
+    public static Class<?>[] BLACK_LISTED = {
+            BlockListener.class,
+            PlayerListener.class,
+            EntityListener.class,
+            InventoryListener.class,
+            SelfListener.class,
+            WorldListener.class,
+            ConfigLoader.class,
+            AutoUpdateConfigLoader.class,
+            Config.class,
+            PartyAutoKickTask.class
+    };
+
     public StartManager() {
         new ListenerManager();
 
@@ -35,35 +50,18 @@ public class StartManager {
 
 class ListenerManager {
     ListenerManager() {
-        Class<?>[] blacklisted = {
-                BlockListener.class,
-                PlayerListener.class,
-                EntityListener.class,
-                InventoryListener.class,
-                SelfListener.class,
-                WorldListener.class
-        };
-        
-        ClassGetter.getClassesForPackage(FactionsCaribe.class).forEach(clazz -> {
-            System.out.println(clazz);
+        ClassGetter.getClassesForPackage(FactionsCaribe.class, StartManager.BLACK_LISTED).forEach(clazz -> {
+            if (Listener.class.isAssignableFrom(clazz)) {
+                try {
+                    Listener listener = (Listener) clazz.newInstance();
 
-            if (!Arrays.asList(blacklisted).contains(clazz)) {
-                System.out.println("Registrando: " + clazz);
-
-                if (Listener.class.isAssignableFrom(clazz)) {
-                    try {
-                        Listener listener = (Listener) clazz.newInstance();
-
-                        Bukkit.getPluginManager().registerEvents(
-                                listener,
-                                FactionsCaribe.getInstance()
-                        );
-                    } catch (InstantiationException | IllegalAccessException exception) {
-                        exception.printStackTrace();
-                    }
+                    Bukkit.getPluginManager().registerEvents(
+                            listener,
+                            FactionsCaribe.getInstance()
+                    );
+                } catch (InstantiationException | IllegalAccessException exception) {
+                    exception.printStackTrace();
                 }
-            } else {
-                System.out.println("Contém: " + clazz);
             }
         });
     }
@@ -71,7 +69,7 @@ class ListenerManager {
 
 class CommandManager {
     CommandManager() {
-        ClassGetter.getClassesForPackage(FactionsCaribe.class).forEach(clazz -> {
+        ClassGetter.getClassesForPackage(FactionsCaribe.class, StartManager.BLACK_LISTED).forEach(clazz -> {
             if (CustomCommand.class.isAssignableFrom(clazz)) {
                 try {
                     CustomCommand customCommand = (CustomCommand) clazz.newInstance();
@@ -90,7 +88,7 @@ class CommandManager {
 
 class TableManager {
     TableManager() {
-        ClassGetter.getClassesForPackage(FactionsCaribe.class).forEach(clazz -> {
+        ClassGetter.getClassesForPackage(FactionsCaribe.class, StartManager.BLACK_LISTED).forEach(clazz -> {
             if (Table.class.isAssignableFrom(clazz)) {
                 try {
                     Table table = (Table) clazz.newInstance();
@@ -106,7 +104,7 @@ class TableManager {
 
 class ChannelManager {
     ChannelManager() {
-        ClassGetter.getClassesForPackage(FactionsCaribe.class).forEach(clazz -> {
+        ClassGetter.getClassesForPackage(FactionsCaribe.class, StartManager.BLACK_LISTED).forEach(clazz -> {
             if (Channel.class.isAssignableFrom(clazz)) {
                 try {
                     Channel channel = (Channel) clazz.newInstance();
@@ -122,7 +120,7 @@ class ChannelManager {
 
 class JedisMessageListenerManager {
     JedisMessageListenerManager() {
-        ClassGetter.getClassesForPackage(FactionsCaribe.class).forEach(clazz -> {
+        ClassGetter.getClassesForPackage(FactionsCaribe.class, StartManager.BLACK_LISTED).forEach(clazz -> {
             if (JedisMessageListener.class.isAssignableFrom(clazz)) {
                 try {
                     JedisMessageListener jedisMessageListener = (JedisMessageListener) clazz.newInstance();
