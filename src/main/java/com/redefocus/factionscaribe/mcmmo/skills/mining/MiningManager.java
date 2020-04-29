@@ -69,21 +69,6 @@ public class MiningManager extends SkillManager {
 
         applyXpGain(blockXp, XPGainReason.PVE);
 
-        DecimalFormat decimalFormat = new DecimalFormat("###,###");
-
-        new CustomAction()
-                .text(
-                        String.format(
-                                "§cMineração %d (%d/%d) +%s XP",
-                                mcMMOPlayer.getSkillLevel(SkillType.MINING),
-                                mcMMOPlayer.getSkillXpLevel(SkillType.MINING),
-                                mcMMOPlayer.getXpToLevel(SkillType.MINING),
-                                decimalFormat.format(blockXp)
-                        )
-                )
-                .spigot()
-                .send(player);
-
         if (!Permissions.secondaryAbilityEnabled(player, SecondaryAbility.MINING_DOUBLE_DROPS)) {
             return;
         }
