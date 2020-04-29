@@ -9,6 +9,7 @@ import com.redefocus.common.shared.databases.redis.handler.JedisMessageListener;
 import com.redefocus.common.shared.util.ClassGetter;
 import com.redefocus.factionscaribe.FactionsCaribe;
 import com.redefocus.factionscaribe.mcmmo.config.AutoUpdateConfigLoader;
+import com.redefocus.factionscaribe.mcmmo.config.Config;
 import com.redefocus.factionscaribe.mcmmo.config.ConfigLoader;
 import com.redefocus.factionscaribe.mcmmo.listeners.*;
 import org.bukkit.Bukkit;
@@ -26,7 +27,8 @@ public class StartManager {
             SelfListener.class,
             WorldListener.class,
             ConfigLoader.class,
-            AutoUpdateConfigLoader.class
+            AutoUpdateConfigLoader.class,
+            Config.class
     };
 
     public StartManager() {
