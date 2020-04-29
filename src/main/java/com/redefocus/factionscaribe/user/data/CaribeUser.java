@@ -14,7 +14,6 @@ import com.redefocus.api.spigot.user.data.SpigotUser;
 import com.redefocus.common.shared.Common;
 import com.redefocus.common.shared.permissions.user.data.User;
 import com.redefocus.common.shared.server.data.Server;
-import com.redefocus.common.shared.util.Constants;
 import com.redefocus.factionscaribe.home.dao.HomeDao;
 import com.redefocus.factionscaribe.home.data.Home;
 import lombok.Getter;
@@ -104,21 +103,23 @@ public class CaribeUser extends SpigotUser {
 
         customBoard.title(factionName);
 
+
+
         customBoard
                 .set(
-                        15,
+                        14,
                         "§1"
                 )
                 .set(
-                        14,
-                        "§f  KDR: §c" + 0.0
-                )
-                .set(
                         13,
-                        "§f  Nível: §c" + 0
+                        "§f  KDR: §c" + mPlayer.getKdrRounded()
                 )
                 .set(
                         12,
+                        "§f  Nível: §c" + 0
+                )
+                .set(
+                        11,
                         String.format(
                                 "§f  Poder: §c%d/%d",
                                 0,
@@ -126,7 +127,7 @@ public class CaribeUser extends SpigotUser {
                         )
                 )
                 .set(
-                        11,
+                        10,
                         "§2"
                 );
 
@@ -135,7 +136,7 @@ public class CaribeUser extends SpigotUser {
 
             customBoard
                     .set(
-                            10,
+                            9,
                             String.format(
                                     "§e  [%s] %s",
                                     faction.getTag(),
@@ -143,40 +144,35 @@ public class CaribeUser extends SpigotUser {
                             )
                     )
                     .set(
-                            9,
-                            String.format(
-                                    "   §fPoder: §a%d/%d",
-                                    0,
-                                    0
-                            )
-                    )
-                    .set(
                             8,
                             String.format(
-                                    "   §fMembros: §a%d/%d",
-                                    0,
-                                    0
+                                    "   §fPoder: §a%d/%d",
+                                    mPlayer.getPowerRounded(),
+                                    mPlayer.getPowerMaxRounded()
                             )
                     )
                     .set(
                             7,
                             String.format(
-                                    "   §fTerras: §a%d",
-                                    0
+                                    "   §fMembros: §a%d/%d",
+                                    faction.getMembersCount(),
+                                    faction.getMembersLimit()
                             )
                     )
                     .set(
-                            6,
+                            5,
+                            String.format(
+                                    "   §fTerras: §a%d",
+                                    faction.getLandCount()
+                            )
+                    )
+                    .set(
+                            4,
                             "§3"
                     );
         }
 
         customBoard
-                .set(
-                        4,
-
-                        "§2"
-                )
                 .set(
                         3,
                         "§f  Coins: §c" + 0
@@ -191,10 +187,21 @@ public class CaribeUser extends SpigotUser {
                 )
                 .set(
                         0,
-                        Common.SERVER_URL
+                        String.format(
+                                "  §c%s",
+                                Common.SERVER_URL
+                        )
                 );
 
         customBoard.send(this.getPlayer());
+    }
+
+    public void updateScoreboard(Integer index, String text) {
+        this.customBoard
+                .set(
+                        index,
+                        text
+                );
     }
 
     public void addHome(Home home) {
