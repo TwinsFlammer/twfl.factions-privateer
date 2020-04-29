@@ -12,6 +12,7 @@ import com.redefocus.factionscaribe.mcmmo.config.AutoUpdateConfigLoader;
 import com.redefocus.factionscaribe.mcmmo.config.Config;
 import com.redefocus.factionscaribe.mcmmo.config.ConfigLoader;
 import com.redefocus.factionscaribe.mcmmo.listeners.*;
+import com.redefocus.factionscaribe.mcmmo.runnables.party.PartyAutoKickTask;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Listener;
 
@@ -28,7 +29,8 @@ public class StartManager {
             WorldListener.class,
             ConfigLoader.class,
             AutoUpdateConfigLoader.class,
-            Config.class
+            Config.class,
+            PartyAutoKickTask.class
     };
 
     public StartManager() {
