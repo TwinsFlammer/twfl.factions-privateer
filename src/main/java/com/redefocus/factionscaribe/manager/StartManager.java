@@ -44,28 +44,28 @@ class ListenerManager {
                 WorldListener.class
         };
         
-        ClassGetter.getClassesForPackage(FactionsCaribe.class).forEach(clazz -> {
-            System.out.println(clazz);
-
-            if (!Arrays.asList(blacklisted).contains(clazz)) {
-                System.out.println("Registrando: " + clazz);
-
-                if (Listener.class.isAssignableFrom(clazz)) {
-                    try {
-                        Listener listener = (Listener) clazz.newInstance();
-
-                        Bukkit.getPluginManager().registerEvents(
-                                listener,
-                                FactionsCaribe.getInstance()
-                        );
-                    } catch (InstantiationException | IllegalAccessException exception) {
-                        exception.printStackTrace();
-                    }
-                }
-            } else {
-                System.out.println("Contém: " + clazz);
-            }
-        });
+//        ClassGetter.getClassesForPackage(FactionsCaribe.class).forEach(clazz -> {
+//            System.out.println(clazz);
+//
+//            if (!Arrays.asList(blacklisted).contains(clazz)) {
+//                System.out.println("Registrando: " + clazz);
+//
+//                if (Listener.class.isAssignableFrom(clazz)) {
+//                    try {
+//                        Listener listener = (Listener) clazz.newInstance();
+//
+//                        Bukkit.getPluginManager().registerEvents(
+//                                listener,
+//                                FactionsCaribe.getInstance()
+//                        );
+//                    } catch (InstantiationException | IllegalAccessException exception) {
+//                        exception.printStackTrace();
+//                    }
+//                }
+//            } else {
+//                System.out.println("Contém: " + clazz);
+//            }
+//        });
     }
 }
 
