@@ -932,17 +932,14 @@ public final class SQLDatabaseManager implements DatabaseManager {
     private Connection getConnection(PoolIdentifier identifier) throws SQLException {
         MySQLManager mySQLManager = Common.getInstance().getDatabaseManager().getMySQLManager();
 
-        String databaseName = SpigotAPI.getInstance().getDefaultDatabaseName("server");
-
-        System.out.println("Database: " + databaseName);
-
         MySQL mySQL = mySQLManager.getDatabase(
-                databaseName
+                "server"
         );
 
         System.out.println(mySQL == null);
 
         Connection connection = null;
+
         switch (identifier) {
             case LOAD:
             case MISC:
@@ -950,9 +947,11 @@ public final class SQLDatabaseManager implements DatabaseManager {
                 connection = mySQL.getConnection();
                 break;
         }
+
         if (connection == null) {
             throw new RuntimeException("getConnection() for " + identifier.name().toLowerCase() + " pool timed out.  Increase max connections settings.");
         }
+
         return connection;
     }
 
