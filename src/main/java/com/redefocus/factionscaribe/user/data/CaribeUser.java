@@ -27,7 +27,6 @@ import java.util.stream.Collectors;
  * @author SrGutyerrez
  */
 public class CaribeUser extends SpigotUser {
-
     private final Integer COMBAT_DURATION = 15;
 
     @Getter
@@ -74,8 +73,9 @@ public class CaribeUser extends SpigotUser {
         );
 
         String message = String.format(
-                "§cVocê entrou em combate com §7%s§c, aguarde 15 segundos para deslogar.",
-                damager.getFactionTag() + damager.getName()
+                "§cVocê entrou em combate com §7%s§c, aguarde %d segundos para deslogar.",
+                damager.getFactionTag() + damager.getName(),
+                this.COMBAT_DURATION
         );
 
         this.sendMessage(message);
