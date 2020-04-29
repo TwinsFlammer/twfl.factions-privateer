@@ -69,16 +69,17 @@ public class CaribeUser extends SpigotUser {
     }
 
     public void setCombat(CaribeUser damager) {
-        this.setCombatDuration(
-                System.currentTimeMillis() + TimeUnit.SECONDS.toMillis(this.COMBAT_DURATION)
-        );
-
         String message = String.format(
                 "§cVocê entrou em combate com §7%s§c, aguarde 15 segundos para deslogar.",
                 damager.getFactionTag() + damager.getName()
         );
 
-        this.sendMessage(message);
+        this.setCombatDuration(
+                System.currentTimeMillis() + TimeUnit.SECONDS.toMillis(this.COMBAT_DURATION)
+        );
+
+        if(!inCombat())
+            this.sendMessage(message);
     }
 
     public String getRolePrefix() {
