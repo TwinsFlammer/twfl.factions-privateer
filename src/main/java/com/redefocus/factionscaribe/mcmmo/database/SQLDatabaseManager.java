@@ -940,14 +940,12 @@ public final class SQLDatabaseManager implements DatabaseManager {
                 databaseName
         );
 
+        System.out.println(mySQL == null);
+
         Connection connection = null;
         switch (identifier) {
             case LOAD:
-                connection = mySQL.getConnection();
-                break;
             case MISC:
-                connection = mySQL.getConnection();
-                break;
             case SAVE:
                 connection = mySQL.getConnection();
                 break;
