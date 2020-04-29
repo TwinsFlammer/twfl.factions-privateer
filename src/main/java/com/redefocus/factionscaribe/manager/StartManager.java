@@ -8,18 +8,6 @@ import com.redefocus.common.shared.databases.redis.channel.data.Channel;
 import com.redefocus.common.shared.databases.redis.handler.JedisMessageListener;
 import com.redefocus.common.shared.util.ClassGetter;
 import com.redefocus.factionscaribe.FactionsCaribe;
-import com.redefocus.factionscaribe.mcmmo.config.*;
-import com.redefocus.factionscaribe.mcmmo.config.experience.ExperienceConfig;
-import com.redefocus.factionscaribe.mcmmo.config.mods.*;
-import com.redefocus.factionscaribe.mcmmo.config.party.ItemWeightConfig;
-import com.redefocus.factionscaribe.mcmmo.config.skills.alchemy.PotionConfig;
-import com.redefocus.factionscaribe.mcmmo.config.skills.repair.RepairConfig;
-import com.redefocus.factionscaribe.mcmmo.config.skills.repair.RepairConfigManager;
-import com.redefocus.factionscaribe.mcmmo.config.skills.salvage.SalvageConfig;
-import com.redefocus.factionscaribe.mcmmo.config.skills.salvage.SalvageConfigManager;
-import com.redefocus.factionscaribe.mcmmo.config.treasure.TreasureConfig;
-import com.redefocus.factionscaribe.mcmmo.listeners.*;
-import com.redefocus.factionscaribe.mcmmo.runnables.party.PartyAutoKickTask;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Listener;
 
@@ -27,37 +15,6 @@ import org.bukkit.event.Listener;
  * @author SrGutyerrez
  */
 public class StartManager {
-    public static Class<?>[] BLACK_LISTED = {
-            BlockListener.class,
-            PlayerListener.class,
-            EntityListener.class,
-            InventoryListener.class,
-            SelfListener.class,
-            WorldListener.class,
-            ConfigLoader.class,
-            AutoUpdateConfigLoader.class,
-            Config.class,
-            PartyAutoKickTask.class,
-            RepairConfig.class,
-            RepairConfigManager.class,
-            PotionConfig.class,
-            SalvageConfig.class,
-            SalvageConfigManager.class,
-            TreasureConfig.class,
-            AdvancedConfig.class,
-            HiddenConfig.class,
-            ItemWeightConfig.class,
-            ExperienceConfig.class,
-            ArmorConfigManager.class,
-            BlockConfigManager.class,
-            CustomArmorConfig.class,
-            CustomBlockConfig.class,
-            CustomEntityConfig.class,
-            CustomToolConfig.class,
-            EntityConfigManager.class,
-            ToolConfigManager.class
-    };
-
     public StartManager() {
         new ListenerManager();
 
@@ -75,7 +32,7 @@ public class StartManager {
 
 class ListenerManager {
     ListenerManager() {
-        ClassGetter.getClassesForPackage(FactionsCaribe.class, StartManager.BLACK_LISTED).forEach(clazz -> {
+        ClassGetter.getClassesForPackage(FactionsCaribe.class).forEach(clazz -> {
             if (Listener.class.isAssignableFrom(clazz)) {
                 try {
                     Listener listener = (Listener) clazz.newInstance();
@@ -94,7 +51,7 @@ class ListenerManager {
 
 class CommandManager {
     CommandManager() {
-        ClassGetter.getClassesForPackage(FactionsCaribe.class, StartManager.BLACK_LISTED).forEach(clazz -> {
+        ClassGetter.getClassesForPackage(FactionsCaribe.class).forEach(clazz -> {
             if (CustomCommand.class.isAssignableFrom(clazz)) {
                 try {
                     CustomCommand customCommand = (CustomCommand) clazz.newInstance();
@@ -113,7 +70,7 @@ class CommandManager {
 
 class TableManager {
     TableManager() {
-        ClassGetter.getClassesForPackage(FactionsCaribe.class, StartManager.BLACK_LISTED).forEach(clazz -> {
+        ClassGetter.getClassesForPackage(FactionsCaribe.class).forEach(clazz -> {
             if (Table.class.isAssignableFrom(clazz)) {
                 try {
                     Table table = (Table) clazz.newInstance();
@@ -129,7 +86,7 @@ class TableManager {
 
 class ChannelManager {
     ChannelManager() {
-        ClassGetter.getClassesForPackage(FactionsCaribe.class, StartManager.BLACK_LISTED).forEach(clazz -> {
+        ClassGetter.getClassesForPackage(FactionsCaribe.class).forEach(clazz -> {
             if (Channel.class.isAssignableFrom(clazz)) {
                 try {
                     Channel channel = (Channel) clazz.newInstance();
@@ -145,7 +102,7 @@ class ChannelManager {
 
 class JedisMessageListenerManager {
     JedisMessageListenerManager() {
-        ClassGetter.getClassesForPackage(FactionsCaribe.class, StartManager.BLACK_LISTED).forEach(clazz -> {
+        ClassGetter.getClassesForPackage(FactionsCaribe.class).forEach(clazz -> {
             if (JedisMessageListener.class.isAssignableFrom(clazz)) {
                 try {
                     JedisMessageListener jedisMessageListener = (JedisMessageListener) clazz.newInstance();
