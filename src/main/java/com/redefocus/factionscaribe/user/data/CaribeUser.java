@@ -2,13 +2,16 @@ package com.redefocus.factionscaribe.user.data;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import com.massivecraft.factions.Factions;
 import com.massivecraft.factions.Rel;
 import com.massivecraft.factions.entity.Faction;
 import com.massivecraft.factions.entity.MPerm;
 import com.massivecraft.factions.entity.MPlayer;
+import com.massivecraft.massivecore.ps.PS;
 import com.redefocus.api.spigot.SpigotAPI;
 import com.redefocus.api.spigot.scoreboard.CustomBoard;
 import com.redefocus.api.spigot.user.data.SpigotUser;
+import com.redefocus.common.shared.Common;
 import com.redefocus.common.shared.permissions.user.data.User;
 import com.redefocus.common.shared.server.data.Server;
 import com.redefocus.factionscaribe.home.dao.HomeDao;
@@ -27,7 +30,6 @@ import java.util.stream.Collectors;
  * @author SrGutyerrez
  */
 public class CaribeUser extends SpigotUser {
-
     private final Integer COMBAT_DURATION = 15;
 
     @Getter
@@ -53,7 +55,7 @@ public class CaribeUser extends SpigotUser {
     public CaribeUser(User user) {
         super(user);
 
-        this.customBoard = /*new CustomBoard()*/null;
+        this.customBoard = new CustomBoard();
 
         HomeDao<Home> homeDao = new HomeDao<>();
 
@@ -64,14 +66,153 @@ public class CaribeUser extends SpigotUser {
         this.homes = Lists.newArrayList(homes);
     }
 
+    public void setupScoreboard() {
+        CustomBoard customBoard = this.customBoard;
+
+        Location location = this.getLocation();
+        World world = this.getWorld();
+
+        MPlayer mPlayer = MPlayer.get(this.getUniqueId());
+        Faction factionAt = Faction.get(PS.valueOf(location));
+
+        String factionName = "§c§lREDE FOCUS";
+
+        if (factionAt != null)
+            switch (factionAt.getId()) {
+                case Factions.ID_NONE: {
+                    factionName = "§aÁrea livre";
+                    break;
+                }
+                case Factions.ID_WARZONE: {
+                    factionName = "§cZona de guerra";
+                    break;
+                }
+                case Factions.ID_SAFEZONE: {
+                    factionName = "§aÁrea protegida";
+                    break;
+                }
+                default: {
+                    factionName = world.getName().equalsIgnoreCase("caribe_mine") ? "§7Mundo de mineração" : String.format(
+                            "§7%s - %s",
+                            factionAt.getTag(),
+                            factionAt.getName()
+                    );
+                    break;
+                }
+            }
+
+        customBoard.title(factionName);
+
+
+
+        customBoard
+                .set(
+                        14,
+                        "§1"
+                )
+                .set(
+                        13,
+                        "§f  KDR: §c" + mPlayer.getKdrRounded()
+                )
+                .set(
+                        12,
+                        "§f  Nível: §c" + 0
+                )
+                .set(
+                        11,
+                        String.format(
+                                "§f  Poder: §c%d/%d",
+                                0,
+                                0
+                        )
+                )
+                .set(
+                        10,
+                        "§2"
+                );
+
+        if (mPlayer.hasFaction()) {
+            Faction faction = mPlayer.getFaction();
+
+            customBoard
+                    .set(
+                            9,
+                            String.format(
+                                    "§e  [%s] %s",
+                                    faction.getTag(),
+                                    faction.getName()
+                            )
+                    )
+                    .set(
+                            8,
+                            String.format(
+                                    "   §fPoder: §a%d/%d",
+                                    mPlayer.getPowerRounded(),
+                                    mPlayer.getPowerMaxRounded()
+                            )
+                    )
+                    .set(
+                            7,
+                            String.format(
+                                    "   §fMembros: §a%d/%d",
+                                    faction.getMembersCount(),
+                                    faction.getMembersLimit()
+                            )
+                    )
+                    .set(
+                            5,
+                            String.format(
+                                    "   §fTerras: §a%d",
+                                    faction.getLandCount()
+                            )
+                    )
+                    .set(
+                            4,
+                            "§3"
+                    );
+        }
+
+        customBoard
+                .set(
+                        3,
+                        "§f  Coins: §c" + 0
+                )
+                .set(
+                        2,
+                        "§f  Cash: §c" + 0
+                )
+                .set(
+                        1,
+                        "§0"
+                )
+                .set(
+                        0,
+                        String.format(
+                                "  §c%s",
+                                Common.SERVER_URL
+                        )
+                );
+
+        customBoard.send(this.getPlayer());
+    }
+
+    public void updateScoreboard(Integer index, String text) {
+        this.customBoard
+                .set(
+                        index,
+                        text
+                );
+    }
+
     public void addHome(Home home) {
         this.homes.add(home);
     }
 
     public void setCombat(CaribeUser damager) {
         String message = String.format(
-                "§cVocê entrou em combate com §7%s§c, aguarde 15 segundos para deslogar.",
-                damager.getFactionTag() + damager.getName()
+                "§cVocê entrou em combate com §7%s§c, aguarde %d segundos para deslogar.",
+                damager.getFactionTag() + damager.getName(),
+                this.COMBAT_DURATION
         );
 
         this.setCombatDuration(

@@ -933,24 +933,23 @@ public final class SQLDatabaseManager implements DatabaseManager {
         MySQLManager mySQLManager = Common.getInstance().getDatabaseManager().getMySQLManager();
 
         MySQL mySQL = mySQLManager.getDatabase(
-                SpigotAPI.getInstance().getDefaultDatabaseName("server")
+                "server"
         );
 
         Connection connection = null;
+
         switch (identifier) {
             case LOAD:
-                connection = mySQL.getConnection();
-                break;
             case MISC:
-                connection = mySQL.getConnection();
-                break;
             case SAVE:
                 connection = mySQL.getConnection();
                 break;
         }
+
         if (connection == null) {
             throw new RuntimeException("getConnection() for " + identifier.name().toLowerCase() + " pool timed out.  Increase max connections settings.");
         }
+
         return connection;
     }
 

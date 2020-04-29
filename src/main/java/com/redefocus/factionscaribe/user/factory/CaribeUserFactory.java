@@ -22,7 +22,13 @@ public class CaribeUserFactory<U extends CaribeUser> extends AbstractUserFactory
         return this.users.stream()
                 .filter(u -> u.getId().equals(id))
                 .findFirst()
-                .orElseGet(() -> (U) new CaribeUser(user));
+                .orElseGet(() -> {
+                    U u = (U) new CaribeUser(user);
+
+                    this.users.add(u);
+
+                    return u;
+                });
     }
 
     @Override
@@ -32,7 +38,13 @@ public class CaribeUserFactory<U extends CaribeUser> extends AbstractUserFactory
         return this.users.stream()
                 .filter(u -> u.getName().equalsIgnoreCase(name))
                 .findFirst()
-                .orElseGet(() -> (U) new CaribeUser(user));
+                .orElseGet(() -> {
+                    U u = (U) new CaribeUser(user);
+
+                    this.users.add(u);
+
+                    return u;
+                });
     }
 
     @Override
@@ -42,6 +54,12 @@ public class CaribeUserFactory<U extends CaribeUser> extends AbstractUserFactory
         return this.users.stream()
                 .filter(u -> u.getUniqueId().equals(uuid))
                 .findFirst()
-                .orElseGet(() -> (U) new CaribeUser(user));
+                .orElseGet(() -> {
+                    U u = (U) new CaribeUser(user);
+
+                    this.users.add(u);
+
+                    return u;
+                });
     }
 }

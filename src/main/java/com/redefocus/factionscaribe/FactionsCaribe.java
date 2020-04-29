@@ -32,13 +32,13 @@ public class FactionsCaribe extends FocusPlugin {
 
         this.caribeUserFactory = new CaribeUserFactory<>();
 
-//        this.mcMMO = new mcMMO();
-//
-//        this.mcMMO.onEnable();
+        this.mcMMO = new mcMMO();
+
+        this.mcMMO.onEnable();
     }
 
     @Override
     public void onDisablePlugin() {
-//        this.mcMMO.onDisable();
+        this.mcMMO.onDisable();
     }
 }

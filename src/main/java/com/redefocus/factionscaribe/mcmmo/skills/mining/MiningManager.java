@@ -1,5 +1,6 @@
 package com.redefocus.factionscaribe.mcmmo.skills.mining;
 
+import com.redefocus.api.spigot.util.action.data.CustomAction;
 import com.redefocus.factionscaribe.mcmmo.config.Config;
 import com.redefocus.factionscaribe.mcmmo.datatypes.player.McMMOPlayer;
 import com.redefocus.factionscaribe.mcmmo.datatypes.skills.AbilityType;
@@ -16,6 +17,8 @@ import com.redefocus.factionscaribe.mcmmo.util.EventUtils;
 import com.redefocus.factionscaribe.mcmmo.util.Misc;
 import com.redefocus.factionscaribe.mcmmo.util.Permissions;
 import com.redefocus.factionscaribe.mcmmo.util.skills.SkillUtils;
+
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -27,6 +30,8 @@ import org.bukkit.block.BlockState;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.TNTPrimed;
+
+import javax.swing.text.NumberFormatter;
 
 public class MiningManager extends SkillManager {
 
@@ -60,7 +65,9 @@ public class MiningManager extends SkillManager {
     public void miningBlockCheck(BlockState blockState) {
         Player player = getPlayer();
 
-        applyXpGain(Mining.getBlockXp(blockState), XPGainReason.PVE);
+        float blockXp = Mining.getBlockXp(blockState);
+
+        applyXpGain(blockXp, XPGainReason.PVE);
 
         if (!Permissions.secondaryAbilityEnabled(player, SecondaryAbility.MINING_DOUBLE_DROPS)) {
             return;
