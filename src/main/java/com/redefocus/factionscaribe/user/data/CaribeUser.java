@@ -28,6 +28,8 @@ import java.util.stream.Collectors;
  */
 public class CaribeUser extends SpigotUser {
 
+    private final Integer COMBAT_DURATION = 15;
+
     @Getter
     @Setter
     private Double money = 0.0;
@@ -66,22 +68,47 @@ public class CaribeUser extends SpigotUser {
         this.homes.add(home);
     }
 
+    public void setCombat(CaribeUser damager) {
+        this.setCombatDuration(
+                System.currentTimeMillis() + TimeUnit.SECONDS.toMillis(this.COMBAT_DURATION)
+        );
+
+        String message = String.format(
+                "§cVocê entrou em combate com §7%s§c, aguarde 15 segundos para deslogar.",
+                damager.getFactionTag() + damager.getName()
+        );
+
+        this.sendMessage(message);
+    }
+
     public String getRolePrefix() {
         return "";
     }
 
     public String getFactionName() {
-        return "";
+        return this.hasFaction() ? this.getFaction().getName() : "";
     }
 
     public String getFactionTag() {
-        return "";
+        return this.hasFaction() ? this.getFaction().getTag() : "";
+    }
+
+    public String getFancyFaction() {
+        return this.hasFaction() ? "[" + this.getFactionTag() + "] " + this.getFactionName() : "";
     }
 
     public Integer getServerId() {
         Server server = this.getServer();
 
         return server.getId();
+    }
+
+    public long getCombatTime() {
+        return this.combatDuration - System.currentTimeMillis();
+    }
+
+    public Faction getFaction() {
+        return MPlayer.get(this.getUniqueId()).getFaction();
     }
 
     public Long getTeleportTime() {
@@ -169,6 +196,10 @@ public class CaribeUser extends SpigotUser {
         if (!(faction.getRelationWish(factionAt).equals(Rel.ALLY))) return false;
 
         return factionAt.getPerms().get(MPerm.getPermHome()).contains(Rel.ALLY);
+    }
+
+    public Boolean hasFaction() {
+        return MPlayer.get(this.getUniqueId()).hasFaction();
     }
 
     public Boolean inCombat() {
