@@ -39,7 +39,7 @@ public class AsyncPlayerChatListener implements Listener {
                     .text(
                             String.format(
                                     "§cAguarde %s para falar no chat novamente.",
-                                    TimeFormatter.formatExtended(CooldownManager.getRemainingTime(user, "CHAT_LOCAL"))
+                                    TimeFormatter.formatExtended(CooldownManager.getRemainingTime(user, AsyncPlayerChatListener.OBJECT_NAME))
                             )
                     )
                     .getSpigot()
