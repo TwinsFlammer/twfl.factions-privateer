@@ -936,8 +936,6 @@ public final class SQLDatabaseManager implements DatabaseManager {
                 "server"
         );
 
-        System.out.println(mySQL == null);
-
         Connection connection = null;
 
         switch (identifier) {
