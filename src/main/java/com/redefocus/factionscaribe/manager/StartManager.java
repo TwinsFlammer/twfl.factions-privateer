@@ -71,20 +71,20 @@ class ListenerManager {
 
 class CommandManager {
     CommandManager() {
-        ClassGetter.getClassesForPackage(FactionsCaribe.class).forEach(clazz -> {
-            if (CustomCommand.class.isAssignableFrom(clazz)) {
-                try {
-                    CustomCommand customCommand = (CustomCommand) clazz.newInstance();
-
-                    CommandRegistry.registerCommand(
-                            FactionsCaribe.getInstance(),
-                            customCommand
-                    );
-                } catch (InstantiationException | IllegalAccessException exception) {
-                    exception.printStackTrace();
-                }
-            }
-        });
+//        ClassGetter.getClassesForPackage(FactionsCaribe.class).forEach(clazz -> {
+//            if (CustomCommand.class.isAssignableFrom(clazz)) {
+//                try {
+//                    CustomCommand customCommand = (CustomCommand) clazz.newInstance();
+//
+//                    CommandRegistry.registerCommand(
+//                            FactionsCaribe.getInstance(),
+//                            customCommand
+//                    );
+//                } catch (InstantiationException | IllegalAccessException exception) {
+//                    exception.printStackTrace();
+//                }
+//            }
+//        });
     }
 }
 
