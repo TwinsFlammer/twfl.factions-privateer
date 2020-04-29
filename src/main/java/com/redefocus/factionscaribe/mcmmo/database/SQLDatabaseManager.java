@@ -932,8 +932,12 @@ public final class SQLDatabaseManager implements DatabaseManager {
     private Connection getConnection(PoolIdentifier identifier) throws SQLException {
         MySQLManager mySQLManager = Common.getInstance().getDatabaseManager().getMySQLManager();
 
+        String databaseName = SpigotAPI.getInstance().getDefaultDatabaseName("server");
+
+        System.out.println("Database: " + databaseName);
+
         MySQL mySQL = mySQLManager.getDatabase(
-                SpigotAPI.getInstance().getDefaultDatabaseName("server")
+                databaseName
         );
 
         Connection connection = null;
