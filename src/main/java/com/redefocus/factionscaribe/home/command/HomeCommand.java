@@ -145,7 +145,7 @@ public class HomeCommand extends CustomCommand {
                 }
         );
         publics.send(caribeUser);
-        if (owner)
+        if (owner || targetUser.hasGroup(GroupNames.COORDINATOR))
             privates.send(caribeUser);
     }
 }

@@ -28,7 +28,7 @@ public class Home {
     @Setter
     private Integer serverId;
 
-    @Getter
+    @Setter
     private String factionId;
 
     @Setter

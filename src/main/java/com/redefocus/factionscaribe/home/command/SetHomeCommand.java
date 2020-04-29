@@ -1,6 +1,9 @@
 package com.redefocus.factionscaribe.home.command;
 
 import com.google.common.collect.Maps;
+import com.massivecraft.factions.entity.BoardColl;
+import com.massivecraft.factions.entity.Faction;
+import com.massivecraft.massivecore.ps.PS;
 import com.redefocus.api.spigot.commands.CustomCommand;
 import com.redefocus.api.spigot.commands.enums.CommandRestriction;
 import com.redefocus.api.spigot.util.serialize.LocationSerialize;
@@ -66,8 +69,11 @@ public class SetHomeCommand extends CustomCommand {
 
         Home home = caribeUser.getHome(name);
 
+        Faction factionAt = BoardColl.get().getFactionAt(PS.valueOf(caribeUser.getLocation()));
+
         home.setLocation(caribeUser.getLocation());
         home.setServerId(caribeUser.getServerId());
+        home.setFactionId(factionAt.getId());
 
         if (caribeUser.hasHome(name)) {
             HashMap<String, Object> keys = Maps.newHashMap();
