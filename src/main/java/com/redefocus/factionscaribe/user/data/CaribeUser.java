@@ -1,5 +1,6 @@
 package com.redefocus.factionscaribe.user.data;
 
+import com.avaje.ebean.validation.NotNull;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.massivecraft.factions.Factions;
@@ -17,6 +18,7 @@ import com.redefocus.common.shared.server.data.Server;
 import com.redefocus.factionscaribe.home.dao.HomeDao;
 import com.redefocus.factionscaribe.home.data.Home;
 import lombok.Getter;
+import lombok.NonNull;
 import lombok.Setter;
 import org.bukkit.Location;
 import org.bukkit.World;
