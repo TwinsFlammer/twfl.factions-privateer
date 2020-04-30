@@ -4,6 +4,7 @@ import com.google.common.collect.Maps;
 import com.massivecraft.factions.entity.BoardColl;
 import com.massivecraft.factions.entity.Faction;
 import com.massivecraft.massivecore.ps.PS;
+import com.redefocus.api.spigot.SpigotAPI;
 import com.redefocus.api.spigot.commands.CustomCommand;
 import com.redefocus.api.spigot.commands.enums.CommandRestriction;
 import com.redefocus.api.spigot.util.serialize.LocationSerialize;
@@ -14,17 +15,18 @@ import com.redefocus.factionscaribe.home.dao.HomeDao;
 import com.redefocus.factionscaribe.home.data.Home;
 import com.redefocus.factionscaribe.user.data.CaribeUser;
 import com.redefocus.factionscaribe.util.FactionUtil;
+import org.bukkit.World;
 import org.bukkit.command.CommandSender;
 
+import java.util.Arrays;
 import java.util.HashMap;
 
 /**
  * @author oNospher
  **/
 public class SetHomeCommand extends CustomCommand {
-
-    private final Integer MAX_HOME_NAME_LENGHT = 32;
-    private final String WORLD_PERMITTED = "world";
+    private final Integer MAX_HOME_NAME_LENGHT = 32, MIN_HOME_NAME_LENGTH = 3;
+    private final String[] WORLDS_PERMITTED = {"world"};
 
     public SetHomeCommand() {
         super(
@@ -36,29 +38,28 @@ public class SetHomeCommand extends CustomCommand {
 
     @Override
     public void onCommand(CommandSender commandSender, User user, String[] args) {
-        if(args.length != 1) {
+        if (args.length != 1) {
             commandSender.sendMessage("§cUtilize /sethome <home>");
             return;
         }
+
         CaribeUser caribeUser = FactionsCaribe.getInstance().getCaribeUserFactory().getUser(user.getId());
         String name = args[0];
 
-        if(!caribeUser.getWorld().getName().equalsIgnoreCase(this.WORLD_PERMITTED)) {
+        Integer serverId = caribeUser.getServerId();
+
+        if (!this.isWorldAllowed(caribeUser.getWorld()) || !FactionUtil.isAllowed() || !SpigotAPI.getRootServerId().equals(serverId)) {
             commandSender.sendMessage(
                     "§cVocê não pode definir home nesse lugar."
             );
+            return;
         }
 
-        if(!FactionUtil.isAllowed()) {
-            commandSender.sendMessage(
-                    "§cVocê não pode definir home nesse lugar."
-            );
-        }
-
-        if(name.length() > this.MAX_HOME_NAME_LENGHT) {
+        if (name.length() < this.MIN_HOME_NAME_LENGTH || name.length() > this.MAX_HOME_NAME_LENGHT) {
             commandSender.sendMessage(
                     String.format(
-                            "§cO nome da home tem que ter no máximo %d caracteres .",
+                            "§cO nome da home deve ter entre %d a %d caracteres .",
+                            this.MIN_HOME_NAME_LENGTH,
                             this.MAX_HOME_NAME_LENGHT
                     )
             );
@@ -100,5 +101,9 @@ public class SetHomeCommand extends CustomCommand {
                         name
                 )
         );
+    }
+
+    Boolean isWorldAllowed(World world) {
+        return Arrays.asList(this.WORLDS_PERMITTED).contains(world.getName());
     }
 }
