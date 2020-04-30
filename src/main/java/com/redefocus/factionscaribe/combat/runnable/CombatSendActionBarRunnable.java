@@ -1,6 +1,7 @@
 package com.redefocus.factionscaribe.combat.runnable;
 
 import com.redefocus.api.spigot.SpigotAPI;
+import com.redefocus.api.spigot.util.action.data.CustomAction;
 import com.redefocus.factionscaribe.FactionsCaribe;
 
 import java.util.Objects;
@@ -22,12 +23,15 @@ public class CombatSendActionBarRunnable implements Runnable {
                 .filter(user -> user.getCombatDuration() != 0)
                 .forEach(user -> {
                     if(user.inCombat()) {
-                        user.sendAction(
-                                String.format(
-                                        this.IN_COMBAT_MESSAGE,
-                                        (int) TimeUnit.MILLISECONDS.toSeconds(user.getCombatTime())
+                        new CustomAction()
+                                .text(
+                                        String.format(
+                                                this.IN_COMBAT_MESSAGE,
+                                                (int) TimeUnit.MILLISECONDS.toSeconds(user.getCombatTime())
+                                        )
                                 )
-                        );
+                                .spigot()
+                                .send(user.getPlayer());
                     } else {
                         user.setCombatDuration(0L);
                         user.sendMessage(this.LEAVE_COMBAT_MESSAGE);
