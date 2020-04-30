@@ -12,7 +12,7 @@ import org.bukkit.ChatColor;
 
 public final class LocaleLoader {
 
-    private static final String BUNDLE_ROOT = "br.com.titanwar.server.locale.locale";
+    private static final String BUNDLE_ROOT = "com.redefocus.factionscaribe.mcmmo.locale";
     private static ResourceBundle bundle = null;
     private static ResourceBundle enBundle = null;
 
