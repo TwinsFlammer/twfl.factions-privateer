@@ -88,7 +88,6 @@ public class CaribeUser extends SpigotUser {
         Location location = this.getLocation();
         World world = this.getWorld();
 
-        MPlayer mPlayer = MPlayer.get(this.getUniqueId());
         Faction factionAt = Faction.get(PS.valueOf(location));
 
         String factionName = "§c§lREDE FOCUS";
@@ -117,33 +116,31 @@ public class CaribeUser extends SpigotUser {
                 }
             }
 
+        Integer[] FACTION_SCORE = { 4, 5, 6, 7, 8 };
+
         customBoard.title(factionName);
 
-        customBoard.send(this.getPlayer());
-    }
-
-    public void updateScoreboard(Integer index, String text) {
-        this.customBoard
-                .set(
-                        index,
-                        String.format(
-                                this.SCOREBOARD_LINES[index],
-                                text
-                        )
-                );
-    }
-    
-    void setScoreboardLines(CustomBoard customBoard) {
-        Integer[] FACTION_SCORE = { 4, 5, 6, 7 };
-        
         for (int i = 0; i < this.SCOREBOARD_LINES.length; i++) {
             String text = this.SCOREBOARD_LINES[i];
-     
+
             if (!this.hasFaction() && Arrays.asList(FACTION_SCORE).contains(i))
                 continue;
 
             this.customBoard.set(i, String.format(text));
         }
+
+        customBoard.send(this.getPlayer());
+    }
+
+    public void updateScoreboard(Integer index, Object... objects) {
+        this.customBoard
+                .set(
+                        index,
+                        String.format(
+                                this.SCOREBOARD_LINES[index],
+                                objects
+                        )
+                );
     }
 
     public void addHome(Home home) {
