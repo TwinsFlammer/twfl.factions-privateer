@@ -122,8 +122,8 @@ public class CaribeUser extends SpigotUser {
                         11,
                         String.format(
                                 "§f  Poder: §c%d/%d",
-                                0,
-                                0
+                                mPlayer.getPowerRounded(),
+                                mPlayer.getPowerMaxRounded()
                         )
                 )
                 .set(
@@ -147,8 +147,8 @@ public class CaribeUser extends SpigotUser {
                             8,
                             String.format(
                                     "   §fPoder: §a%d/%d",
-                                    mPlayer.getPowerRounded(),
-                                    mPlayer.getPowerMaxRounded()
+                                    faction.getPowerRounded(),
+                                    faction.getPowerMaxRounded()
                             )
                     )
                     .set(
