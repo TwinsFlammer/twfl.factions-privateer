@@ -1,6 +1,5 @@
 package com.redefocus.factionscaribe.user.data;
 
-import com.avaje.ebean.validation.NotNull;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.massivecraft.factions.Factions;
@@ -18,7 +17,6 @@ import com.redefocus.common.shared.server.data.Server;
 import com.redefocus.factionscaribe.home.dao.HomeDao;
 import com.redefocus.factionscaribe.home.data.Home;
 import lombok.Getter;
-import lombok.NonNull;
 import lombok.Setter;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -32,8 +30,21 @@ import java.util.stream.Collectors;
  * @author SrGutyerrez
  */
 public class CaribeUser extends SpigotUser {
-
     protected final Integer COMBAT_DURATION = 15;
+    private final String[] SCOREBOARD_LINES = {
+            "§1",
+            "§f  KDR: §c%d",
+            "§f  Nível: §c %s",
+            "§2",
+            "§4  [%s] %s",
+            "§f   Poder: §c%d/%d",
+            "§f   Membros: §c%d/%d",
+            "§f   Terras: §c%d",
+            "§3",
+            "§f  Coins: §c%s",
+            "§f  Cash: §c%s",
+            Common.SERVER_URL
+    };
 
     @Getter
     @Setter
@@ -63,9 +74,11 @@ public class CaribeUser extends SpigotUser {
         HomeDao<Home> homeDao = new HomeDao<>();
 
         HashMap<String, Object> keys = Maps.newHashMap();
+
         keys.put("user_id", this.getId());
 
         Set<Home> homes = homeDao.findAll(keys);
+
         this.homes = Lists.newArrayList(homes);
     }
 
@@ -106,96 +119,6 @@ public class CaribeUser extends SpigotUser {
 
         customBoard.title(factionName);
 
-
-
-        customBoard
-                .set(
-                        14,
-                        "§1"
-                )
-                .set(
-                        13,
-                        "§f  KDR: §c" + mPlayer.getKdrRounded()
-                )
-                .set(
-                        12,
-                        "§f  Nível: §c" + 0
-                )
-                .set(
-                        11,
-                        String.format(
-                                "§f  Poder: §c%d/%d",
-                                mPlayer.getPowerRounded(),
-                                mPlayer.getPowerMaxRounded()
-                        )
-                )
-                .set(
-                        10,
-                        "§2"
-                );
-
-        if (mPlayer.hasFaction()) {
-            Faction faction = mPlayer.getFaction();
-
-            customBoard
-                    .set(
-                            9,
-                            String.format(
-                                    "§e  [%s] %s",
-                                    faction.getTag(),
-                                    faction.getName()
-                            )
-                    )
-                    .set(
-                            8,
-                            String.format(
-                                    "   §fPoder: §a%d/%d",
-                                    faction.getPowerRounded(),
-                                    faction.getPowerMaxRounded()
-                            )
-                    )
-                    .set(
-                            7,
-                            String.format(
-                                    "   §fMembros: §a%d/%d",
-                                    faction.getMembersCount(),
-                                    faction.getMembersLimit()
-                            )
-                    )
-                    .set(
-                            5,
-                            String.format(
-                                    "   §fTerras: §a%d",
-                                    faction.getLandCount()
-                            )
-                    )
-                    .set(
-                            4,
-                            "§3"
-                    );
-        }
-
-        customBoard
-                .set(
-                        3,
-                        "§f  Coins: §c" + 0
-                )
-                .set(
-                        2,
-                        "§f  Cash: §c" + 0
-                )
-                .set(
-                        1,
-                        "§0"
-                )
-                .set(
-                        0,
-                        String.format(
-                                "  §c%s",
-                                Common.SERVER_URL
-                        )
-                );
-
         customBoard.send(this.getPlayer());
     }
 
@@ -203,18 +126,34 @@ public class CaribeUser extends SpigotUser {
         this.customBoard
                 .set(
                         index,
-                        text
+                        String.format(
+                                this.SCOREBOARD_LINES[index],
+                                text
+                        )
                 );
+    }
+    
+    void setScoreboardLines(CustomBoard customBoard) {
+        Integer[] FACTION_SCORE = { 4, 5, 6, 7 };
+        
+        for (int i = 0; i < this.SCOREBOARD_LINES.length; i++) {
+            String text = this.SCOREBOARD_LINES[i];
+     
+            if (!this.hasFaction() && Arrays.asList(FACTION_SCORE).contains(i))
+                continue;
+
+            this.customBoard.set(i, String.format(text));
+        }
     }
 
     public void addHome(Home home) {
         this.homes.add(home);
     }
 
-    public void setCombat(CaribeUser damager) {
+    public void setCombat(CaribeUser caribeUser) {
         String message = String.format(
                 "§cVocê entrou em combate com §7%s§c, aguarde %d segundos para deslogar.",
-                damager.getFactionTag() + damager.getName(),
+                caribeUser.getFactionTag() + caribeUser.getName(),
                 this.COMBAT_DURATION
         );
 
@@ -222,12 +161,14 @@ public class CaribeUser extends SpigotUser {
                 System.currentTimeMillis() + TimeUnit.SECONDS.toMillis(this.COMBAT_DURATION)
         );
 
-        if(!inCombat())
+        if(!this.inCombat())
             this.sendMessage(message);
     }
 
     public String getRolePrefix() {
-        return "";
+        MPlayer mPlayer = MPlayer.get(this.getUniqueId());
+
+        return mPlayer.getRole().getPrefix();
     }
 
     public String getFactionName() {
@@ -344,10 +285,12 @@ public class CaribeUser extends SpigotUser {
     }
 
     public Boolean hasFaction() {
-        return MPlayer.get(this.getUniqueId()).hasFaction();
+        MPlayer mPlayer = MPlayer.get(this.getUniqueId());
+        
+        return mPlayer.hasFaction();
     }
 
     public Boolean inCombat() {
-        return this.combatDuration >= System.currentTimeMillis();
+        return this.combatDuration >= System.currentTimeMillis() && this.combatDuration != 0L;
     }
 }
