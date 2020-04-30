@@ -30,7 +30,8 @@ import java.util.stream.Collectors;
  * @author SrGutyerrez
  */
 public class CaribeUser extends SpigotUser {
-    private final Integer COMBAT_DURATION = 15;
+
+    protected final Integer COMBAT_DURATION = 15;
 
     @Getter
     @Setter
