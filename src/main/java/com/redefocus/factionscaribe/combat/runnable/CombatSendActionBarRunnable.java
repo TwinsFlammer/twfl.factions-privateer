@@ -1,40 +1,43 @@
 package com.redefocus.factionscaribe.combat.runnable;
 
-import com.redefocus.api.spigot.SpigotAPI;
 import com.redefocus.api.spigot.util.action.data.CustomAction;
+import com.redefocus.common.shared.util.TimeFormatter;
 import com.redefocus.factionscaribe.FactionsCaribe;
-
-import java.util.Objects;
-import java.util.concurrent.TimeUnit;
+import com.redefocus.factionscaribe.user.data.CaribeUser;
+import org.bukkit.entity.Player;
 
 /**
  * @author oNospher
  **/
 public class CombatSendActionBarRunnable implements Runnable {
-
     private final String IN_COMBAT_MESSAGE = "§c%s segundos para sair de combate.";
     private final String LEAVE_COMBAT_MESSAGE = "§aVocê não está mais em combate, pode deslogar.";
 
     @Override
     public void run() {
-        SpigotAPI.getUsers().stream()
-                .filter(Objects::nonNull)
-                .map(user -> FactionsCaribe.getInstance().getCaribeUserFactory().getUser(user.getId()))
-                .filter(user -> user.getCombatDuration() != 0)
-                .forEach(user -> {
-                    if(user.inCombat()) {
-                        new CustomAction()
-                                .text(
-                                        String.format(
-                                                this.IN_COMBAT_MESSAGE,
-                                                (int) TimeUnit.MILLISECONDS.toSeconds(user.getCombatTime())
-                                        )
-                                )
-                                .spigot()
-                                .send(user.getPlayer());
-                    } else {
-                        user.setCombatDuration(0L);
-                        user.sendMessage(this.LEAVE_COMBAT_MESSAGE);
+        FactionsCaribe.getInstance().getCaribeUsers()
+                .stream()
+                .filter(CaribeUser::inCombat)
+                .forEach(caribeUser -> {
+                    new CustomAction()
+                            .text(
+                                    String.format(
+                                            this.IN_COMBAT_MESSAGE,
+                                            TimeFormatter.formatMinimized(
+                                                    caribeUser.getCombatDuration() - System.currentTimeMillis()
+                                            )
+                                    )
+                            )
+                            .spigot()
+                            .send(caribeUser.getPlayer());
+
+                    if (caribeUser.getCombatDuration() <= System.currentTimeMillis()) {
+                        caribeUser.setCombatDuration(0L);
+
+                        Player player = caribeUser.getPlayer();
+
+                        if (player != null)
+                            player.sendMessage(this.LEAVE_COMBAT_MESSAGE);
                     }
                 });
     }
