@@ -15,9 +15,9 @@ import java.util.HashMap;
 /**
  * @author oNospher
  **/
-public class PublicCommand extends CustomCommand {
+public class PublicHomeCommand extends CustomCommand {
 
-    public PublicCommand() {
+    public PublicHomeCommand() {
         super(
                 "publica",
                 CommandRestriction.IN_GAME,
