@@ -1,5 +1,7 @@
 package com.redefocus.factionscaribe.mcmmo;
 
+import com.redefocus.api.spigot.commands.registry.CommandRegistry;
+import com.redefocus.factionscaribe.mcmmo.commands.SkillsCommand;
 import com.redefocus.factionscaribe.mcmmo.config.AdvancedConfig;
 import com.redefocus.factionscaribe.mcmmo.config.Config;
 import com.redefocus.factionscaribe.mcmmo.config.HiddenConfig;
@@ -192,6 +194,10 @@ public class mcMMO {
                 Permissions.generateWorldTeleportPermissions();
             }
 
+            CommandRegistry.registerCommand(
+                    FactionsCaribe.getInstance(),
+                    new SkillsCommand()
+            );
         } catch (SecurityException | IllegalArgumentException | IllegalStateException t) {
             FactionsCaribe.getInstance().getLogger().severe("There was an error while enabling mcMMO!");
             t.printStackTrace();
