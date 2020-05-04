@@ -1,11 +1,11 @@
 package com.redefocus.factionscaribe.combat.listener;
 
-import com.massivecraft.factions.Rel;
 import com.redefocus.factionscaribe.FactionsCaribe;
 import com.redefocus.factionscaribe.user.data.CaribeUser;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Projectile;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 
@@ -14,7 +14,7 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
  **/
 public class PlayerDamageCombatListener implements Listener {
 
-    @EventHandler(ignoreCancelled = true)
+    @EventHandler(ignoreCancelled = true, priority = EventPriority.MONITOR)
     public void onDamage(EntityDamageByEntityEvent event) {
         if (event.getEntity() instanceof Player && event.getDamager() instanceof Player) {
 
@@ -23,42 +23,38 @@ public class PlayerDamageCombatListener implements Listener {
             Player player = (Player) event.getEntity();
             Player damager = (Player) event.getDamager();
 
-            if (player.hasMetadata("NPC") || damager.hasMetadata("NPC")) return;
-
-            CaribeUser caribeUser = FactionsCaribe.getInstance().getCaribeUserFactory().getUser(player.getUniqueId());
-            CaribeUser caribeDamager = FactionsCaribe.getInstance().getCaribeUserFactory().getUser(damager.getUniqueId());
-
-            if(caribeUser.getFaction().equals(caribeDamager.getFaction())
-                    || caribeUser.getFaction().getRelationWish(caribeDamager.getFaction()) == Rel.ALLY) {
+            if (!this.canStartCombat(damager, player))
                 event.setCancelled(true);
-                return;
-            }
-
-            caribeUser.setCombat(caribeDamager);
-            caribeDamager.setCombat(caribeUser);
         }
     }
 
-    @EventHandler(ignoreCancelled = true)
+    @EventHandler(ignoreCancelled = true, priority = EventPriority.MONITOR)
     public void onArrowDamage(EntityDamageByEntityEvent event) {
-        if(event.getEntity() instanceof Player && event.getDamager() instanceof Projectile) {
+        if (event.getEntity() instanceof Player && event.getDamager() instanceof Projectile) {
             Projectile projectile = (Projectile) event.getDamager();
-            if(projectile != null && projectile.getShooter() instanceof Player) {
+
+            if (projectile != null && projectile.getShooter() instanceof Player) {
                 Player player = (Player) event.getEntity();
                 Player damager = (Player) projectile.getShooter();
 
-                CaribeUser caribeUser = FactionsCaribe.getInstance().getCaribeUserFactory().getUser(player.getUniqueId());
-                CaribeUser caribeDamager = FactionsCaribe.getInstance().getCaribeUserFactory().getUser(damager.getUniqueId());
-
-                if(caribeUser.getFaction().equals(caribeDamager.getFaction())
-                        || caribeUser.getFaction().getRelationWish(caribeDamager.getFaction()) == Rel.ALLY) {
+                if (!this.canStartCombat(damager, player))
                     event.setCancelled(true);
-                    return;
-                }
-
-                caribeUser.setCombat(caribeDamager);
-                caribeDamager.setCombat(caribeUser);
             }
         }
+    }
+
+    Boolean canStartCombat(Player damager, Player player) {
+        if (player.hasMetadata("NPC") || damager.hasMetadata("NPC")) return false;
+
+        CaribeUser caribeDamager = FactionsCaribe.getInstance().getCaribeUserFactory().getUser(damager.getUniqueId());
+        CaribeUser caribeUser = FactionsCaribe.getInstance().getCaribeUserFactory().getUser(player.getUniqueId());
+
+        if (caribeDamager.canDamage(player) && caribeUser.canDamage(damager)) {
+            caribeUser.setCombat(caribeDamager);
+            caribeDamager.setCombat(caribeUser);
+            return true;
+        }
+
+        return false;
     }
 }
