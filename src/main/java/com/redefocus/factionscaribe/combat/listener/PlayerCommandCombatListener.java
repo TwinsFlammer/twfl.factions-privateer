@@ -13,8 +13,7 @@ import java.util.Arrays;
  * @author oNospher
  **/
 public class PlayerCommandCombatListener implements Listener {
-
-    private final String[] allowed = new String[]{
+    private final String[] ALLOWED_COMMANDS = {
             "/g",
             "/c",
             "/.",
@@ -30,13 +29,16 @@ public class PlayerCommandCombatListener implements Listener {
         Player player = event.getPlayer();
         String message = event.getMessage();
 
+        if (message.contains(" "))
+            message = message.split(" ")[0];
+
         CaribeUser caribeUser = FactionsCaribe.getInstance().getCaribeUserFactory().getUser(player.getUniqueId());
-        if(caribeUser.inCombat()) {
-            if(Arrays.asList(allowed).contains(message.toLowerCase())) return;
+
+        if (caribeUser.inCombat()) {
+            if (Arrays.asList(ALLOWED_COMMANDS).contains(message.toLowerCase())) return;
+
             event.setCancelled(true);
             player.sendMessage(this.NOT_ALLOWED_COMMAND_IN_COMBAT);
         }
     }
-
-
 }
