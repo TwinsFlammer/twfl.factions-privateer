@@ -12,14 +12,17 @@ import com.redefocus.api.spigot.SpigotAPI;
 import com.redefocus.api.spigot.scoreboard.CustomBoard;
 import com.redefocus.api.spigot.user.data.SpigotUser;
 import com.redefocus.common.shared.Common;
+import com.redefocus.common.shared.permissions.group.GroupNames;
 import com.redefocus.common.shared.permissions.user.data.User;
 import com.redefocus.common.shared.server.data.Server;
+import com.redefocus.factionscaribe.FactionsCaribe;
 import com.redefocus.factionscaribe.home.dao.HomeDao;
 import com.redefocus.factionscaribe.home.data.Home;
 import lombok.Getter;
 import lombok.Setter;
 import org.bukkit.Location;
 import org.bukkit.World;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 
 import java.util.*;
@@ -116,7 +119,7 @@ public class CaribeUser extends SpigotUser {
                 }
             }
 
-        Integer[] FACTION_SCORE = { 4, 5, 6, 7, 8 };
+        Integer[] FACTION_SCORE = {4, 5, 6, 7, 8};
 
         customBoard.title(factionName);
 
@@ -154,12 +157,12 @@ public class CaribeUser extends SpigotUser {
                 this.COMBAT_DURATION
         );
 
+        if (!this.inCombat())
+            this.sendMessage(message);
+
         this.setCombatDuration(
                 System.currentTimeMillis() + TimeUnit.SECONDS.toMillis(this.COMBAT_DURATION)
         );
-
-        if(!this.inCombat())
-            this.sendMessage(message);
     }
 
     public String getRolePrefix() {
@@ -186,18 +189,37 @@ public class CaribeUser extends SpigotUser {
         return server.getId();
     }
 
-    public long getCombatTime() {
-        return this.combatDuration - System.currentTimeMillis();
+    public Integer getHomeLimit() {
+        if (this.hasGroupExact(GroupNames.NOBLE))
+            return 60;
+        else if (this.hasGroupExact(GroupNames.KNIGHT))
+            return 40;
+        else if (this.hasGroupExact(GroupNames.FARMER))
+            return 20;
+
+        return 10;
     }
 
-    public Faction getFaction() {
-        return MPlayer.get(this.getUniqueId()).getFaction();
+    public String getFactionAtId() {
+        Faction factionAt = this.getFactionAt();
+
+        return factionAt == null ? Factions.ID_NONE : factionAt.getId();
     }
 
     public Long getTeleportTime() {
         if (this.isVIP()) return 0L;
 
         return TimeUnit.SECONDS.toMillis(3);
+    }
+
+    public Faction getFaction() {
+        return MPlayer.get(this.getUniqueId()).getFaction();
+    }
+
+    public Faction getFactionAt() {
+        Location location = this.getLocation();
+
+        return Faction.get(PS.valueOf(location));
     }
 
     public Location getLocation() {
@@ -269,11 +291,22 @@ public class CaribeUser extends SpigotUser {
     }
 
     public Boolean canTeleport(Home home) {
-        MPlayer mPlayer = MPlayer.get(this.getUniqueId());
+        Faction faction = this.getFaction();
 
-        Faction faction = mPlayer.getFaction();
         Faction factionAt = Faction.get(home.getFactionId());
 
+        return this.canTeleport(faction, factionAt);
+    }
+
+    public Boolean canTeleport(Location location) {
+        Faction faction = this.getFaction();
+
+        Faction factionAt = Faction.get(PS.valueOf(location));
+
+        return this.canTeleport(faction, factionAt);
+    }
+
+    protected Boolean canTeleport(Faction faction, Faction factionAt) {
         if (factionAt == null || factionAt.isNone() || faction.equals(factionAt)) return true;
 
         if (!(faction.getRelationWish(factionAt).equals(Rel.ALLY))) return false;
@@ -281,13 +314,32 @@ public class CaribeUser extends SpigotUser {
         return factionAt.getPerms().get(MPerm.getPermHome()).contains(Rel.ALLY);
     }
 
-    public Boolean hasFaction() {
-        MPlayer mPlayer = MPlayer.get(this.getUniqueId());
-        
-        return mPlayer.hasFaction();
-    }
+    public Boolean canDamage(Entity entity) {
+        if (entity instanceof Player) {
+            Player player = (Player) entity;
 
-    public Boolean inCombat() {
-        return this.combatDuration >= System.currentTimeMillis() && this.combatDuration != 0L;
+            CaribeUser caribeUser = FactionsCaribe.getInstance().getCaribeUserFactory().getUser(player.getUniqueId());
+
+            if (caribeUser.getFaction().equals(this.getFaction())
+                    || caribeUser.getFaction().getRelationWish(this.getFaction()) == Rel.ALLY)
+                return true;
+
+            }
+
+            return false;
+        }
+
+        public Boolean hasFaction () {
+            Faction faction = this.getFaction();
+
+            if (faction == null) return false;
+
+            return !faction.getId().equals(Factions.ID_NONE)
+                    && !faction.getId().equals(Factions.ID_SAFEZONE)
+                    && !faction.getId().equals(Factions.ID_WARZONE);
+        }
+
+        public Boolean inCombat () {
+            return this.combatDuration >= System.currentTimeMillis() && this.combatDuration != 0L;
+        }
     }
-}
