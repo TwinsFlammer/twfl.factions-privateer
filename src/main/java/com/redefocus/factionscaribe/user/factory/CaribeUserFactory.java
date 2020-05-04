@@ -5,6 +5,7 @@ import com.redefocus.common.shared.permissions.user.data.User;
 import com.redefocus.common.shared.permissions.user.factory.AbstractUserFactory;
 import com.redefocus.common.shared.permissions.user.manager.UserManager;
 import com.redefocus.factionscaribe.user.data.CaribeUser;
+import lombok.Getter;
 
 import java.util.List;
 import java.util.UUID;
@@ -13,6 +14,7 @@ import java.util.UUID;
  * @author SrGutyerrez
  */
 public class CaribeUserFactory<U extends CaribeUser> extends AbstractUserFactory<U> {
+    @Getter
     private List<U> users = Lists.newArrayList();
 
     @Override
