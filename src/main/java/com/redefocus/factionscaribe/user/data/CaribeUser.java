@@ -9,6 +9,8 @@ import com.massivecraft.factions.entity.MPerm;
 import com.massivecraft.factions.entity.MPlayer;
 import com.massivecraft.massivecore.ps.PS;
 import com.redefocus.api.spigot.SpigotAPI;
+import com.redefocus.api.spigot.inventory.CustomInventory;
+import com.redefocus.api.spigot.inventory.item.CustomItem;
 import com.redefocus.api.spigot.scoreboard.CustomBoard;
 import com.redefocus.api.spigot.user.data.SpigotUser;
 import com.redefocus.common.shared.Common;
@@ -18,13 +20,18 @@ import com.redefocus.common.shared.server.data.Server;
 import com.redefocus.factionscaribe.FactionsCaribe;
 import com.redefocus.factionscaribe.home.dao.HomeDao;
 import com.redefocus.factionscaribe.home.data.Home;
+import com.redefocus.factionscaribe.mcmmo.datatypes.player.McMMOPlayer;
+import com.redefocus.factionscaribe.mcmmo.datatypes.skills.SkillType;
+import com.redefocus.factionscaribe.mcmmo.util.player.UserManager;
 import lombok.Getter;
 import lombok.Setter;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 
+import java.text.DecimalFormat;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
@@ -33,6 +40,8 @@ import java.util.stream.Collectors;
  * @author SrGutyerrez
  */
 public class CaribeUser extends SpigotUser {
+    public static final HashMap<SkillType, Material> SKILL_TYPES = Maps.newHashMap();
+
     protected final Integer COMBAT_DURATION = 15;
     private final String[] SCOREBOARD_LINES = {
             "§1",
@@ -48,6 +57,8 @@ public class CaribeUser extends SpigotUser {
             "§f  Cash: §c%s",
             Common.SERVER_URL
     };
+
+    private final String HAMER_AND_PICK_CHARACTER = "\u2692";
 
     @Getter
     @Setter
@@ -69,8 +80,20 @@ public class CaribeUser extends SpigotUser {
     @Getter
     private final List<Home> homes;
 
+    @Getter
+    private final CustomInventory skillsInventory;
+
     public CaribeUser(User user) {
         super(user);
+
+        CaribeUser.SKILL_TYPES.put(SkillType.SWORDS, Material.DIAMOND_SWORD);
+        CaribeUser.SKILL_TYPES.put(SkillType.ARCHERY, Material.BOW);
+        CaribeUser.SKILL_TYPES.put(SkillType.MINING, Material.DIAMOND_PICKAXE);
+        CaribeUser.SKILL_TYPES.put(SkillType.EXCAVATION, Material.DIAMOND_SPADE);
+        CaribeUser.SKILL_TYPES.put(SkillType.AXES, Material.DIAMOND_AXE);
+        CaribeUser.SKILL_TYPES.put(SkillType.ACROBATICS, Material.DIAMOND_BOOTS);
+        CaribeUser.SKILL_TYPES.put(SkillType.ALCHEMY, Material.POTION);
+        CaribeUser.SKILL_TYPES.put(SkillType.HERBALISM, Material.SEEDS);
 
         this.customBoard = new CustomBoard();
 
@@ -83,6 +106,67 @@ public class CaribeUser extends SpigotUser {
         Set<Home> homes = homeDao.findAll(keys);
 
         this.homes = Lists.newArrayList(homes);
+
+        this.skillsInventory = new CustomInventory(
+                "Habilidades",
+                5,
+                "XXXXXXXXX",
+                "XXXOXOXXX",
+                "XXOOOOOXX",
+                "XXXOOOXXX",
+                "XXXXXXXXX"
+        );
+    }
+
+    public void updateSkillsInventory() {
+        McMMOPlayer mcMMOPlayer = UserManager.getPlayer(this.getName());
+
+        CustomItem skull = new CustomItem(Material.SKULL_ITEM)
+                .owner(this.getDisplayName())
+                .name(this.getPrefix() + this.getDisplayName())
+                .lore(
+                        "§f["+ this.HAMER_AND_PICK_CHARACTER +"] Nível total: §7" + mcMMOPlayer.getPowerLevel(),
+                        "",
+                        "§fPosição no rank: §7???",
+                        "§f1º colocado no rank: §7???"
+                );
+
+        CustomItem abilitiesRanking = new CustomItem(Material.BOOK_AND_QUILL)
+                .name("§eRank de habilidades")
+                .lore("§7Clique para abrir o Rank de Habilidades")
+                .onClick(event -> {
+                    Player player = (Player) event.getWhoClicked();
+
+                    player.sendMessage("§cEm breve.");
+                });
+
+        this.skillsInventory.addItem(skull);
+        this.skillsInventory.addItem(abilitiesRanking);
+
+        DecimalFormat decimalFormat = new DecimalFormat("###,###");
+
+        for (Map.Entry<SkillType, Material> entrySet : CaribeUser.SKILL_TYPES.entrySet()) {
+            SkillType skillType = entrySet.getKey();
+            Material material = entrySet.getValue();
+
+            CustomItem customItem = new CustomItem(material)
+                    .name("§e" + skillType.getName())
+                    .lore(
+                            String.format(
+                                    "§fNível: §7%d/%d",
+                                    0,
+                                    0
+                            ),
+                            "",
+                            "§fBônus §6VIP§f: §7" + (this.getMcMMoVIPBonus() == 1.0F ? "Nenhum" : decimalFormat.format(this.getMcMMoVIPBonus())),
+                            "§fBooster: §7???",
+                            "",
+                            "§fPosição no rank: §7???",
+                            "§f1º colocado no rank: §7???"
+                    );
+
+            this.skillsInventory.addItem(customItem);
+        }
     }
 
     public void setupScoreboard() {
@@ -212,6 +296,17 @@ public class CaribeUser extends SpigotUser {
         return TimeUnit.SECONDS.toMillis(3);
     }
 
+    public Float getMcMMoVIPBonus() {
+        if (this.hasGroupExact(GroupNames.NOBLE))
+            return 2.0F;
+        else if (this.hasGroupExact(GroupNames.KNIGHT))
+            return 1.6F;
+        else if (this.hasGroupExact(GroupNames.FARMER))
+            return 1.2F;
+
+        return 1.0F;
+    }
+
     public Faction getFaction() {
         return MPlayer.get(this.getUniqueId()).getFaction();
     }
@@ -324,22 +419,22 @@ public class CaribeUser extends SpigotUser {
                     || caribeUser.getFaction().getRelationWish(this.getFaction()) == Rel.ALLY)
                 return true;
 
-            }
-
-            return false;
         }
 
-        public Boolean hasFaction () {
-            Faction faction = this.getFaction();
-
-            if (faction == null) return false;
-
-            return !faction.getId().equals(Factions.ID_NONE)
-                    && !faction.getId().equals(Factions.ID_SAFEZONE)
-                    && !faction.getId().equals(Factions.ID_WARZONE);
-        }
-
-        public Boolean inCombat () {
-            return this.combatDuration >= System.currentTimeMillis() && this.combatDuration != 0L;
-        }
+        return false;
     }
+
+    public Boolean hasFaction() {
+        Faction faction = this.getFaction();
+
+        if (faction == null) return false;
+
+        return !faction.getId().equals(Factions.ID_NONE)
+                && !faction.getId().equals(Factions.ID_SAFEZONE)
+                && !faction.getId().equals(Factions.ID_WARZONE);
+    }
+
+    public Boolean inCombat() {
+        return this.combatDuration >= System.currentTimeMillis() && this.combatDuration != 0L;
+    }
+}
