@@ -7,6 +7,8 @@ import com.redefocus.factionscaribe.user.data.CaribeUser;
 import com.redefocus.factionscaribe.user.factory.CaribeUserFactory;
 import lombok.Getter;
 
+import java.util.List;
+
 /**
  * @author SrGutyerrez
  */
@@ -40,5 +42,9 @@ public class FactionsCaribe extends FocusPlugin {
     @Override
     public void onDisablePlugin() {
         this.mcMMO.onDisable();
+    }
+
+    public List<? extends CaribeUser> getCaribeUsers() {
+        return this.caribeUserFactory.getUsers();
     }
 }
