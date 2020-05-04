@@ -1,9 +1,6 @@
 package com.redefocus.factionscaribe.home.command;
 
 import com.google.common.collect.Maps;
-import com.massivecraft.factions.entity.BoardColl;
-import com.massivecraft.factions.entity.Faction;
-import com.massivecraft.massivecore.ps.PS;
 import com.redefocus.api.spigot.SpigotAPI;
 import com.redefocus.api.spigot.commands.CustomCommand;
 import com.redefocus.api.spigot.commands.enums.CommandRestriction;
@@ -14,7 +11,7 @@ import com.redefocus.factionscaribe.FactionsCaribe;
 import com.redefocus.factionscaribe.home.dao.HomeDao;
 import com.redefocus.factionscaribe.home.data.Home;
 import com.redefocus.factionscaribe.user.data.CaribeUser;
-import com.redefocus.factionscaribe.util.FactionUtil;
+import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.command.CommandSender;
 
@@ -26,7 +23,7 @@ import java.util.HashMap;
  **/
 public class SetHomeCommand extends CustomCommand {
     private final Integer MAX_HOME_NAME_LENGHT = 32, MIN_HOME_NAME_LENGTH = 3;
-    private final String[] WORLDS_PERMITTED = {"world"};
+    private final String[] WORLDS_PERMITTED = { "world" };
 
     public SetHomeCommand() {
         super(
@@ -46,9 +43,7 @@ public class SetHomeCommand extends CustomCommand {
         CaribeUser caribeUser = FactionsCaribe.getInstance().getCaribeUserFactory().getUser(user.getId());
         String name = args[0];
 
-        Integer serverId = caribeUser.getServerId();
-
-        if (!this.isWorldAllowed(caribeUser.getWorld()) || !FactionUtil.isAllowed() || !SpigotAPI.getRootServerId().equals(serverId)) {
+        if (!this.canSetHomeHere(caribeUser)) {
             commandSender.sendMessage(
                     "§cVocê não pode definir home nesse lugar."
             );
@@ -70,11 +65,9 @@ public class SetHomeCommand extends CustomCommand {
 
         Home home = caribeUser.getHome(name);
 
-        Faction factionAt = BoardColl.get().getFactionAt(PS.valueOf(caribeUser.getLocation()));
-
         home.setLocation(caribeUser.getLocation());
         home.setServerId(caribeUser.getServerId());
-        home.setFactionId(factionAt.getId());
+        home.setFactionId(caribeUser.getFactionAtId());
 
         if (caribeUser.hasHome(name)) {
             HashMap<String, Object> keys = Maps.newHashMap();
@@ -90,6 +83,16 @@ public class SetHomeCommand extends CustomCommand {
                     home.getId()
             );
         } else {
+            if (caribeUser.getHomes().size() >= caribeUser.getHomeLimit()) {
+                commandSender.sendMessage(
+                        String.format(
+                                "§cVocê atingiu o limite de %d homes definidas.",
+                                caribeUser.getHomeLimit()
+                        )
+                );
+                return;
+            }
+
             home = homeDao.insert(home);
 
             caribeUser.addHome(home);
@@ -103,7 +106,17 @@ public class SetHomeCommand extends CustomCommand {
         );
     }
 
-    Boolean isWorldAllowed(World world) {
-        return Arrays.asList(this.WORLDS_PERMITTED).contains(world.getName());
+    Boolean canSetHomeHere(CaribeUser caribeUser) {
+        Integer serverId = caribeUser.getServerId();
+
+        World world = caribeUser.getWorld();
+
+        if (!SpigotAPI.getRootServerId().equals(serverId)
+                || !Arrays.asList(this.WORLDS_PERMITTED).contains(world.getName()))
+            return false;
+
+        Location location = caribeUser.getLocation();
+
+        return caribeUser.canTeleport(location);
     }
 }
