@@ -83,6 +83,10 @@ public class CaribeUser extends SpigotUser {
     @Getter
     private final CustomInventory skillsInventory;
 
+    @Getter
+    @Setter
+    private String lastMessage;
+
     public CaribeUser(User user) {
         super(user);
 
@@ -249,6 +253,14 @@ public class CaribeUser extends SpigotUser {
         );
     }
 
+    public void deposit(Double value) {
+        this.money += value;
+    }
+
+    public void withdraw(Double value) {
+        this.money -= value;
+    }
+
     public String getRolePrefix() {
         MPlayer mPlayer = MPlayer.get(this.getUniqueId());
 
@@ -282,6 +294,12 @@ public class CaribeUser extends SpigotUser {
             return 20;
 
         return 10;
+    }
+
+    public Integer getFactionRank() {
+        Faction faction = this.getFaction();
+
+        return faction.getTopPosition();
     }
 
     public String getFactionAtId() {
