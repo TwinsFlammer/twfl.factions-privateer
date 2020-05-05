@@ -4,6 +4,7 @@ import com.massivecraft.factions.entity.Faction;
 import com.massivecraft.factions.entity.MPlayer;
 import com.redefocus.api.spigot.util.jsontext.data.JSONText;
 import com.redefocus.factionscaribe.chat.enums.Channel;
+import com.redefocus.factionscaribe.economy.manager.EconomyManager;
 import com.redefocus.factionscaribe.user.data.CaribeUser;
 import org.bukkit.entity.Player;
 
@@ -13,12 +14,19 @@ import org.bukkit.entity.Player;
 public abstract class ChatComponent {
     private final JSONText jsonText;
 
-    public ChatComponent(Channel channel, CaribeUser user, String message) {
+    public ChatComponent(Channel channel, CaribeUser caribeUser, String message) {
         JSONText jsonText;
 
-        MPlayer mPlayer = MPlayer.get(user.getUniqueId());
+        MPlayer mPlayer = MPlayer.get(caribeUser.getUniqueId());
 
         Faction faction = mPlayer.getFaction();
+
+        String tags = "";
+
+        CaribeUser caribeUser1 = EconomyManager.getFirstCaribeUser();
+
+        if (caribeUser1 != null && caribeUser.isSimilar(caribeUser1))
+            tags += "§2[$]";
 
         switch (channel) {
             case GLOBAL:
@@ -26,13 +34,13 @@ public abstract class ChatComponent {
                 jsonText = new JSONText()
                         .text(channel.getColor() + "[" + channel.getPrefix() + "] ")
                         .next()
-                        .text(user.getPrefix())
+                        .text(caribeUser.getPrefix())
                         .next()
                         .text("§f")
                         .next()
-                        .text(user.getDisplayName())
+                        .text(caribeUser.getDisplayName())
                         .hoverText(
-                                "§6Nick: §f" + user.getPrefix() + user.getDisplayName() +
+                                "§6Nick: §f" + caribeUser.getPrefix() + caribeUser.getDisplayName() +
                                 "\n" +
                                 "§6Facção: §f" + faction.getTag() + "- " + faction.getName() +
                                 "\n" +
@@ -54,11 +62,11 @@ public abstract class ChatComponent {
                         .text(
                                 String.format(
                                         channel.getPrefix(),
-                                        user.getRolePrefix() + user.getFactionName()
+                                        caribeUser.getRolePrefix() + caribeUser.getFactionName()
                                 )
                         )
                 .next()
-                .text("§f" + user.getDisplayName())
+                .text("§f" + caribeUser.getDisplayName())
                 .next()
                 .text("§f: " + message)
                 .next();
@@ -66,9 +74,9 @@ public abstract class ChatComponent {
             }
             case FACTION: {
                 jsonText = new JSONText()
-                        .text(channel.getColor() + user.getRolePrefix())
+                        .text(channel.getColor() + caribeUser.getRolePrefix())
                         .next()
-                        .text("§f" + user.getDisplayName())
+                        .text("§f" + caribeUser.getDisplayName())
                         .next()
                         .text(": §b" + message)
                         .next();
