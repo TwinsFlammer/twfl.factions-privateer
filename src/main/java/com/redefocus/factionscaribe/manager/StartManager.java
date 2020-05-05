@@ -8,6 +8,7 @@ import com.redefocus.common.shared.databases.redis.channel.data.Channel;
 import com.redefocus.common.shared.databases.redis.handler.JedisMessageListener;
 import com.redefocus.common.shared.util.ClassGetter;
 import com.redefocus.factionscaribe.FactionsCaribe;
+import com.redefocus.factionscaribe.economy.manager.EconomyManager;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Listener;
 
@@ -118,6 +119,6 @@ class JedisMessageListenerManager {
 
 class DataManager {
     DataManager() {
-
+        new EconomyManager();
     }
 }
