@@ -6,6 +6,7 @@ import com.redefocus.api.spigot.util.jsontext.data.JSONText;
 import com.redefocus.factionscaribe.chat.enums.Channel;
 import com.redefocus.factionscaribe.economy.manager.EconomyManager;
 import com.redefocus.factionscaribe.user.data.CaribeUser;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
 /**
@@ -28,11 +29,22 @@ public abstract class ChatComponent {
         if (caribeUser1 != null && caribeUser.isSimilar(caribeUser1))
             tags += "§2[$]";
 
+        String factionTag = caribeUser.hasFaction() ? String.format(
+                "%s[%s]",
+                caribeUser.getFactionRank() == 1 ? ChatColor.AQUA : ChatColor.GRAY,
+                caribeUser.getFactionTag()
+        ) : "";
+
         switch (channel) {
             case GLOBAL:
             case LOCAL: {
                 jsonText = new JSONText()
                         .text(channel.getColor() + "[" + channel.getPrefix() + "] ")
+                        .next()
+                        .text(tags)
+                        .next()
+                        .text(factionTag)
+                        .next()
                         .next()
                         .text(caribeUser.getPrefix())
                         .next()
