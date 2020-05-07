@@ -52,6 +52,11 @@ public class MoneyPayCommand<C extends MoneyCommand> extends CustomArgumentComma
                 return;
             }
 
+            if (caribeUser.isSimilar(caribeUser1)) {
+                commandSender.sendMessage("§cVocê não pode enviar dinheiro para si mesmo.");
+                return;
+            }
+
             MoneyChangeEvent moneyChangeEvent1 = new MoneyChangeEvent(
                     caribeUser,
                     caribeUser.getMoney(),
