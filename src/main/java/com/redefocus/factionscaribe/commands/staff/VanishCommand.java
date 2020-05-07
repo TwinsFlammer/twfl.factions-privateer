@@ -6,7 +6,9 @@ import com.redefocus.common.shared.permissions.group.GroupNames;
 import com.redefocus.common.shared.permissions.user.data.User;
 import com.redefocus.factionscaribe.FactionsCaribe;
 import com.redefocus.factionscaribe.user.data.CaribeUser;
+import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 
 /**
  * @author SrGutyerrez
@@ -27,5 +29,15 @@ public class VanishCommand extends CustomCommand {
         caribeUser.setInvisible(!caribeUser.isInvisible());
 
         commandSender.sendMessage("§aO modo invisível foi " + (caribeUser.isInvisible() ? "ativado." : "desativado."));
+
+        Player player = (Player) commandSender;
+
+        Bukkit.getOnlinePlayers().forEach(player1 -> {
+            CaribeUser caribeUser1 = FactionsCaribe.getInstance().getCaribeUserFactory().getUser(player1.getUniqueId());
+
+            if (caribeUser.isInvisible() && !caribeUser1.isStaff())
+                player1.hidePlayer(player);
+            else player1.showPlayer(player);
+        });
     }
 }
