@@ -2,6 +2,7 @@ package com.redefocus.factionscaribe.combat.listener;
 
 import com.redefocus.factionscaribe.FactionsCaribe;
 import com.redefocus.factionscaribe.user.data.CaribeUser;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Projectile;
 import org.bukkit.event.EventHandler;
@@ -9,10 +10,15 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 
+import java.util.Arrays;
+
 /**
  * @author oNospher
  **/
 public class PlayerDamageCombatListener implements Listener {
+    private final EntityType[] ALLOWED_TYPES = {
+            EntityType.ARROW
+    };
 
     @EventHandler(ignoreCancelled = true, priority = EventPriority.MONITOR)
     public void onDamage(EntityDamageByEntityEvent event) {
@@ -34,6 +40,8 @@ public class PlayerDamageCombatListener implements Listener {
             Projectile projectile = (Projectile) event.getDamager();
 
             if (projectile != null && projectile.getShooter() instanceof Player) {
+                if (!Arrays.asList(this.ALLOWED_TYPES).contains(projectile.getType())) return;
+
                 Player player = (Player) event.getEntity();
                 Player damager = (Player) projectile.getShooter();
 
