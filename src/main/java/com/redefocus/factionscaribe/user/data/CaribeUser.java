@@ -47,18 +47,19 @@ public class CaribeUser extends SpigotUser {
 
     protected final Integer COMBAT_DURATION = 15;
     private final String[] SCOREBOARD_LINES = {
-            "§1",
-            "§f  KDR: §c%s",
-            "§f  Nível: §c %s",
-            "§2",
-            "§4  [%s] %s",
-            "§f   Poder: §c%s/%s",
-            "§f   Membros: §c%s/%s",
-            "§f   Terras: §c%s",
-            "§3",
+            "§c  " + Common.SERVER_URL,
+            "§4",
             "§f  Coins: §c%s",
             "§f  Cash: §c%s",
-            Common.SERVER_URL
+            "§3",
+            "§f   Terras: §c%s",
+            "§f   Membros: §c%s/%s",
+            "§f   Poder: §c%s/%s",
+            "§4  [%s] %s",
+            "§2",
+            "§f  KDR: §c%s",
+            "§f  Nível: §c %s",
+            "§1"
     };
 
     private final String HAMER_AND_PICK_CHARACTER = "\u2692";
@@ -237,8 +238,8 @@ public class CaribeUser extends SpigotUser {
 
         customBoard.title(factionName);
 
-        for (int i = this.SCOREBOARD_LINES.length; i > 0; i--) {
-            String text = this.SCOREBOARD_LINES[i-1];
+        for (int i = 0; i <this.SCOREBOARD_LINES.length; i--) {
+            String text = this.SCOREBOARD_LINES[i];
 
             if (!this.hasFaction() && Arrays.asList(FACTION_SCORE).contains(i))
                 continue;
