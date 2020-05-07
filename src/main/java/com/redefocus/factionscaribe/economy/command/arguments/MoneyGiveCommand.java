@@ -6,6 +6,7 @@ import com.redefocus.common.shared.permissions.user.manager.UserManager;
 import com.redefocus.common.shared.util.Helper;
 import com.redefocus.factionscaribe.FactionsCaribe;
 import com.redefocus.factionscaribe.economy.command.MoneyCommand;
+import com.redefocus.factionscaribe.economy.event.MoneyChangeEvent;
 import com.redefocus.factionscaribe.economy.manager.EconomyManager;
 import com.redefocus.factionscaribe.user.data.CaribeUser;
 import org.bukkit.command.CommandSender;
@@ -44,6 +45,16 @@ public class MoneyGiveCommand<C extends MoneyCommand> extends CustomArgumentComm
                 commandSender.sendMessage("§cVocê inseriu um valor inválido.");
                 return;
             }
+
+            MoneyChangeEvent moneyChangeEvent = new MoneyChangeEvent(
+                    caribeUser,
+                    caribeUser.getMoney(),
+                    caribeUser.getMoney() + money
+            );
+
+            moneyChangeEvent.run();
+
+            if (moneyChangeEvent.isCancelled()) return;
 
             caribeUser.deposit(money);
 
