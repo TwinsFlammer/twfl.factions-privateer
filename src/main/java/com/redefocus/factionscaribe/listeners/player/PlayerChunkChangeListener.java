@@ -1,5 +1,8 @@
 package com.redefocus.factionscaribe.listeners.player;
 
+import com.massivecraft.factions.entity.BoardColl;
+import com.massivecraft.factions.entity.Faction;
+import com.massivecraft.massivecore.ps.PS;
 import com.redefocus.factionscaribe.FactionsCaribe;
 import com.redefocus.factionscaribe.user.data.CaribeUser;
 import org.bukkit.Chunk;
@@ -14,21 +17,21 @@ import org.bukkit.event.player.PlayerMoveEvent;
  */
 public class PlayerChunkChangeListener implements Listener {
     @EventHandler
-    public void onChange(PlayerMoveEvent event) throws InterruptedException {
+    public void onChange(PlayerMoveEvent event) {
         Location fromLocation = event.getFrom();
         Location toLocation = event.getTo();
 
         Chunk fromChunk = fromLocation.getChunk();
         Chunk toChunk = toLocation.getChunk();
 
-        Thread.sleep(100);
-
         if (!fromChunk.equals(toChunk)) {
             Player player = event.getPlayer();
 
+            Faction faction = BoardColl.get().getFactionAt(PS.valueOf(toChunk));
+
             CaribeUser caribeUser = FactionsCaribe.getInstance().getCaribeUserFactory().getUser(player.getUniqueId());
 
-            caribeUser.updateScoreboardTitle();
+            caribeUser.updateScoreboardTitle(faction);
         }
     }
 }
