@@ -14,16 +14,16 @@ import org.bukkit.event.player.PlayerMoveEvent;
  */
 public class PlayerChunkChangeListener implements Listener {
     @EventHandler
-    public void onChange(PlayerMoveEvent event) {
+    public void onChange(PlayerMoveEvent event) throws InterruptedException {
         Location fromLocation = event.getFrom();
         Location toLocation = event.getTo();
 
         Chunk fromChunk = fromLocation.getChunk();
         Chunk toChunk = toLocation.getChunk();
 
-        if (!fromChunk.equals(toChunk)) {
-            System.out.println("Diferente");
+        Thread.sleep(100);
 
+        if (!fromChunk.equals(toChunk)) {
             Player player = event.getPlayer();
 
             CaribeUser caribeUser = FactionsCaribe.getInstance().getCaribeUserFactory().getUser(player.getUniqueId());
