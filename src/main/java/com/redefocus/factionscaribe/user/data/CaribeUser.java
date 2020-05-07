@@ -159,7 +159,9 @@ public class CaribeUser extends SpigotUser {
         DecimalFormat decimalFormat = new DecimalFormat("###,###");
 
         for (DisplaySkill displaySkill : DisplaySkill.values()) {
-            SkillType skillType = displaySkill.getSkillType();
+            String skillName = displaySkill.getSkillName();
+
+            SkillType skillType = SkillType.valueOf(skillName);
             Integer slot = displaySkill.getSlot(), data = displaySkill.getData();
             Material material = displaySkill.getMaterial();
 
@@ -502,56 +504,56 @@ public class CaribeUser extends SpigotUser {
     @RequiredArgsConstructor
     public static enum DisplaySkill {
         SWORDS(
-                SkillType.SWORDS,
+                "SWORDS",
                 20,
                 0,
                 Material.DIAMOND_SWORD
         ),
         ARCHERY(
-                SkillType.ARCHERY,
+                "ARCHERY",
                 21,
                 0,
                 Material.BOW
         ),
         MINING(
-                SkillType.MINING,
+                "MINING",
                 22,
                 0,
                 Material.DIAMOND_PICKAXE
         ),
         EXCAVATION(
-                SkillType.EXCAVATION,
+                "EXCAVATION",
                 23,
                 0,
                 Material.DIAMOND_SPADE
         ),
         AXES(
-                SkillType.AXES,
+                "AXES",
                 24,
                 0,
                 Material.DIAMOND_AXE
         ),
         ACROBATICS(
-                SkillType.ACROBATICS,
+                "ACROBATICS",
                 30,
                 0,
                 Material.DIAMOND_BOOTS
         ),
         ALCHEMY(
-                SkillType.ALCHEMY,
+                "ALCHEMY",
                 31,
                 0,
                 Material.POTION
         ),
         HERBALISM(
-                SkillType.HERBALISM,
+                "HERBALISM",
                 32,
                 0,
                 Material.SEEDS
         );
 
         @Getter
-        private final SkillType skillType;
+        private final String skillName;
         @Getter
         private final Integer slot, data;
         @Getter
