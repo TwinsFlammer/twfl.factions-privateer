@@ -171,7 +171,7 @@ public class CaribeUser extends SpigotUser {
         Integer slot = 20;
 
         for (Map.Entry<SkillType, Material> entrySet : CaribeUser.SKILL_TYPES.entrySet()) {
-            if (slot < 20 || slot >= 26 && slot <= 30 || slot > 33) break;
+            if (slot < 20 || slot >= 26 && slot <= 30 || slot > 33) continue;
 
             SkillType skillType = entrySet.getKey();
             Material material = entrySet.getValue();
@@ -237,7 +237,7 @@ public class CaribeUser extends SpigotUser {
 
         customBoard.title(factionName);
 
-        for (int i = 0; i < this.SCOREBOARD_LINES.length; i++) {
+        for (int i = this.SCOREBOARD_LINES.length; i > 0; i--) {
             String text = this.SCOREBOARD_LINES[i];
 
             if (!this.hasFaction() && Arrays.asList(FACTION_SCORE).contains(i))
