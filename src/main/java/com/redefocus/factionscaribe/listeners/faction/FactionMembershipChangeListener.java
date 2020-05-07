@@ -27,6 +27,8 @@ public class FactionMembershipChangeListener implements Listener {
                 caribeUser.updateScoreboard(6, "");
                 caribeUser.updateScoreboard(7, "");
                 caribeUser.updateScoreboard(8, "");
+
+                break;
             }
             case LEAVE:
             case KICK:
@@ -36,6 +38,8 @@ public class FactionMembershipChangeListener implements Listener {
                 caribeUser.removeScoreboard(6);
                 caribeUser.removeScoreboard(7);
                 caribeUser.removeScoreboard(8);
+
+                break;
             }
         }
     }
