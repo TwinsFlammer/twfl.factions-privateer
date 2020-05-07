@@ -49,7 +49,7 @@ public class MoneySetCommand<C extends MoneyCommand> extends CustomArgumentComma
             MoneyChangeEvent moneyChangeEvent = new MoneyChangeEvent(
                     caribeUser,
                     caribeUser.getMoney(),
-                    caribeUser.getMoney() + money
+                    money
             );
 
             moneyChangeEvent.run();
