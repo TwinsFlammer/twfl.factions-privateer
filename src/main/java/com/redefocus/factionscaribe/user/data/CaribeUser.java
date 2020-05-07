@@ -158,10 +158,10 @@ public class CaribeUser extends SpigotUser {
 
         DecimalFormat decimalFormat = new DecimalFormat("###,###");
 
-        for (Skill skill : Skill.values()) {
-            SkillType skillType = skill.getSkillType();
-            Integer slot = skill.getSlot(), data = skill.getData();
-            Material material = skill.getMaterial();
+        for (DisplaySkill displaySkill : DisplaySkill.values()) {
+            SkillType skillType = displaySkill.getSkillType();
+            Integer slot = displaySkill.getSlot(), data = displaySkill.getData();
+            Material material = displaySkill.getMaterial();
 
             CustomItem customItem = new CustomItem(material)
                     .data(data)
@@ -500,7 +500,7 @@ public class CaribeUser extends SpigotUser {
     }
 
     @RequiredArgsConstructor
-    public static enum Skill {
+    public static enum DisplaySkill {
         SWORDS(
                 SkillType.SWORDS,
                 20,
