@@ -54,7 +54,7 @@ public class MoneyRemoveCommand<C extends MoneyCommand> extends CustomArgumentCo
             MoneyChangeEvent moneyChangeEvent = new MoneyChangeEvent(
                     caribeUser,
                     caribeUser.getMoney(),
-                    caribeUser.getMoney() + money
+                    caribeUser.getMoney() - money
             );
 
             moneyChangeEvent.run();
