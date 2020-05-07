@@ -22,6 +22,8 @@ public class PlayerChunkChangeListener implements Listener {
         Chunk toChunk = toLocation.getChunk();
 
         if (!fromChunk.equals(toChunk)) {
+            System.out.println("Diferente");
+
             Player player = event.getPlayer();
 
             CaribeUser caribeUser = FactionsCaribe.getInstance().getCaribeUserFactory().getUser(player.getUniqueId());
