@@ -249,7 +249,11 @@ public class CaribeUser extends SpigotUser {
         Location location = this.getLocation();
         World world = this.getWorld();
 
-        Faction factionAt = Faction.get(PS.valueOf(location));
+        PS ps = PS.valueOf(location);
+
+        System.out.println(ps);
+
+        Faction factionAt = Faction.get(ps);
 
         String factionName = "§c§lREDE FOCUS";
 
