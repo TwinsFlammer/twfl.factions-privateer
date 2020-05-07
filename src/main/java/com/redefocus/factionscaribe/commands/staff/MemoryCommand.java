@@ -63,7 +63,7 @@ public class MemoryCommand extends CustomCommand {
                 "§fSistema operacional: §7" + this.OSname(),
                 "§fArquitetura do Sistema: §7" + this.OsArch(),
                 "§fVersão do sistema operacional: §7" + System.getProperty("os.version").split("-")[0],
-                "§fUso da memória: §7" + this.usedMem() + "/" + this.totalMem(),
+                "§fUso da memória: §7" + this.usedMemory() + "/" + this.totalMemory(),
                 "§fCarga média: §7" + osBean.getSystemLoadAverage(),
                 "§fQuantidade de CPUs: §7" + Runtime.getRuntime().availableProcessors(),
                 ""
@@ -82,12 +82,13 @@ public class MemoryCommand extends CustomCommand {
         return System.getProperty("os.arch");
     }
 
-    Long totalMem() {
-        return Runtime.getRuntime().totalMemory();
+    Long totalMemory() {
+        return Runtime.getRuntime().totalMemory() / 10240;
     }
 
-    Long usedMem() {
+    Long usedMemory() {
         Runtime runtime = Runtime.getRuntime();
-        return (runtime.totalMemory() - Runtime.getRuntime().freeMemory());
+
+        return (runtime.totalMemory() - Runtime.getRuntime().freeMemory()) / 10240;
     }
 }
