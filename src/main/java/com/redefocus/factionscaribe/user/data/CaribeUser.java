@@ -28,6 +28,7 @@ import com.redefocus.factionscaribe.mcmmo.util.player.UserManager;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
+import org.bukkit.Chunk;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
@@ -449,8 +450,9 @@ public class CaribeUser extends SpigotUser {
 
     public Faction getFactionAt() {
         Location location = this.getLocation();
+        Chunk chunk = location.getChunk();
 
-        PS ps = PS.valueOf(location);
+        PS ps = PS.valueOf(chunk);
 
         System.out.println("<" + ps);
 
