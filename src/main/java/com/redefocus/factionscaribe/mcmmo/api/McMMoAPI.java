@@ -119,6 +119,15 @@ public class McMMoAPI {
         return position;
     }
 
+    public static String getPosition(SkillType skillType, String targetName) {
+        String position = "Indefinido.";
+
+        Map<SkillType, Integer> skills = mcMMO.getDatabaseManager().readRank(targetName);
+        if (skills.get(null) != null) position = EconomyManager.format(skills.get(skillType).doubleValue());
+
+        return position;
+    }
+
     public static Integer getExperience(SkillType skillType, UUID uniqueId) {
         return ExperienceAPI.getLevelOffline(uniqueId, skillType.getName());
     }
