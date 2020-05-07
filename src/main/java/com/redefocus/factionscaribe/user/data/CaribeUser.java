@@ -56,7 +56,7 @@ public class CaribeUser extends SpigotUser {
             "§4  [%s] %s",
             "§2",
             "§f  KDR: §c%s",
-            "§f  Nível: §c %s",
+            "§f  Nível: §c%s",
             "§1"
     };
 
@@ -144,6 +144,7 @@ public class CaribeUser extends SpigotUser {
         CustomItem abilitiesRanking = new CustomItem(Material.BOOK_AND_QUILL)
                 .name("§eRank de habilidades")
                 .lore("§7Clique para abrir o Rank de Habilidades")
+                .hideAttributes()
                 .editable(true)
                 .onClick(event -> {
                     Player player = (Player) event.getWhoClicked();
@@ -168,12 +169,13 @@ public class CaribeUser extends SpigotUser {
             CustomItem customItem = new CustomItem(material)
                     .data(data)
                     .name("§e" + skillType.getName())
+                    .hideAttributes()
                     .editable(true)
                     .lore(
                             String.format(
                                     "§fNível: §7%d/%d",
-                                    0,
-                                    0
+                                    mcMMOPlayer.getXpToLevel(skillType),
+                                    mcMMOPlayer.getSkillXpLevel(skillType)
                             ),
                             "",
                             "§fBônus §6VIP§f: §7" + (this.getMcMMoVIPBonus() == 1.0F ? "Nenhum" : decimalFormat.format(this.getMcMMoVIPBonus())),
@@ -188,6 +190,8 @@ public class CaribeUser extends SpigotUser {
     }
 
     public void setupScoreboard() {
+        McMMOPlayer mcMMOPlayer = UserManager.getPlayer(this.getName());
+
         CustomBoard customBoard = this.customBoard;
 
         Location location = this.getLocation();
@@ -223,6 +227,22 @@ public class CaribeUser extends SpigotUser {
 
         Integer[] FACTION_SCORE = {4, 5, 6, 7, 8};
 
+        String[] SCORE_WITHOUT_FACTION = {
+                "",
+                "",
+                this.money.toString(),
+                this.getCash().toString(),
+                "",
+                "",
+                "",
+                "",
+                "",
+                "§2",
+                this.getKdrRounded(),
+                String.valueOf(mcMMOPlayer.getPowerLevel()),
+                "§1"
+        };
+
         customBoard.title(factionName);
 
         for (int i = 0; i < this.SCOREBOARD_LINES.length; i++) {
@@ -235,11 +255,43 @@ public class CaribeUser extends SpigotUser {
 
             this.customBoard.set(i, String.format(
                     text,
-                    isFactionScore ? new String[]{"", ""} : new String[]{""})
+                    isFactionScore ? this.getScoreString(i) : new String[]{SCORE_WITHOUT_FACTION[i]})
             );
         }
 
         customBoard.send(this.getPlayer());
+    }
+
+    private String[] getScoreString(Integer index) {
+        Faction faction = this.getFaction();
+
+        switch (index) {
+            case 8: {
+                return new String[] {
+                        faction.getTag(),
+                        faction.getName()
+                };
+            }
+            case 7: {
+                return new String[] {
+                        String.valueOf(faction.getPowerRounded()),
+                        String.valueOf(faction.getPowerMaxRounded())
+                };
+            }
+            case 6: {
+                return new String[] {
+                        String.valueOf(faction.getOnlinePlayers().size()),
+                        String.valueOf(faction.getMembersCount())
+                };
+            }
+            case 5: {
+                return new String[] {
+                        String.valueOf(faction.getLandCount())
+                };
+            }
+        }
+
+        return new String[] { "" };
     }
 
     public void updateScoreboard(Integer index, Object... objects) {
