@@ -135,7 +135,7 @@ public class CaribeUser extends SpigotUser {
                 .name(this.getPrefix() + this.getDisplayName())
                 .editable(true)
                 .lore(
-                        "§f["+ this.HAMER_AND_PICK_CHARACTER +"] Nível total: §7" + mcMMOPlayer.getPowerLevel(),
+                        "§f[" + this.HAMER_AND_PICK_CHARACTER + "] Nível total: §7" + mcMMOPlayer.getPowerLevel(),
                         "",
                         "§fPosição no rank: §7???",
                         "§f1º colocado no rank: §7???"
@@ -223,13 +223,18 @@ public class CaribeUser extends SpigotUser {
 
         customBoard.title(factionName);
 
-        for (int i = 0; i <this.SCOREBOARD_LINES.length; i++) {
+        for (int i = 0; i < this.SCOREBOARD_LINES.length; i++) {
             String text = this.SCOREBOARD_LINES[i];
 
-            if (!this.hasFaction() && Arrays.asList(FACTION_SCORE).contains(i))
+            Boolean isFactionScore = Arrays.asList(FACTION_SCORE).contains(i);
+
+            if (!this.hasFaction() && isFactionScore)
                 continue;
 
-            this.customBoard.set(i, String.format(text, ""));
+            this.customBoard.set(i, String.format(
+                    text,
+                    isFactionScore ? new String[]{"", ""} : new String[]{""})
+            );
         }
 
         customBoard.send(this.getPlayer());
