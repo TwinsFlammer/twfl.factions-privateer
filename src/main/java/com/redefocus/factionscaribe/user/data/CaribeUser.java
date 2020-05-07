@@ -253,6 +253,8 @@ public class CaribeUser extends SpigotUser {
 
         String factionName = "§c§lREDE FOCUS";
 
+        System.out.println(factionAt == null);
+
         if (factionAt != null)
             switch (factionAt.getId()) {
                 case Factions.ID_NONE: {
