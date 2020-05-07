@@ -20,8 +20,10 @@ import com.redefocus.common.shared.permissions.user.data.User;
 import com.redefocus.common.shared.server.data.Server;
 import com.redefocus.common.shared.server.manager.ServerManager;
 import com.redefocus.factionscaribe.FactionsCaribe;
+import com.redefocus.factionscaribe.economy.manager.EconomyManager;
 import com.redefocus.factionscaribe.home.dao.HomeDao;
 import com.redefocus.factionscaribe.home.data.Home;
+import com.redefocus.factionscaribe.mcmmo.api.McMMoAPI;
 import com.redefocus.factionscaribe.mcmmo.datatypes.player.McMMOPlayer;
 import com.redefocus.factionscaribe.mcmmo.datatypes.skills.SkillType;
 import com.redefocus.factionscaribe.mcmmo.util.player.UserManager;
@@ -45,18 +47,19 @@ import java.util.stream.Collectors;
 public class CaribeUser extends SpigotUser {
     protected final Integer COMBAT_DURATION = 15;
     private final String[] SCOREBOARD_LINES = {
-            "§c  " + Common.SERVER_URL,
+            "§c   " + Common.SERVER_URL,
             "§4",
-            "§f  Coins: §c%s",
-            "§f  Cash: §c%s",
+            "§f Cash: §c%s",
+            "§f Coins: §c%s",
             "§3",
             "§f   Terras: §c%s",
             "§f   Membros: §c%s/%s",
             "§f   Poder: §c%s/%s",
-            "§4  [%s] %s",
+            "§4 [%s] %s",
             "§2",
-            "§f  KDR: §c%s",
-            "§f  Nível: §c%s",
+            "§f Poder: §c%s",
+            "§f Nível: §c%s",
+            "§f KDR: §c%s",
             "§1"
     };
 
@@ -129,6 +132,10 @@ public class CaribeUser extends SpigotUser {
     public synchronized void updateSkillsInventory() {
         McMMOPlayer mcMMOPlayer = UserManager.getPlayer(this.getName());
 
+        String firstPositionInRankName = McMMoAPI.getTopAllName(1);
+
+        CaribeUser caribeUser = FactionsCaribe.getInstance().getCaribeUserFactory().getUser(firstPositionInRankName);
+
         CustomItem skull = new CustomItem(Material.SKULL_ITEM)
                 .data(3)
                 .owner(this.getDisplayName())
@@ -137,8 +144,8 @@ public class CaribeUser extends SpigotUser {
                 .lore(
                         "§f[" + this.HAMER_AND_PICK_CHARACTER + "] Nível total: §7" + mcMMOPlayer.getPowerLevel(),
                         "",
-                        "§fPosição no rank: §7???",
-                        "§f1º colocado no rank: §7???"
+                        "§fPosição no rank: §7" + McMMoAPI.getPosition(this.getName()),
+                        "§f1º colocado no rank: §7" + firstPositionInRankName
                 );
 
         CustomItem abilitiesRanking = new CustomItem(Material.BOOK_AND_QUILL)
@@ -166,6 +173,11 @@ public class CaribeUser extends SpigotUser {
             Integer slot = displaySkill.getSlot(), data = displaySkill.getData();
             Material material = displaySkill.getMaterial();
 
+            String firstPositionInSkillTypeRankName = McMMoAPI.getTopSkillName(skillType, 1);
+
+            CaribeUser firstPositionInSkillTypeRank = FactionsCaribe.getInstance().getCaribeUserFactory().getUser(firstPositionInSkillTypeRankName);
+
+
             CustomItem customItem = new CustomItem(material)
                     .data(data)
                     .name("§e" + skillType.getName())
@@ -174,15 +186,15 @@ public class CaribeUser extends SpigotUser {
                     .lore(
                             String.format(
                                     "§fNível: §7%d/%d",
-                                    mcMMOPlayer.getSkillXpLevel(skillType),
+                                    mcMMOPlayer.getSkillLevel(skillType),
                                     mcMMOPlayer.getXpToLevel(skillType)
                             ),
                             "",
                             "§fBônus §6VIP§f: §7" + (this.getMcMMoVIPBonus() == 1.0F ? "Nenhum" : decimalFormat.format(this.getMcMMoVIPBonus())),
                             "§fBooster: §7???",
                             "",
-                            "§fPosição no rank: §7???",
-                            "§f1º colocado no rank: §7???"
+                            "§fPosição no rank: §7" + McMMoAPI.getPosition(skillType, this.getDisplayName()),
+                            "§f1º colocado no rank: §7" + firstPositionInSkillTypeRank.getPrefix() + firstPositionInSkillTypeRank.getDisplayName()
                     );
 
             this.skillsInventory.setItem(slot, customItem);
@@ -230,16 +242,17 @@ public class CaribeUser extends SpigotUser {
         String[] SCORE_WITHOUT_FACTION = {
                 "",
                 "",
-                this.money.toString(),
                 this.getCash().toString(),
+                EconomyManager.format(this.money),
                 "",
                 "",
                 "",
                 "",
                 "",
                 "§2",
-                this.getKdrRounded(),
                 mcMMOPlayer == null ? "0" : String.valueOf(mcMMOPlayer.getPowerLevel()),
+                this.getPowerRounded() + "/" + this.getPowerMaxRounded(),
+                this.getKdrRounded(),
                 "§1"
         };
 
@@ -255,14 +268,14 @@ public class CaribeUser extends SpigotUser {
 
             this.customBoard.set(i, String.format(
                     text,
-                    isFactionScore ? this.getScoreString(i) : new String[]{SCORE_WITHOUT_FACTION[i]})
+                    isFactionScore ? this.getFactionScoreboard(i) : new String[]{SCORE_WITHOUT_FACTION[i]})
             );
         }
 
         customBoard.send(this.getPlayer());
     }
 
-    private String[] getScoreString(Integer index) {
+    private String[] getFactionScoreboard(Integer index) {
         Faction faction = this.getFaction();
 
         switch (index) {
@@ -295,14 +308,22 @@ public class CaribeUser extends SpigotUser {
     }
 
     public void updateScoreboard(Integer index, Object... objects) {
+        Integer[] FACTION_SCORE = {4, 5, 6, 7, 8};
+
+        Boolean isFactionScore = Arrays.asList(FACTION_SCORE).contains(index);
+
         this.customBoard
                 .set(
                         index,
                         String.format(
                                 this.SCOREBOARD_LINES[index],
-                                objects
+                                isFactionScore ? this.getFactionScoreboard(index) : objects
                         )
                 );
+    }
+
+    public void removeScoreboard(Integer index) {
+        this.customBoard.reset(index);
     }
 
     public void addHome(Home home) {
