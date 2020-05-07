@@ -4,9 +4,7 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.massivecraft.factions.Factions;
 import com.massivecraft.factions.Rel;
-import com.massivecraft.factions.entity.Faction;
-import com.massivecraft.factions.entity.MPerm;
-import com.massivecraft.factions.entity.MPlayer;
+import com.massivecraft.factions.entity.*;
 import com.massivecraft.massivecore.ps.PS;
 import com.redefocus.api.spigot.SpigotAPI;
 import com.redefocus.api.spigot.inventory.CustomInventory;
@@ -453,6 +451,17 @@ public class CaribeUser extends SpigotUser {
         Location location = this.getLocation();
 
         PS ps = PS.valueOf(location);
+
+        FactionColl.get().getAll()
+                .forEach(faction -> {
+                    Set<PS> chunks = BoardColl.get().getChunks(faction);
+
+                    chunks.forEach(ps1 -> {
+                        System.out.println(ps1);
+
+                        System.out.println(ps.equals(ps1));
+                    });
+                });
 
         System.out.println(ps);
 
