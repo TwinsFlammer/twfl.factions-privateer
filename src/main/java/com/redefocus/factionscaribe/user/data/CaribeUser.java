@@ -48,13 +48,13 @@ public class CaribeUser extends SpigotUser {
     protected final Integer COMBAT_DURATION = 15;
     private final String[] SCOREBOARD_LINES = {
             "§1",
-            "§f  KDR: §c%d",
+            "§f  KDR: §c%s",
             "§f  Nível: §c %s",
             "§2",
             "§4  [%s] %s",
-            "§f   Poder: §c%d/%d",
-            "§f   Membros: §c%d/%d",
-            "§f   Terras: §c%d",
+            "§f   Poder: §c%s/%s",
+            "§f   Membros: §c%s/%s",
+            "§f   Terras: §c%s",
             "§3",
             "§f  Coins: §c%s",
             "§f  Cash: §c%s",
@@ -168,7 +168,7 @@ public class CaribeUser extends SpigotUser {
         Integer slot = 20;
 
         for (Map.Entry<SkillType, Material> entrySet : CaribeUser.SKILL_TYPES.entrySet()) {
-            if (slot < 20 || slot >= 25 && slot <= 30 || slot > 33) continue;
+            if (slot < 20 || slot >= 25 && slot <= 30 || slot > 33) break;
 
             SkillType skillType = entrySet.getKey();
             Material material = entrySet.getValue();
