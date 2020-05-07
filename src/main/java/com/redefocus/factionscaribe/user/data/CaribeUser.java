@@ -134,7 +134,7 @@ public class CaribeUser extends SpigotUser {
 
         String firstPositionInRankName = McMMoAPI.getTopAllName(1);
 
-        CaribeUser caribeUser = FactionsCaribe.getInstance().getCaribeUserFactory().getUser(firstPositionInRankName);
+        CaribeUser firstPositionInRank = FactionsCaribe.getInstance().getCaribeUserFactory().getUser(firstPositionInRankName);
 
         CustomItem skull = new CustomItem(Material.SKULL_ITEM)
                 .data(3)
@@ -145,7 +145,7 @@ public class CaribeUser extends SpigotUser {
                         "§f[" + this.HAMER_AND_PICK_CHARACTER + "] Nível total: §7" + mcMMOPlayer.getPowerLevel(),
                         "",
                         "§fPosição no rank: §7" + McMMoAPI.getPosition(this.getName()),
-                        "§f1º colocado no rank: §7" + firstPositionInRankName
+                        "§f1º colocado no rank: §7" + firstPositionInRank.getPrefix() + firstPositionInRank.getDisplayName()
                 );
 
         CustomItem abilitiesRanking = new CustomItem(Material.BOOK_AND_QUILL)
@@ -176,7 +176,6 @@ public class CaribeUser extends SpigotUser {
             String firstPositionInSkillTypeRankName = McMMoAPI.getTopSkillName(skillType, 1);
 
             CaribeUser firstPositionInSkillTypeRank = FactionsCaribe.getInstance().getCaribeUserFactory().getUser(firstPositionInSkillTypeRankName);
-
 
             CustomItem customItem = new CustomItem(material)
                     .data(data)
@@ -250,8 +249,8 @@ public class CaribeUser extends SpigotUser {
                 "",
                 "",
                 "§2",
-                mcMMOPlayer == null ? "0" : String.valueOf(mcMMOPlayer.getPowerLevel()),
                 this.getPowerRounded() + "/" + this.getPowerMaxRounded(),
+                mcMMOPlayer == null ? "0" : String.valueOf(mcMMOPlayer.getPowerLevel()),
                 this.getKdrRounded(),
                 "§1"
         };
