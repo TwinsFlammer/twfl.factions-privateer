@@ -452,6 +452,8 @@ public class CaribeUser extends SpigotUser {
 
         PS ps = PS.valueOf(location);
 
+        System.out.println("<" + ps);
+
         FactionColl.get().getAll()
                 .forEach(faction -> {
                     Set<PS> chunks = BoardColl.get().getChunks(faction);
@@ -462,8 +464,6 @@ public class CaribeUser extends SpigotUser {
                         System.out.println("P:" + ps.equals(ps1));
                     });
                 });
-
-        System.out.println(ps);
 
         return Faction.get(ps);
     }
