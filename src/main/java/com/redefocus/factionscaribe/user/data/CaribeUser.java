@@ -13,10 +13,12 @@ import com.redefocus.api.spigot.inventory.CustomInventory;
 import com.redefocus.api.spigot.inventory.item.CustomItem;
 import com.redefocus.api.spigot.scoreboard.CustomBoard;
 import com.redefocus.api.spigot.user.data.SpigotUser;
+import com.redefocus.api.spigot.util.serialize.LocationSerialize;
 import com.redefocus.common.shared.Common;
 import com.redefocus.common.shared.permissions.group.GroupNames;
 import com.redefocus.common.shared.permissions.user.data.User;
 import com.redefocus.common.shared.server.data.Server;
+import com.redefocus.common.shared.server.manager.ServerManager;
 import com.redefocus.factionscaribe.FactionsCaribe;
 import com.redefocus.factionscaribe.home.dao.HomeDao;
 import com.redefocus.factionscaribe.home.data.Home;
@@ -24,6 +26,7 @@ import com.redefocus.factionscaribe.mcmmo.datatypes.player.McMMOPlayer;
 import com.redefocus.factionscaribe.mcmmo.datatypes.skills.SkillType;
 import com.redefocus.factionscaribe.mcmmo.util.player.UserManager;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -69,10 +72,10 @@ public class CaribeUser extends SpigotUser {
 
     @Getter
     @Setter
-    private Long combatDuration;
+    private Long combatDuration = 0L;
 
     @Setter
-    private Boolean invisible = false, god = false;
+    private Boolean invisible = false, god = false, light = false;
 
     @Getter
     private final List<Integer> teleportRequests = Lists.newArrayList();
@@ -86,6 +89,10 @@ public class CaribeUser extends SpigotUser {
     @Getter
     @Setter
     private String lastMessage;
+
+    @Getter
+    @Setter
+    private Back back;
 
     public CaribeUser(User user) {
         super(user);
@@ -120,9 +127,16 @@ public class CaribeUser extends SpigotUser {
                 "XXXOOOXXX",
                 "XXXXXXXXX"
         );
+
+        Common.getInstance().getScheduler().scheduleAtFixedRate(
+                this::updateSkillsInventory,
+                1,
+                1,
+                TimeUnit.SECONDS
+        );
     }
 
-    public void updateSkillsInventory() {
+    public synchronized void updateSkillsInventory() {
         McMMOPlayer mcMMOPlayer = UserManager.getPlayer(this.getName());
 
         CustomItem skull = new CustomItem(Material.SKULL_ITEM)
@@ -279,6 +293,12 @@ public class CaribeUser extends SpigotUser {
         return this.hasFaction() ? "[" + this.getFactionTag() + "] " + this.getFactionName() : "";
     }
 
+    public String getKdrRounded() {
+        MPlayer mPlayer = MPlayer.get(this.getUniqueId());
+
+        return mPlayer.getKdrRounded();
+    }
+
     public Integer getServerId() {
         Server server = this.getServer();
 
@@ -300,6 +320,18 @@ public class CaribeUser extends SpigotUser {
         Faction faction = this.getFaction();
 
         return faction.getTopPosition();
+    }
+
+    public Integer getPowerRounded() {
+        MPlayer mPlayer = MPlayer.get(this.getUniqueId());
+
+        return mPlayer.getPowerRounded();
+    }
+
+    public Integer getPowerMaxRounded() {
+        MPlayer mPlayer = MPlayer.get(this.getUniqueId());
+
+        return mPlayer.getPowerMaxRounded();
     }
 
     public String getFactionAtId() {
@@ -393,6 +425,10 @@ public class CaribeUser extends SpigotUser {
         return this.god;
     }
 
+    public Boolean isStaff() {
+        return this.hasGroup(GroupNames.HELPER);
+    }
+
     public Boolean hasHome(String name) {
         Home home = this.getHomes().stream()
                 .filter(Objects::nonNull)
@@ -401,6 +437,10 @@ public class CaribeUser extends SpigotUser {
                 .orElse(null);
 
         return home != null;
+    }
+
+    public Boolean hasLight() {
+        return this.light;
     }
 
     public Boolean canTeleport(Home home) {
@@ -454,5 +494,20 @@ public class CaribeUser extends SpigotUser {
 
     public Boolean inCombat() {
         return this.combatDuration >= System.currentTimeMillis() && this.combatDuration != 0L;
+    }
+
+    @RequiredArgsConstructor
+    public static class Back {
+        @Getter
+        private final Integer serverId;
+        private final String serializedLocation;
+
+        public Server getServer() {
+            return ServerManager.getServer(this.serverId);
+        }
+
+        public Location getLocation() {
+            return LocationSerialize.toLocation(this.serializedLocation);
+        }
     }
 }
