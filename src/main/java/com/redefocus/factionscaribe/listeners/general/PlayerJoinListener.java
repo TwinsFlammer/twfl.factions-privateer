@@ -18,5 +18,17 @@ public class PlayerJoinListener implements Listener {
         CaribeUser caribeUser = FactionsCaribe.getInstance().getCaribeUserFactory().getUser(player.getUniqueId());
 
         caribeUser.setupScoreboard();
+
+        if (!caribeUser.isStaff())
+            FactionsCaribe.getInstance().getCaribeUsers()
+                    .stream()
+                    .filter(CaribeUser::isInvisible)
+                    .forEach(caribeUser1 -> {
+                        Player player1 = caribeUser1.getPlayer();
+
+                        if (player1 != null) {
+                            player.hidePlayer(player1);
+                        }
+                    });
     }
 }
