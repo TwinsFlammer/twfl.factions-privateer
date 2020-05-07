@@ -449,25 +449,9 @@ public class CaribeUser extends SpigotUser {
     }
 
     public Faction getFactionAt() {
-        Location location = this.getLocation();
-        Chunk chunk = location.getChunk();
+        Chunk chunk = this.getChunk();
 
-        PS ps = PS.valueOf(chunk);
-
-        System.out.println("<" + ps);
-
-        FactionColl.get().getAll()
-                .forEach(faction -> {
-                    Set<PS> chunks = BoardColl.get().getChunks(faction);
-
-                    chunks.forEach(ps1 -> {
-                        System.out.println(">" + ps1);
-
-                        System.out.println("P:" + ps.equals(ps1));
-                    });
-                });
-
-        return Faction.get(ps);
+        return BoardColl.get().getFactionAt(PS.valueOf(chunk));
     }
 
     public Location getLocation() {
@@ -480,6 +464,12 @@ public class CaribeUser extends SpigotUser {
         Player player = this.getPlayer();
 
         return player.getWorld();
+    }
+
+    public Chunk getChunk() {
+        Location location = this.getLocation();
+
+        return location.getChunk();
     }
 
     public Home getHomeExact(String name) {
