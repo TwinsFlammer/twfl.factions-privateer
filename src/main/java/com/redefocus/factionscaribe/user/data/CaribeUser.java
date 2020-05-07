@@ -205,36 +205,7 @@ public class CaribeUser extends SpigotUser {
 
         CustomBoard customBoard = this.customBoard;
 
-        Location location = this.getLocation();
-        World world = this.getWorld();
-
-        Faction factionAt = Faction.get(PS.valueOf(location));
-
-        String factionName = "§c§lREDE FOCUS";
-
-        if (factionAt != null)
-            switch (factionAt.getId()) {
-                case Factions.ID_NONE: {
-                    factionName = "§aÁrea livre";
-                    break;
-                }
-                case Factions.ID_WARZONE: {
-                    factionName = "§cZona de guerra";
-                    break;
-                }
-                case Factions.ID_SAFEZONE: {
-                    factionName = "§aÁrea protegida";
-                    break;
-                }
-                default: {
-                    factionName = world.getName().equalsIgnoreCase("caribe_mine") ? "§7Mundo de mineração" : String.format(
-                            "§7%s - %s",
-                            factionAt.getTag(),
-                            factionAt.getName()
-                    );
-                    break;
-                }
-            }
+        String factionName = this.getFactionAtName();
 
         Integer[] FACTION_SCORE = {4, 5, 6, 7, 8};
 
@@ -274,6 +245,41 @@ public class CaribeUser extends SpigotUser {
         customBoard.send(this.getPlayer());
     }
 
+    private String getFactionAtName() {
+        Location location = this.getLocation();
+        World world = this.getWorld();
+
+        Faction factionAt = Faction.get(PS.valueOf(location));
+
+        String factionName = "§c§lREDE FOCUS";
+
+        if (factionAt != null)
+            switch (factionAt.getId()) {
+                case Factions.ID_NONE: {
+                    factionName = "§aÁrea livre";
+                    break;
+                }
+                case Factions.ID_WARZONE: {
+                    factionName = "§cZona de guerra";
+                    break;
+                }
+                case Factions.ID_SAFEZONE: {
+                    factionName = "§aÁrea protegida";
+                    break;
+                }
+                default: {
+                    factionName = world.getName().equalsIgnoreCase("caribe_mine") ? "§7Mundo de mineração" : String.format(
+                            "§7%s - %s",
+                            factionAt.getTag(),
+                            factionAt.getName()
+                    );
+                    break;
+                }
+            }
+
+        return factionName;
+    }
+
     private String[] getFactionScoreboard(Integer index) {
         Faction faction = this.getFaction();
 
@@ -304,6 +310,10 @@ public class CaribeUser extends SpigotUser {
         }
 
         return new String[] { "" };
+    }
+
+    public void updateScoreboardTitle() {
+        this.customBoard.title(this.getFactionAtName());
     }
 
     public void updateScoreboard(Integer index, Object... objects) {
