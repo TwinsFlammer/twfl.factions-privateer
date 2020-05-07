@@ -142,6 +142,7 @@ public class CaribeUser extends SpigotUser {
         CustomItem skull = new CustomItem(Material.SKULL_ITEM)
                 .owner(this.getDisplayName())
                 .name(this.getPrefix() + this.getDisplayName())
+                .editable(true)
                 .lore(
                         "§f["+ this.HAMER_AND_PICK_CHARACTER +"] Nível total: §7" + mcMMOPlayer.getPowerLevel(),
                         "",
@@ -152,23 +153,29 @@ public class CaribeUser extends SpigotUser {
         CustomItem abilitiesRanking = new CustomItem(Material.BOOK_AND_QUILL)
                 .name("§eRank de habilidades")
                 .lore("§7Clique para abrir o Rank de Habilidades")
+                .editable(true)
                 .onClick(event -> {
                     Player player = (Player) event.getWhoClicked();
 
                     player.sendMessage("§cEm breve.");
                 });
 
-        this.skillsInventory.addItem(skull);
-        this.skillsInventory.addItem(abilitiesRanking);
+        this.skillsInventory.setItem(12, skull);
+        this.skillsInventory.setItem(14, abilitiesRanking);
 
         DecimalFormat decimalFormat = new DecimalFormat("###,###");
 
+        Integer slot = 20;
+
         for (Map.Entry<SkillType, Material> entrySet : CaribeUser.SKILL_TYPES.entrySet()) {
+            if (slot < 20 || slot >= 25 && slot <= 30 || slot > 33) continue;
+
             SkillType skillType = entrySet.getKey();
             Material material = entrySet.getValue();
 
             CustomItem customItem = new CustomItem(material)
                     .name("§e" + skillType.getName())
+                    .editable(true)
                     .lore(
                             String.format(
                                     "§fNível: §7%d/%d",
@@ -183,7 +190,9 @@ public class CaribeUser extends SpigotUser {
                             "§f1º colocado no rank: §7???"
                     );
 
-            this.skillsInventory.addItem(customItem);
+            this.skillsInventory.setItem(slot, customItem);
+
+            slot++;
         }
     }
 
