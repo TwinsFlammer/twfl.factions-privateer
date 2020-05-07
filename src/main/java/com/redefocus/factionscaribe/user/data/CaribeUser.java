@@ -43,8 +43,6 @@ import java.util.stream.Collectors;
  * @author SrGutyerrez
  */
 public class CaribeUser extends SpigotUser {
-    public static final HashMap<SkillType, Material> SKILL_TYPES = Maps.newHashMap();
-
     protected final Integer COMBAT_DURATION = 15;
     private final String[] SCOREBOARD_LINES = {
             "§c  " + Common.SERVER_URL,
@@ -97,15 +95,6 @@ public class CaribeUser extends SpigotUser {
 
     public CaribeUser(User user) {
         super(user);
-
-        CaribeUser.SKILL_TYPES.put(SkillType.SWORDS, Material.DIAMOND_SWORD);
-        CaribeUser.SKILL_TYPES.put(SkillType.ARCHERY, Material.BOW);
-        CaribeUser.SKILL_TYPES.put(SkillType.MINING, Material.DIAMOND_PICKAXE);
-        CaribeUser.SKILL_TYPES.put(SkillType.EXCAVATION, Material.DIAMOND_SPADE);
-        CaribeUser.SKILL_TYPES.put(SkillType.AXES, Material.DIAMOND_AXE);
-        CaribeUser.SKILL_TYPES.put(SkillType.ACROBATICS, Material.DIAMOND_BOOTS);
-        CaribeUser.SKILL_TYPES.put(SkillType.ALCHEMY, Material.POTION);
-        CaribeUser.SKILL_TYPES.put(SkillType.HERBALISM, Material.SEEDS);
 
         this.customBoard = new CustomBoard();
 
@@ -169,15 +158,13 @@ public class CaribeUser extends SpigotUser {
 
         DecimalFormat decimalFormat = new DecimalFormat("###,###");
 
-        Integer slot = 20;
-
-        for (Map.Entry<SkillType, Material> entrySet : CaribeUser.SKILL_TYPES.entrySet()) {
-            if (slot < 20 || slot >= 26 && slot <= 30 || slot > 33) continue;
-
-            SkillType skillType = entrySet.getKey();
-            Material material = entrySet.getValue();
+        for (Skill skill : Skill.values()) {
+            SkillType skillType = skill.getSkillType();
+            Integer slot = skill.getSlot(), data = skill.getData();
+            Material material = skill.getMaterial();
 
             CustomItem customItem = new CustomItem(material)
+                    .data(data)
                     .name("§e" + skillType.getName())
                     .editable(true)
                     .lore(
@@ -195,8 +182,6 @@ public class CaribeUser extends SpigotUser {
                     );
 
             this.skillsInventory.setItem(slot, customItem);
-
-            slot++;
         }
     }
 
@@ -507,6 +492,65 @@ public class CaribeUser extends SpigotUser {
 
     public Boolean inCombat() {
         return this.combatDuration >= System.currentTimeMillis() && this.combatDuration != 0L;
+    }
+
+    @RequiredArgsConstructor
+    public static enum Skill {
+        SWORDS(
+                SkillType.SWORDS,
+                20,
+                0,
+                Material.DIAMOND_SWORD
+        ),
+        ARCHERY(
+                SkillType.ARCHERY,
+                21,
+                0,
+                Material.BOW
+        ),
+        MINING(
+                SkillType.MINING,
+                22,
+                0,
+                Material.DIAMOND_PICKAXE
+        ),
+        EXCAVATION(
+                SkillType.EXCAVATION,
+                23,
+                0,
+                Material.DIAMOND_SPADE
+        ),
+        AXES(
+                SkillType.AXES,
+                24,
+                0,
+                Material.DIAMOND_AXE
+        ),
+        ACROBATICS(
+                SkillType.ACROBATICS,
+                30,
+                0,
+                Material.DIAMOND_BOOTS
+        ),
+        ALCHEMY(
+                SkillType.ALCHEMY,
+                31,
+                0,
+                Material.POTION
+        ),
+        HERBALISM(
+                SkillType.HERBALISM,
+                32,
+                0,
+                Material.SEEDS
+        );
+
+        @Getter
+        private final SkillType skillType;
+        @Getter
+        private final Integer slot, data;
+        @Getter
+        private final Material material;
     }
 
     @RequiredArgsConstructor
