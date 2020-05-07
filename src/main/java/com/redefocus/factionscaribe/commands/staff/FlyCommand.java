@@ -23,8 +23,8 @@ public class FlyCommand extends CustomCommand {
     public void onCommand(CommandSender commandSender, User user, String[] args) {
         Player player = (Player) commandSender;
 
-        player.setFlying(!player.isFlying());
         player.setAllowFlight(!player.getAllowFlight());
+        player.setFlying(!player.isFlying());
 
         commandSender.sendMessage(
                 String.format(
