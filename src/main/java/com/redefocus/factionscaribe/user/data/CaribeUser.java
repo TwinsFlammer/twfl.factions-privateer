@@ -457,9 +457,9 @@ public class CaribeUser extends SpigotUser {
                     Set<PS> chunks = BoardColl.get().getChunks(faction);
 
                     chunks.forEach(ps1 -> {
-                        System.out.println(ps1);
+                        System.out.println(">" + ps1);
 
-                        System.out.println(ps.equals(ps1));
+                        System.out.println("P:" + ps.equals(ps1));
                     });
                 });
 
