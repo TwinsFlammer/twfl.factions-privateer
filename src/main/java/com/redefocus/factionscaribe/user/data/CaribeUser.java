@@ -161,6 +161,8 @@ public class CaribeUser extends SpigotUser {
                     player.sendMessage("§cEm breve.");
                 });
 
+        this.skillsInventory.setCancelled(true);
+
         this.skillsInventory.setItem(12, skull);
         this.skillsInventory.setItem(14, abilitiesRanking);
 
@@ -169,7 +171,7 @@ public class CaribeUser extends SpigotUser {
         Integer slot = 20;
 
         for (Map.Entry<SkillType, Material> entrySet : CaribeUser.SKILL_TYPES.entrySet()) {
-            if (slot < 20 || slot >= 25 && slot <= 30 || slot > 33) break;
+            if (slot < 20 || slot >= 26 && slot <= 30 || slot > 33) break;
 
             SkillType skillType = entrySet.getKey();
             Material material = entrySet.getValue();
