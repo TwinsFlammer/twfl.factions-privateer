@@ -14,6 +14,6 @@ public class MoneyChangeListener implements Listener {
     public void onChange(MoneyChangeEvent event) {
         CaribeUser caribeUser = event.getCaribeUser();
 
-        caribeUser.updateScoreboard(3, EconomyManager.format(caribeUser.getMoney()));
+        caribeUser.updateScoreboard(3, EconomyManager.format(event.getNewAmount()));
     }
 }
