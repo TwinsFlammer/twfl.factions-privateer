@@ -140,6 +140,7 @@ public class CaribeUser extends SpigotUser {
         McMMOPlayer mcMMOPlayer = UserManager.getPlayer(this.getName());
 
         CustomItem skull = new CustomItem(Material.SKULL_ITEM)
+                .data(3)
                 .owner(this.getDisplayName())
                 .name(this.getPrefix() + this.getDisplayName())
                 .editable(true)
@@ -240,7 +241,7 @@ public class CaribeUser extends SpigotUser {
             if (!this.hasFaction() && Arrays.asList(FACTION_SCORE).contains(i))
                 continue;
 
-            this.customBoard.set(i, String.format(text));
+            this.customBoard.set(i, String.format(text, ""));
         }
 
         customBoard.send(this.getPlayer());
