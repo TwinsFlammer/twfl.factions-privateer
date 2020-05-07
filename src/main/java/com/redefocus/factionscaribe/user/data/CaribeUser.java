@@ -238,7 +238,7 @@ public class CaribeUser extends SpigotUser {
         customBoard.title(factionName);
 
         for (int i = this.SCOREBOARD_LINES.length; i > 0; i--) {
-            String text = this.SCOREBOARD_LINES[i];
+            String text = this.SCOREBOARD_LINES[i-1];
 
             if (!this.hasFaction() && Arrays.asList(FACTION_SCORE).contains(i))
                 continue;
