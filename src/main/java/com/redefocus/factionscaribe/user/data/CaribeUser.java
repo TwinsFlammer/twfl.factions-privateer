@@ -174,8 +174,8 @@ public class CaribeUser extends SpigotUser {
                     .lore(
                             String.format(
                                     "§fNível: §7%d/%d",
-                                    mcMMOPlayer.getXpToLevel(skillType),
-                                    mcMMOPlayer.getSkillXpLevel(skillType)
+                                    mcMMOPlayer.getSkillXpLevel(skillType),
+                                    mcMMOPlayer.getXpToLevel(skillType)
                             ),
                             "",
                             "§fBônus §6VIP§f: §7" + (this.getMcMMoVIPBonus() == 1.0F ? "Nenhum" : decimalFormat.format(this.getMcMMoVIPBonus())),
