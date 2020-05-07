@@ -1,7 +1,5 @@
 package com.redefocus.factionscaribe.chat.component;
 
-import com.massivecraft.factions.entity.Faction;
-import com.massivecraft.factions.entity.MPlayer;
 import com.redefocus.api.spigot.util.jsontext.data.JSONText;
 import com.redefocus.factionscaribe.chat.enums.Channel;
 import com.redefocus.factionscaribe.economy.manager.EconomyManager;
@@ -17,10 +15,6 @@ public abstract class ChatComponent {
 
     public ChatComponent(Channel channel, CaribeUser caribeUser, String message) {
         JSONText jsonText;
-
-        MPlayer mPlayer = MPlayer.get(caribeUser.getUniqueId());
-
-        Faction faction = mPlayer.getFaction();
 
         String tags = "";
 
@@ -54,11 +48,11 @@ public abstract class ChatComponent {
                         .hoverText(
                                 "§6Nick: §f" + caribeUser.getPrefix() + caribeUser.getDisplayName() +
                                 "\n" +
-                                "§6Facção: §f" + faction.getTag() + "- " + faction.getName() +
+                                "§6Facção: §f" + caribeUser.getFactionTag() + "- " + caribeUser.getFactionName() +
                                 "\n" +
-                                "§6KDR: §f" + mPlayer.getKdrRounded() +
+                                "§6KDR: §f" + caribeUser.getKdrRounded() +
                                 "\n" +
-                                "§6Poder: §f" + mPlayer.getPowerRounded() + "/" + mPlayer.getPowerMaxRounded() +
+                                "§6Poder: §f" + caribeUser.getPowerRounded() + "/" + caribeUser.getPowerMaxRounded() +
                                 "\n" +
                                 "§6Coins: §f" + 0.0
                         )
