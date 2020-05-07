@@ -239,7 +239,7 @@ public class CaribeUser extends SpigotUser {
                 "",
                 "§2",
                 this.getKdrRounded(),
-                String.valueOf(mcMMOPlayer.getPowerLevel()),
+                mcMMOPlayer == null ? "0" : String.valueOf(mcMMOPlayer.getPowerLevel()),
                 "§1"
         };
 
