@@ -204,7 +204,9 @@ public class CaribeUser extends SpigotUser {
 
         CustomBoard customBoard = this.customBoard;
 
-        String factionName = this.getFactionAtName();
+        Faction factionAt = this.getFactionAt();
+
+        String factionName = this.getFactionAtName(factionAt);
 
         Integer[] FACTION_SCORE = {4, 5, 6, 7, 8};
 
@@ -244,10 +246,8 @@ public class CaribeUser extends SpigotUser {
         customBoard.send(this.getPlayer());
     }
 
-    private String getFactionAtName() {
+    private String getFactionAtName(Faction factionAt) {
         World world = this.getWorld();
-
-        Faction factionAt = this.getFactionAt();
 
         String factionName = "§c§lREDE FOCUS";
 
@@ -310,8 +310,14 @@ public class CaribeUser extends SpigotUser {
         return new String[] { "" };
     }
 
+    public void updateScoreboardTitle(Faction faction) {
+        this.customBoard.title(this.getFactionAtName(faction));
+    }
+
     public void updateScoreboardTitle() {
-        this.customBoard.title(this.getFactionAtName());
+        Faction faction = this.getFactionAt();
+
+        this.updateScoreboardTitle(faction);
     }
 
     public void updateScoreboard(Integer index, Object... objects) {
