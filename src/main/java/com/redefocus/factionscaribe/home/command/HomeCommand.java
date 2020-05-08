@@ -84,7 +84,7 @@ public class HomeCommand extends CustomCommand {
                 } else {
                     CaribeUser caribeUser = FactionsCaribe.getInstance().getCaribeUserFactory().getUser(user.getUniqueId());
 
-                    String homeName = args[1];
+                    String homeName = args[0];
 
                     Home home = caribeUser.getHomeExact(homeName);
 
