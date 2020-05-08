@@ -35,6 +35,10 @@ public class CombatSendActionBarRunnable implements Runnable {
                                 .spigot()
                                 .send(caribeUser.getPlayer());
 
+
+                        System.out.println(caribeUser.getCombatDuration());
+                        System.out.println(">>" + (caribeUser.getCombatDuration() <= System.currentTimeMillis()));
+
                         if (caribeUser.getCombatDuration() <= System.currentTimeMillis()) {
                             caribeUser.setCombatDuration(0L);
 
