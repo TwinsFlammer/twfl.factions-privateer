@@ -26,7 +26,7 @@ public abstract class ChatComponent {
         String factionTag = caribeUser.hasFaction() ? String.format(
                 "%s[%s] ",
                 caribeUser.getFactionRank() == 1 ? ChatColor.AQUA : ChatColor.GRAY,
-                caribeUser.getFactionTag()
+                caribeUser.getRolePrefix() + caribeUser.getFactionTag()
         ) : "";
 
         switch (channel) {
