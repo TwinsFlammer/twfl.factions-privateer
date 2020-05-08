@@ -114,6 +114,7 @@ public class CaribeUser extends SpigotUser {
                 "Habilidades",
                 5
         );
+        this.skillsInventory.setCancelled(true);
 
         Common.getInstance().getScheduler().scheduleAtFixedRate(
                 this::updateSkillsInventory,
@@ -124,6 +125,7 @@ public class CaribeUser extends SpigotUser {
     }
 
     public void updateSkillsInventory() {
+        System.out.println("update");
         McMMOPlayer mcMMOPlayer = UserManager.getPlayer(this.getName());
 
         String firstPositionInRankName = McMMoAPI.getTopAllName(1);
@@ -134,7 +136,6 @@ public class CaribeUser extends SpigotUser {
                 .data(3)
                 .owner(this.getDisplayName())
                 .name(this.getPrefix() + this.getDisplayName())
-                .editable(false)
                 .lore(
                         "§f[" + this.HAMER_AND_PICK_CHARACTER + "] Nível total: §7" + mcMMOPlayer.getPowerLevel(),
                         "",
@@ -146,14 +147,11 @@ public class CaribeUser extends SpigotUser {
                 .name("§eRank de habilidades")
                 .lore("§7Clique para abrir o Rank de Habilidades")
                 .hideAttributes()
-                .editable(false)
                 .onClick(event -> {
                     Player player = (Player) event.getWhoClicked();
 
                     player.sendMessage("§cEm breve.");
                 });
-
-        this.skillsInventory.setCancelled(true);
 
         this.skillsInventory.setItem(12, skull);
         this.skillsInventory.setItem(14, abilitiesRanking);
@@ -175,7 +173,6 @@ public class CaribeUser extends SpigotUser {
                     .data(data)
                     .name("§e" + skillType.getName())
                     .hideAttributes()
-                    .editable(false)
                     .lore(
                             String.format(
                                     "§fNível: §7%d/%d",
