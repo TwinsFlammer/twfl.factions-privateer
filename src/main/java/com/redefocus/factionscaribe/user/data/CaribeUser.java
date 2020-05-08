@@ -595,7 +595,7 @@ public class CaribeUser extends SpigotUser {
     }
 
     public Boolean inCombat() {
-        return this.combatDuration >= System.currentTimeMillis() && this.combatDuration != 0L;
+        return this.combatDuration != 0L;
     }
 
     @RequiredArgsConstructor
