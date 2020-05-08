@@ -53,6 +53,7 @@ public class HomeDao<T extends Home> extends Table {
                         "`user_id`," +
                         "`name`," +
                         "`server_id`," +
+                        "`faction_id`," +
                         "`location`," +
                         "`state`" +
                         ")" +
@@ -62,12 +63,14 @@ public class HomeDao<T extends Home> extends Table {
                         "'%s'," +
                         "%d," +
                         "'%s'," +
+                        "'%s'," +
                         "'%s'" +
                         ");",
                 this.getTableName(),
                 home.getUserId(),
                 home.getName(),
                 home.getServerId(),
+                home.getFactionId(),
                 LocationSerialize.toString(home.getLocation()),
                 home.getState().toString()
         );
