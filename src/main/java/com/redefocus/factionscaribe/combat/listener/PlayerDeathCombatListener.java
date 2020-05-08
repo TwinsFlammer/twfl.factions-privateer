@@ -15,9 +15,12 @@ public class PlayerDeathCombatListener implements Listener {
     @EventHandler
     public void onDeath(PlayerDeathEvent event) {
         Player player = event.getEntity();
-
+        Player killer = player.getKiller();
+        
         CaribeUser caribeUser = FactionsCaribe.getInstance().getCaribeUserFactory().getUser(player.getUniqueId());
+        CaribeUser caribeUser1 = FactionsCaribe.getInstance().getCaribeUserFactory().getUser(killer.getUniqueId());
 
         caribeUser.setCombatDuration(0L);
+        caribeUser1.setCombatDuration(0L);
     }
 }
