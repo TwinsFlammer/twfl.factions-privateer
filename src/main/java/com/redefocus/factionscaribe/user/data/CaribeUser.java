@@ -425,6 +425,20 @@ public class CaribeUser extends SpigotUser {
         return mPlayer.getPowerMaxRounded();
     }
 
+    public Integer getGlobalChatCooldown() {
+        if (this.hasGroup(GroupNames.FARMER))
+            return 5;
+
+        return 15;
+    }
+
+    public Integer getLocalChatCooldown() {
+        if (this.hasGroup(GroupNames.FARMER))
+            return 2;
+
+        return 5;
+    }
+
     public String getFactionAtId() {
         Faction factionAt = this.getFactionAt();
 
@@ -570,13 +584,11 @@ public class CaribeUser extends SpigotUser {
 
             CaribeUser caribeUser = FactionsCaribe.getInstance().getCaribeUserFactory().getUser(player.getUniqueId());
 
-            if (caribeUser.getFaction().equals(this.getFaction())
-                    || caribeUser.getFaction().getRelationWish(this.getFaction()) == Rel.ALLY)
-                return true;
-
+            return !caribeUser.getFaction().equals(this.getFaction())
+                    && caribeUser.getFaction().getRelationWish(this.getFaction()) != Rel.ALLY;
         }
 
-        return false;
+        return true;
     }
 
     public Boolean hasFaction() {
