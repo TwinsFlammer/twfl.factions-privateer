@@ -73,13 +73,15 @@ public class AsyncPlayerChatListener implements Listener {
             return;
         }
 
+        CaribeUser caribeUser = FactionsCaribe.getInstance().getCaribeUserFactory().getUser(user.getUniqueId());
+
         CooldownManager.startCooldown(
                 user,
-                TimeUnit.SECONDS.toMillis(3),
+                TimeUnit.SECONDS.toMillis(
+                        caribeUser.getLocalChatCooldown()
+                ),
                 AsyncPlayerChatListener.OBJECT_NAME
         );
-
-        CaribeUser caribeUser = FactionsCaribe.getInstance().getCaribeUserFactory().getUser(user.getUniqueId());
 
         String message = event.getMessage();
 
