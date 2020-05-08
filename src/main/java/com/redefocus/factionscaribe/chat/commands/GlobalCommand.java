@@ -70,13 +70,15 @@ public class GlobalCommand extends CustomCommand {
             return;
         }
 
+        CaribeUser caribeUser = FactionsCaribe.getInstance().getCaribeUserFactory().getUser(user.getId());
+
         CooldownManager.startCooldown(
                 user,
-                TimeUnit.SECONDS.toMillis(15),
+                TimeUnit.SECONDS.toMillis(
+                        caribeUser.getGlobalChatCooldown()
+                ),
                 GlobalCommand.OBJECT_NAME
         );
-
-        CaribeUser caribeUser = FactionsCaribe.getInstance().getCaribeUserFactory().getUser(user.getId());
 
         String message = Helper.toMessage(args);
 
