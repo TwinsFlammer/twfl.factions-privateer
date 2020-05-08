@@ -138,7 +138,7 @@ public class CaribeUser extends SpigotUser {
                     .owner(this.getDisplayName())
                     .name(this.getPrefix() + this.getDisplayName())
                     .lore(
-                            "§f[" + this.HAMER_AND_PICK_CHARACTER + "] Nível total: §7" + mcMMOPlayer.getPowerLevel(),
+                            "§f[" + this.HAMER_AND_PICK_CHARACTER + "] Nível total: §7" + (mcMMOPlayer == null ? 0 : mcMMOPlayer.getPowerLevel()),
                             "",
                             "§fPosição no rank: §7" + McMMoAPI.getPosition(this.getName()),
                             "§f1º colocado no rank: §7" + (firstPositionInRank == null ? "Ninguém" : firstPositionInRank.getPrefix() + firstPositionInRank.getDisplayName())
