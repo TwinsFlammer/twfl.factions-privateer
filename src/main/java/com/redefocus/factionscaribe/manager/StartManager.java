@@ -8,9 +8,12 @@ import com.redefocus.common.shared.databases.redis.channel.data.Channel;
 import com.redefocus.common.shared.databases.redis.handler.JedisMessageListener;
 import com.redefocus.common.shared.util.ClassGetter;
 import com.redefocus.factionscaribe.FactionsCaribe;
+import com.redefocus.factionscaribe.combat.runnable.CombatSendActionBarRunnable;
 import com.redefocus.factionscaribe.economy.manager.EconomyManager;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Listener;
+
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author SrGutyerrez
@@ -28,6 +31,8 @@ public class StartManager {
         new ChannelManager();
 
         new JedisMessageListenerManager();
+
+        new RunnableManager();
     }
 }
 
@@ -120,5 +125,16 @@ class JedisMessageListenerManager {
 class DataManager {
     DataManager() {
         new EconomyManager();
+    }
+}
+
+class RunnableManager {
+    RunnableManager() {
+        Common.getInstance().getScheduler().scheduleAtFixedRate(
+                new CombatSendActionBarRunnable(),
+                0,
+                500,
+                TimeUnit.MILLISECONDS
+        );
     }
 }
