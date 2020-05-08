@@ -24,7 +24,7 @@ public abstract class ChatComponent {
             tags += "§2[$]";
 
         String factionTag = caribeUser.hasFaction() ? String.format(
-                "%s[%s]",
+                "%s[%s] ",
                 caribeUser.getFactionRank() == 1 ? ChatColor.AQUA : ChatColor.GRAY,
                 caribeUser.getFactionTag()
         ) : "";
@@ -38,7 +38,6 @@ public abstract class ChatComponent {
                         .text(tags)
                         .next()
                         .text(factionTag)
-                        .next()
                         .next()
                         .text(caribeUser.getPrefix())
                         .next()
