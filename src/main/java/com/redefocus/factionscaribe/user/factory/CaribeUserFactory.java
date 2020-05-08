@@ -21,6 +21,8 @@ public class CaribeUserFactory<U extends CaribeUser> extends AbstractUserFactory
     public U getUser(Integer id) {
         User user = UserManager.getUser(id);
 
+        if (user == null) return null;
+
         return this.users.stream()
                 .filter(u -> u.getId().equals(id))
                 .findFirst()
@@ -37,6 +39,8 @@ public class CaribeUserFactory<U extends CaribeUser> extends AbstractUserFactory
     public U getUser(String name) {
         User user = UserManager.getUser(name);
 
+        if (user == null) return null;
+
         return this.users.stream()
                 .filter(u -> u.getName().equalsIgnoreCase(name))
                 .findFirst()
@@ -52,6 +56,8 @@ public class CaribeUserFactory<U extends CaribeUser> extends AbstractUserFactory
     @Override
     public U getUser(UUID uuid) {
         User user = UserManager.getUser(uuid);
+
+        if (user == null) return null;
 
         return this.users.stream()
                 .filter(u -> u.getUniqueId().equals(uuid))
