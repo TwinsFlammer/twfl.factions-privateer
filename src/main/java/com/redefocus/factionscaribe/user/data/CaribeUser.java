@@ -112,18 +112,13 @@ public class CaribeUser extends SpigotUser {
 
         this.skillsInventory = new CustomInventory(
                 "Habilidades",
-                5,
-                "XXXXXXXXX",
-                "XXXOXOXXX",
-                "XXOOOOOXX",
-                "XXXOOOXXX",
-                "XXXXXXXXX"
+                5
         );
 
         Common.getInstance().getScheduler().scheduleAtFixedRate(
                 this::updateSkillsInventory,
-                1,
-                1,
+                0,
+                25,
                 TimeUnit.SECONDS
         );
     }
@@ -139,7 +134,7 @@ public class CaribeUser extends SpigotUser {
                 .data(3)
                 .owner(this.getDisplayName())
                 .name(this.getPrefix() + this.getDisplayName())
-                .editable(true)
+                .editable(false)
                 .lore(
                         "§f[" + this.HAMER_AND_PICK_CHARACTER + "] Nível total: §7" + mcMMOPlayer.getPowerLevel(),
                         "",
@@ -151,7 +146,7 @@ public class CaribeUser extends SpigotUser {
                 .name("§eRank de habilidades")
                 .lore("§7Clique para abrir o Rank de Habilidades")
                 .hideAttributes()
-                .editable(true)
+                .editable(false)
                 .onClick(event -> {
                     Player player = (Player) event.getWhoClicked();
 
@@ -180,7 +175,7 @@ public class CaribeUser extends SpigotUser {
                     .data(data)
                     .name("§e" + skillType.getName())
                     .hideAttributes()
-                    .editable(true)
+                    .editable(false)
                     .lore(
                             String.format(
                                     "§fNível: §7%d/%d",
@@ -345,8 +340,9 @@ public class CaribeUser extends SpigotUser {
 
     public void setCombat(CaribeUser caribeUser) {
         String message = String.format(
-                "§cVocê entrou em combate com §7%s§c, aguarde %d segundos para deslogar.",
-                caribeUser.getFactionTag() + caribeUser.getName(),
+                "§cVocê entrou em combate com §7[%s] %s§c, aguarde %d segundos para deslogar.",
+                caribeUser.getRolePrefix() + caribeUser.getFactionTag(),
+                caribeUser.getHighestGroup().getColor() + caribeUser.getName(),
                 this.COMBAT_DURATION
         );
 
