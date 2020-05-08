@@ -140,7 +140,7 @@ public class CaribeUser extends SpigotUser {
                         "§f[" + this.HAMER_AND_PICK_CHARACTER + "] Nível total: §7" + mcMMOPlayer.getPowerLevel(),
                         "",
                         "§fPosição no rank: §7" + McMMoAPI.getPosition(this.getName()),
-                        "§f1º colocado no rank: §7" + firstPositionInRank.getPrefix() + firstPositionInRank.getDisplayName()
+                        "§f1º colocado no rank: §7" + (firstPositionInRank == null ? "Ninguém" : firstPositionInRank.getPrefix() + firstPositionInRank.getDisplayName())
                 );
 
         CustomItem abilitiesRanking = new CustomItem(Material.BOOK_AND_QUILL)
@@ -184,7 +184,7 @@ public class CaribeUser extends SpigotUser {
                             "§fBooster: §7???",
                             "",
                             "§fPosição no rank: §7" + McMMoAPI.getPosition(skillType, this.getDisplayName()),
-                            "§f1º colocado no rank: §7" + firstPositionInSkillTypeRank.getPrefix() + firstPositionInSkillTypeRank.getDisplayName()
+                            "§f1º colocado no rank: §7" + (firstPositionInSkillTypeRank == null ? "Ninguém" : firstPositionInSkillTypeRank.getPrefix() + firstPositionInSkillTypeRank.getDisplayName())
                     );
 
             this.skillsInventory.setItem(slot, customItem);
