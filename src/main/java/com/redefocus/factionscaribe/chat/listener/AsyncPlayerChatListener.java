@@ -26,8 +26,10 @@ import java.util.stream.Collectors;
 public class AsyncPlayerChatListener implements Listener {
     private static final String OBJECT_NAME = "CHAT_LOCAL";
 
-    @EventHandler
+    @EventHandler(ignoreCancelled = false, priority = EventPriority.MONITOR)
     public void onMessage(AsyncPlayerChatEvent event) {
+        if (event.isCancelled()) return;
+
         Player player = event.getPlayer();
 
         User user = UserManager.getUser(player.getUniqueId());
@@ -83,5 +85,7 @@ public class AsyncPlayerChatListener implements Listener {
         ChatComponent chatComponent = new ChatComponent(Channel.LOCAL, caribeUser, message) { };
 
         players.forEach(chatComponent::send);
+
+        chatComponent.send(player);
     }
 }
