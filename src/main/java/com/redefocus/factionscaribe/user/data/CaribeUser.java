@@ -126,8 +126,7 @@ public class CaribeUser extends SpigotUser {
 
     public void updateSkillsInventory() {
         try {
-            System.out.println("update");
-            McMMOPlayer mcMMOPlayer = UserManager.getPlayer(this.getName());
+            McMMOPlayer mcMMOPlayer = UserManager.getPlayer(this.getDisplayName());
 
             String firstPositionInRankName = McMMoAPI.getTopAllName(1);
 
@@ -177,8 +176,8 @@ public class CaribeUser extends SpigotUser {
                         .lore(
                                 String.format(
                                         "§fNível: §7%d/%d",
-                                        mcMMOPlayer.getSkillLevel(skillType),
-                                        mcMMOPlayer.getXpToLevel(skillType)
+                                        mcMMOPlayer == null ? 0 : mcMMOPlayer.getSkillLevel(skillType),
+                                        mcMMOPlayer == null ? 0 : mcMMOPlayer.getXpToLevel(skillType)
                                 ),
                                 "",
                                 "§fBônus §6VIP§f: §7" + (this.getMcMMoVIPBonus() == 1.0F ? "Nenhum" : decimalFormat.format(this.getMcMMoVIPBonus())),
@@ -341,8 +340,8 @@ public class CaribeUser extends SpigotUser {
 
     public void setCombat(CaribeUser caribeUser) {
         String message = String.format(
-                "§cVocê entrou em combate com §7%s %s§c, aguarde %d segundos para deslogar.",
-                caribeUser.hasFaction() ? "[" + caribeUser.getRolePrefix() + caribeUser.getFactionTag() + "]" : "",
+                "§cVocê entrou em combate com §7%s%s§c, aguarde %d segundos para deslogar.",
+                caribeUser.hasFaction() ? " [" + caribeUser.getRolePrefix() + caribeUser.getFactionTag() + "]" : "",
                 caribeUser.getPrefix() + caribeUser.getDisplayName(),
                 this.COMBAT_DURATION
         );
