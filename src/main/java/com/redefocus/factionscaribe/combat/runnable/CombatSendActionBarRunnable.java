@@ -19,25 +19,27 @@ public class CombatSendActionBarRunnable implements Runnable {
                 .stream()
                 .filter(CaribeUser::inCombat)
                 .forEach(caribeUser -> {
-                    new CustomAction()
-                            .text(
-                                    String.format(
-                                            this.IN_COMBAT_MESSAGE,
-                                            TimeFormatter.formatMinimized(
-                                                    caribeUser.getCombatDuration() - System.currentTimeMillis()
-                                            )
-                                    )
-                            )
-                            .spigot()
-                            .send(caribeUser.getPlayer());
+                    Player player = caribeUser.getPlayer();
 
-                    if (caribeUser.getCombatDuration() <= System.currentTimeMillis()) {
-                        caribeUser.setCombatDuration(0L);
+                    if (player != null) {
 
-                        Player player = caribeUser.getPlayer();
+                        new CustomAction()
+                                .text(
+                                        String.format(
+                                                this.IN_COMBAT_MESSAGE,
+                                                TimeFormatter.formatMinimized(
+                                                        caribeUser.getCombatDuration() - System.currentTimeMillis()
+                                                )
+                                        )
+                                )
+                                .spigot()
+                                .send(caribeUser.getPlayer());
 
-                        if (player != null)
+                        if (caribeUser.getCombatDuration() <= System.currentTimeMillis()) {
+                            caribeUser.setCombatDuration(0L);
+
                             player.sendMessage(this.LEAVE_COMBAT_MESSAGE);
+                        }
                     }
                 });
     }
