@@ -47,7 +47,7 @@ public abstract class ChatComponent {
                         .hoverText(
                                 "§6Nick: §f" + caribeUser.getPrefix() + caribeUser.getDisplayName() +
                                 "\n" +
-                                "§6Facção: §f" + caribeUser.getFactionTag() + "- " + caribeUser.getFactionName() +
+                                "§6Facção: §f" + caribeUser.getFactionTag() + " - " + caribeUser.getFactionName() +
                                 "\n" +
                                 "§6KDR: §f" + caribeUser.getKdrRounded() +
                                 "\n" +
