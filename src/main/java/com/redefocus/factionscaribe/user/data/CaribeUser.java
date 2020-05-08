@@ -128,7 +128,7 @@ public class CaribeUser extends SpigotUser {
         );
     }
 
-    public synchronized void updateSkillsInventory() {
+    public void updateSkillsInventory() {
         McMMOPlayer mcMMOPlayer = UserManager.getPlayer(this.getName());
 
         String firstPositionInRankName = McMMoAPI.getTopAllName(1);
