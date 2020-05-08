@@ -125,69 +125,73 @@ public class CaribeUser extends SpigotUser {
     }
 
     public void updateSkillsInventory() {
-        System.out.println("update");
-        McMMOPlayer mcMMOPlayer = UserManager.getPlayer(this.getName());
+        try {
+            System.out.println("update");
+            McMMOPlayer mcMMOPlayer = UserManager.getPlayer(this.getName());
 
-        String firstPositionInRankName = McMMoAPI.getTopAllName(1);
+            String firstPositionInRankName = McMMoAPI.getTopAllName(1);
 
-        CaribeUser firstPositionInRank = FactionsCaribe.getInstance().getCaribeUserFactory().getUser(firstPositionInRankName);
+            CaribeUser firstPositionInRank = FactionsCaribe.getInstance().getCaribeUserFactory().getUser(firstPositionInRankName);
 
-        CustomItem skull = new CustomItem(Material.SKULL_ITEM)
-                .data(3)
-                .owner(this.getDisplayName())
-                .name(this.getPrefix() + this.getDisplayName())
-                .lore(
-                        "§f[" + this.HAMER_AND_PICK_CHARACTER + "] Nível total: §7" + mcMMOPlayer.getPowerLevel(),
-                        "",
-                        "§fPosição no rank: §7" + McMMoAPI.getPosition(this.getName()),
-                        "§f1º colocado no rank: §7" + (firstPositionInRank == null ? "Ninguém" : firstPositionInRank.getPrefix() + firstPositionInRank.getDisplayName())
-                );
-
-        CustomItem abilitiesRanking = new CustomItem(Material.BOOK_AND_QUILL)
-                .name("§eRank de habilidades")
-                .lore("§7Clique para abrir o Rank de Habilidades")
-                .hideAttributes()
-                .onClick(event -> {
-                    Player player = (Player) event.getWhoClicked();
-
-                    player.sendMessage("§cEm breve.");
-                });
-
-        this.skillsInventory.setItem(12, skull);
-        this.skillsInventory.setItem(14, abilitiesRanking);
-
-        DecimalFormat decimalFormat = new DecimalFormat("###,###");
-
-        for (DisplaySkill displaySkill : DisplaySkill.values()) {
-            String skillName = displaySkill.getSkillName();
-
-            SkillType skillType = SkillType.valueOf(skillName);
-            Integer slot = displaySkill.getSlot(), data = displaySkill.getData();
-            Material material = displaySkill.getMaterial();
-
-            String firstPositionInSkillTypeRankName = McMMoAPI.getTopSkillName(skillType, 1);
-
-            CaribeUser firstPositionInSkillTypeRank = FactionsCaribe.getInstance().getCaribeUserFactory().getUser(firstPositionInSkillTypeRankName);
-
-            CustomItem customItem = new CustomItem(material)
-                    .data(data)
-                    .name("§e" + skillType.getName())
-                    .hideAttributes()
+            CustomItem skull = new CustomItem(Material.SKULL_ITEM)
+                    .data(3)
+                    .owner(this.getDisplayName())
+                    .name(this.getPrefix() + this.getDisplayName())
                     .lore(
-                            String.format(
-                                    "§fNível: §7%d/%d",
-                                    mcMMOPlayer.getSkillLevel(skillType),
-                                    mcMMOPlayer.getXpToLevel(skillType)
-                            ),
+                            "§f[" + this.HAMER_AND_PICK_CHARACTER + "] Nível total: §7" + mcMMOPlayer.getPowerLevel(),
                             "",
-                            "§fBônus §6VIP§f: §7" + (this.getMcMMoVIPBonus() == 1.0F ? "Nenhum" : decimalFormat.format(this.getMcMMoVIPBonus())),
-                            "§fBooster: §7???",
-                            "",
-                            "§fPosição no rank: §7" + McMMoAPI.getPosition(skillType, this.getDisplayName()),
-                            "§f1º colocado no rank: §7" + (firstPositionInSkillTypeRank == null ? "Ninguém" : firstPositionInSkillTypeRank.getPrefix() + firstPositionInSkillTypeRank.getDisplayName())
+                            "§fPosição no rank: §7" + McMMoAPI.getPosition(this.getName()),
+                            "§f1º colocado no rank: §7" + (firstPositionInRank == null ? "Ninguém" : firstPositionInRank.getPrefix() + firstPositionInRank.getDisplayName())
                     );
 
-            this.skillsInventory.setItem(slot, customItem);
+            CustomItem abilitiesRanking = new CustomItem(Material.BOOK_AND_QUILL)
+                    .name("§eRank de habilidades")
+                    .lore("§7Clique para abrir o Rank de Habilidades")
+                    .hideAttributes()
+                    .onClick(event -> {
+                        Player player = (Player) event.getWhoClicked();
+
+                        player.sendMessage("§cEm breve.");
+                    });
+
+            this.skillsInventory.setItem(12, skull);
+            this.skillsInventory.setItem(14, abilitiesRanking);
+
+            DecimalFormat decimalFormat = new DecimalFormat("###,###");
+
+            for (DisplaySkill displaySkill : DisplaySkill.values()) {
+                String skillName = displaySkill.getSkillName();
+
+                SkillType skillType = SkillType.valueOf(skillName);
+                Integer slot = displaySkill.getSlot(), data = displaySkill.getData();
+                Material material = displaySkill.getMaterial();
+
+                String firstPositionInSkillTypeRankName = McMMoAPI.getTopSkillName(skillType, 1);
+
+                CaribeUser firstPositionInSkillTypeRank = FactionsCaribe.getInstance().getCaribeUserFactory().getUser(firstPositionInSkillTypeRankName);
+
+                CustomItem customItem = new CustomItem(material)
+                        .data(data)
+                        .name("§e" + skillType.getName())
+                        .hideAttributes()
+                        .lore(
+                                String.format(
+                                        "§fNível: §7%d/%d",
+                                        mcMMOPlayer.getSkillLevel(skillType),
+                                        mcMMOPlayer.getXpToLevel(skillType)
+                                ),
+                                "",
+                                "§fBônus §6VIP§f: §7" + (this.getMcMMoVIPBonus() == 1.0F ? "Nenhum" : decimalFormat.format(this.getMcMMoVIPBonus())),
+                                "§fBooster: §7???",
+                                "",
+                                "§fPosição no rank: §7" + McMMoAPI.getPosition(skillType, this.getDisplayName()),
+                                "§f1º colocado no rank: §7" + (firstPositionInSkillTypeRank == null ? "Ninguém" : firstPositionInSkillTypeRank.getPrefix() + firstPositionInSkillTypeRank.getDisplayName())
+                        );
+
+                this.skillsInventory.setItem(slot, customItem);
+            }
+        } catch (Exception exception) {
+            exception.printStackTrace();
         }
     }
 
@@ -337,8 +341,8 @@ public class CaribeUser extends SpigotUser {
 
     public void setCombat(CaribeUser caribeUser) {
         String message = String.format(
-                "§cVocê entrou em combate com §7[%s] %s§c, aguarde %d segundos para deslogar.",
-                caribeUser.getRolePrefix() + caribeUser.getFactionTag(),
+                "§cVocê entrou em combate com §7%s %s§c, aguarde %d segundos para deslogar.",
+                caribeUser.hasFaction() ? "[" + caribeUser.getRolePrefix() + caribeUser.getFactionTag() + "]" : "",
                 caribeUser.getPrefix() + caribeUser.getDisplayName(),
                 this.COMBAT_DURATION
         );
