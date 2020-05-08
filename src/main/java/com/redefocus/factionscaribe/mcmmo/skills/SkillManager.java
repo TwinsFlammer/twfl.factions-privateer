@@ -39,10 +39,11 @@ public abstract class SkillManager {
         new CustomAction()
                 .text(
                         String.format(
-                                "§cMineração %d (%d/%d) +%s XP",
-                                mcMMOPlayer.getSkillLevel(SkillType.MINING),
-                                mcMMOPlayer.getSkillXpLevel(SkillType.MINING),
-                                mcMMOPlayer.getXpToLevel(SkillType.MINING),
+                                "§c%s %d (%d/%d) +%s XP",
+                                skill.getName(),
+                                mcMMOPlayer.getSkillLevel(skill),
+                                mcMMOPlayer.getSkillXpLevel(skill),
+                                mcMMOPlayer.getXpToLevel(skill),
                                 decimalFormat.format(xp)
                         )
                 )
