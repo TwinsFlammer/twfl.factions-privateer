@@ -16,7 +16,6 @@ import java.util.HashMap;
  * @author oNospher
  **/
 public class PublicHomeCommand extends CustomCommand {
-
     public PublicHomeCommand() {
         super(
                 "publica",
@@ -53,6 +52,8 @@ public class PublicHomeCommand extends CustomCommand {
         hashMap.put("state", Home.State.PUBLIC.toString());
 
         homeDao.update(hashMap, "id", home.getId());
+
+        home.setState(Home.State.PUBLIC);
 
         commandSender.sendMessage(
                 String.format(
