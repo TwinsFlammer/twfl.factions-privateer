@@ -21,11 +21,14 @@ public class ChatFactory<C extends Channel> {
         return false;
     }
 
-    public void setChannelActive(C channel) {
+    public void changeChannelStatus(C channel, Boolean action) {
         try (
                 Jedis jedis = RedisManager.getDefaultRedis().getJedisPool().getResource()
         ) {
-            jedis.hdel(channel.getHKey());
+            if (action)
+                jedis.hdel(channel.getHKey());
+            else
+                jedis.hset(channel.getHKey(), "channel", channel.name());
         } catch (JedisDataException exception) {
             exception.printStackTrace();
         }
