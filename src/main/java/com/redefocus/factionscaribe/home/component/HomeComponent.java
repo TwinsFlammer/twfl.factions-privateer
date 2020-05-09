@@ -42,7 +42,7 @@ public abstract class HomeComponent {
                                     "§6Mundo: §f" + home.getWorldName()
                             )
                             .next()
-                            .text(newIndex == homes.size() ? "" : ", ")
+                            .text(newIndex + 1 == homes.size() ? "." : ", ")
                             .next();
                 });
     }
