@@ -419,14 +419,20 @@ public class CaribeUser extends SpigotUser {
     }
 
     public Integer getGlobalChatCooldown() {
-        if (this.hasGroup(GroupNames.FARMER))
+        if (this.hasGroup(GroupNames.DIRECTOR))
+            return 0;
+        else if (this.hasGroup(GroupNames.HELPER))
+            return 2;
+        else if (this.hasGroup(GroupNames.FARMER))
             return 5;
 
         return 15;
     }
 
     public Integer getLocalChatCooldown() {
-        if (this.hasGroup(GroupNames.FARMER))
+        if (this.hasGroup(GroupNames.DIRECTOR))
+            return 0;
+        else if (this.hasGroup(GroupNames.FARMER))
             return 2;
 
         return 5;
