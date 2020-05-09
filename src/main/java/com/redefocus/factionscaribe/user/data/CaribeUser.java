@@ -18,6 +18,7 @@ import com.redefocus.common.shared.permissions.user.data.User;
 import com.redefocus.common.shared.server.data.Server;
 import com.redefocus.common.shared.server.manager.ServerManager;
 import com.redefocus.factionscaribe.FactionsCaribe;
+import com.redefocus.factionscaribe.commands.player.tpa.data.TpaRequest;
 import com.redefocus.factionscaribe.economy.manager.EconomyManager;
 import com.redefocus.factionscaribe.home.dao.HomeDao;
 import com.redefocus.factionscaribe.home.data.Home;
@@ -76,7 +77,8 @@ public class CaribeUser extends SpigotUser {
     private Boolean invisible = false, god = false, light = false;
 
     @Getter
-    private final List<Integer> teleportRequests = Lists.newArrayList();
+    private final List<TpaRequest> teleportRequestsSent = Lists.newArrayList(),
+            teleportRequestsReceived = Lists.newArrayList();
 
     @Getter
     private final List<Home> homes;
@@ -117,7 +119,7 @@ public class CaribeUser extends SpigotUser {
                 FactionsCaribe.getInstance(),
                 this::updateSkillsInventory,
                 0,
-                20L*25
+                20L * 25
         );
     }
 
@@ -275,31 +277,31 @@ public class CaribeUser extends SpigotUser {
 
         switch (index) {
             case 8: {
-                return new String[] {
+                return new String[]{
                         faction.getTag(),
                         faction.getName()
                 };
             }
             case 7: {
-                return new String[] {
+                return new String[]{
                         String.valueOf(faction.getPowerRounded()),
                         String.valueOf(faction.getPowerMaxRounded())
                 };
             }
             case 6: {
-                return new String[] {
+                return new String[]{
                         String.valueOf(faction.getOnlinePlayers().size()),
                         String.valueOf(faction.getMembersCount())
                 };
             }
             case 5: {
-                return new String[] {
+                return new String[]{
                         String.valueOf(faction.getLandCount())
                 };
             }
         }
 
-        return new String[] { "" };
+        return new String[]{""};
     }
 
     public void updateScoreboardTitle(Faction faction) {
@@ -357,6 +359,43 @@ public class CaribeUser extends SpigotUser {
 
     public void withdraw(Double value) {
         this.money -= value;
+    }
+
+    public void sendTpaRequest(CaribeUser caribeUser) {
+        TpaRequest tpaRequest = new TpaRequest(
+                this.getId(),
+                caribeUser.getId(),
+                SpigotAPI.getRootServerId(),
+                TpaRequest.Action.SEND,
+                TimeUnit.SECONDS.toMillis(15)
+        );
+
+        tpaRequest.publish();
+    }
+
+    public void denyTpaRequest(TpaRequest tpaRequest) {
+        tpaRequest.setAction(TpaRequest.Action.DENY);
+
+        tpaRequest.publish();
+    }
+
+    public void acceptTpaRequest(TpaRequest tpaRequest) {
+        tpaRequest.setAction(TpaRequest.Action.ACCEPT);
+
+        tpaRequest.publish();
+    }
+
+    public void cancelTpaRequest(TpaRequest tpaRequest) {
+        tpaRequest.setAction(TpaRequest.Action.CANCEL);
+
+        tpaRequest.publish();
+    }
+
+    public void removeTpaRequest(TpaRequest tpaRequest) {
+        this.getTeleportRequestsReceived().removeIf(tpaRequest1 ->
+                tpaRequest.getUuid().equals(tpaRequest1.getUuid()));
+        this.getTeleportRequestsSent().removeIf(tpaRequest1 ->
+                tpaRequest.getUuid().equals(tpaRequest1.getUuid()));
     }
 
     public String getRolePrefix() {
