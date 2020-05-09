@@ -174,7 +174,7 @@ public class CaribeUser extends SpigotUser {
                                 String.format(
                                         "§fNível: §7%d/%d",
                                         mcMMOPlayer == null ? 0 : mcMMOPlayer.getSkillLevel(skillType),
-                                        mcMMOPlayer == null ? 0 : mcMMOPlayer.getXpToLevel(skillType)
+                                        skillType.getMaxLevel()
                                 ),
                                 "",
                                 "§fBônus §6VIP§f: §7" + (this.getMcMMoVIPBonus() == 1.0F ? "Nenhum" : decimalFormat.format(this.getMcMMoVIPBonus())),
