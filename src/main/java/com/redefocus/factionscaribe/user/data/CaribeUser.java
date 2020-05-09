@@ -28,10 +28,7 @@ import com.redefocus.factionscaribe.mcmmo.util.player.UserManager;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
-import org.bukkit.Chunk;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.World;
+import org.bukkit.*;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 
@@ -116,15 +113,15 @@ public class CaribeUser extends SpigotUser {
         );
         this.skillsInventory.setCancelled(true);
 
-        Common.getInstance().getScheduler().scheduleAtFixedRate(
+        Bukkit.getScheduler().scheduleSyncRepeatingTask(
+                FactionsCaribe.getInstance(),
                 this::updateSkillsInventory,
                 0,
-                25,
-                TimeUnit.SECONDS
+                20L*25
         );
     }
 
-    public void updateSkillsInventory() {
+    public synchronized void updateSkillsInventory() {
         try {
             McMMOPlayer mcMMOPlayer = UserManager.getPlayer(this.getDisplayName());
 
