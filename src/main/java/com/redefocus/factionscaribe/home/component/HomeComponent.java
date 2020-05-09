@@ -21,6 +21,10 @@ public abstract class HomeComponent {
 
         AtomicInteger index = new AtomicInteger(0);
 
+        if (homes.isEmpty())
+            this.jsonText.text("§fNenhuma.")
+                    .next();
+
         homes.stream()
                 .filter(home -> home.getState().equals(state))
                 .forEach(home -> {
@@ -32,14 +36,14 @@ public abstract class HomeComponent {
                             .text(home.getName())
                             .hoverText(
                                     "§6Nome: §f" + home.getName() +
-                                    "\n" +
-                                    "§6Tipo: §f" + state.getName() +
-                                    "\n" +
-                                    "§6Facção: §f" + faction.getName() +
-                                    "\n" +
-                                    "§6Localização: §f" + home.getFancyLocation() +
-                                    "\n" +
-                                    "§6Mundo: §f" + home.getWorldName()
+                                            "\n" +
+                                            "§6Tipo: §f" + state.getName() +
+                                            "\n" +
+                                            "§6Facção: §f" + faction.getName() +
+                                            "\n" +
+                                            "§6Localização: §f" + home.getFancyLocation() +
+                                            "\n" +
+                                            "§6Mundo: §f" + home.getWorldName()
                             )
                             .next()
                             .text(newIndex + 1 == homes.size() ? "." : ", ")
