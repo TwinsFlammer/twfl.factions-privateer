@@ -1,6 +1,8 @@
 package com.redefocus.factionscaribe;
 
+import com.redefocus.api.shared.API;
 import com.redefocus.api.spigot.FocusPlugin;
+import com.redefocus.factionscaribe.cash.event.CashChangeEvent;
 import com.redefocus.factionscaribe.manager.StartManager;
 import com.redefocus.factionscaribe.mcmmo.mcMMO;
 import com.redefocus.factionscaribe.user.data.CaribeUser;
@@ -37,6 +39,10 @@ public class FactionsCaribe extends FocusPlugin {
         this.mcMMO = new mcMMO();
 
         this.mcMMO.onEnable();
+
+        CashChangeEvent cashChangeEvent = new CashChangeEvent();
+
+        API.getInstance().setICashChangeEvent(cashChangeEvent);
     }
 
     @Override
