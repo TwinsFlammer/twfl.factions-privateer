@@ -11,6 +11,7 @@ import com.redefocus.common.shared.preference.Preference;
 import com.redefocus.common.shared.util.Helper;
 import com.redefocus.common.shared.util.TimeFormatter;
 import com.redefocus.factionscaribe.FactionsCaribe;
+import com.redefocus.factionscaribe.chat.commands.chat.factory.ChatFactory;
 import com.redefocus.factionscaribe.chat.component.ChatComponent;
 import com.redefocus.factionscaribe.chat.enums.Channel;
 import com.redefocus.factionscaribe.user.data.CaribeUser;
@@ -55,6 +56,13 @@ public class GlobalCommand extends CustomCommand {
             return;
         }
 
+        ChatFactory<Channel> chatFactory = new ChatFactory<>();
+
+        if (!chatFactory.isChannelActive(Channel.GLOBAL)) {
+            commandSender.sendMessage("§cEste canal não está ativo no momento.");
+            return;
+        }
+
         if ((user.getFirstLogin() + TimeUnit.HOURS.toMillis(5)) >= System.currentTimeMillis()) {
             new CustomAction()
                     .text(
@@ -81,6 +89,13 @@ public class GlobalCommand extends CustomCommand {
         );
 
         String message = Helper.toMessage(args);
+
+        if (caribeUser.getLastMessage() != null && caribeUser.getLastMessage().equalsIgnoreCase(message)) {
+            commandSender.sendMessage("§cVocê não pode enviar uma mensagem tão similar a sua anterior.");
+            return;
+        }
+
+        caribeUser.setLastMessage(message);
 
         ChatComponent chatComponent = new ChatComponent(Channel.GLOBAL, caribeUser, message) { };
 
