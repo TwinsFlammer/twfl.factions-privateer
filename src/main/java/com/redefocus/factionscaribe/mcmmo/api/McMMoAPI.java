@@ -123,7 +123,7 @@ public class McMMoAPI {
         String position = "Indefinido.";
 
         Map<SkillType, Integer> skills = mcMMO.getDatabaseManager().readRank(targetName);
-        if (skills.get(null) != null) position = EconomyManager.format(skills.get(skillType).doubleValue());
+        if (skills.get(skillType) != null) position = EconomyManager.format(skills.get(skillType).doubleValue());
 
         return position;
     }
