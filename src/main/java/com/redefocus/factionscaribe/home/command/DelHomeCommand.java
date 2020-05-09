@@ -42,6 +42,8 @@ public class DelHomeCommand extends CustomCommand {
         HomeDao<Home> homeDao = new HomeDao<>();
         homeDao.delete("id", home.getId());
 
+        caribeUser.getHomes().removeIf(home1 -> home1.getId().equals(home.getId()));
+
         commandSender.sendMessage(
                 String.format(
                         "§eA home \"%s\" foi deletada com sucesso.",
