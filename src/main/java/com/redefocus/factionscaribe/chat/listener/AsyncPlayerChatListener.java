@@ -7,6 +7,7 @@ import com.redefocus.common.shared.permissions.user.manager.UserManager;
 import com.redefocus.common.shared.preference.Preference;
 import com.redefocus.common.shared.util.TimeFormatter;
 import com.redefocus.factionscaribe.FactionsCaribe;
+import com.redefocus.factionscaribe.chat.commands.chat.factory.ChatFactory;
 import com.redefocus.factionscaribe.chat.component.ChatComponent;
 import com.redefocus.factionscaribe.chat.enums.Channel;
 import com.redefocus.factionscaribe.user.data.CaribeUser;
@@ -62,6 +63,13 @@ public class AsyncPlayerChatListener implements Listener {
                     return user1.isEnabled(Preference.CHAT_LOCAL) && !user1.isIgnoring(user);
                 })
                 .collect(Collectors.toList());
+
+        ChatFactory<Channel> chatFactory = new ChatFactory<>();
+
+        if (!chatFactory.isChannelActive(Channel.LOCAL)) {
+            player.sendMessage("§cEste canal não está ativo no momento.");
+            return;
+        }
 
         if (players.isEmpty()) {
             new CustomAction()
