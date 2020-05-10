@@ -4,6 +4,7 @@ import com.redefocus.api.spigot.inventory.item.CustomItem;
 import com.redefocus.factionscaribe.specialitem.data.AbstractSpecialItem;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.event.Event;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 
@@ -38,5 +39,10 @@ public class LauncherSpecialITem<E extends PlayerInteractEvent> extends Abstract
                 player.sendMessage("Testando...");
             }
         };
+    }
+
+    @Override
+    public Class<? extends Event> getEventType() {
+        return PlayerInteractEvent.class;
     }
 }
