@@ -57,7 +57,7 @@ public class TpaDenyCommand<C extends TpaCommand> extends CustomArgumentCommand<
                 .orElse(null);
 
         if (tpaRequest == null) {
-            commandSender.sendMessage("§cVocê não recebeu um pedido de teletransporte para esse usuário.");
+            commandSender.sendMessage("§cVocê não recebeu um pedido de teletransporte desse usuário.");
             return;
         }
 
