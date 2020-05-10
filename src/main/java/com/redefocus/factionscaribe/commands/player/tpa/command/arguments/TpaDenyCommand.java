@@ -24,7 +24,7 @@ public class TpaDenyCommand<C extends TpaCommand> extends CustomArgumentCommand<
     @Override
     public void onCommand(CommandSender commandSender, User user, String[] args) {
         if (args.length != 1) {
-            commandSender.sendMessage(this.getUsage("<usuário>"));
+            commandSender.sendMessage("§cUtilize /tpa negar <usuário>.");
             return;
         }
 
