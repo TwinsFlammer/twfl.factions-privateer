@@ -22,13 +22,24 @@ public class SpecialItemListener implements Listener {
 
         AbstractSpecialItem abstractSpecialItem = SpecialItemManager.getSpecialItem(itemStack);
 
+        System.out.println("validando item especial");
+
         if (abstractSpecialItem == null) return;
 
+        System.out.println("é válido -- validando consumer");
+
         if (abstractSpecialItem.getEventConsumer() != null) {
+            System.out.println("Tem consumer");
+
             Consumer<PlayerInteractEvent> eventConsumer = abstractSpecialItem.getEventConsumer();
 
-            if (eventConsumer instanceof PlayerInteractEvent)
+            System.out.println("validno instanceof do consumer");
+
+            if (eventConsumer instanceof PlayerInteractEvent) {
+                System.out.println("É válido e vai aceitar");
+
                 eventConsumer.accept(event);
+            }
         }
     }
 }
