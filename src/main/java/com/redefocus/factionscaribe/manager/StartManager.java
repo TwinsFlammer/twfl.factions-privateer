@@ -9,6 +9,7 @@ import com.redefocus.common.shared.databases.redis.handler.JedisMessageListener;
 import com.redefocus.common.shared.util.ClassGetter;
 import com.redefocus.factionscaribe.FactionsCaribe;
 import com.redefocus.factionscaribe.combat.runnable.CombatSendActionBarRunnable;
+import com.redefocus.factionscaribe.commands.player.tpa.runnable.TpaRequestRunnable;
 import com.redefocus.factionscaribe.economy.manager.EconomyManager;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Listener;
@@ -135,6 +136,12 @@ class RunnableManager {
                 0,
                 500,
                 TimeUnit.MILLISECONDS
+        );
+        Common.getInstance().getScheduler().scheduleAtFixedRate(
+                new TpaRequestRunnable(),
+                0,
+                1,
+                TimeUnit.SECONDS
         );
     }
 }
