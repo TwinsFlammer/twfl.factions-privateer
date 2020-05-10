@@ -78,7 +78,7 @@ public class TpaCommand extends CustomCommand {
                 .text("§c§lAQUI")
                 .execute("/tpa cancelar " + caribeUser1.getName())
                 .next()
-                .text("§epara cancelar este pedido.")
+                .text("§e para cancelar este pedido.")
                 .next(),
                 jsonText1 = new JSONText()
                         .text(
