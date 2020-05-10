@@ -16,5 +16,8 @@ public abstract class AbstractSpecialItem<E extends Event> {
     private final String name;
 
     public abstract ItemStack getItemStack();
+
     public abstract Consumer<E> getEventConsumer();
+
+    public abstract Class<? extends Event> getEventType();
 }
