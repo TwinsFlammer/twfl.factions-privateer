@@ -50,8 +50,6 @@ public class TpaChannelJedisMessageListener implements JedisMessageListener {
                 expireTime
         );
 
-        System.out.println(">> expire " + expireTime);
-
         CaribeUser caribeUser = FactionsCaribe.getInstance().getCaribeUserFactory().getUser(userId),
                 caribeUser1 = FactionsCaribe.getInstance().getCaribeUserFactory().getUser(targetId);
 
@@ -78,6 +76,8 @@ public class TpaChannelJedisMessageListener implements JedisMessageListener {
 
             caribeUser.removeTpaRequest(tpaRequest);
             caribeUser1.removeTpaRequest(tpaRequest);
+
+            caribeUser.setLastTpaTime(System.currentTimeMillis());
         } else {
             caribeUser.removeTpaRequest(tpaRequest);
             caribeUser1.removeTpaRequest(tpaRequest);
