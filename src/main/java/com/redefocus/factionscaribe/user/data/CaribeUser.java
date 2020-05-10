@@ -94,6 +94,10 @@ public class CaribeUser extends SpigotUser {
     @Setter
     private Back back;
 
+    @Getter
+    @Setter
+    private Long lastTpaTime;
+
     public CaribeUser(User user) {
         super(user);
 
@@ -370,8 +374,6 @@ public class CaribeUser extends SpigotUser {
                 TpaRequest.Action.SEND,
                 System.currentTimeMillis() + TimeUnit.MINUTES.toMillis(1)
         );
-
-        System.out.println("EXpire: " + tpaRequest.getExpireTime());
 
         tpaRequest.publish();
     }
