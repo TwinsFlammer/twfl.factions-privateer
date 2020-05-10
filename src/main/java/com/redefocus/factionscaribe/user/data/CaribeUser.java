@@ -32,6 +32,7 @@ import lombok.Setter;
 import org.bukkit.*;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.PlayerInventory;
 
 import java.text.DecimalFormat;
 import java.util.*;
@@ -486,6 +487,22 @@ public class CaribeUser extends SpigotUser {
         return 5;
     }
 
+    public Integer getInventorySpace() {
+        Player player = this.getPlayer();
+
+        PlayerInventory playerInventory = player.getInventory();
+
+        Integer space = 0;
+
+        for (int i = 0; i < playerInventory.getSize(); i++)
+            if (playerInventory.getItem(i) == null
+                    || playerInventory.getItem(i).getType() == Material.AIR) {
+                space++;
+            }
+
+        return space;
+    }
+
     public String getFactionAtId() {
         Faction factionAt = this.getFactionAt();
 
@@ -589,6 +606,10 @@ public class CaribeUser extends SpigotUser {
 
     public Boolean isStaff() {
         return this.hasGroup(GroupNames.HELPER);
+    }
+
+    public Boolean isOnlineHere() {
+        return this.isOnline() && SpigotAPI.getSubServersId().contains(this.getServerId());
     }
 
     public Boolean hasHome(String name) {
