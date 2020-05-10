@@ -13,6 +13,7 @@ import com.redefocus.factionscaribe.commands.player.tpa.command.arguments.TpaCan
 import com.redefocus.factionscaribe.commands.player.tpa.command.arguments.TpaDenyCommand;
 import com.redefocus.factionscaribe.user.data.CaribeUser;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 
 /**
  * @author SrGutyerrez
@@ -80,26 +81,30 @@ public class TpaCommand extends CustomCommand {
                 jsonText1 = new JSONText()
                         .text(
                                 String.format(
-                                        "§7%s %s §eestá pedindo para teletransportar até você.",
+                                        "§7%s %s §edeseja teletransportar até você.",
                                         caribeUser.hasFaction() ? "[" + caribeUser.getRolePrefix() + caribeUser.getFactionTag() + "]" : "",
                                         caribeUser.getPrefix() + caribeUser.getDisplayName()
                                 )
                         )
+                        .next()
+                        .text("\n")
                         .next()
                         .text("§eClique ")
                         .next()
                         .text("§a§lAQUI")
                         .execute("/tpa aceitar " + caribeUser.getName())
                         .next()
-                        .text("§epara aceitar e ")
+                        .text("§e para aceitar e ")
                         .next()
-                        .text("§c§AQUI")
+                        .text("§c§lAQUI")
                         .execute("/tpa negar " + caribeUser.getName())
                         .next()
-                        .text("§epara negar.")
+                        .text("§e para negar.")
                         .next();
 
-        jsonText.send(commandSender);
+        Player player = (Player) commandSender;
+
+        jsonText.send(player);
         caribeUser1.sendMessage(jsonText1);
 
         caribeUser.sendTpaRequest(caribeUser1);
