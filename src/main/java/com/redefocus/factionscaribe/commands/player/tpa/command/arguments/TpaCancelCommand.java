@@ -24,7 +24,7 @@ public class TpaCancelCommand<C extends TpaCommand> extends CustomArgumentComman
     @Override
     public void onCommand(CommandSender commandSender, User user, String[] args) {
         if (args.length != 1) {
-            commandSender.sendMessage(this.getUsage("<usuário>"));
+            commandSender.sendMessage("§cUtilize /tpa cancelar <usuário>.");
             return;
         }
 
