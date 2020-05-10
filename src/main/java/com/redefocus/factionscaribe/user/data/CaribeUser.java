@@ -46,17 +46,17 @@ public class CaribeUser extends SpigotUser {
     private final String[] SCOREBOARD_LINES = {
             "§c   " + Common.SERVER_URL,
             "§4",
-            "§f Cash: §c%s",
-            "§f Coins: §c%s",
+            "§f Cash: §e%s",
+            "§f Coins: §e%s",
             "§3",
-            "§f   Terras: §c%s",
-            "§f   Membros: §c%s/%s",
-            "§f   Poder: §c%s/%s",
-            "§4 [%s] %s",
+            "§f   Terras: §e%s",
+            "§f   Membros: §e%s/%s",
+            "§f   Poder: §e%s/%s",
+            "§6 [%s] %s",
             "§2",
-            "§f Poder: §c%s",
-            "§f Nível: §c%s",
-            "§f KDR: §c%s",
+            "§f Poder: §e%s",
+            "§f Nível: §e%s",
+            "§f KDR: §e%s",
             "§1"
     };
 
