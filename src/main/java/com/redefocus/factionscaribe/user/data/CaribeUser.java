@@ -495,7 +495,7 @@ public class CaribeUser extends SpigotUser {
     public Long getTeleportTime() {
         if (this.isVIP()) return 0L;
 
-        return TimeUnit.SECONDS.toMillis(3);
+        return System.currentTimeMillis() + TimeUnit.SECONDS.toMillis(3);
     }
 
     public Long getTimeToSendTpaAgain() {
