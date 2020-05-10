@@ -645,11 +645,7 @@ public class CaribeUser extends SpigotUser {
     }
 
     public Boolean canSendTpaAgain() {
-        Boolean asd = this.getTimeToSendTpaAgain() < System.currentTimeMillis();
-
-        System.out.println("Pode teleportar: " + asd);
-
-        return asd;
+        return this.lastTpaTime != null && this.getTimeToSendTpaAgain() < System.currentTimeMillis();
     }
 
     public Boolean hasFaction() {
