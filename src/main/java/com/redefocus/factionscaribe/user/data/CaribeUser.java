@@ -363,6 +363,7 @@ public class CaribeUser extends SpigotUser {
 
     public void sendTpaRequest(CaribeUser caribeUser) {
         TpaRequest tpaRequest = new TpaRequest(
+                UUID.randomUUID(),
                 this.getId(),
                 caribeUser.getId(),
                 SpigotAPI.getRootServerId(),
