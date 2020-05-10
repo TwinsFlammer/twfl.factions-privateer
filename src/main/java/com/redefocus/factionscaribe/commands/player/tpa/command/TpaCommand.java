@@ -65,11 +65,13 @@ public class TpaCommand extends CustomCommand {
         JSONText jsonText = new JSONText()
                 .text(
                         String.format(
-                                "§ePedido de teletransporte enviado para §7%s %s",
+                                "§ePedido enviado para §7%s %s",
                                 caribeUser1.hasFaction() ? "[" + caribeUser1.getRolePrefix() + caribeUser1.getFactionTag() + "]" : "",
                                 caribeUser1.getPrefix() + caribeUser1.getDisplayName()
                         )
                 )
+                .next()
+                .text("\n")
                 .next()
                 .text("§eClique ")
                 .next()
