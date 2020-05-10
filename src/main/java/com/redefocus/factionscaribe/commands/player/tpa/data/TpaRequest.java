@@ -40,6 +40,7 @@ public class TpaRequest {
     public String toString() {
         JSONObject jsonObject = new JSONObject();
 
+        jsonObject.put("uuid", this.uuid.toString());
         jsonObject.put("user_id", this.userId);
         jsonObject.put("target_id", this.targetId);
         jsonObject.put("root_server_id", SpigotAPI.getRootServerId());
