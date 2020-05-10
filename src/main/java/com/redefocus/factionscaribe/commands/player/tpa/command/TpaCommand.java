@@ -71,20 +71,8 @@ public class TpaCommand extends CustomCommand {
 
         TpaRequest tpaRequest = caribeUser.getTeleportRequestsSent()
                 .stream()
-                .filter(tpaRequest1 -> {
-                    Boolean asd = tpaRequest1.getTargetId().equals(caribeUser1.getId());
-
-                    System.out.println("id: " + asd);
-
-                    return asd;
-                })
-                .filter(tpaRequest1 -> {
-                    Boolean asd = tpaRequest1.hasExpired();
-
-                    System.out.println("expirou<>: " + asd);
-
-                    return !asd;
-                })
+                .filter(tpaRequest1 -> tpaRequest1.getTargetId().equals(caribeUser1.getId()))
+                .filter(tpaRequest1 -> !tpaRequest1.hasExpired())
                 .findFirst()
                 .orElse(null);
 
@@ -94,6 +82,18 @@ public class TpaCommand extends CustomCommand {
                             "§cAguarde %s para enviar um pedido de teletransporte para esse jogador novamente.",
                             TimeFormatter.formatMinimized(
                                     tpaRequest.getExpireTime() - System.currentTimeMillis()
+                            )
+                    )
+            );
+            return;
+        }
+
+        if (caribeUser.getLastTpaTime() != null && caribeUser.canSendTpaAgain()) {
+            commandSender.sendMessage(
+                    String.format(
+                            "§cAguarde %s para enviar um pedido de teletransporte novamente.",
+                            TimeFormatter.formatMinimized(
+                                    caribeUser.getTimeToSendTpaAgain() - System.currentTimeMillis()
                             )
                     )
             );
