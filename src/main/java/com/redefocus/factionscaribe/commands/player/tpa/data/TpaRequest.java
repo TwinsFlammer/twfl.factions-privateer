@@ -15,7 +15,7 @@ import java.util.UUID;
 @AllArgsConstructor
 public class TpaRequest {
     @Getter
-    private final UUID uuid = UUID.randomUUID();
+    private final UUID uuid;
     @Getter
     private final Integer userId, targetId, rootServerId;
 
