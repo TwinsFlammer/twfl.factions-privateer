@@ -399,6 +399,11 @@ public class CaribeUser extends SpigotUser {
                 tpaRequest.getUuid().equals(tpaRequest1.getUuid()));
     }
 
+    public void removeExpiredTpaRequests() {
+        this.teleportRequestsReceived.removeIf(TpaRequest::hasExpired);
+        this.teleportRequestsSent.removeIf(TpaRequest::hasExpired);
+    }
+
     public String getRolePrefix() {
         MPlayer mPlayer = MPlayer.get(this.getUniqueId());
 
