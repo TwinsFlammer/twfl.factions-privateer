@@ -11,6 +11,8 @@ import com.redefocus.factionscaribe.FactionsCaribe;
 import com.redefocus.factionscaribe.combat.runnable.CombatSendActionBarRunnable;
 import com.redefocus.factionscaribe.commands.player.tpa.runnable.TpaRequestRunnable;
 import com.redefocus.factionscaribe.economy.manager.EconomyManager;
+import com.redefocus.factionscaribe.specialitem.data.AbstractSpecialItem;
+import com.redefocus.factionscaribe.specialitem.manager.SpecialItemManager;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Listener;
 
@@ -32,6 +34,8 @@ public class StartManager {
         new ChannelManager();
 
         new JedisMessageListenerManager();
+
+        new AbstractSpecialItemManager();
 
         new RunnableManager();
     }
@@ -123,9 +127,29 @@ class JedisMessageListenerManager {
     }
 }
 
+class AbstractSpecialItemManager {
+    AbstractSpecialItemManager() {
+        ClassGetter.getClassesForPackage(FactionsCaribe.class).forEach(clazz -> {
+            if (AbstractSpecialItem.class.isAssignableFrom(clazz)) {
+                try {
+                    AbstractSpecialItem abstractSpecialItem = (AbstractSpecialItem) clazz.newInstance();
+
+                    SpecialItemManager.registerSpecialItem(
+                            abstractSpecialItem,
+                            FactionsCaribe.getInstance()
+                    );
+                } catch (InstantiationException | IllegalAccessException exception) {
+                    exception.printStackTrace();
+                }
+            }
+        });
+    }
+}
+
 class DataManager {
     DataManager() {
         new EconomyManager();
+        new SpecialItemManager();
     }
 }
 
