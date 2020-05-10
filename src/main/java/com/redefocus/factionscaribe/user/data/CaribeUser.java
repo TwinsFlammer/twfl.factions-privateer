@@ -368,7 +368,7 @@ public class CaribeUser extends SpigotUser {
                 caribeUser.getId(),
                 SpigotAPI.getRootServerId(),
                 TpaRequest.Action.SEND,
-                TimeUnit.SECONDS.toMillis(15)
+                System.currentTimeMillis() + TimeUnit.MINUTES.toMillis(1)
         );
 
         tpaRequest.publish();
