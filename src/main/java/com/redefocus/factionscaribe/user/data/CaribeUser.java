@@ -499,6 +499,10 @@ public class CaribeUser extends SpigotUser {
         return TimeUnit.SECONDS.toMillis(3);
     }
 
+    public Long getTimeToSendTpaAgain() {
+        return this.lastTpaTime + TimeUnit.SECONDS.toMillis(30);
+    }
+
     public Float getMcMMoVIPBonus() {
         if (this.hasGroupExact(GroupNames.NOBLE))
             return 2.0F;
@@ -632,11 +636,17 @@ public class CaribeUser extends SpigotUser {
 
             CaribeUser caribeUser = FactionsCaribe.getInstance().getCaribeUserFactory().getUser(player.getUniqueId());
 
+            if (!caribeUser.hasFaction()) return true;
+
             return !caribeUser.getFaction().equals(this.getFaction())
                     && caribeUser.getFaction().getRelationWish(this.getFaction()) != Rel.ALLY;
         }
 
         return true;
+    }
+
+    public Boolean canSendTpaAgain() {
+        return this.getTimeToSendTpaAgain() < System.currentTimeMillis();
     }
 
     public Boolean hasFaction() {
