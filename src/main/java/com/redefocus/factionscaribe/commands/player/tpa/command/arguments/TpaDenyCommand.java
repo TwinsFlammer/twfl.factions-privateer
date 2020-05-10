@@ -63,6 +63,7 @@ public class TpaDenyCommand<C extends TpaCommand> extends CustomArgumentCommand<
 
         caribeUser.denyTpaRequest(tpaRequest);
 
-        commandSender.sendMessage("§cPedido de teletransporte cancelado.");
+        commandSender.sendMessage("§cVocê recusou o pedido de teletransporte.");
+        caribeUser1.sendMessage("§cPedido de teletransporte rejeitado.");
     }
 }
