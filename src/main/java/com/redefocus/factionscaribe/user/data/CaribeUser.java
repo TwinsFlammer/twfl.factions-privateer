@@ -44,7 +44,7 @@ import java.util.stream.Collectors;
 public class CaribeUser extends SpigotUser {
     protected final Integer COMBAT_DURATION = 15;
     private final String[] SCOREBOARD_LINES = {
-            "§e   " + Common.SERVER_URL,
+            "§e  " + Common.SERVER_URL,
             "§4",
             "§f Cash: §e%s",
             "§f Coins: §e%s",
@@ -95,7 +95,7 @@ public class CaribeUser extends SpigotUser {
     private Back back;
 
     @Setter
-    private Long lastTpaTime;
+    private Long lastTpaTime = 0L;
 
     public CaribeUser(User user) {
         super(user);
