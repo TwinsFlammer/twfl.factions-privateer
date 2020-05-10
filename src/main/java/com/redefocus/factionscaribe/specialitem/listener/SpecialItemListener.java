@@ -28,6 +28,9 @@ public class SpecialItemListener implements Listener {
 
         System.out.println("é válido -- validando consumer");
 
+        if (abstractSpecialItem.getEventType().equals(PlayerInteractEvent.class))
+            System.out.println("É do tipo");
+
         if (abstractSpecialItem.getEventConsumer() != null) {
             System.out.println("Tem consumer");
 
@@ -38,8 +41,6 @@ public class SpecialItemListener implements Listener {
             System.out.println("event: " + event.hashCode());
 
             System.out.println("hash: " + eventConsumer.hashCode());
-
-            System.out.println(eventConsumer instanceof PlayerInteractEvent);
 
             System.out.println("É válido e vai aceitar");
 
