@@ -71,7 +71,7 @@ public class TpaCommand extends CustomCommand {
 
         TpaRequest tpaRequest = caribeUser.getTeleportRequestsSent()
                 .stream()
-                .filter(tpaRequest1 -> tpaRequest1.getUserId().equals(caribeUser.getId()))
+                .filter(tpaRequest1 -> tpaRequest1.getTargetId().equals(caribeUser1.getId()))
                 .filter(tpaRequest1 -> !tpaRequest1.hasExpired())
                 .findFirst()
                 .orElse(null);
