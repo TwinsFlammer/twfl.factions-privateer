@@ -13,6 +13,8 @@ import com.redefocus.factionscaribe.user.data.CaribeUser;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 
+import java.util.UUID;
+
 /**
  * @author SrGutyerrez
  */
@@ -24,6 +26,10 @@ public class TpaChannelJedisMessageListener implements JedisMessageListener {
         System.out.println(message);
 
         JSONObject jsonObject = (JSONObject) JSONValue.parse(message);
+
+        String preUUID = (String) jsonObject.get("uuid");
+
+        UUID uuid = UUID.fromString(preUUID);
 
         Integer userId = ((Long) jsonObject.get("user_id")).intValue(),
                 targetId = ((Long) jsonObject.get("target_id")).intValue(),
@@ -38,6 +44,7 @@ public class TpaChannelJedisMessageListener implements JedisMessageListener {
         Long expireTime = (Long) jsonObject.get("expire_time");
 
         TpaRequest tpaRequest = new TpaRequest(
+                uuid,
                 userId,
                 targetId,
                 rootServerId,
