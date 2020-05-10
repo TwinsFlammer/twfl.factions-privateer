@@ -51,7 +51,7 @@ public class PlayerQuitCombatListener implements Listener {
                     .forEach(user -> {
                         user.sendMessage(
                                 String.format(
-                                        "§c%s desconectou em combate, %s",
+                                        "§c%s §cdesconectou em combate, %s",
                                         caribeUser.getPrefix() + caribeUser.getDisplayName(),
                                         Stream.of(this.DISCONNECT_MESSAGES)
                                                 .findAny()
