@@ -26,7 +26,7 @@ public class ChatFactory<C extends Channel> {
                 Jedis jedis = RedisManager.getDefaultRedis().getJedisPool().getResource()
         ) {
             if (action)
-                jedis.hdel(channel.getHKey());
+                jedis.hdel(channel.getHKey(), "channel");
             else
                 jedis.hset(channel.getHKey(), "channel", channel.name());
         } catch (JedisDataException exception) {
