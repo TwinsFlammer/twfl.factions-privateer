@@ -2,6 +2,9 @@ package com.redefocus.factionscaribe;
 
 import com.redefocus.api.shared.API;
 import com.redefocus.api.spigot.FocusPlugin;
+import com.redefocus.api.spigot.SpigotAPI;
+import com.redefocus.common.shared.permissions.user.data.User;
+import com.redefocus.common.shared.permissions.user.manager.UserManager;
 import com.redefocus.factionscaribe.cash.event.CashChangeEvent;
 import com.redefocus.factionscaribe.manager.StartManager;
 import com.redefocus.factionscaribe.mcmmo.mcMMO;
@@ -52,5 +55,10 @@ public class FactionsCaribe extends FocusPlugin {
 
     public List<? extends CaribeUser> getCaribeUsers() {
         return this.caribeUserFactory.getUsers();
+    }
+
+    public static void unloadUser(CaribeUser caribeUser) {
+        FactionsCaribe.getInstance().getCaribeUsers().removeIf(caribeUser1 -> caribeUser1.isSimilar(caribeUser));
+        UserManager.unloadUser(caribeUser.getId());
     }
 }
