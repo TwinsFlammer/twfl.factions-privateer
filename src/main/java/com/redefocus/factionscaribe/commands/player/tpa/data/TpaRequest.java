@@ -36,6 +36,8 @@ public class TpaRequest {
         System.out.println(this.expireTime);
         System.out.println(System.currentTimeMillis());
 
+        System.out.println("Expirou: " + (this.expireTime <= System.currentTimeMillis()));
+
         return this.expireTime <= System.currentTimeMillis();
     }
 
