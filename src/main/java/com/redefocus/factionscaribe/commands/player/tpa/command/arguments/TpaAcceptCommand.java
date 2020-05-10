@@ -62,16 +62,27 @@ public class TpaAcceptCommand<C extends TpaCommand> extends CustomArgumentComman
             return;
         }
 
-        caribeUser.denyTpaRequest(tpaRequest);
+        caribeUser.acceptTpaRequest(tpaRequest);
 
-        commandSender.sendMessage("§cPedido cancelado");
+        commandSender.sendMessage("§aPedido de teletransporte aceito!");
 
         JSONText jsonText = new JSONText()
                 .text(
                         String.format(
-                                "§7%s %s §ccancelou o pedido de teletransporte.",
-                                caribeUser.hasFaction() ? "[" + caribeUser.getRolePrefix() + caribeUser1.getFactionTag() + "]" : "",
+                                "§7%s%s §caceitou o pedido de teletransporte.",
+                                caribeUser.hasFaction() ? "[" + caribeUser.getRolePrefix() + caribeUser1.getFactionTag() + "] " : "",
                                 caribeUser.getPrefix() + caribeUser.getDisplayName()
+                        )
+                )
+                .next()
+                .text("\n")
+                .next()
+                .text(
+                        String.format(
+                                "§aTeletransportando para §7%s%s",
+                                caribeUser.hasFaction() ? "[" + caribeUser.getRolePrefix() + caribeUser1.getFactionTag() + "] " : "",
+                                caribeUser.getPrefix() + caribeUser.getDisplayName()
+
                         )
                 )
                 .next();
