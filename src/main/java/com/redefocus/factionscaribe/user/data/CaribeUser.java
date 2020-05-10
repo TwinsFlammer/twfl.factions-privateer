@@ -94,7 +94,6 @@ public class CaribeUser extends SpigotUser {
     @Setter
     private Back back;
 
-    @Getter
     @Setter
     private Long lastTpaTime;
 
@@ -646,7 +645,11 @@ public class CaribeUser extends SpigotUser {
     }
 
     public Boolean canSendTpaAgain() {
-        return this.getTimeToSendTpaAgain() < System.currentTimeMillis();
+        Boolean asd = this.getTimeToSendTpaAgain() < System.currentTimeMillis();
+
+        System.out.println("Pode teleportar: " + asd);
+
+        return asd;
     }
 
     public Boolean hasFaction() {
