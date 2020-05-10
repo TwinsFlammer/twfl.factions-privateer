@@ -88,7 +88,7 @@ public class TpaCommand extends CustomCommand {
             return;
         }
 
-        if (caribeUser.getLastTpaTime() != null && caribeUser.canSendTpaAgain()) {
+        if (!caribeUser.canSendTpaAgain()) {
             commandSender.sendMessage(
                     String.format(
                             "§cAguarde %s para enviar um pedido de teletransporte novamente.",
