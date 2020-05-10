@@ -7,10 +7,12 @@ import com.redefocus.api.spigot.util.jsontext.data.JSONText;
 import com.redefocus.common.shared.permissions.group.GroupNames;
 import com.redefocus.common.shared.permissions.user.data.User;
 import com.redefocus.common.shared.permissions.user.manager.UserManager;
+import com.redefocus.common.shared.util.TimeFormatter;
 import com.redefocus.factionscaribe.FactionsCaribe;
 import com.redefocus.factionscaribe.commands.player.tpa.command.arguments.TpaAcceptCommand;
 import com.redefocus.factionscaribe.commands.player.tpa.command.arguments.TpaCancelCommand;
 import com.redefocus.factionscaribe.commands.player.tpa.command.arguments.TpaDenyCommand;
+import com.redefocus.factionscaribe.commands.player.tpa.data.TpaRequest;
 import com.redefocus.factionscaribe.user.data.CaribeUser;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -64,6 +66,24 @@ public class TpaCommand extends CustomCommand {
 
         if (!caribeUser1.isOnline() || !SpigotAPI.getSubServersId().contains(caribeUser1.getServerId())) {
             commandSender.sendMessage("§cEste usuário não está online.");
+            return;
+        }
+
+        TpaRequest tpaRequest = caribeUser.getTeleportRequestsReceived()
+                .stream()
+                .filter(tpaRequest1 -> tpaRequest1.getUserId().equals(caribeUser.getId()))
+                .findFirst()
+                .orElse(null);
+
+        if (tpaRequest != null) {
+            commandSender.sendMessage(
+                    String.format(
+                            "§cAguarde %s para enviar um pedido de teletransporte para esse jogador novamente.",
+                            TimeFormatter.formatMinimized(
+                                    tpaRequest.getExpireTime() - System.currentTimeMillis()
+                            )
+                    )
+            );
             return;
         }
 
