@@ -57,6 +57,11 @@ public class TpaCommand extends CustomCommand {
             return;
         }
 
+        if (caribeUser.isSimilar(caribeUser1)) {
+            commandSender.sendMessage("§cVocê não pode pedir para teletransporta-se a si mesmo.");
+            return;
+        }
+
         if (!caribeUser1.isOnline() || !SpigotAPI.getSubServersId().contains(caribeUser1.getServerId())) {
             commandSender.sendMessage("§cEste usuário não está online.");
             return;
@@ -65,8 +70,8 @@ public class TpaCommand extends CustomCommand {
         JSONText jsonText = new JSONText()
                 .text(
                         String.format(
-                                "§ePedido enviado para §7%s %s",
-                                caribeUser1.hasFaction() ? "[" + caribeUser1.getRolePrefix() + caribeUser1.getFactionTag() + "]" : "",
+                                "§ePedido enviado para §7%s%s",
+                                caribeUser1.hasFaction() ? "[" + caribeUser1.getRolePrefix() + caribeUser1.getFactionTag() + "] " : "",
                                 caribeUser1.getPrefix() + caribeUser1.getDisplayName()
                         )
                 )
@@ -83,8 +88,8 @@ public class TpaCommand extends CustomCommand {
                 jsonText1 = new JSONText()
                         .text(
                                 String.format(
-                                        "§7%s %s §edeseja teletransportar até você.",
-                                        caribeUser.hasFaction() ? "[" + caribeUser.getRolePrefix() + caribeUser.getFactionTag() + "]" : "",
+                                        "§7%s%s §edeseja teletransportar até você.",
+                                        caribeUser.hasFaction() ? "[" + caribeUser.getRolePrefix() + caribeUser.getFactionTag() + "] " : "",
                                         caribeUser.getPrefix() + caribeUser.getDisplayName()
                                 )
                         )
