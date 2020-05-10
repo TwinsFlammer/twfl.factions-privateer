@@ -8,9 +8,11 @@ import redis.clients.jedis.exceptions.JedisDataException;
  * @author SrGutyerrez
  */
 public class ChatChannel extends Channel {
+    public static final String CHANNEL_NAME = "chat_channel";
+
     @Override
     public String getName() {
-        return "chat_channel";
+        return ChatChannel.CHANNEL_NAME;
     }
 
     @Override
