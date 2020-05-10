@@ -44,7 +44,7 @@ import java.util.stream.Collectors;
 public class CaribeUser extends SpigotUser {
     protected final Integer COMBAT_DURATION = 15;
     private final String[] SCOREBOARD_LINES = {
-            "§e  " + Common.SERVER_URL,
+            "§6  " + Common.SERVER_URL,
             "§4",
             "§f Cash: §e%s",
             "§f Coins: §e%s",
