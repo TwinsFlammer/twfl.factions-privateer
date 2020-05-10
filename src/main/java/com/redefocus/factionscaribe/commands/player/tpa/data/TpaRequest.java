@@ -50,7 +50,7 @@ public class TpaRequest {
         jsonObject.put("target_id", this.targetId);
         jsonObject.put("root_server_id", SpigotAPI.getRootServerId());
         jsonObject.put("action", this.action.toString());
-        jsonObject.put("expire_time", System.currentTimeMillis());
+        jsonObject.put("expire_time", this.expireTime);
 
         return jsonObject.toString();
     }
