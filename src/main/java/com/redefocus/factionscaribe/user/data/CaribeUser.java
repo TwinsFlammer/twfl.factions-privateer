@@ -371,6 +371,8 @@ public class CaribeUser extends SpigotUser {
                 System.currentTimeMillis() + TimeUnit.MINUTES.toMillis(1)
         );
 
+        System.out.println("EXpire: " + tpaRequest.getExpireTime());
+
         tpaRequest.publish();
     }
 
