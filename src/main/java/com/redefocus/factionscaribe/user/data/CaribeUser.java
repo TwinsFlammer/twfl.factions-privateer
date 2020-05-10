@@ -340,7 +340,7 @@ public class CaribeUser extends SpigotUser {
     public void setCombat(CaribeUser caribeUser) {
         String message = String.format(
                 "§cVocê entrou em combate com §7%s%s§c, aguarde %d segundos para deslogar.",
-                caribeUser.hasFaction() ? " [" + caribeUser.getRolePrefix() + caribeUser.getFactionTag() + "]" : "",
+                caribeUser.hasFaction() ? "[" + caribeUser.getRolePrefix() + caribeUser.getFactionTag() + "] " : "",
                 caribeUser.getPrefix() + caribeUser.getDisplayName(),
                 this.COMBAT_DURATION
         );
