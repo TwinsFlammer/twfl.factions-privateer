@@ -21,6 +21,8 @@ public class TpaChannelJedisMessageListener implements JedisMessageListener {
     public void onMessage(JedisMessageEvent event) {
         String message = event.getMessage();
 
+        System.out.println(message);
+
         JSONObject jsonObject = (JSONObject) JSONValue.parse(message);
 
         Integer userId = ((Long) jsonObject.get("user_id")).intValue(),
