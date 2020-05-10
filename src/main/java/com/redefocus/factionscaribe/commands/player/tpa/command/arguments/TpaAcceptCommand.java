@@ -69,8 +69,8 @@ public class TpaAcceptCommand<C extends TpaCommand> extends CustomArgumentComman
         JSONText jsonText = new JSONText()
                 .text(
                         String.format(
-                                "§7%s%s §caceitou o pedido de teletransporte.",
-                                caribeUser.hasFaction() ? "[" + caribeUser.getRolePrefix() + caribeUser1.getFactionTag() + "] " : "",
+                                "§7%s%s §aaceitou o pedido de teletransporte.",
+                                caribeUser.hasFaction() ? "[" + caribeUser.getRolePrefix() + caribeUser.getFactionTag() + "] " : "",
                                 caribeUser.getPrefix() + caribeUser.getDisplayName()
                         )
                 )
@@ -80,7 +80,7 @@ public class TpaAcceptCommand<C extends TpaCommand> extends CustomArgumentComman
                 .text(
                         String.format(
                                 "§aTeletransportando para §7%s%s",
-                                caribeUser.hasFaction() ? "[" + caribeUser.getRolePrefix() + caribeUser1.getFactionTag() + "] " : "",
+                                caribeUser.hasFaction() ? "[" + caribeUser.getRolePrefix() + caribeUser.getFactionTag() + "] " : "",
                                 caribeUser.getPrefix() + caribeUser.getDisplayName()
 
                         )
