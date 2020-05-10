@@ -81,7 +81,7 @@ public class TpaCommand extends CustomCommand {
                 .filter(tpaRequest1 -> {
                     Boolean asd = tpaRequest1.hasExpired();
 
-                    System.out.println("expirou: " + asd);
+                    System.out.println("expirou<>: " + asd);
 
                     return !asd;
                 })
@@ -103,7 +103,7 @@ public class TpaCommand extends CustomCommand {
         JSONText jsonText = new JSONText()
                 .text(
                         String.format(
-                                "§ePedido enviado para §7%s%s",
+                                "§ePedido enviado para §7%s%s§e.",
                                 caribeUser1.hasFaction() ? "[" + caribeUser1.getRolePrefix() + caribeUser1.getFactionTag() + "] " : "",
                                 caribeUser1.getPrefix() + caribeUser1.getDisplayName()
                         )
