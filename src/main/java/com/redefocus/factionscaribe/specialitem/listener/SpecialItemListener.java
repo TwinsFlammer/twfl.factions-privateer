@@ -3,6 +3,7 @@ package com.redefocus.factionscaribe.specialitem.listener;
 import com.redefocus.factionscaribe.specialitem.data.AbstractSpecialItem;
 import com.redefocus.factionscaribe.specialitem.manager.SpecialItemManager;
 import org.bukkit.entity.Player;
+import org.bukkit.event.Event;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -35,11 +36,15 @@ public class SpecialItemListener implements Listener {
 
             System.out.println("validno instanceof do consumer");
 
-            if (eventConsumer instanceof PlayerInteractEvent) {
-                System.out.println("É válido e vai aceitar");
+            System.out.println("event: " + event.hashCode());
 
-                eventConsumer.accept(event);
-            }
+            System.out.println("hash: " + eventConsumer.hashCode());
+
+
+
+            System.out.println("É válido e vai aceitar");
+
+            eventConsumer.accept(event);
         }
     }
 }
