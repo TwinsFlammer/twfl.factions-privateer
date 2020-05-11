@@ -5,7 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.bukkit.event.Event;
 import org.bukkit.inventory.ItemStack;
 
-import java.util.function.Consumer;
+import java.util.function.BiConsumer;
 
 /**
  * @author SrGutyerrez
@@ -17,7 +17,7 @@ public abstract class AbstractSpecialItem<E extends Event> {
 
     public abstract ItemStack getItemStack();
 
-    public abstract Consumer<E> getEventConsumer();
+    public abstract BiConsumer<E, E> getEventConsumer();
 
     public abstract Class<? extends Event> getEventType();
 }
