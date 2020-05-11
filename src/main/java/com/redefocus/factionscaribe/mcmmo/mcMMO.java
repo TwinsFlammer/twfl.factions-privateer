@@ -1,6 +1,10 @@
 package com.redefocus.factionscaribe.mcmmo;
 
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import com.redefocus.api.spigot.commands.registry.CommandRegistry;
+import com.redefocus.common.shared.Common;
+import com.redefocus.factionscaribe.mcmmo.api.McMMoAPI;
 import com.redefocus.factionscaribe.mcmmo.commands.SkillsCommand;
 import com.redefocus.factionscaribe.mcmmo.config.AdvancedConfig;
 import com.redefocus.factionscaribe.mcmmo.config.Config;
@@ -16,6 +20,9 @@ import com.redefocus.factionscaribe.mcmmo.config.skills.salvage.SalvageConfigMan
 import com.redefocus.factionscaribe.mcmmo.config.treasure.TreasureConfig;
 import com.redefocus.factionscaribe.mcmmo.database.DatabaseManager;
 import com.redefocus.factionscaribe.mcmmo.database.DatabaseManagerFactory;
+import com.redefocus.factionscaribe.mcmmo.datatypes.player.McMMOPlayer;
+import com.redefocus.factionscaribe.mcmmo.datatypes.player.PlayerProfile;
+import com.redefocus.factionscaribe.mcmmo.datatypes.skills.SkillType;
 import com.redefocus.factionscaribe.mcmmo.listeners.BlockListener;
 import com.redefocus.factionscaribe.mcmmo.listeners.EntityListener;
 import com.redefocus.factionscaribe.mcmmo.listeners.InventoryListener;
@@ -57,9 +64,14 @@ import com.redefocus.factionscaribe.mcmmo.util.upgrade.UpgradeManager;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
 import com.redefocus.factionscaribe.FactionsCaribe;
+import com.redefocus.factionscaribe.user.data.CaribeUser;
+import lombok.Getter;
 import net.shatteredlands.shatt.backup.ZipLibrary;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -123,6 +135,12 @@ public class mcMMO {
 
     public static boolean VIPS_KEEP_ENCHANTS = false;
     public static boolean REPAIR_SHIFT_ONLY = false;
+
+    @Getter
+    private static List<PlayerProfile> playerProfiles;
+
+    @Getter
+    private static HashMap<SkillType, PlayerProfile> topSkillsPlayerProfile;
 
     /**
      * Things to be run when the plugin is enabled.
@@ -197,6 +215,44 @@ public class mcMMO {
             CommandRegistry.registerCommand(
                     FactionsCaribe.getInstance(),
                     new SkillsCommand()
+            );
+
+            mcMMO.playerProfiles = Lists.newArrayList();
+            mcMMO.topSkillsPlayerProfile = Maps.newHashMap();
+
+            Common.getInstance().getScheduler().scheduleAtFixedRate(
+                    () -> {
+                        for (int i = 0; i < 10; i++) {
+                            String name = McMMoAPI.getTopAllName(i);
+
+                            UUID uuid = UUID.nameUUIDFromBytes(("OfflinePlayer:" + name).getBytes());
+
+                            PlayerProfile playerProfile = mcMMO.getDatabaseManager().loadPlayerProfile(name, uuid, true);
+
+                            if (playerProfile.isLoaded()) {
+                                mcMMO.playerProfiles.add(i, playerProfile);
+                            }
+                        }
+
+                        CaribeUser.DisplaySkill[] displaySkills = CaribeUser.DisplaySkill.values();
+
+                        for (int i = 0; i < displaySkills.length; i++) {
+                            SkillType skillType = SkillType.valueOf(displaySkills[i].getSkillName());
+
+                            String name = McMMoAPI.getTopSkillName(skillType, i);
+
+                            UUID uuid = UUID.nameUUIDFromBytes(("OfflinePlayer:" + name).getBytes());
+
+                            PlayerProfile playerProfile = mcMMO.getDatabaseManager().loadPlayerProfile(name, uuid, true);
+
+                            if (playerProfile.isLoaded()) {
+                                mcMMO.topSkillsPlayerProfile.put(skillType, playerProfile);
+                            }
+                        }
+                    },
+                    0,
+                    5,
+                    TimeUnit.MINUTES
             );
         } catch (SecurityException | IllegalArgumentException | IllegalStateException t) {
             FactionsCaribe.getInstance().getLogger().severe("There was an error while enabling mcMMO!");
