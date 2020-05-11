@@ -24,7 +24,9 @@ import com.redefocus.factionscaribe.home.dao.HomeDao;
 import com.redefocus.factionscaribe.home.data.Home;
 import com.redefocus.factionscaribe.mcmmo.api.McMMoAPI;
 import com.redefocus.factionscaribe.mcmmo.datatypes.player.McMMOPlayer;
+import com.redefocus.factionscaribe.mcmmo.datatypes.player.PlayerProfile;
 import com.redefocus.factionscaribe.mcmmo.datatypes.skills.SkillType;
+import com.redefocus.factionscaribe.mcmmo.mcMMO;
 import com.redefocus.factionscaribe.mcmmo.util.player.UserManager;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -131,9 +133,9 @@ public class CaribeUser extends SpigotUser {
         try {
             McMMOPlayer mcMMOPlayer = UserManager.getPlayer(this.getDisplayName());
 
-            String firstPositionInRankName = McMMoAPI.getTopAllName(1);
+            PlayerProfile firstPositionInRankProfile = mcMMO.getPlayerProfiles().get(0);
 
-            CaribeUser firstPositionInRank = FactionsCaribe.getInstance().getCaribeUserFactory().getUser(firstPositionInRankName);
+            CaribeUser firstPositionInRank = firstPositionInRankProfile == null ? null : FactionsCaribe.getInstance().getCaribeUserFactory().getUser(firstPositionInRankProfile.getUniqueId());
 
             CustomItem skull = new CustomItem(Material.SKULL_ITEM)
                     .data(3)
@@ -168,9 +170,9 @@ public class CaribeUser extends SpigotUser {
                 Integer slot = displaySkill.getSlot(), data = displaySkill.getData();
                 Material material = displaySkill.getMaterial();
 
-                String firstPositionInSkillTypeRankName = McMMoAPI.getTopSkillName(skillType, 1);
+                PlayerProfile firstPositionInSkillTypeRankProfile = mcMMO.getTopSkillsPlayerProfile().get(skillType);
 
-                CaribeUser firstPositionInSkillTypeRank = FactionsCaribe.getInstance().getCaribeUserFactory().getUser(firstPositionInSkillTypeRankName);
+                CaribeUser firstPositionInSkillTypeRank = firstPositionInSkillTypeRankProfile == null ? null : FactionsCaribe.getInstance().getCaribeUserFactory().getUser(firstPositionInSkillTypeRankProfile.getUniqueId());
 
                 CustomItem customItem = new CustomItem(material)
                         .data(data)
