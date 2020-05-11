@@ -10,13 +10,15 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Vector;
 
-import java.util.function.Consumer;
+import java.util.function.BiConsumer;
 
 /**
  * @author SrGutyerrez
  */
-public class LauncherSpecialITem<E extends PlayerInteractEvent> extends AbstractSpecialItem<E> {
-    public LauncherSpecialITem() {
+public class LauncherSpecialItem<E extends PlayerInteractEvent> extends AbstractSpecialItem<E> {
+    public static final String METADATA = "LAUNCHER";
+
+    public LauncherSpecialItem() {
         super(
                 "lançador"
         );
@@ -31,11 +33,11 @@ public class LauncherSpecialITem<E extends PlayerInteractEvent> extends Abstract
     }
 
     @Override
-    public Consumer<E> getEventConsumer() {
-        return (event) -> {
-            Player player = event.getPlayer();
+    public BiConsumer<E, E> getEventConsumer() {
+        return (event1, event2) -> {
+            Player player = event1.getPlayer();
 
-            event.setCancelled(true);
+            event1.setCancelled(true);
 
             Location location = player.getLocation();
 
