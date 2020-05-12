@@ -151,9 +151,9 @@ public class CaribeUser extends SpigotUser {
         try {
             McMMOPlayer mcMMOPlayer = UserManager.getPlayer(this.getDisplayName());
 
-            PlayerProfile firstPositionInRankProfile = mcMMO.getPlayerProfiles().get(0);
+//            PlayerProfile firstPositionInRankProfile = mcMMO.getPlayerProfiles().get(0);
 
-            CaribeUser firstPositionInRank = firstPositionInRankProfile == null ? null : FactionsCaribe.getInstance().getCaribeUserFactory().getUser(firstPositionInRankProfile.getUniqueId());
+            CaribeUser firstPositionInRank = /*firstPositionInRankProfile == null ? null : FactionsCaribe.getInstance().getCaribeUserFactory().getUser(firstPositionInRankProfile.getUniqueId())*/null;
 
             CustomItem skull = new CustomItem(Material.SKULL_ITEM)
                     .data(3)
@@ -188,11 +188,11 @@ public class CaribeUser extends SpigotUser {
                 Integer slot = displaySkill.getSlot(), data = displaySkill.getData();
                 Material material = displaySkill.getMaterial();
 
-                PlayerProfile firstPositionInSkillTypeRankProfile = mcMMO.getTopSkillsPlayerProfile().get(skillType);
+//                PlayerProfile firstPositionInSkillTypeRankProfile = mcMMO.getTopSkillsPlayerProfile().get(skillType);
 
-                CaribeUser firstPositionInSkillTypeRank = firstPositionInSkillTypeRankProfile == null ? null : FactionsCaribe.getInstance().getCaribeUserFactory().getUser(firstPositionInSkillTypeRankProfile.getUniqueId());
+                CaribeUser firstPositionInSkillTypeRank = /*firstPositionInSkillTypeRankProfile == null ? null : FactionsCaribe.getInstance().getCaribeUserFactory().getUser(firstPositionInSkillTypeRankProfile.getUniqueId())*/null;
 
-                Integer position = this.skills.get(skillType);
+                Integer position = 1/*this.skills.get(skillType)*/;
 
                 CustomItem customItem = new CustomItem(material)
                         .data(data)
