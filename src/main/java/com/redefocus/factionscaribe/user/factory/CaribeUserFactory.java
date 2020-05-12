@@ -19,58 +19,55 @@ public class CaribeUserFactory<U extends CaribeUser> extends AbstractUserFactory
 
     @Override
     public U getUser(Integer id) {
-        return null;
-//        User user = UserManager.getUser(id);
-//
-//        if (user == null) return null;
-//
-//        return this.users.stream()
-//                .filter(u -> u.getId().equals(id))
-//                .findFirst()
-//                .orElseGet(() -> {
-//                    U u = (U) new CaribeUser(user);
-//
-//                    this.users.add(u);
-//
-//                    return u;
-//                });
+        User user = UserManager.getUser(id);
+
+        if (user == null) return null;
+
+        return this.users.stream()
+                .filter(u -> u.getId().equals(id))
+                .findFirst()
+                .orElseGet(() -> {
+                    U u = (U) new CaribeUser(user);
+
+                    this.users.add(u);
+
+                    return u;
+                });
     }
 
     @Override
     public U getUser(String name) {
-        return null;
-//        User user = UserManager.getUser(name);
-//
-//        if (user == null) return null;
-//
-//        return this.users.stream()
-//                .filter(u -> u.getName().equalsIgnoreCase(name))
-//                .findFirst()
-//                .orElseGet(() -> {
-//                    U u = (U) new CaribeUser(user);
-//
-//                    this.users.add(u);
-//
-//                    return u;
-//                });
+        User user = UserManager.getUser(name);
+
+        if (user == null) return null;
+
+        return this.users.stream()
+                .filter(u -> u.getName().equalsIgnoreCase(name))
+                .findFirst()
+                .orElseGet(() -> {
+                    U u = (U) new CaribeUser(user);
+
+                    this.users.add(u);
+
+                    return u;
+                });
     }
 
     @Override
     public U getUser(UUID uuid) {
-        return null;
-//        User user = UserManager.getUser(uuid);
-//
-//        if (user == null) return null;
-//
-//        return this.users.stream()
-//                .filter(u -> u.getUniqueId().equals(uuid))
-//                .findFirst()
-//                .orElseGet(() -> {
-//                    U u = (U) new CaribeUser(user);
-//
-//                    this.users.add(u);
-//
-//                    return u;
-//                });
+        User user = UserManager.getUser(uuid);
+
+        if (user == null) return null;
+
+        return this.users.stream()
+                .filter(u -> u.getUniqueId().equals(uuid))
+                .findFirst()
+                .orElseGet(() -> {
+                    U u = (U) new CaribeUser(user);
+
+                    this.users.add(u);
+
+                    return u;
+                });
     }
 }
