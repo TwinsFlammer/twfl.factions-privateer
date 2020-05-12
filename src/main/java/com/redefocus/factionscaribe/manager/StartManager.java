@@ -23,7 +23,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class StartManager {
     public StartManager() {
-//        new ListenerManager();
+        new ListenerManager();
 
         new CommandManager();
 
@@ -37,7 +37,7 @@ public class StartManager {
 
         new AbstractSpecialItemManager();
 
-//        new RunnableManager();
+        new RunnableManager();
     }
 }
 
