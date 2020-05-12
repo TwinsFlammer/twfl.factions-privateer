@@ -123,28 +123,28 @@ public class CaribeUser extends SpigotUser {
         );
         this.skillsInventory.setCancelled(true);
 
-        Common.getInstance().getScheduler().scheduleAtFixedRate(
-                () -> {
-                    for (DisplaySkill displaySkill : DisplaySkill.values()) {
-                        String skillName = displaySkill.getSkillName();
-
-                        SkillType skillType = SkillType.valueOf(skillName);
-                        Integer value = McMMoAPI.getPosition(skillType, this.getName());
-
-                        this.skills.put(skillType, value);
-                    }
-                },
-                0,
-                5,
-                TimeUnit.MINUTES
-        );
-
-        Bukkit.getScheduler().scheduleSyncRepeatingTask(
-                FactionsCaribe.getInstance(),
-                this::updateSkillsInventory,
-                0,
-                1200
-        );
+//        Common.getInstance().getScheduler().scheduleAtFixedRate(
+//                () -> {
+//                    for (DisplaySkill displaySkill : DisplaySkill.values()) {
+//                        String skillName = displaySkill.getSkillName();
+//
+//                        SkillType skillType = SkillType.valueOf(skillName);
+//                        Integer value = McMMoAPI.getPosition(skillType, this.getName());
+//
+//                        this.skills.put(skillType, value);
+//                    }
+//                },
+//                0,
+//                5,
+//                TimeUnit.MINUTES
+//        );
+//
+//        Bukkit.getScheduler().scheduleSyncRepeatingTask(
+//                FactionsCaribe.getInstance(),
+//                this::updateSkillsInventory,
+//                0,
+//                1200
+//        );
     }
 
     public synchronized void updateSkillsInventory() {
