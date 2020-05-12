@@ -15,8 +15,8 @@ import org.bukkit.event.player.PlayerMoveEvent;
 /**
  * @author SrGutyerrez
  */
-public class PlayerChunkChangeListener implements Listener {
-//    @EventHandler
+public class PlayerChunkChangeListener {
+    @EventHandler
     public void onChange(PlayerMoveEvent event) {
         Location fromLocation = event.getFrom();
         Location toLocation = event.getTo();
