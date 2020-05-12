@@ -70,7 +70,7 @@ public class CaribeUser extends SpigotUser {
     private Double money = 0.0;
 
     @Getter
-    private final CustomBoard customBoard = null;
+    private final CustomBoard customBoard;
 
     @Getter
     @Setter
@@ -84,10 +84,10 @@ public class CaribeUser extends SpigotUser {
             teleportRequestsReceived = Lists.newArrayList();
 
     @Getter
-    private final List<Home> homes = Lists.newArrayList();
+    private final List<Home> homes;
 
     @Getter
-    private final CustomInventory skillsInventory = null;
+    private final CustomInventory skillsInventory;
 
     @Getter
     @Setter
@@ -104,47 +104,47 @@ public class CaribeUser extends SpigotUser {
 
     public CaribeUser(User user) {
         super(user);
-//
-//        this.customBoard = new CustomBoard();
-//
-//        HomeDao<Home> homeDao = new HomeDao<>();
-//
-//        HashMap<String, Object> keys = Maps.newHashMap();
-//
-//        keys.put("user_id", this.getId());
-//
-//        Set<Home> homes = homeDao.findAll(keys);
-//
-//        this.homes = Lists.newArrayList(homes);
-//
-//        this.skillsInventory = new CustomInventory(
-//                "Habilidades",
-//                5
-//        );
-//        this.skillsInventory.setCancelled(true);
-//
-//        Common.getInstance().getScheduler().scheduleAtFixedRate(
-//                () -> {
-//                    for (DisplaySkill displaySkill : DisplaySkill.values()) {
-//                        String skillName = displaySkill.getSkillName();
-//
-//                        SkillType skillType = SkillType.valueOf(skillName);
-//                        Integer value = McMMoAPI.getPosition(skillType, this.getName());
-//
-//                        this.skills.put(skillType, value);
-//                    }
-//                },
-//                0,
-//                5,
-//                TimeUnit.MINUTES
-//        );
-//
-//        Bukkit.getScheduler().scheduleSyncRepeatingTask(
-//                FactionsCaribe.getInstance(),
-//                this::updateSkillsInventory,
-//                0,
-//                1200
-//        );
+
+        this.customBoard = new CustomBoard();
+
+        HomeDao<Home> homeDao = new HomeDao<>();
+
+        HashMap<String, Object> keys = Maps.newHashMap();
+
+        keys.put("user_id", this.getId());
+
+        Set<Home> homes = homeDao.findAll(keys);
+
+        this.homes = Lists.newArrayList(homes);
+
+        this.skillsInventory = new CustomInventory(
+                "Habilidades",
+                5
+        );
+        this.skillsInventory.setCancelled(true);
+
+        Common.getInstance().getScheduler().scheduleAtFixedRate(
+                () -> {
+                    for (DisplaySkill displaySkill : DisplaySkill.values()) {
+                        String skillName = displaySkill.getSkillName();
+
+                        SkillType skillType = SkillType.valueOf(skillName);
+                        Integer value = McMMoAPI.getPosition(skillType, this.getName());
+
+                        this.skills.put(skillType, value);
+                    }
+                },
+                0,
+                5,
+                TimeUnit.MINUTES
+        );
+
+        Bukkit.getScheduler().scheduleSyncRepeatingTask(
+                FactionsCaribe.getInstance(),
+                this::updateSkillsInventory,
+                0,
+                1200
+        );
     }
 
     public synchronized void updateSkillsInventory() {
