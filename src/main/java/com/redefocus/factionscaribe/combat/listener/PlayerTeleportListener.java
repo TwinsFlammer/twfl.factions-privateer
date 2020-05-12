@@ -12,7 +12,7 @@ import org.bukkit.event.player.PlayerTeleportEvent;
  * @author SrGutyerrez
  */
 public class PlayerTeleportListener {
-//    @EventHandler
+    @EventHandler
     public void onTeleport(PlayerTeleportEvent event) {
         Player player = event.getPlayer();
         PlayerTeleportEvent.TeleportCause teleportCause = event.getCause();
