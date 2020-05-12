@@ -100,6 +100,8 @@ public class CaribeUser extends SpigotUser {
     @Setter
     private Long lastTpaTime = 0L;
 
+    private final HashMap<SkillType, Integer> skills = Maps.newHashMap();
+
     public CaribeUser(User user) {
         super(user);
 
@@ -121,11 +123,27 @@ public class CaribeUser extends SpigotUser {
         );
         this.skillsInventory.setCancelled(true);
 
+        Common.getInstance().getScheduler().scheduleAtFixedRate(
+                () -> {
+                    for (DisplaySkill displaySkill : DisplaySkill.values()) {
+                        String skillName = displaySkill.getSkillName();
+
+                        SkillType skillType = SkillType.valueOf(skillName);
+                        Integer value = McMMoAPI.getPosition(skillType, this.getName());
+
+                        this.skills.put(skillType, value);
+                    }
+                },
+                0,
+                5,
+                TimeUnit.MINUTES
+        );
+
         Bukkit.getScheduler().scheduleSyncRepeatingTask(
                 FactionsCaribe.getInstance(),
                 this::updateSkillsInventory,
                 0,
-                20L * 25
+                1200
         );
     }
 
@@ -174,6 +192,8 @@ public class CaribeUser extends SpigotUser {
 
                 CaribeUser firstPositionInSkillTypeRank = firstPositionInSkillTypeRankProfile == null ? null : FactionsCaribe.getInstance().getCaribeUserFactory().getUser(firstPositionInSkillTypeRankProfile.getUniqueId());
 
+                Integer position = this.skills.get(skillType);
+
                 CustomItem customItem = new CustomItem(material)
                         .data(data)
                         .name("§e" + skillType.getName())
@@ -188,7 +208,7 @@ public class CaribeUser extends SpigotUser {
                                 "§fBônus §6VIP§f: §7" + (this.getMcMMoVIPBonus() == 1.0F ? "Nenhum" : decimalFormat.format(this.getMcMMoVIPBonus())),
                                 "§fBooster: §7???",
                                 "",
-                                "§fPosição no rank: §7" + McMMoAPI.getPosition(skillType, this.getDisplayName()),
+                                "§fPosição no rank: §7" + (position == null ? "Indefinido." : position + "º"),
                                 "§f1º colocado no rank: §7" + (firstPositionInSkillTypeRank == null ? "Ninguém" : firstPositionInSkillTypeRank.getPrefix() + firstPositionInSkillTypeRank.getDisplayName())
                         );
 
