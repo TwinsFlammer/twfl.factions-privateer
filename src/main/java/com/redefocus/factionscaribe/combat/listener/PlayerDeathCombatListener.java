@@ -10,7 +10,7 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 /**
  * @author oNospher
  **/
-public class PlayerDeathCombatListener {
+public class PlayerDeathCombatListener implements Listener {
 
     @EventHandler
     public void onDeath(PlayerDeathEvent event) {
