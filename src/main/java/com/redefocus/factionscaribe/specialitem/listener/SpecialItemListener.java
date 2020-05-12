@@ -19,7 +19,7 @@ import java.util.function.BiConsumer;
 /**
  * @author SrGutyerrez
  */
-public class SpecialItemListener {
+public class SpecialItemListener implements Listener {
     @EventHandler
     public void onInteract(PlayerInteractEvent event) {
         Player player = event.getPlayer();
