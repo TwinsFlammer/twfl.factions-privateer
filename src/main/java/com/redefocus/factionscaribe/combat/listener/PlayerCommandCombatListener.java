@@ -12,7 +12,7 @@ import java.util.Arrays;
 /**
  * @author oNospher
  **/
-public class PlayerCommandCombatListener {
+public class PlayerCommandCombatListener implements Listener {
     private final String[] ALLOWED_COMMANDS = {
             "/g",
             "/c",
