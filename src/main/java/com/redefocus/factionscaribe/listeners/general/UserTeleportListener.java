@@ -11,7 +11,7 @@ import org.bukkit.event.Listener;
 /**
  * @author SrGutyerrez
  */
-public class UserTeleportListener implements Listener {
+public class UserTeleportListener {
     @EventHandler
     public void onTeleport(UserTeleportEvent event) {
         TeleportRequest teleportRequest = event.getTeleportRequest();
