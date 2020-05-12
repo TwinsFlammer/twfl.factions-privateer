@@ -7,7 +7,7 @@ import org.bukkit.event.entity.FoodLevelChangeEvent;
 /**
  * @author SrGutyerrez
  */
-public class FoodLevelChangeListener implements Listener {
+public class FoodLevelChangeListener {
     @EventHandler
     public void onChange(FoodLevelChangeEvent event) {
         if (event.getFoodLevel() < 20) {
