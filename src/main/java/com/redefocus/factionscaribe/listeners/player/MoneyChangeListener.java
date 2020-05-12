@@ -9,7 +9,7 @@ import org.bukkit.event.Listener;
 /**
  * @author SrGutyerrez
  */
-public class MoneyChangeListener {
+public class MoneyChangeListener implements Listener {
     @EventHandler
     public void onChange(MoneyChangeEvent event) {
         CaribeUser caribeUser = event.getCaribeUser();
