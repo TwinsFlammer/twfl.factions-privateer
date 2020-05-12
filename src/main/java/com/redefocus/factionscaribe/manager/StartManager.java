@@ -23,7 +23,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class StartManager {
     public StartManager() {
-//        new ListenerManager();
+        new ListenerManager();
 
         new CommandManager();
 
@@ -47,6 +47,8 @@ class ListenerManager {
             if (Listener.class.isAssignableFrom(clazz)) {
                 try {
                     Listener listener = (Listener) clazz.newInstance();
+
+                    System.out.println("[Listener] Registering class " + clazz.getName());
 
                     Bukkit.getPluginManager().registerEvents(
                             listener,
