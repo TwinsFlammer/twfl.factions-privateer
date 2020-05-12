@@ -14,7 +14,7 @@ import java.util.stream.Stream;
 /**
  * @author oNospher
  **/
-public class PlayerQuitCombatListener {
+public class PlayerQuitCombatListener implements Listener {
     private final String[] DISCONNECT_MESSAGES = {
             "que vergonha...",
             "que feio...",
