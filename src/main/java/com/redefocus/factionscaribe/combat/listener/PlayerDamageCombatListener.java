@@ -15,7 +15,7 @@ import java.util.Arrays;
 /**
  * @author oNospher
  **/
-public class PlayerDamageCombatListener implements Listener {
+public class PlayerDamageCombatListener {
     private final EntityType[] ALLOWED_TYPES = {
             EntityType.ARROW
     };
