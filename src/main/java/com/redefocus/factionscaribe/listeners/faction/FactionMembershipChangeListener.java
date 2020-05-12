@@ -10,7 +10,7 @@ import org.bukkit.event.Listener;
 /**
  * @author SrGutyerrez
  */
-public class FactionMembershipChangeListener {
+public class FactionMembershipChangeListener implements Listener {
     @EventHandler
     public void onJoin(EventFactionsMembershipChange event) {
         MPlayer mPlayer = event.getMPlayer();
