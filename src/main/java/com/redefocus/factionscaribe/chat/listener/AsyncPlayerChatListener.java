@@ -25,7 +25,7 @@ import java.util.stream.Collectors;
 /**
  * @author SrGutyerrez
  */
-public class AsyncPlayerChatListener implements Listener {
+public class AsyncPlayerChatListener {
     private static final String OBJECT_NAME = "CHAT_LOCAL";
 
     @EventHandler(ignoreCancelled = false, priority = EventPriority.MONITOR)
