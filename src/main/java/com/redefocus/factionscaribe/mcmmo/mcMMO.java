@@ -339,7 +339,7 @@ public class mcMMO {
     }
 
     public void debug(String message) {
-        FactionsCaribe.getInstance().getServer().getLogger().info("[Debug] " + message);
+//        FactionsCaribe.getInstance().getServer().getLogger().info("[Debug] " + message);
     }
 
     public static FormulaManager getFormulaManager() {
