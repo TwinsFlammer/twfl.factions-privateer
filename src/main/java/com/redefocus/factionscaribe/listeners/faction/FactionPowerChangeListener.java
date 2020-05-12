@@ -10,7 +10,7 @@ import org.bukkit.event.Listener;
 /**
  * @author SrGutyerrez
  */
-public class FactionPowerChangeListener {
+public class FactionPowerChangeListener implements Listener {
     @EventHandler
     public void onChange(EventFactionsPowerChange event) {
         MPlayer mPlayer = event.getMPlayer();
