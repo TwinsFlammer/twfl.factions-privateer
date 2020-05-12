@@ -10,7 +10,7 @@ import org.bukkit.event.player.PlayerQuitEvent;
 /**
  * @author SrGutyerrez
  */
-public class PlayerQuitListener implements Listener {
+public class PlayerQuitListener {
     @EventHandler
     public void onQuit(PlayerQuitEvent event) {
         Player player = event.getPlayer();
