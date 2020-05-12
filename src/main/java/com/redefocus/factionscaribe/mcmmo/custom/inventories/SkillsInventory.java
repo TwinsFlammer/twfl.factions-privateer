@@ -26,7 +26,7 @@ public class SkillsInventory /*extends CustomInventory implements Runnable*/ {
         McMMOPlayer mcPlayer = UserManager.getOfflinePlayer(user.getProfile().getName());
         this.mcMMOProfile = mcPlayer != null ? mcPlayer.getProfile() : null;
         this.skills = Maps.newHashMap(McMMORanksTask.getPlayerRank(user.getProfile().getName()));
-    }
+    }\
 
     @Override
     public void run() {
