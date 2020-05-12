@@ -18,8 +18,8 @@ import java.util.stream.Collectors;
 /**
  * @author SrGutyerrez
  */
-public class FactionChunkChangeListener implements Listener {
-//    @EventHandler
+public class FactionChunkChangeListener {
+    @EventHandler
     public void onChange(EventFactionsChunksChange event) {
         Set<PS> chunkSet = event.getChunks();
 
