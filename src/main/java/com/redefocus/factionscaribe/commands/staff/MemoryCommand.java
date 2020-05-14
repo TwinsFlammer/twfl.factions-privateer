@@ -60,7 +60,7 @@ public class MemoryCommand extends CustomCommand {
                 "§fVersão do servidor: §7" + server.getBukkitVersion(),
                 "",
                 "§fVersão do java: §7" + System.getProperty("java.version"),
-                "§fSistema operacional: §7" + this.OSname(),
+                "§fSistema operacional: §7" + this.OSName(),
                 "§fArquitetura do Sistema: §7" + this.OsArch(),
                 "§fVersão do sistema operacional: §7" + System.getProperty("os.version").split("-")[0],
                 "§fUso da memória: §7" + this.usedMemory() + "/" + this.totalMemory(),
@@ -70,11 +70,11 @@ public class MemoryCommand extends CustomCommand {
         });
     }
 
-    String OSname() {
+    String OSName() {
         return System.getProperty("os.name");
     }
 
-    String OSversion() {
+    String OSVersion() {
         return System.getProperty("os.version");
     }
 
@@ -83,12 +83,12 @@ public class MemoryCommand extends CustomCommand {
     }
 
     Long totalMemory() {
-        return Runtime.getRuntime().totalMemory() / 10240;
+        return Runtime.getRuntime().maxMemory() / 1048576L;
     }
 
     Long usedMemory() {
         Runtime runtime = Runtime.getRuntime();
 
-        return (runtime.totalMemory() - Runtime.getRuntime().freeMemory()) / 10240;
+        return (runtime.maxMemory() / 1048576L) - (Runtime.getRuntime().freeMemory() / 1048576L);
     }
 }
