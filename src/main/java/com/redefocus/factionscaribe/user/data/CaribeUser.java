@@ -22,11 +22,10 @@ import com.redefocus.factionscaribe.commands.player.tpa.data.TpaRequest;
 import com.redefocus.factionscaribe.economy.manager.EconomyManager;
 import com.redefocus.factionscaribe.home.dao.HomeDao;
 import com.redefocus.factionscaribe.home.data.Home;
+import com.redefocus.factionscaribe.kit.data.Kit;
 import com.redefocus.factionscaribe.mcmmo.api.McMMoAPI;
 import com.redefocus.factionscaribe.mcmmo.datatypes.player.McMMOPlayer;
-import com.redefocus.factionscaribe.mcmmo.datatypes.player.PlayerProfile;
 import com.redefocus.factionscaribe.mcmmo.datatypes.skills.SkillType;
-import com.redefocus.factionscaribe.mcmmo.mcMMO;
 import com.redefocus.factionscaribe.mcmmo.util.player.UserManager;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -101,6 +100,8 @@ public class CaribeUser extends SpigotUser {
     private Long lastTpaTime = 0L;
 
     private final HashMap<SkillType, Integer> skills = Maps.newHashMap();
+
+    private final HashMap<Integer, Long> collectedKits = Maps.newHashMap();
 
     public CaribeUser(User user) {
         super(user);
@@ -699,6 +700,10 @@ public class CaribeUser extends SpigotUser {
         return !faction.getId().equals(Factions.ID_NONE)
                 && !faction.getId().equals(Factions.ID_SAFEZONE)
                 && !faction.getId().equals(Factions.ID_WARZONE);
+    }
+
+    public Boolean hasCollectedKit(Kit kit) {
+        return this.collectedKits.containsKey(kit.getId());
     }
 
     public Boolean inCombat() {
