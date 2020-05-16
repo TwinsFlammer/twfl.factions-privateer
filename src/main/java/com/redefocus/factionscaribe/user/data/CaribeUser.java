@@ -449,18 +449,9 @@ public class CaribeUser extends SpigotUser {
         jsonObject.put("inventory", serializedInventory);
 
         if (armor != null) {
-//            jsonObject.put("armor", armorArray);
-
-            List<ItemStack> itemsA = Arrays.asList(
-                    new ItemStack(Material.BARRIER),
-                    new ItemStack(Material.STONE)
-            );
-
-            String serialized = ItemSerialize.toBase64List(itemsA);
-
-            System.out.println(">" + serialized);
-
-            List<ItemStack> itemsB = ItemSerialize.fromBase64List(serialized);
+            jsonObject.put("armor", ItemSerialize.toBase64List(
+                    Arrays.asList(armor)
+            ));
         }
 
         try (Jedis jedis = this.getRedis().getJedisPool().getResource()) {
@@ -653,9 +644,7 @@ public class CaribeUser extends SpigotUser {
 
             if (serializedItems == null) return null;
 
-            System.out.println(serializedItems);
-
-            List<ItemStack> armorContents = Lists.newArrayList();
+            List<ItemStack> armorContents = ItemSerialize.fromBase64List(serializedItems);
 
             ItemStack[] armor = new ItemStack[4];
 
