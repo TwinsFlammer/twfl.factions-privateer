@@ -1,7 +1,10 @@
 package com.redefocus.factionscaribe.listeners.player.inventory;
 
 import com.comphenix.protocol.PacketType;
+import com.comphenix.protocol.ProtocolLibrary;
+import com.comphenix.protocol.ProtocolManager;
 import com.comphenix.protocol.events.PacketAdapter;
+import com.comphenix.protocol.events.PacketContainer;
 import com.comphenix.protocol.events.PacketEvent;
 import com.redefocus.factionscaribe.FactionsCaribe;
 import com.redefocus.factionscaribe.manager.PacketManager;
@@ -19,6 +22,8 @@ import org.bukkit.event.player.PlayerPickupItemEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
+
+import java.lang.reflect.InvocationTargetException;
 
 /**
  * @author SrGutyerrez
@@ -86,13 +91,24 @@ public class PlayerInventoryListener implements Listener {
     }
 
     protected PacketAdapter getPacketAdapter() {
+        ProtocolManager protocolManager = ProtocolLibrary.getProtocolManager();
+
         return new PacketAdapter(
                 FactionsCaribe.getInstance(),
                 PacketType.Play.Server.WINDOW_ITEMS
         ) {
             @Override
             public void onPacketReceiving(PacketEvent event) {
+                PacketContainer packetContainer = protocolManager.createPacket(PacketType.Play.Server.TAB_COMPLETE);
+                Player player = event.getPlayer();
+
                 System.out.println("packet legal aeuaueaueuaueuea");
+
+                try {
+                    protocolManager.sendServerPacket(player, packetContainer);
+                } catch (InvocationTargetException exception) {
+                    exception.printStackTrace();
+                }
             }
         };
     }
