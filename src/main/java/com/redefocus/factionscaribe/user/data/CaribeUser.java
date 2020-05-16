@@ -441,8 +441,6 @@ public class CaribeUser extends SpigotUser {
     }
 
     public void setInventory(Inventory inventory, ItemStack... armor) {
-        System.out.println(inventory == null);
-
         JSONObject serializedInventory = InventorySerialize.toJsonObject(inventory);
 
         JSONObject jsonObject = new JSONObject();
@@ -615,6 +613,8 @@ public class CaribeUser extends SpigotUser {
                     this.getId().toString()
             );
 
+            System.out.println(serializedPlayerInventory);
+
             JSONObject jsonObject = (JSONObject) JSONValue.parse(serializedPlayerInventory);
 
             JSONObject serializedInventory = (JSONObject) jsonObject.get("inventory");
@@ -640,6 +640,8 @@ public class CaribeUser extends SpigotUser {
             JSONObject jsonObject = (JSONObject) JSONValue.parse(serializedPlayerInventory);
 
             String serializedArmorContents = (String) jsonObject.get("armor");
+
+            System.out.println(serializedArmorContents);
 
             List<ItemStack> armorContents = ItemSerialize.fromBase64List(serializedArmorContents);
 
