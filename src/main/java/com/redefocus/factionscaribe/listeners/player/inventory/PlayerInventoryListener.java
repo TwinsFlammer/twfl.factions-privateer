@@ -91,24 +91,13 @@ public class PlayerInventoryListener implements Listener {
     }
 
     protected PacketAdapter getPacketAdapter() {
-        ProtocolManager protocolManager = ProtocolLibrary.getProtocolManager();
-
         return new PacketAdapter(
                 FactionsCaribe.getInstance(),
                 PacketType.Play.Server.WINDOW_ITEMS
         ) {
             @Override
             public void onPacketReceiving(PacketEvent event) {
-                PacketContainer packetContainer = protocolManager.createPacket(PacketType.Play.Server.TAB_COMPLETE);
-                Player player = event.getPlayer();
-
                 System.out.println("packet legal aeuaueaueuaueuea");
-
-                try {
-                    protocolManager.sendServerPacket(player, packetContainer);
-                } catch (InvocationTargetException exception) {
-                    exception.printStackTrace();
-                }
             }
         };
     }
