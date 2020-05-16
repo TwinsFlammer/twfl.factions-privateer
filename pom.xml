@@ -45,6 +45,13 @@
             <artifactId>Factions</artifactId>
             <version>${massivecraft.version}</version>
         </dependency>
+        <!-- protocol lib -->
+        <dependency>
+            <groupId>com.comphenix.protocol</groupId>
+            <artifactId>ProtocolLib</artifactId>
+            <version>4.4.0</version>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
 
     <build>
