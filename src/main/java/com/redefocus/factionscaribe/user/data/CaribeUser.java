@@ -445,7 +445,7 @@ public class CaribeUser extends SpigotUser {
 
         JSONObject jsonObject = new JSONObject();
 
-        jsonObject.put("inventory", serializedInventory);
+        jsonObject.put("inventory", serializedInventory.toString());
 
         List<ItemStack> items = Arrays.stream(armor)
                 .filter(Objects::nonNull)
