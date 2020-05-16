@@ -441,6 +441,8 @@ public class CaribeUser extends SpigotUser {
     }
 
     public void setInventory(Inventory inventory, ItemStack... armor) {
+        System.out.println(inventory == null);
+
         JSONObject serializedInventory = InventorySerialize.toJsonObject(inventory);
 
         JSONObject jsonObject = new JSONObject();
