@@ -614,8 +614,6 @@ public class CaribeUser extends SpigotUser {
                     this.getId().toString()
             );
 
-            System.out.println(serializedPlayerInventory);
-
             JSONObject jsonObject = (JSONObject) JSONValue.parse(serializedPlayerInventory);
 
             JSONObject serializedInventory = (JSONObject) jsonObject.get("inventory");
