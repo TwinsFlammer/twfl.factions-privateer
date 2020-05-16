@@ -29,12 +29,6 @@ import java.lang.reflect.InvocationTargetException;
  * @author SrGutyerrez
  */
 public class PlayerInventoryListener implements Listener {
-    public PlayerInventoryListener() {
-        PacketManager.registerPackets(
-                this.getPacketAdapter()
-        );
-    }
-
     @EventHandler
     public void onClick(InventoryClickEvent event) {
         Player player = (Player) event.getWhoClicked();
@@ -88,18 +82,6 @@ public class PlayerInventoryListener implements Listener {
 
         if (armorContents != null)
             playerInventory.setArmorContents(armorContents);
-    }
-
-    protected PacketAdapter getPacketAdapter() {
-        return new PacketAdapter(
-                FactionsCaribe.getInstance(),
-                PacketType.Play.Server.WINDOW_ITEMS
-        ) {
-            @Override
-            public void onPacketReceiving(PacketEvent event) {
-                System.out.println("packet legal aeuaueaueuaueuea");
-            }
-        };
     }
 
     protected void updateInventory(Player player) {
