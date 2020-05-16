@@ -448,26 +448,20 @@ public class CaribeUser extends SpigotUser {
 
         jsonObject.put("inventory", serializedInventory);
 
-        JSONArray armorArray = new JSONArray();
+        if (armor != null) {
+//            jsonObject.put("armor", armorArray);
 
-        for (ItemStack itemStack : armor) {
-            if (itemStack == null) continue;
+            List<ItemStack> itemsA = Arrays.asList(
+                    new ItemStack(Material.BARRIER),
+                    new ItemStack(Material.STONE)
+            );
 
-            armorArray.add(ItemSerialize.toBase64(itemStack));
+            String serialized = ItemSerialize.toBase64List(itemsA);
+
+            System.out.println(">" + serialized);
+
+            List<ItemStack> itemsB = ItemSerialize.fromBase64List(serialized);
         }
-
-        jsonObject.put("armor", armorArray);
-
-        List<ItemStack> itemsA = Arrays.asList(
-                new ItemStack(Material.BARRIER),
-                new ItemStack(Material.STONE)
-        );
-
-        String serialized = ItemSerialize.toBase64List(itemsA);
-
-        System.out.println(">" + serialized);
-
-        List<ItemStack> itemsB = ItemSerialize.fromBase64List(serialized);
 
         try (Jedis jedis = this.getRedis().getJedisPool().getResource()) {
             jedis.hset(
@@ -655,19 +649,13 @@ public class CaribeUser extends SpigotUser {
 
             JSONObject jsonObject = (JSONObject) JSONValue.parse(serializedPlayerInventory);
 
-            JSONArray armorArray = (JSONArray) jsonObject.get("armor");
+            String serializedItems = (String) jsonObject.get("armor");
 
-            System.out.println(armorArray);
+            if (serializedItems == null) return null;
+
+            System.out.println(serializedItems);
 
             List<ItemStack> armorContents = Lists.newArrayList();
-
-            armorArray.forEach(o -> {
-                String serializedItem = (String) o;
-
-                ItemStack itemStack = ItemSerialize.fromBase64(serializedItem);
-
-                armorContents.add(itemStack);
-            });
 
             ItemStack[] armor = new ItemStack[4];
 
