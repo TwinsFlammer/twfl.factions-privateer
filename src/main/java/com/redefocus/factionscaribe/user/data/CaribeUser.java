@@ -653,28 +653,28 @@ public class CaribeUser extends SpigotUser {
                     .findFirst()
                     .orElse(null);
 
-            armor[0] = helmet;
+            armor[3] = helmet;
 
             ItemStack chestPlate = armorContents.stream()
                     .filter(itemStack -> itemStack.getType().name().contains("_CHESTPLATE"))
                     .findFirst()
                     .orElse(null);
 
-            armor[1] = chestPlate;
+            armor[2] = chestPlate;
 
             ItemStack leggings = armorContents.stream()
                     .filter(itemStack -> itemStack.getType().name().contains("_LEGGINGS"))
                     .findFirst()
                     .orElse(null);
 
-            armor[2] = leggings;
+            armor[1] = leggings;
 
             ItemStack boots = armorContents.stream()
                     .filter(itemStack -> itemStack.getType().name().contains("_BOOTS"))
                     .findFirst()
                     .orElse(null);
 
-            armor[3] = boots;
+            armor[0] = boots;
 
             return armor;
         } catch (JedisDataException exception) {
