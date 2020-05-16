@@ -451,6 +451,8 @@ public class CaribeUser extends SpigotUser {
         JSONArray armorArray = new JSONArray();
 
         for (ItemStack itemStack : armor) {
+            if (itemStack == null) continue;
+
             armorArray.add(ItemSerialize.toBase64(itemStack));
         }
 
