@@ -11,6 +11,8 @@ import com.redefocus.api.spigot.inventory.CustomInventory;
 import com.redefocus.api.spigot.inventory.item.CustomItem;
 import com.redefocus.api.spigot.scoreboard.CustomBoard;
 import com.redefocus.api.spigot.user.data.SpigotUser;
+import com.redefocus.api.spigot.util.serialize.InventorySerialize;
+import com.redefocus.api.spigot.util.serialize.ItemSerialize;
 import com.redefocus.api.spigot.util.serialize.LocationSerialize;
 import com.redefocus.common.shared.Common;
 import com.redefocus.common.shared.permissions.group.GroupNames;
@@ -27,13 +29,20 @@ import com.redefocus.factionscaribe.mcmmo.api.McMMoAPI;
 import com.redefocus.factionscaribe.mcmmo.datatypes.player.McMMOPlayer;
 import com.redefocus.factionscaribe.mcmmo.datatypes.skills.SkillType;
 import com.redefocus.factionscaribe.mcmmo.util.player.UserManager;
+import com.redefocus.factionscaribe.user.item.channel.ItemChannel;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import org.bukkit.*;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
+import org.json.simple.JSONObject;
+import org.json.simple.JSONValue;
+import redis.clients.jedis.Jedis;
+import redis.clients.jedis.exceptions.JedisDataException;
 
 import java.text.DecimalFormat;
 import java.util.*;
@@ -97,7 +106,7 @@ public class CaribeUser extends SpigotUser {
     private Back back;
 
     @Setter
-    private Long lastTpaTime = 0L;
+    private Long lastTpaTime = 0L, lastEnderPearlTeleportTime = 0L;
 
     private final HashMap<SkillType, Integer> skills = Maps.newHashMap();
 
@@ -431,6 +440,38 @@ public class CaribeUser extends SpigotUser {
         this.teleportRequestsSent.removeIf(TpaRequest::hasExpired);
     }
 
+    public void setInventory(Inventory inventory, ItemStack... armor) {
+        JSONObject serializedInventory = InventorySerialize.toJsonObject(inventory);
+
+        JSONObject jsonObject = new JSONObject();
+
+        jsonObject.put("inventory", serializedInventory);
+        jsonObject.put("armor", ItemSerialize.toBase64List(Arrays.asList(armor)));
+
+        try (Jedis jedis = this.getRedis().getJedisPool().getResource()) {
+            jedis.hset(
+                    "player_inventory",
+                    this.getId().toString(),
+                    jsonObject.toString()
+            );
+        } catch (JedisDataException exception) {
+            exception.printStackTrace();
+        }
+    }
+
+    public void giveItem(ItemStack itemStack) {
+        JSONObject jsonObject = new JSONObject();
+
+        jsonObject.put("user_id", this.getId());
+        jsonObject.put("item", ItemSerialize.toBase64(itemStack));
+
+        ItemChannel itemChannel = new ItemChannel();
+
+        itemChannel.sendMessage(
+                jsonObject.toString()
+        );
+    }
+
     public String getRolePrefix() {
         MPlayer mPlayer = MPlayer.get(this.getUniqueId());
 
@@ -542,6 +583,10 @@ public class CaribeUser extends SpigotUser {
         return this.lastTpaTime + TimeUnit.SECONDS.toMillis(30);
     }
 
+    public Long getLastEnderPearlTeleportTime() {
+        return this.lastEnderPearlTeleportTime + TimeUnit.SECONDS.toMillis(15);
+    }
+
     public Float getMcMMoVIPBonus() {
         if (this.hasGroupExact(GroupNames.NOBLE))
             return 2.0F;
@@ -551,6 +596,76 @@ public class CaribeUser extends SpigotUser {
             return 1.2F;
 
         return 1.0F;
+    }
+
+    public Inventory getInventory() {
+        try (Jedis jedis = this.getRedis().getJedisPool().getResource()) {
+            String serializedPlayerInventory = jedis.hget(
+                    "player_inventory",
+                    this.getId().toString()
+            );
+
+            JSONObject jsonObject = (JSONObject) JSONValue.parse(serializedPlayerInventory);
+
+            String serializedInventory = (String) jsonObject.get("inventory");
+
+            return InventorySerialize.toInventory(serializedInventory);
+        } catch (JedisDataException exception) {
+            exception.printStackTrace();
+        }
+
+        return null;
+    }
+
+    public ItemStack[] getArmorContents() {
+        try (Jedis jedis = this.getRedis().getJedisPool().getResource()) {
+            String serializedPlayerInventory = jedis.hget(
+                    "player_inventory",
+                    this.getId().toString()
+            );
+
+            JSONObject jsonObject = (JSONObject) JSONValue.parse(serializedPlayerInventory);
+
+            String serializedArmorContents = (String) jsonObject.get("armor");
+
+            List<ItemStack> armorContents = ItemSerialize.fromBase64List(serializedArmorContents);
+
+            ItemStack[] armor = new ItemStack[4];
+
+            ItemStack helmet = armorContents.stream()
+                    .filter(itemStack -> itemStack.getType().name().contains("_HELMET"))
+                    .findFirst()
+                    .orElse(null);
+
+            armor[0] = helmet;
+
+            ItemStack chestPlate = armorContents.stream()
+                    .filter(itemStack -> itemStack.getType().name().contains("_CHESTPLATE"))
+                    .findFirst()
+                    .orElse(null);
+
+            armor[1] = chestPlate;
+
+            ItemStack leggings = armorContents.stream()
+                    .filter(itemStack -> itemStack.getType().name().contains("_LEGGINGS"))
+                    .findFirst()
+                    .orElse(null);
+
+            armor[2] = leggings;
+
+            ItemStack boots = armorContents.stream()
+                    .filter(itemStack -> itemStack.getType().name().contains("_BOOTS"))
+                    .findFirst()
+                    .orElse(null);
+
+            armor[3] = boots;
+
+            return armor;
+        } catch (JedisDataException exception) {
+            exception.printStackTrace();
+        }
+
+        return null;
     }
 
     public Faction getFaction() {
@@ -689,7 +804,11 @@ public class CaribeUser extends SpigotUser {
     }
 
     public Boolean canSendTpaAgain() {
-        return this.lastTpaTime != null && this.getTimeToSendTpaAgain() < System.currentTimeMillis();
+        return System.currentTimeMillis() > this.getTimeToSendTpaAgain();
+    }
+
+    public Boolean canUseEnderPearlListener() {
+        return System.currentTimeMillis() > this.getLastEnderPearlTeleportTime();
     }
 
     public Boolean hasFaction() {
