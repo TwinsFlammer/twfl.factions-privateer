@@ -1,8 +1,5 @@
 package com.redefocus.factionscaribe.manager;
 
-import com.comphenix.protocol.ProtocolLibrary;
-import com.comphenix.protocol.ProtocolManager;
-import com.comphenix.protocol.events.PacketAdapter;
 import com.redefocus.api.spigot.commands.CustomCommand;
 import com.redefocus.api.spigot.commands.registry.CommandRegistry;
 import com.redefocus.common.shared.Common;
@@ -41,8 +38,6 @@ public class StartManager {
         new AbstractSpecialItemManager();
 
         new RunnableManager();
-
-        new PacketManager();
     }
 }
 
