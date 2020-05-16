@@ -1,12 +1,19 @@
 package com.redefocus.factionscaribe.security.listener;
 
 import org.bukkit.Material;
+import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.BlockBurnEvent;
+import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityCombustEvent;
+import org.bukkit.event.inventory.InventoryOpenEvent;
+import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.inventory.PrepareItemCraftEvent;
+import org.bukkit.event.player.PlayerEditBookEvent;
 import org.bukkit.inventory.CraftingInventory;
 import org.bukkit.inventory.Recipe;
 import org.spigotmc.event.entity.EntityMountEvent;
@@ -31,7 +38,10 @@ public class SecurityListener implements Listener {
             Material.PISTON_BASE,
             Material.PISTON_EXTENSION,
             Material.PISTON_MOVING_PIECE,
-            Material.PISTON_STICKY_BASE
+            Material.PISTON_STICKY_BASE,
+            Material.BOOK,
+            Material.BOOK_AND_QUILL,
+            Material.BOOKSHELF
     };
 
     private final EntityType[] BLOCKED_ENTITIES = {
@@ -44,6 +54,11 @@ public class SecurityListener implements Listener {
             EntityType.MINECART_TNT,
             EntityType.BOAT,
             EntityType.PIG
+    };
+
+    private final InventoryType[] BLOCKED_INVENTORIES = {
+            InventoryType.HOPPER,
+            InventoryType.MERCHANT
     };
 
     @EventHandler
@@ -63,7 +78,35 @@ public class SecurityListener implements Listener {
             event.setCancelled(true);
     }
 
+    @EventHandler
     public void onCombust(EntityCombustEvent event) {
         event.setCancelled(true);
+    }
+
+    @EventHandler
+    public void onOpen(InventoryOpenEvent event) {
+        event.setCancelled(true);
+    }
+
+    @EventHandler
+    public void onFire(BlockBurnEvent event) {
+        event.setCancelled(true);
+    }
+
+    @EventHandler
+    public void onEdit(PlayerEditBookEvent event) {
+        event.setCancelled(true);
+    }
+
+    @EventHandler
+    public void onPlace(BlockPlaceEvent event) {
+        Block block = event.getBlock();
+
+        if (block.getType() == Material.ITEM_FRAME) {
+            Player player = event.getPlayer();
+
+            if (player.getVehicle() != null)
+                event.setCancelled(true);
+        }
     }
 }
