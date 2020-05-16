@@ -607,6 +607,9 @@ public class CaribeUser extends SpigotUser {
 
     public Inventory getInventory() {
         try (Jedis jedis = this.getRedis().getJedisPool().getResource()) {
+            if (!jedis.hexists("player_inventory", this.getId().toString()))
+                return null;
+
             String serializedPlayerInventory = jedis.hget(
                     "player_inventory",
                     this.getId().toString()
@@ -626,6 +629,9 @@ public class CaribeUser extends SpigotUser {
 
     public ItemStack[] getArmorContents() {
         try (Jedis jedis = this.getRedis().getJedisPool().getResource()) {
+            if (!jedis.hexists("player_inventory", this.getId().toString()))
+                return null;
+
             String serializedPlayerInventory = jedis.hget(
                     "player_inventory",
                     this.getId().toString()
