@@ -100,8 +100,9 @@ public class PlayerInventoryListener implements Listener {
     protected void updateInventory(Player player) {
         CaribeUser caribeUser = FactionsCaribe.getInstance().getCaribeUserFactory().getUser(player.getUniqueId());
 
+        Inventory inventory = player.getInventory();
         PlayerInventory playerInventory = player.getInventory();
 
-        caribeUser.setInventory(playerInventory, playerInventory.getArmorContents());
+        caribeUser.setInventory(inventory, playerInventory.getArmorContents());
     }
 }
