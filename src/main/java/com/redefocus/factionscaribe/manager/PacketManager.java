@@ -5,14 +5,10 @@ import com.comphenix.protocol.ProtocolManager;
 import com.comphenix.protocol.events.PacketAdapter;
 
 public class PacketManager {
-    private static ProtocolManager protocolManager;
-
-    public PacketManager() {
-        PacketManager.protocolManager = ProtocolLibrary.getProtocolManager();
-    }
-
     public static void registerPackets(PacketAdapter... packetAdapters) {
+        ProtocolManager protocolManager = ProtocolLibrary.getProtocolManager();
+
         for (PacketAdapter packetAdapter : packetAdapters)
-            PacketManager.protocolManager.addPacketListener(packetAdapter);
+            protocolManager.addPacketListener(packetAdapter);
     }
 }
