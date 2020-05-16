@@ -456,6 +456,17 @@ public class CaribeUser extends SpigotUser {
 
         jsonObject.put("armor", armorArray);
 
+        List<ItemStack> itemsA = Arrays.asList(
+                new ItemStack(Material.BARRIER),
+                new ItemStack(Material.STONE)
+        );
+
+        String serialized = ItemSerialize.toBase64List(itemsA);
+
+        System.out.println(">" + serialized);
+
+        List<ItemStack> itemsB = ItemSerialize.fromBase64List(serialized);
+
         try (Jedis jedis = this.getRedis().getJedisPool().getResource()) {
             jedis.hset(
                     "player_inventory",
