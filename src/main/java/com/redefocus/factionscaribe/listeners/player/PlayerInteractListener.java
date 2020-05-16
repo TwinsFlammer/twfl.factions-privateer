@@ -23,6 +23,8 @@ public class PlayerInteractListener implements Listener {
 
         ItemStack itemStack = event.getItem();
 
+        if (itemStack == null) return;
+
         Action action = event.getAction();
 
         if (itemStack.getType() == Material.ENDER_PEARL && action.name().contains("RIGHT_")) {
