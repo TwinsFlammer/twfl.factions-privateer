@@ -445,7 +445,7 @@ public class CaribeUser extends SpigotUser {
 
         JSONObject jsonObject = new JSONObject();
 
-        jsonObject.put("inventory", serializedInventory.toString());
+        jsonObject.put("inventory", serializedInventory);
 
         List<ItemStack> items = Arrays.stream(armor)
                 .filter(Objects::nonNull)
@@ -612,7 +612,7 @@ public class CaribeUser extends SpigotUser {
 
             JSONObject jsonObject = (JSONObject) JSONValue.parse(serializedPlayerInventory);
 
-            String serializedInventory = (String) jsonObject.get("inventory");
+            JSONObject serializedInventory = (JSONObject) jsonObject.get("inventory");
 
             return InventorySerialize.toInventory(serializedInventory);
         } catch (JedisDataException exception) {
