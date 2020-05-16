@@ -39,6 +39,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 import redis.clients.jedis.Jedis;
@@ -447,11 +448,13 @@ public class CaribeUser extends SpigotUser {
 
         jsonObject.put("inventory", serializedInventory);
 
-        List<ItemStack> items = Arrays.stream(armor)
-                .filter(Objects::nonNull)
-                .collect(Collectors.toList());
+        JSONArray armorArray = new JSONArray();
 
-        jsonObject.put("armor", ItemSerialize.toBase64List(items));
+        for (ItemStack itemStack : armor) {
+            armorArray.add(ItemSerialize.toBase64(itemStack));
+        }
+
+        jsonObject.put("armor", armorArray);
 
         try (Jedis jedis = this.getRedis().getJedisPool().getResource()) {
             jedis.hset(
@@ -639,11 +642,19 @@ public class CaribeUser extends SpigotUser {
 
             JSONObject jsonObject = (JSONObject) JSONValue.parse(serializedPlayerInventory);
 
-            String serializedArmorContents = (String) jsonObject.get("armor");
+            JSONArray armorArray = (JSONArray) jsonObject.get("armor");
 
-            System.out.println(serializedArmorContents);
+            System.out.println(armorArray);
 
-            List<ItemStack> armorContents = ItemSerialize.fromBase64List(serializedArmorContents);
+            List<ItemStack> armorContents = Lists.newArrayList();
+
+            armorArray.forEach(o -> {
+                String serializedItem = (String) o;
+
+                ItemStack itemStack = ItemSerialize.fromBase64(serializedItem);
+
+                armorContents.add(itemStack);
+            });
 
             ItemStack[] armor = new ItemStack[4];
 
