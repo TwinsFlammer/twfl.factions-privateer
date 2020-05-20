@@ -1,8 +1,8 @@
 package net.shatteredlands.shatt.backup;
 
-import com.redefocus.factionscaribe.mcmmo.config.Config;
-import com.redefocus.factionscaribe.mcmmo.mcMMO;
-import com.redefocus.factionscaribe.FactionsCaribe;
+import br.com.twinsflammer.factionscaribe.mcmmo.config.Config;
+import br.com.twinsflammer.factionscaribe.mcmmo.mcMMO;
+import br.com.twinsflammer.factionscaribe.FactionsCaribe;
 
 import java.io.File;
 import java.io.FileInputStream;

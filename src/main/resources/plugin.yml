@@ -1,5 +1,5 @@
 name: Factions-Caribe
-main: com.redefocus.factionscaribe.FactionsCaribe
+main: br.com.twinsflammer.factionscaribe.FactionsCaribe
 version: 1.0-SNAPSHOT
 author: Gutyerrez
 depend:
