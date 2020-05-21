@@ -22,6 +22,10 @@ import java.util.concurrent.TimeUnit;
  * @author SrGutyerrez
  */
 public class StartManager {
+    protected final static String[] BLACKLISTED_PACKAGES = {
+            "br.com.twinsflammer.factionsprivateer.mcmmo"
+    };
+
     public StartManager() {
         new ListenerManager();
 
@@ -43,7 +47,7 @@ public class StartManager {
 
 class ListenerManager {
     ListenerManager() {
-        ClassGetter.getClassesForPackage(FactionsPrivateer.class).forEach(clazz -> {
+        ClassGetter.getClassesForPackage(FactionsPrivateer.class, StartManager.BLACKLISTED_PACKAGES).forEach(clazz -> {
             if (Listener.class.isAssignableFrom(clazz)) {
                 try {
                     Listener listener = (Listener) clazz.newInstance();
@@ -64,7 +68,7 @@ class ListenerManager {
 
 class CommandManager {
     CommandManager() {
-        ClassGetter.getClassesForPackage(FactionsPrivateer.class).forEach(clazz -> {
+        ClassGetter.getClassesForPackage(FactionsPrivateer.class, StartManager.BLACKLISTED_PACKAGES).forEach(clazz -> {
             if (CustomCommand.class.isAssignableFrom(clazz)) {
                 try {
                     CustomCommand customCommand = (CustomCommand) clazz.newInstance();
@@ -83,7 +87,7 @@ class CommandManager {
 
 class TableManager {
     TableManager() {
-        ClassGetter.getClassesForPackage(FactionsPrivateer.class).forEach(clazz -> {
+        ClassGetter.getClassesForPackage(FactionsPrivateer.class, StartManager.BLACKLISTED_PACKAGES).forEach(clazz -> {
             if (Table.class.isAssignableFrom(clazz)) {
                 try {
                     Table table = (Table) clazz.newInstance();
@@ -99,7 +103,7 @@ class TableManager {
 
 class ChannelManager {
     ChannelManager() {
-        ClassGetter.getClassesForPackage(FactionsPrivateer.class).forEach(clazz -> {
+        ClassGetter.getClassesForPackage(FactionsPrivateer.class, StartManager.BLACKLISTED_PACKAGES).forEach(clazz -> {
             if (Channel.class.isAssignableFrom(clazz)) {
                 try {
                     Channel channel = (Channel) clazz.newInstance();
@@ -115,7 +119,7 @@ class ChannelManager {
 
 class JedisMessageListenerManager {
     JedisMessageListenerManager() {
-        ClassGetter.getClassesForPackage(FactionsPrivateer.class).forEach(clazz -> {
+        ClassGetter.getClassesForPackage(FactionsPrivateer.class, StartManager.BLACKLISTED_PACKAGES).forEach(clazz -> {
             if (JedisMessageListener.class.isAssignableFrom(clazz)) {
                 try {
                     JedisMessageListener jedisMessageListener = (JedisMessageListener) clazz.newInstance();
@@ -131,7 +135,7 @@ class JedisMessageListenerManager {
 
 class AbstractSpecialItemManager {
     AbstractSpecialItemManager() {
-        ClassGetter.getClassesForPackage(FactionsPrivateer.class, "br.com.twinsflammer.factionsprivateer.mcmmo").forEach(clazz -> {
+        ClassGetter.getClassesForPackage(FactionsPrivateer.class, StartManager.BLACKLISTED_PACKAGES).forEach(clazz -> {
             if (AbstractSpecialItem.class.isAssignableFrom(clazz)) {
                 try {
                     AbstractSpecialItem abstractSpecialItem = (AbstractSpecialItem) clazz.newInstance();
