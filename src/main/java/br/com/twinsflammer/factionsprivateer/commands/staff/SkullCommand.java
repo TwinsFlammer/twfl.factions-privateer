@@ -31,6 +31,7 @@ public class SkullCommand extends CustomCommand {
             String owner = args[0];
 
             CustomItem customItem = new CustomItem(Material.SKULL_ITEM)
+                    .data(3)
                     .owner(owner)
                     .name("§eCabeça de " + owner);
 
