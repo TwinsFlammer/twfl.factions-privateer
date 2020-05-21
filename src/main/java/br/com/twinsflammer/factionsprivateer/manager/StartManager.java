@@ -8,6 +8,7 @@ import br.com.twinsflammer.common.shared.databases.redis.channel.data.Channel;
 import br.com.twinsflammer.common.shared.databases.redis.handler.JedisMessageListener;
 import br.com.twinsflammer.common.shared.util.ClassGetter;
 import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
+import br.com.twinsflammer.factionsprivateer.antilag.manager.AntiLagManager;
 import br.com.twinsflammer.factionsprivateer.combat.runnable.CombatSendActionBarRunnable;
 import br.com.twinsflammer.factionsprivateer.commands.player.tpa.runnable.TpaRequestRunnable;
 import br.com.twinsflammer.factionsprivateer.economy.manager.EconomyManager;
@@ -156,6 +157,7 @@ class DataManager {
     DataManager() {
         new EconomyManager();
         new SpecialItemManager();
+        new AntiLagManager();
     }
 }
 
