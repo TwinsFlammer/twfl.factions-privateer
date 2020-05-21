@@ -17,7 +17,6 @@ public class CheckDateTask extends BukkitRunnable {
 
         // Set up jokes
         new AprilTask().runTaskTimer(FactionsPrivateer.getInstance(), 1L * 60L * Misc.TICK_CONVERSION_FACTOR, 10L * 60L * Misc.TICK_CONVERSION_FACTOR);
-        mcMMO.getHolidayManager().registerAprilCommand();
 
         // Jokes deployed.
         this.cancel();
