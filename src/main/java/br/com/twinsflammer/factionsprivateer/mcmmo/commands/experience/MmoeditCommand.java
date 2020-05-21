@@ -1,0 +1,52 @@
+package br.com.twinsflammer.factionsprivateer.mcmmo.commands.experience;
+
+import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.player.PlayerProfile;
+import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.skills.SkillType;
+import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.skills.XPGainReason;
+import br.com.twinsflammer.factionsprivateer.mcmmo.locale.LocaleLoader;
+import br.com.twinsflammer.factionsprivateer.mcmmo.util.EventUtils;
+import br.com.twinsflammer.factionsprivateer.mcmmo.util.Permissions;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
+
+public class MmoeditCommand extends ExperienceCommand {
+
+    @Override
+    protected boolean permissionsCheckSelf(CommandSender sender) {
+        return Permissions.mmoedit(sender);
+    }
+
+    @Override
+    protected boolean permissionsCheckOthers(CommandSender sender) {
+        return Permissions.mmoeditOthers(sender);
+    }
+
+    @Override
+    protected void handleCommand(Player player, PlayerProfile profile, SkillType skill, int value) {
+        int skillLevel = profile.getSkillLevel(skill);
+        float xpRemoved = profile.getSkillXpLevelRaw(skill);
+
+        profile.modifySkill(skill, value);
+
+        if (player == null) {
+            profile.scheduleAsyncSave();
+            return;
+        }
+
+        if (value == skillLevel) {
+            return;
+        }
+
+        EventUtils.handleLevelChangeEvent(player, skill, value, xpRemoved, value > skillLevel, XPGainReason.COMMAND);
+    }
+
+    @Override
+    protected void handlePlayerMessageAll(Player player, int value) {
+        player.sendMessage(LocaleLoader.getString("Commands.mmoedit.AllSkills.1", value));
+    }
+
+    @Override
+    protected void handlePlayerMessageSkill(Player player, int value, SkillType skill) {
+        player.sendMessage(LocaleLoader.getString("Commands.mmoedit.Modified.1", skill.getName(), value));
+    }
+}

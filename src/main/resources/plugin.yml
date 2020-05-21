@@ -1,5 +1,5 @@
-name: Factions-Caribe
-main: br.com.twinsflammer.factionscaribe.FactionsCaribe
+name: Factions-Privateer
+main: br.com.twinsflammer.factionsprivateer.FactionsPrivateer
 version: 1.0-SNAPSHOT
 author: Gutyerrez
 depend:

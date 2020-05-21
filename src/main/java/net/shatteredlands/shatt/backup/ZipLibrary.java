@@ -1,8 +1,8 @@
 package net.shatteredlands.shatt.backup;
 
-import br.com.twinsflammer.factionscaribe.mcmmo.config.Config;
-import br.com.twinsflammer.factionscaribe.mcmmo.mcMMO;
-import br.com.twinsflammer.factionscaribe.FactionsCaribe;
+import br.com.twinsflammer.factionsprivateer.mcmmo.config.Config;
+import br.com.twinsflammer.factionsprivateer.mcmmo.mcMMO;
+import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -39,7 +39,7 @@ public class ZipLibrary {
                 mcMMO.p.debug("Created Backup Directory.");
             }
         } catch (Exception e) {
-            FactionsCaribe.getInstance().getLogger().severe(e.toString());
+            FactionsPrivateer.getInstance().getLogger().severe(e.toString());
         }
 
         // Generate the proper date for the backup filename
@@ -94,7 +94,7 @@ public class ZipLibrary {
 
     private static void zipDir(ZipOutputStream zos, String path, File dir) throws IOException {
         if (!dir.canRead()) {
-            FactionsCaribe.getInstance().getLogger().severe("Cannot read " + dir.getCanonicalPath() + " (Maybe because of permissions?)");
+            FactionsPrivateer.getInstance().getLogger().severe("Cannot read " + dir.getCanonicalPath() + " (Maybe because of permissions?)");
             return;
         }
 
@@ -112,7 +112,7 @@ public class ZipLibrary {
 
     private static void zipFile(ZipOutputStream zos, String path, File file) throws IOException {
         if (!file.canRead()) {
-            FactionsCaribe.getInstance().getLogger().severe("Cannot read " + file.getCanonicalPath() + "(File Permissions?)");
+            FactionsPrivateer.getInstance().getLogger().severe("Cannot read " + file.getCanonicalPath() + "(File Permissions?)");
             return;
         }
 
