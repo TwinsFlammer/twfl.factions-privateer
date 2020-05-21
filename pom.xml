@@ -18,7 +18,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <name>Factions-Caribe</name>
+    <name>Factions-Privateer</name>
 
     <dependencies>
         <!-- common -->
