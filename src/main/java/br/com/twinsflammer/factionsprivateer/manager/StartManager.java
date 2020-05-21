@@ -131,7 +131,7 @@ class JedisMessageListenerManager {
 
 class AbstractSpecialItemManager {
     AbstractSpecialItemManager() {
-        ClassGetter.getClassesForPackage(FactionsPrivateer.class, AbstractSpecialItem.class).forEach(clazz -> {
+        ClassGetter.getClassesForPackage(FactionsPrivateer.class, "br.com.twinsflammer.factionsprivateer.mcmmo").forEach(clazz -> {
             if (AbstractSpecialItem.class.isAssignableFrom(clazz)) {
                 try {
                     AbstractSpecialItem abstractSpecialItem = (AbstractSpecialItem) clazz.newInstance();
