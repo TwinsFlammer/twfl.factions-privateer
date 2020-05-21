@@ -1,6 +1,5 @@
 package br.com.twinsflammer.factionsprivateer.mcmmo.util;
 
-import br.com.twinsflammer.factionsprivateer.mcmmo.commands.skills.AprilCommand;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.player.UserManager;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.skills.ParticleEffectUtils;
 import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.skills.SkillType;
@@ -375,10 +374,5 @@ public final class HolidayManager {
         player.playSound(player.getLocation(), Sound.LEVEL_UP, Misc.LEVELUP_VOLUME, Misc.LEVELUP_PITCH);
         player.sendMessage(ChatColor.YELLOW + StringUtils.getCapitalized(fakeSkillType.toString()) + " skill increased by 1. Total (" + levelTotal + ")");
         ParticleEffectUtils.fireworkParticleShower(player, ALL_COLORS.get(Misc.getRandom().nextInt(ALL_COLORS.size())));
-    }
-
-    public void registerAprilCommand() {
-        PluginCommand command = FactionsPrivateer.getInstance().getCommand("mcfools");
-        command.setExecutor(new AprilCommand());
     }
 }
