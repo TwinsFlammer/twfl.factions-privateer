@@ -27,8 +27,6 @@ public class SkillsCommand extends CustomCommand {
         PrivateerUser privateerUser = FactionsPrivateer.getInstance().getPrivateerUserFactory().getUser(user.getId());
         Player player = (Player) commandSender;
 
-        commandSender.sendMessage("Opa");
-
         if (args.length == 0) {
             player.openInventory(privateerUser.getSkillsInventory());
         } else {
