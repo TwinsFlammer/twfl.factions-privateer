@@ -279,7 +279,7 @@ public class PrivateerUser extends SpigotUser {
     private String getFactionAtName(Faction factionAt) {
         World world = this.getWorld();
 
-        String factionName = "§6§lREDE FOCUS";
+        String factionName = "§c§lTWINS FLAMMER";
 
         if (factionAt != null)
             switch (factionAt.getId()) {
