@@ -55,18 +55,18 @@ import java.util.stream.Collectors;
 public class PrivateerUser extends SpigotUser {
     protected final Integer COMBAT_DURATION = 15;
     private final String[] SCOREBOARD_LINES = {
-            "§6  " + Common.SERVER_URL,
+            "§c  " + Common.SERVER_URL,
             "§4",
-            "§f Cash: §e%s",
-            "§f Coins: §e%s",
+            "§f Cash: §b%s",
+            "§f Coins: §a%s",
             "§3",
             "§f   Terras: §e%s",
             "§f   Membros: §e%s/%s",
             "§f   Poder: §e%s/%s",
             "§6 [%s] %s",
             "§2",
-            "§f Poder: §e%s",
-            "§f Nível: §e%s",
+            "§f Poder: §a%s",
+            "§f Nível: §a%s",
             "§f KDR: §e%s",
             "§1"
     };
