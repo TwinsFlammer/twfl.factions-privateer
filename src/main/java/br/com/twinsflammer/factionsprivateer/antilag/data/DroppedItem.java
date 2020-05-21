@@ -24,7 +24,7 @@ public class DroppedItem {
         this.item.setCustomName(
                 String.format(
                         "§cRemovendo em %s...",
-                        TimeFormatter.formatMinimized(this.getRemainingTime())
+                        TimeFormatter.formatMinimized(this.getRemainingTime() - System.currentTimeMillis())
                 )
         );
     }
