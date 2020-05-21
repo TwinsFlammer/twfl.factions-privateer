@@ -1,6 +1,8 @@
 package br.com.twinsflammer.factionsprivateer.user.data;
 
 import br.com.twinsflammer.factionsprivateer.mcmmo.api.McMMoAPI;
+import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.player.PlayerProfile;
+import br.com.twinsflammer.factionsprivateer.mcmmo.mcMMO;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.player.UserManager;
 import br.com.twinsflammer.factionsprivateer.user.item.channel.ItemChannel;
 import com.google.common.collect.Lists;
@@ -63,7 +65,7 @@ public class PrivateerUser extends SpigotUser {
             "§f   Terras: §e%s",
             "§f   Membros: §e%s/%s",
             "§f   Poder: §e%s/%s",
-            "§6 [%s] %s",
+            "§4 [%s] %s",
             "§2",
             "§f Poder: §a%s",
             "§f Nível: §a%s",
@@ -161,9 +163,9 @@ public class PrivateerUser extends SpigotUser {
         try {
             McMMOPlayer mcMMOPlayer = UserManager.getPlayer(this.getDisplayName());
 
-//            PlayerProfile firstPositionInRankProfile = mcMMO.getPlayerProfiles().get(0);
+            PlayerProfile firstPositionInRankProfile = mcMMO.getPlayerProfiles().get(0);
 
-            PrivateerUser firstPositionInRank = /*firstPositionInRankProfile == null ? null : FactionsCaribe.getInstance().getCaribeUserFactory().getUser(firstPositionInRankProfile.getUniqueId())*/null;
+            PrivateerUser firstPositionInRank = firstPositionInRankProfile == null ? null : FactionsPrivateer.getInstance().getPrivateerUserFactory().getUser(firstPositionInRankProfile.getUniqueId());
 
             CustomItem skull = new CustomItem(Material.SKULL_ITEM)
                     .data(3)
@@ -198,11 +200,11 @@ public class PrivateerUser extends SpigotUser {
                 Integer slot = displaySkill.getSlot(), data = displaySkill.getData();
                 Material material = displaySkill.getMaterial();
 
-//                PlayerProfile firstPositionInSkillTypeRankProfile = mcMMO.getTopSkillsPlayerProfile().get(skillType);
+                PlayerProfile firstPositionInSkillTypeRankProfile = mcMMO.getTopSkillsPlayerProfile().get(skillType);
 
-                PrivateerUser firstPositionInSkillTypeRank = /*firstPositionInSkillTypeRankProfile == null ? null : FactionsCaribe.getInstance().getCaribeUserFactory().getUser(firstPositionInSkillTypeRankProfile.getUniqueId())*/null;
+                PrivateerUser firstPositionInSkillTypeRank = firstPositionInSkillTypeRankProfile == null ? null : FactionsPrivateer.getInstance().getPrivateerUserFactory().getUser(firstPositionInSkillTypeRankProfile.getUniqueId());
 
-                Integer position = 1/*this.skills.get(skillType)*/;
+                Integer position = this.skills.get(skillType);
 
                 CustomItem customItem = new CustomItem(material)
                         .data(data)
