@@ -6,7 +6,7 @@ import br.com.twinsflammer.factionscaribe.mcmmo.mcMMO;
 import br.com.twinsflammer.factionscaribe.user.data.CaribeUser;
 import br.com.twinsflammer.factionscaribe.user.factory.CaribeUserFactory;
 import br.com.twinsflammer.api.shared.API;
-import br.com.twinsflammer.api.spigot.FocusPlugin;
+import br.com.twinsflammer.api.spigot.TwinsPlugin;
 import br.com.twinsflammer.common.shared.permissions.user.manager.UserManager;
 import lombok.Getter;
 
@@ -15,7 +15,7 @@ import java.util.List;
 /**
  * @author SrGutyerrez
  */
-public class FactionsCaribe extends FocusPlugin {
+public class FactionsCaribe extends TwinsPlugin {
     @Getter
     private static FactionsCaribe instance;
 
