@@ -15,6 +15,7 @@ import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.inventory.PrepareItemCraftEvent;
 import org.bukkit.event.player.PlayerEditBookEvent;
 import org.bukkit.inventory.CraftingInventory;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.Recipe;
 import org.spigotmc.event.entity.EntityMountEvent;
 
@@ -85,7 +86,10 @@ public class SecurityListener implements Listener {
 
     @EventHandler
     public void onOpen(InventoryOpenEvent event) {
-        event.setCancelled(true);
+        Inventory inventory = event.getInventory();
+
+        if (Arrays.asList(this.BLOCKED_INVENTORIES).contains(inventory.getType()))
+            event.setCancelled(true);
     }
 
     @EventHandler
