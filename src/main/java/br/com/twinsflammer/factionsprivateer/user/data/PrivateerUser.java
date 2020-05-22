@@ -496,9 +496,17 @@ public class PrivateerUser extends SpigotUser {
         Bukkit.getOnlinePlayers().forEach(player1 -> {
             PrivateerUser privateerUser1 = FactionsPrivateer.getInstance().getPrivateerUserFactory().getUser(player1.getUniqueId());
 
-            if (this.isInvisible() && !privateerUser1.isStaff())
-                player1.hidePlayer(player);
-            else player1.showPlayer(player);
+            if (this.isStaff()) {
+                if (this.isInvisible() && !privateerUser1.isStaff())
+                    player1.hidePlayer(player);
+                else player1.showPlayer(player);
+            }
+
+            if (privateerUser1.isStaff()) {
+                if (privateerUser1.isInvisible() && !this.isStaff())
+                    player.hidePlayer(player1);
+                else player.showPlayer(player1);
+            }
         });
     }
 
@@ -508,8 +516,8 @@ public class PrivateerUser extends SpigotUser {
         if (this.hasLight())
             player.addPotionEffect(new PotionEffect(
                     PotionEffectType.NIGHT_VISION,
-                    9999,
-                    1
+                    99999,
+                    0
             ));
         else {
             player.removePotionEffect(PotionEffectType.NIGHT_VISION);
