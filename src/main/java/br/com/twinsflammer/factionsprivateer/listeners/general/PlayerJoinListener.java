@@ -19,16 +19,6 @@ public class PlayerJoinListener implements Listener {
 
         privateerUser.setupScoreboard();
 
-        if (!privateerUser.isStaff())
-            FactionsPrivateer.getInstance().getCaribeUsers()
-                    .stream()
-                    .filter(PrivateerUser::isInvisible)
-                    .forEach(caribeUser1 -> {
-                        Player player1 = caribeUser1.getPlayer();
-
-                        if (player1 != null) {
-                            player.hidePlayer(player1);
-                        }
-                    });
+        privateerUser.toggleAllMods();
     }
 }
