@@ -3,9 +3,9 @@ package br.com.twinsflammer.factionsprivateer.mcmmo.api;
 import br.com.twinsflammer.factionsprivateer.mcmmo.chat.ChatManager;
 import br.com.twinsflammer.factionsprivateer.mcmmo.chat.ChatManagerFactory;
 import br.com.twinsflammer.factionsprivateer.mcmmo.chat.PartyChatManager;
+import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.chat.ChatMode;
 import br.com.twinsflammer.factionsprivateer.mcmmo.party.PartyManager;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.player.UserManager;
-import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.chat.ChatMode;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 

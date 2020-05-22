@@ -1,8 +1,8 @@
 package br.com.twinsflammer.factionsprivateer.mcmmo.config.skills.repair;
 
-import br.com.twinsflammer.factionsprivateer.mcmmo.skills.repair.repairables.Repairable;
-import br.com.twinsflammer.factionsprivateer.mcmmo.mcMMO;
 import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
+import br.com.twinsflammer.factionsprivateer.mcmmo.mcMMO;
+import br.com.twinsflammer.factionsprivateer.mcmmo.skills.repair.repairables.Repairable;
 
 import java.io.File;
 import java.util.ArrayList;

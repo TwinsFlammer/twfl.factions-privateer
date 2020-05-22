@@ -1,9 +1,9 @@
 package br.com.twinsflammer.factionsprivateer.home.component;
 
-import br.com.twinsflammer.factionsprivateer.user.data.PrivateerUser;
-import com.massivecraft.factions.entity.Faction;
 import br.com.twinsflammer.api.spigot.util.jsontext.data.JSONText;
 import br.com.twinsflammer.factionsprivateer.home.data.Home;
+import br.com.twinsflammer.factionsprivateer.user.data.PrivateerUser;
+import com.massivecraft.factions.entity.Faction;
 import org.bukkit.entity.Player;
 
 import java.util.List;

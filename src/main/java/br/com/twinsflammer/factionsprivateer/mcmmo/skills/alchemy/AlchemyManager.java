@@ -8,9 +8,9 @@ import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.skills.XPGainReason
 import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.skills.alchemy.PotionStage;
 import br.com.twinsflammer.factionsprivateer.mcmmo.skills.SkillManager;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.StringUtils;
-import java.util.List;
-
 import org.bukkit.inventory.ItemStack;
+
+import java.util.List;
 
 public class AlchemyManager extends SkillManager {
 

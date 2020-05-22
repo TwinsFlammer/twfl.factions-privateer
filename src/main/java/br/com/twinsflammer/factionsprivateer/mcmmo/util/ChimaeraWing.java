@@ -1,17 +1,13 @@
 package br.com.twinsflammer.factionsprivateer.mcmmo.util;
 
+import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
 import br.com.twinsflammer.factionsprivateer.mcmmo.config.Config;
+import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.player.McMMOPlayer;
 import br.com.twinsflammer.factionsprivateer.mcmmo.locale.LocaleLoader;
+import br.com.twinsflammer.factionsprivateer.mcmmo.runnables.items.ChimaeraWingWarmup;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.player.UserManager;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.skills.CombatUtils;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.skills.SkillUtils;
-import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.player.McMMOPlayer;
-import br.com.twinsflammer.factionsprivateer.mcmmo.runnables.items.ChimaeraWingWarmup;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -21,6 +17,9 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapelessRecipe;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.util.Vector;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public final class ChimaeraWing {
 

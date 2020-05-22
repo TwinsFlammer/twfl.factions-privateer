@@ -1,19 +1,15 @@
 package br.com.twinsflammer.factionsprivateer.mcmmo.runnables.backups;
 
+import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
 import br.com.twinsflammer.factionsprivateer.mcmmo.config.Config;
 import br.com.twinsflammer.factionsprivateer.mcmmo.mcMMO;
+import org.bukkit.scheduler.BukkitRunnable;
+
 import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
-
-import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
-import org.bukkit.scheduler.BukkitRunnable;
 
 public class CleanBackupsTask extends BukkitRunnable {
 

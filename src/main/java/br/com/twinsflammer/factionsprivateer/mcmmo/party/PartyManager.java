@@ -1,9 +1,7 @@
 package br.com.twinsflammer.factionsprivateer.mcmmo.party;
 
+import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
 import br.com.twinsflammer.factionsprivateer.mcmmo.config.Config;
-import br.com.twinsflammer.factionsprivateer.mcmmo.events.party.McMMOPartyAllianceChangeEvent;
-import br.com.twinsflammer.factionsprivateer.mcmmo.events.party.McMMOPartyChangeEvent;
-import br.com.twinsflammer.factionsprivateer.mcmmo.locale.LocaleLoader;
 import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.chat.ChatMode;
 import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.database.UpgradeType;
 import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.party.ItemShareType;
@@ -12,21 +10,23 @@ import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.party.PartyLeader;
 import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.party.ShareMode;
 import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.player.McMMOPlayer;
 import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.player.PlayerProfile;
+import br.com.twinsflammer.factionsprivateer.mcmmo.events.party.McMMOPartyAllianceChangeEvent;
+import br.com.twinsflammer.factionsprivateer.mcmmo.events.party.McMMOPartyChangeEvent;
+import br.com.twinsflammer.factionsprivateer.mcmmo.locale.LocaleLoader;
 import br.com.twinsflammer.factionsprivateer.mcmmo.mcMMO;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.Misc;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.player.UserManager;
+import org.bukkit.OfflinePlayer;
+import org.bukkit.Sound;
+import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.Player;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.UUID;
-
-import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
-import org.bukkit.OfflinePlayer;
-import org.bukkit.Sound;
-import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.entity.Player;
 
 public final class PartyManager {
 

@@ -1,16 +1,15 @@
 package br.com.twinsflammer.factionsprivateer.mcmmo.runnables.party;
 
 import br.com.twinsflammer.factionsprivateer.mcmmo.config.Config;
-import br.com.twinsflammer.factionsprivateer.mcmmo.locale.LocaleLoader;
 import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.party.Party;
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
+import br.com.twinsflammer.factionsprivateer.mcmmo.locale.LocaleLoader;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class PartyChatTask extends BukkitRunnable {
 

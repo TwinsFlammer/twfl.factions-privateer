@@ -1,20 +1,20 @@
 package br.com.twinsflammer.factionsprivateer.mcmmo.config.skills.salvage;
 
-import br.com.twinsflammer.factionsprivateer.mcmmo.skills.salvage.salvageables.Salvageable;
-import br.com.twinsflammer.factionsprivateer.mcmmo.skills.salvage.salvageables.SalvageableFactory;
+import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
 import br.com.twinsflammer.factionsprivateer.mcmmo.config.ConfigLoader;
 import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.skills.ItemType;
 import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.skills.MaterialType;
+import br.com.twinsflammer.factionsprivateer.mcmmo.skills.salvage.salvageables.Salvageable;
+import br.com.twinsflammer.factionsprivateer.mcmmo.skills.salvage.salvageables.SalvageableFactory;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.ItemUtils;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.skills.SkillUtils;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-
-import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
 import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.inventory.ItemStack;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 public class SalvageConfig extends ConfigLoader {
 

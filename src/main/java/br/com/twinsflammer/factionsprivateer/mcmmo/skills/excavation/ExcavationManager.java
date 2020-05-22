@@ -10,10 +10,10 @@ import br.com.twinsflammer.factionsprivateer.mcmmo.skills.SkillManager;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.Misc;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.Permissions;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.skills.SkillUtils;
-import java.util.List;
-
 import org.bukkit.Location;
 import org.bukkit.block.BlockState;
+
+import java.util.List;
 
 public class ExcavationManager extends SkillManager {
 

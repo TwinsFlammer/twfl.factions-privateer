@@ -1,9 +1,9 @@
 package br.com.twinsflammer.factionsprivateer.kit.inventory;
 
-import br.com.twinsflammer.factionsprivateer.user.data.PrivateerUser;
 import br.com.twinsflammer.api.spigot.inventory.CustomPaginateInventory;
 import br.com.twinsflammer.api.spigot.inventory.item.CustomItem;
 import br.com.twinsflammer.factionsprivateer.kit.data.Kit;
+import br.com.twinsflammer.factionsprivateer.user.data.PrivateerUser;
 
 /**
  * @author SrGutyerrez

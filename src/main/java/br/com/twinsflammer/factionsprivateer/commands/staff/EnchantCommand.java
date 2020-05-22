@@ -1,11 +1,11 @@
 package br.com.twinsflammer.factionsprivateer.commands.staff;
 
-import br.com.twinsflammer.factionsprivateer.util.Enchantments;
 import br.com.twinsflammer.api.spigot.commands.CustomCommand;
 import br.com.twinsflammer.api.spigot.commands.enums.CommandRestriction;
 import br.com.twinsflammer.common.shared.permissions.group.GroupNames;
 import br.com.twinsflammer.common.shared.permissions.user.data.User;
 import br.com.twinsflammer.common.shared.util.Helper;
+import br.com.twinsflammer.factionsprivateer.util.Enchantments;
 import org.bukkit.Material;
 import org.bukkit.command.CommandSender;
 import org.bukkit.enchantments.Enchantment;

@@ -1,10 +1,12 @@
 package br.com.twinsflammer.factionsprivateer.mcmmo.listeners;
 
-import java.util.List;
-
 import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
 import br.com.twinsflammer.factionsprivateer.mcmmo.config.Config;
 import br.com.twinsflammer.factionsprivateer.mcmmo.config.HiddenConfig;
+import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.player.McMMOPlayer;
+import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.skills.AbilityType;
+import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.skills.SkillType;
+import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.skills.ToolType;
 import br.com.twinsflammer.factionsprivateer.mcmmo.events.fake.FakeBlockBreakEvent;
 import br.com.twinsflammer.factionsprivateer.mcmmo.events.fake.FakeBlockDamageEvent;
 import br.com.twinsflammer.factionsprivateer.mcmmo.mcMMO;
@@ -17,6 +19,7 @@ import br.com.twinsflammer.factionsprivateer.mcmmo.skills.repair.Repair;
 import br.com.twinsflammer.factionsprivateer.mcmmo.skills.salvage.Salvage;
 import br.com.twinsflammer.factionsprivateer.mcmmo.skills.smelting.SmeltingManager;
 import br.com.twinsflammer.factionsprivateer.mcmmo.skills.woodcutting.WoodcuttingManager;
+import br.com.twinsflammer.factionsprivateer.mcmmo.util.*;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.player.UserManager;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.skills.SkillUtils;
 import org.bukkit.GameMode;
@@ -33,25 +36,13 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
-import org.bukkit.event.block.BlockBreakEvent;
-import org.bukkit.event.block.BlockDamageEvent;
-import org.bukkit.event.block.BlockPistonExtendEvent;
-import org.bukkit.event.block.BlockPistonRetractEvent;
-import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.block.*;
 import org.bukkit.event.entity.EntityChangeBlockEvent;
 import org.bukkit.inventory.ItemStack;
-
-import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.player.McMMOPlayer;
-import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.skills.AbilityType;
-import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.skills.SkillType;
-import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.skills.ToolType;
-import br.com.twinsflammer.factionsprivateer.mcmmo.util.BlockUtils;
-import br.com.twinsflammer.factionsprivateer.mcmmo.util.EventUtils;
-import br.com.twinsflammer.factionsprivateer.mcmmo.util.ItemUtils;
-import br.com.twinsflammer.factionsprivateer.mcmmo.util.Misc;
-import br.com.twinsflammer.factionsprivateer.mcmmo.util.Permissions;
 import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.metadata.MetadataValue;
+
+import java.util.List;
 
 public class BlockListener implements Listener {
 

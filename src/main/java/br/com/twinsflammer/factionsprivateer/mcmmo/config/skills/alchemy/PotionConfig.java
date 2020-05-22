@@ -1,20 +1,20 @@
 package br.com.twinsflammer.factionsprivateer.mcmmo.config.skills.alchemy;
 
+import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
 import br.com.twinsflammer.factionsprivateer.mcmmo.config.ConfigLoader;
 import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.skills.alchemy.AlchemyPotion;
 import br.com.twinsflammer.factionsprivateer.mcmmo.mcMMO;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class PotionConfig extends ConfigLoader {
 

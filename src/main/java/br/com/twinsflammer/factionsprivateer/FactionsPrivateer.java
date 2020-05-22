@@ -1,13 +1,13 @@
 package br.com.twinsflammer.factionsprivateer;
 
+import br.com.twinsflammer.api.shared.API;
+import br.com.twinsflammer.api.spigot.TwinsPlugin;
+import br.com.twinsflammer.common.shared.permissions.user.manager.UserManager;
 import br.com.twinsflammer.factionsprivateer.cash.event.CashChangeEvent;
 import br.com.twinsflammer.factionsprivateer.manager.StartManager;
 import br.com.twinsflammer.factionsprivateer.mcmmo.mcMMO;
 import br.com.twinsflammer.factionsprivateer.user.data.PrivateerUser;
 import br.com.twinsflammer.factionsprivateer.user.factory.PrivateerUserFactory;
-import br.com.twinsflammer.api.shared.API;
-import br.com.twinsflammer.api.spigot.TwinsPlugin;
-import br.com.twinsflammer.common.shared.permissions.user.manager.UserManager;
 import lombok.Getter;
 
 import java.util.List;

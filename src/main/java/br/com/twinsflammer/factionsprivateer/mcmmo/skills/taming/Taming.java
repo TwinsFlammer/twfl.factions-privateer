@@ -4,11 +4,7 @@ import br.com.twinsflammer.factionsprivateer.mcmmo.config.AdvancedConfig;
 import br.com.twinsflammer.factionsprivateer.mcmmo.config.experience.ExperienceConfig;
 import br.com.twinsflammer.factionsprivateer.mcmmo.locale.LocaleLoader;
 import org.bukkit.EntityEffect;
-import org.bukkit.entity.AnimalTamer;
-import org.bukkit.entity.EntityType;
-import org.bukkit.entity.Player;
-import org.bukkit.entity.Tameable;
-import org.bukkit.entity.Wolf;
+import org.bukkit.entity.*;
 
 public class Taming {
 

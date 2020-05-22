@@ -1,7 +1,7 @@
 package br.com.twinsflammer.factionsprivateer.mcmmo.runnables;
 
-import br.com.twinsflammer.factionsprivateer.mcmmo.mcMMO;
 import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
+import br.com.twinsflammer.factionsprivateer.mcmmo.mcMMO;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.scheduler.BukkitRunnable;
 

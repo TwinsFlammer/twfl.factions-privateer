@@ -1,10 +1,10 @@
 package br.com.twinsflammer.factionsprivateer.listeners.player;
 
-import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
-import br.com.twinsflammer.factionsprivateer.user.data.PrivateerUser;
 import br.com.twinsflammer.api.spigot.SpigotAPI;
 import br.com.twinsflammer.api.spigot.spawn.manager.SpawnManager;
 import br.com.twinsflammer.api.spigot.teleport.data.TeleportRequest;
+import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
+import br.com.twinsflammer.factionsprivateer.user.data.PrivateerUser;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;

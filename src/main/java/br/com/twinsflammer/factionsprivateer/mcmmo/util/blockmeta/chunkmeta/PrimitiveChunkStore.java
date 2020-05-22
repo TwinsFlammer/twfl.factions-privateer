@@ -1,13 +1,13 @@
 package br.com.twinsflammer.factionsprivateer.mcmmo.util.blockmeta.chunkmeta;
 
+import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.blockmeta.ChunkletStore;
+import org.bukkit.World;
+
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.UUID;
-
-import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
-import org.bukkit.World;
 
 public class PrimitiveChunkStore implements ChunkStore {
 

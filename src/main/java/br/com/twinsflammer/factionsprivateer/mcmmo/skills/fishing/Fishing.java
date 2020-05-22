@@ -4,16 +4,16 @@ import br.com.twinsflammer.factionsprivateer.mcmmo.config.AdvancedConfig;
 import br.com.twinsflammer.factionsprivateer.mcmmo.config.treasure.TreasureConfig;
 import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.treasure.ShakeTreasure;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.Misc;
-import java.util.EnumSet;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Set;
-
 import org.bukkit.Material;
 import org.bukkit.block.Biome;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.inventory.ItemStack;
+
+import java.util.EnumSet;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Set;
 
 public final class Fishing {
 

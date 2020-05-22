@@ -1,10 +1,10 @@
 package br.com.twinsflammer.factionsprivateer.mcmmo.skills.archery;
 
-import java.util.UUID;
-
 import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.scheduler.BukkitRunnable;
+
+import java.util.UUID;
 
 public class TrackedEntity extends BukkitRunnable {
 

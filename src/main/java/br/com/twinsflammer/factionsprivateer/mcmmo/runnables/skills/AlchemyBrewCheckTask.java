@@ -2,13 +2,13 @@ package br.com.twinsflammer.factionsprivateer.mcmmo.runnables.skills;
 
 import br.com.twinsflammer.factionsprivateer.mcmmo.skills.alchemy.Alchemy;
 import br.com.twinsflammer.factionsprivateer.mcmmo.skills.alchemy.AlchemyPotionBrewer;
-
-import java.util.Arrays;
 import org.bukkit.Location;
 import org.bukkit.block.BrewingStand;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
+
+import java.util.Arrays;
 
 public class AlchemyBrewCheckTask extends BukkitRunnable {
 

@@ -1,9 +1,9 @@
 package br.com.twinsflammer.factionsprivateer.specialitem.manager;
 
-import com.google.common.collect.Lists;
 import br.com.twinsflammer.api.spigot.TwinsPlugin;
 import br.com.twinsflammer.common.shared.util.Printer;
 import br.com.twinsflammer.factionsprivateer.specialitem.data.AbstractSpecialItem;
+import com.google.common.collect.Lists;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.List;

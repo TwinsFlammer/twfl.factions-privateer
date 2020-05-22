@@ -2,6 +2,7 @@ package br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.experience;
 
 import br.com.twinsflammer.factionsprivateer.mcmmo.config.experience.ExperienceConfig;
 import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.skills.SkillType;
+
 import java.util.concurrent.Delayed;
 import java.util.concurrent.TimeUnit;
 

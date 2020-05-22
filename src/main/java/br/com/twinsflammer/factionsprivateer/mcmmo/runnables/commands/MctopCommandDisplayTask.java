@@ -1,18 +1,17 @@
 package br.com.twinsflammer.factionsprivateer.mcmmo.runnables.commands;
 
 import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
+import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.database.PlayerStat;
+import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.skills.SkillType;
 import br.com.twinsflammer.factionsprivateer.mcmmo.locale.LocaleLoader;
 import br.com.twinsflammer.factionsprivateer.mcmmo.mcMMO;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.scoreboards.ScoreboardManager;
-import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.database.PlayerStat;
-import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.skills.SkillType;
-
-import java.util.List;
-
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
+
+import java.util.List;
 
 /**
  * Display the results of {@link MctopCommandAsyncTask} to the sender.

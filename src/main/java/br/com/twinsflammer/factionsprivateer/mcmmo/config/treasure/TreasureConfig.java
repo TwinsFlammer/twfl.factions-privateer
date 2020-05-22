@@ -1,18 +1,9 @@
 package br.com.twinsflammer.factionsprivateer.mcmmo.config.treasure;
 
-import br.com.twinsflammer.factionsprivateer.mcmmo.config.ConfigLoader;
-import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.treasure.EnchantmentTreasure;
-import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.treasure.ExcavationTreasure;
-import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.treasure.FishingTreasure;
-import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.treasure.HylianTreasure;
-import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.treasure.Rarity;
-import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.treasure.ShakeTreasure;
-import br.com.twinsflammer.factionsprivateer.mcmmo.util.EnchantmentUtils;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
 import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
+import br.com.twinsflammer.factionsprivateer.mcmmo.config.ConfigLoader;
+import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.treasure.*;
+import br.com.twinsflammer.factionsprivateer.mcmmo.util.EnchantmentUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.DyeColor;
 import org.bukkit.Material;
@@ -24,6 +15,10 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.material.Dye;
 import org.bukkit.potion.Potion;
 import org.bukkit.potion.PotionType;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 public class TreasureConfig extends ConfigLoader {
 

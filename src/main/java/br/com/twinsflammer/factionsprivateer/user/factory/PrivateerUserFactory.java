@@ -1,10 +1,10 @@
 package br.com.twinsflammer.factionsprivateer.user.factory;
 
-import com.google.common.collect.Lists;
 import br.com.twinsflammer.common.shared.permissions.user.data.User;
 import br.com.twinsflammer.common.shared.permissions.user.factory.AbstractUserFactory;
 import br.com.twinsflammer.common.shared.permissions.user.manager.UserManager;
 import br.com.twinsflammer.factionsprivateer.user.data.PrivateerUser;
+import com.google.common.collect.Lists;
 import lombok.Getter;
 
 import java.util.List;

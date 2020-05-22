@@ -1,12 +1,12 @@
 package br.com.twinsflammer.factionsprivateer.commands.staff;
 
-import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
 import br.com.twinsflammer.api.spigot.commands.CustomCommand;
 import br.com.twinsflammer.api.spigot.commands.defaults.tps.manager.TPSManager;
 import br.com.twinsflammer.api.spigot.commands.enums.CommandRestriction;
 import br.com.twinsflammer.common.shared.permissions.group.GroupNames;
 import br.com.twinsflammer.common.shared.permissions.user.data.User;
 import br.com.twinsflammer.common.shared.util.TimeFormatter;
+import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
 import org.bukkit.Bukkit;
 import org.bukkit.Server;
 import org.bukkit.command.CommandSender;

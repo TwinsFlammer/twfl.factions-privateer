@@ -1,5 +1,6 @@
 package br.com.twinsflammer.factionsprivateer.mcmmo.skills.fishing;
 
+import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
 import br.com.twinsflammer.factionsprivateer.mcmmo.config.AdvancedConfig;
 import br.com.twinsflammer.factionsprivateer.mcmmo.config.Config;
 import br.com.twinsflammer.factionsprivateer.mcmmo.config.experience.ExperienceConfig;
@@ -19,41 +20,15 @@ import br.com.twinsflammer.factionsprivateer.mcmmo.locale.LocaleLoader;
 import br.com.twinsflammer.factionsprivateer.mcmmo.mcMMO;
 import br.com.twinsflammer.factionsprivateer.mcmmo.runnables.skills.KrakenAttackTask;
 import br.com.twinsflammer.factionsprivateer.mcmmo.skills.SkillManager;
-import br.com.twinsflammer.factionsprivateer.mcmmo.util.BlockUtils;
-import br.com.twinsflammer.factionsprivateer.mcmmo.util.EventUtils;
-import br.com.twinsflammer.factionsprivateer.mcmmo.util.ItemUtils;
-import br.com.twinsflammer.factionsprivateer.mcmmo.util.Misc;
-import br.com.twinsflammer.factionsprivateer.mcmmo.util.Permissions;
+import br.com.twinsflammer.factionsprivateer.mcmmo.util.*;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.skills.CombatUtils;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.skills.SkillUtils;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-
-import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
-import org.bukkit.ChatColor;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.Sound;
-import org.bukkit.WeatherType;
-import org.bukkit.World;
+import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.enchantments.Enchantment;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.EntityType;
-import org.bukkit.entity.Fish;
-import org.bukkit.entity.Item;
-import org.bukkit.entity.LivingEntity;
-import org.bukkit.entity.Player;
-import org.bukkit.entity.Sheep;
-import org.bukkit.entity.Skeleton;
+import org.bukkit.entity.*;
 import org.bukkit.entity.Skeleton.SkeletonType;
-import org.bukkit.entity.TNTPrimed;
-import org.bukkit.entity.ThrownPotion;
 import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
@@ -62,6 +37,8 @@ import org.bukkit.material.Wool;
 import org.bukkit.potion.Potion;
 import org.bukkit.potion.PotionType;
 import org.bukkit.util.Vector;
+
+import java.util.*;
 
 public class FishingManager extends SkillManager {
 

@@ -1,5 +1,6 @@
 package br.com.twinsflammer.factionsprivateer.mcmmo.skills.smelting;
 
+import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
 import br.com.twinsflammer.factionsprivateer.mcmmo.config.Config;
 import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.player.McMMOPlayer;
 import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.skills.SecondaryAbility;
@@ -16,10 +17,6 @@ import br.com.twinsflammer.factionsprivateer.mcmmo.util.Misc;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.Permissions;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.skills.ParticleEffectUtils;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.skills.SkillUtils;
-import java.util.ArrayList;
-import java.util.List;
-
-import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -29,6 +26,9 @@ import org.bukkit.event.inventory.FurnaceBurnEvent;
 import org.bukkit.inventory.FurnaceRecipe;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class SmeltingManager extends SkillManager {
 

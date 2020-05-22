@@ -1,12 +1,10 @@
 package br.com.twinsflammer.factionsprivateer.home.data;
 
 import br.com.twinsflammer.api.spigot.util.serialize.LocationSerialize;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
-
 import org.bukkit.Location;
 import org.bukkit.World;
 

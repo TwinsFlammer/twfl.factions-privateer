@@ -26,15 +26,15 @@ import br.com.twinsflammer.factionsprivateer.mcmmo.util.commands.CommandRegistra
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.skills.ParticleEffectUtils;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
-
 import lombok.Getter;
 import org.bukkit.Color;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Tameable;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public enum SkillType {
 

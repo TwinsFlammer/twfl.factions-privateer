@@ -4,6 +4,10 @@ import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
 import br.com.twinsflammer.factionsprivateer.mcmmo.config.AdvancedConfig;
 import br.com.twinsflammer.factionsprivateer.mcmmo.config.Config;
 import br.com.twinsflammer.factionsprivateer.mcmmo.config.experience.ExperienceConfig;
+import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.chat.ChatMode;
+import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.mods.CustomTool;
+import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.party.Party;
+import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.party.PartyTeleportRecord;
 import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.skills.AbilityType;
 import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.skills.SkillType;
 import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.skills.ToolType;
@@ -41,16 +45,6 @@ import br.com.twinsflammer.factionsprivateer.mcmmo.util.scoreboards.ScoreboardMa
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.skills.ParticleEffectUtils;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.skills.PerksUtils;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.skills.SkillUtils;
-import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.chat.ChatMode;
-import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.mods.CustomTool;
-import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.party.Party;
-import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.party.PartyTeleportRecord;
-
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
-import java.util.UUID;
-
 import org.apache.commons.lang.Validate;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
@@ -58,6 +52,11 @@ import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.metadata.FixedMetadataValue;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+import java.util.UUID;
 
 public class McMMOPlayer {
 

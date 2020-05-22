@@ -1,7 +1,7 @@
 package br.com.twinsflammer.factionsprivateer.mcmmo.api;
 
-import br.com.twinsflammer.factionsprivateer.mcmmo.database.DatabaseManagerFactory;
 import br.com.twinsflammer.factionsprivateer.economy.manager.EconomyManager;
+import br.com.twinsflammer.factionsprivateer.mcmmo.database.DatabaseManagerFactory;
 import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.database.PlayerStat;
 import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.skills.SkillType;
 import br.com.twinsflammer.factionsprivateer.mcmmo.mcMMO;

@@ -1,8 +1,8 @@
 package br.com.twinsflammer.factionsprivateer.listeners.player;
 
-import br.com.twinsflammer.factionsprivateer.user.data.PrivateerUser;
 import br.com.twinsflammer.factionsprivateer.economy.event.MoneyChangeEvent;
 import br.com.twinsflammer.factionsprivateer.economy.manager.EconomyManager;
+import br.com.twinsflammer.factionsprivateer.user.data.PrivateerUser;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 

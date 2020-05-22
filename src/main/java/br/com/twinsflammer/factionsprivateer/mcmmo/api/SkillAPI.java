@@ -1,6 +1,7 @@
 package br.com.twinsflammer.factionsprivateer.mcmmo.api;
 
 import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.skills.SkillType;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;

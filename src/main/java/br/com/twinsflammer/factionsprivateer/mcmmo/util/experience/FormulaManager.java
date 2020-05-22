@@ -5,11 +5,11 @@ import br.com.twinsflammer.factionsprivateer.mcmmo.config.experience.ExperienceC
 import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.experience.FormulaType;
 import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.skills.SkillType;
 import br.com.twinsflammer.factionsprivateer.mcmmo.mcMMO;
+import org.bukkit.configuration.file.YamlConfiguration;
+
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
-
-import org.bukkit.configuration.file.YamlConfiguration;
 
 public class FormulaManager {
 

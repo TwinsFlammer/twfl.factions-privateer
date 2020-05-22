@@ -1,12 +1,12 @@
 package br.com.twinsflammer.factionsprivateer.mcmmo.config;
 
-import br.com.twinsflammer.factionsprivateer.mcmmo.mcMMO;
-import java.io.File;
-import java.util.List;
-
 import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
+import br.com.twinsflammer.factionsprivateer.mcmmo.mcMMO;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
+
+import java.io.File;
+import java.util.List;
 
 public abstract class ConfigLoader {
 

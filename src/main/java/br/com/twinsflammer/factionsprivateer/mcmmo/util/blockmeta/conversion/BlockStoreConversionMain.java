@@ -1,11 +1,10 @@
 package br.com.twinsflammer.factionsprivateer.mcmmo.util.blockmeta.conversion;
 
+import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
 import br.com.twinsflammer.factionsprivateer.mcmmo.config.HiddenConfig;
+import org.bukkit.scheduler.BukkitScheduler;
 
 import java.io.File;
-
-import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
-import org.bukkit.scheduler.BukkitScheduler;
 
 public class BlockStoreConversionMain implements Runnable {
 

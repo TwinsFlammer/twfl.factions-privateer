@@ -1,25 +1,22 @@
 package br.com.twinsflammer.factionsprivateer.mcmmo.util.skills;
 
+import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
 import br.com.twinsflammer.factionsprivateer.mcmmo.config.AdvancedConfig;
 import br.com.twinsflammer.factionsprivateer.mcmmo.config.Config;
 import br.com.twinsflammer.factionsprivateer.mcmmo.config.HiddenConfig;
-import br.com.twinsflammer.factionsprivateer.mcmmo.events.skills.secondaryabilities.SecondaryAbilityEvent;
-import br.com.twinsflammer.factionsprivateer.mcmmo.events.skills.secondaryabilities.SecondaryAbilityWeightedActivationCheckEvent;
-import br.com.twinsflammer.factionsprivateer.mcmmo.locale.LocaleLoader;
 import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.player.McMMOPlayer;
 import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.skills.AbilityType;
 import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.skills.SecondaryAbility;
 import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.skills.SkillType;
+import br.com.twinsflammer.factionsprivateer.mcmmo.events.skills.secondaryabilities.SecondaryAbilityEvent;
+import br.com.twinsflammer.factionsprivateer.mcmmo.events.skills.secondaryabilities.SecondaryAbilityWeightedActivationCheckEvent;
+import br.com.twinsflammer.factionsprivateer.mcmmo.locale.LocaleLoader;
 import br.com.twinsflammer.factionsprivateer.mcmmo.mcMMO;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.EventUtils;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.ItemUtils;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.Misc;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.StringUtils;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.player.UserManager;
-import java.util.ArrayList;
-import java.util.List;
-
-import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
@@ -32,6 +29,9 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.material.MaterialData;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class SkillUtils {
 

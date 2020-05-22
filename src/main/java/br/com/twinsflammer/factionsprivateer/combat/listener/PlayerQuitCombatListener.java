@@ -1,8 +1,8 @@
 package br.com.twinsflammer.factionsprivateer.combat.listener;
 
+import br.com.twinsflammer.api.spigot.SpigotAPI;
 import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
 import br.com.twinsflammer.factionsprivateer.user.data.PrivateerUser;
-import br.com.twinsflammer.api.spigot.SpigotAPI;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

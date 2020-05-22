@@ -5,11 +5,12 @@ import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.skills.SkillType;
 import br.com.twinsflammer.factionsprivateer.mcmmo.mcMMO;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import org.bukkit.Bukkit;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-import org.bukkit.Bukkit;
 
 public class McMMORanksTask implements Runnable {
 

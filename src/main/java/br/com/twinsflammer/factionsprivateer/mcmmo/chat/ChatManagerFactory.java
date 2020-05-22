@@ -1,8 +1,9 @@
 package br.com.twinsflammer.factionsprivateer.mcmmo.chat;
 
 import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.chat.ChatMode;
-import java.util.HashMap;
 import org.bukkit.plugin.Plugin;
+
+import java.util.HashMap;
 
 public class ChatManagerFactory {
 

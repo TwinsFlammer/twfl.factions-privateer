@@ -1,8 +1,8 @@
 package net.shatteredlands.shatt.backup;
 
+import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
 import br.com.twinsflammer.factionsprivateer.mcmmo.config.Config;
 import br.com.twinsflammer.factionsprivateer.mcmmo.mcMMO;
-import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
 
 import java.io.File;
 import java.io.FileInputStream;

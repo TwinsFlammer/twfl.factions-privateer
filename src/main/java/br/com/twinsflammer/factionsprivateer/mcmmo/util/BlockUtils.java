@@ -1,10 +1,8 @@
 package br.com.twinsflammer.factionsprivateer.mcmmo.util;
 
+import br.com.twinsflammer.factionsprivateer.mcmmo.mcMMO;
 import br.com.twinsflammer.factionsprivateer.mcmmo.skills.repair.Repair;
 import br.com.twinsflammer.factionsprivateer.mcmmo.skills.salvage.Salvage;
-import br.com.twinsflammer.factionsprivateer.mcmmo.mcMMO;
-
-import java.util.HashSet;
 import org.bukkit.CropState;
 import org.bukkit.Material;
 import org.bukkit.NetherWartsState;
@@ -14,6 +12,8 @@ import org.bukkit.material.CocoaPlant.CocoaPlantSize;
 import org.bukkit.material.Crops;
 import org.bukkit.material.NetherWarts;
 import org.bukkit.material.SmoothBrick;
+
+import java.util.HashSet;
 
 public final class BlockUtils {
 

@@ -1,6 +1,5 @@
 package br.com.twinsflammer.factionsprivateer.mcmmo.skills.salvage;
 
-import br.com.twinsflammer.factionsprivateer.mcmmo.skills.salvage.salvageables.Salvageable;
 import br.com.twinsflammer.factionsprivateer.mcmmo.config.Config;
 import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.player.McMMOPlayer;
 import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.skills.SkillType;
@@ -8,13 +7,11 @@ import br.com.twinsflammer.factionsprivateer.mcmmo.locale.LocaleLoader;
 import br.com.twinsflammer.factionsprivateer.mcmmo.mcMMO;
 import br.com.twinsflammer.factionsprivateer.mcmmo.skills.SkillManager;
 import br.com.twinsflammer.factionsprivateer.mcmmo.skills.salvage.Salvage.Tier;
+import br.com.twinsflammer.factionsprivateer.mcmmo.skills.salvage.salvageables.Salvageable;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.Misc;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.Permissions;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.StringUtils;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.skills.SkillUtils;
-import java.util.Map;
-import java.util.Map.Entry;
-
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -23,6 +20,9 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.EnchantmentStorageMeta;
 import org.bukkit.material.MaterialData;
+
+import java.util.Map;
+import java.util.Map.Entry;
 
 public class SalvageManager extends SkillManager {
 

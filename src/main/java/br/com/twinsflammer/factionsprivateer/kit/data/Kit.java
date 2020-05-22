@@ -1,8 +1,8 @@
 package br.com.twinsflammer.factionsprivateer.kit.data;
 
-import com.google.common.collect.Lists;
 import br.com.twinsflammer.api.spigot.inventory.item.CustomItem;
 import br.com.twinsflammer.common.shared.permissions.group.data.Group;
+import com.google.common.collect.Lists;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;

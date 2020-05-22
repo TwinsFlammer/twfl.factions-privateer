@@ -2,7 +2,6 @@ package br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.party;
 
 import br.com.twinsflammer.factionsprivateer.mcmmo.config.Config;
 import br.com.twinsflammer.factionsprivateer.mcmmo.locale.LocaleLoader;
-import br.com.twinsflammer.factionsprivateer.mcmmo.util.Permissions;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.StringUtils;
 import org.bukkit.entity.Player;
 

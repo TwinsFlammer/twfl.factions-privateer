@@ -1,7 +1,5 @@
 package br.com.twinsflammer.factionsprivateer.commands.player;
 
-import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
-import br.com.twinsflammer.factionsprivateer.user.data.PrivateerUser;
 import br.com.twinsflammer.api.spigot.SpigotAPI;
 import br.com.twinsflammer.api.spigot.commands.CustomCommand;
 import br.com.twinsflammer.api.spigot.commands.enums.CommandRestriction;
@@ -11,6 +9,8 @@ import br.com.twinsflammer.common.shared.permissions.group.GroupNames;
 import br.com.twinsflammer.common.shared.permissions.user.data.User;
 import br.com.twinsflammer.common.shared.server.data.Server;
 import br.com.twinsflammer.common.shared.server.manager.ServerManager;
+import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
+import br.com.twinsflammer.factionsprivateer.user.data.PrivateerUser;
 import org.bukkit.Location;
 import org.bukkit.command.CommandSender;
 

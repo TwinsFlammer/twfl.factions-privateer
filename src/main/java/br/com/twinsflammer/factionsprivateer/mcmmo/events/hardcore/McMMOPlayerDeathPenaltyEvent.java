@@ -1,10 +1,11 @@
 package br.com.twinsflammer.factionsprivateer.mcmmo.events.hardcore;
 
-import java.util.HashMap;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.player.PlayerEvent;
+
+import java.util.HashMap;
 
 public class McMMOPlayerDeathPenaltyEvent extends PlayerEvent implements Cancellable {
 

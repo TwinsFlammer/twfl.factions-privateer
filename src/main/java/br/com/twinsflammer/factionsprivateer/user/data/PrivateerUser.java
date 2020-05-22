@@ -1,16 +1,5 @@
 package br.com.twinsflammer.factionsprivateer.user.data;
 
-import br.com.twinsflammer.factionsprivateer.mcmmo.api.McMMoAPI;
-import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.player.PlayerProfile;
-import br.com.twinsflammer.factionsprivateer.mcmmo.mcMMO;
-import br.com.twinsflammer.factionsprivateer.mcmmo.util.player.UserManager;
-import br.com.twinsflammer.factionsprivateer.user.item.channel.ItemChannel;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
-import com.massivecraft.factions.Factions;
-import com.massivecraft.factions.Rel;
-import com.massivecraft.factions.entity.*;
-import com.massivecraft.massivecore.ps.PS;
 import br.com.twinsflammer.api.spigot.SpigotAPI;
 import br.com.twinsflammer.api.spigot.inventory.CustomInventory;
 import br.com.twinsflammer.api.spigot.inventory.item.CustomItem;
@@ -30,8 +19,22 @@ import br.com.twinsflammer.factionsprivateer.economy.manager.EconomyManager;
 import br.com.twinsflammer.factionsprivateer.home.dao.HomeDao;
 import br.com.twinsflammer.factionsprivateer.home.data.Home;
 import br.com.twinsflammer.factionsprivateer.kit.data.Kit;
+import br.com.twinsflammer.factionsprivateer.mcmmo.api.McMMoAPI;
 import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.player.McMMOPlayer;
+import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.player.PlayerProfile;
 import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.skills.SkillType;
+import br.com.twinsflammer.factionsprivateer.mcmmo.mcMMO;
+import br.com.twinsflammer.factionsprivateer.mcmmo.util.player.UserManager;
+import br.com.twinsflammer.factionsprivateer.user.item.channel.ItemChannel;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
+import com.massivecraft.factions.Factions;
+import com.massivecraft.factions.Rel;
+import com.massivecraft.factions.entity.BoardColl;
+import com.massivecraft.factions.entity.Faction;
+import com.massivecraft.factions.entity.MPerm;
+import com.massivecraft.factions.entity.MPlayer;
+import com.massivecraft.massivecore.ps.PS;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -753,8 +756,9 @@ public class PrivateerUser extends SpigotUser {
         return this.invisible;
     }
 
+    @Deprecated
     public Boolean isGod() {
-        return this.god;
+        return this.isInGodMode();
     }
 
     public Boolean isStaff() {
@@ -763,6 +767,10 @@ public class PrivateerUser extends SpigotUser {
 
     public Boolean isOnlineHere() {
         return this.isOnline() && SpigotAPI.getSubServersId().contains(this.getServerId());
+    }
+
+    public Boolean isInGodMode() {
+        return this.god;
     }
 
     public Boolean hasHome(String name) {
@@ -808,6 +816,8 @@ public class PrivateerUser extends SpigotUser {
             Player player = (Player) entity;
 
             PrivateerUser privateerUser = FactionsPrivateer.getInstance().getPrivateerUserFactory().getUser(player.getUniqueId());
+
+            if (privateerUser.isGod()) return false;
 
             if (!privateerUser.hasFaction()) return true;
 

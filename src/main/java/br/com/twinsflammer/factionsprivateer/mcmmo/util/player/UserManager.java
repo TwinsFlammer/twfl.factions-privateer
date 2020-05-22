@@ -1,16 +1,16 @@
 package br.com.twinsflammer.factionsprivateer.mcmmo.util.player;
 
+import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
 import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.player.McMMOPlayer;
 import br.com.twinsflammer.factionsprivateer.mcmmo.mcMMO;
 import com.google.common.collect.ImmutableList;
-import java.util.ArrayList;
-import java.util.Collection;
-
-import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.metadata.FixedMetadataValue;
+
+import java.util.ArrayList;
+import java.util.Collection;
 
 public final class UserManager {
 

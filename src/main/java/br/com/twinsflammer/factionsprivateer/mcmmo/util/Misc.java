@@ -1,22 +1,18 @@
 package br.com.twinsflammer.factionsprivateer.mcmmo.util;
 
+import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
 import br.com.twinsflammer.factionsprivateer.mcmmo.events.items.McMMOItemSpawnEvent;
-import br.com.twinsflammer.factionsprivateer.mcmmo.util.player.UserManager;
 import br.com.twinsflammer.factionsprivateer.mcmmo.runnables.player.PlayerProfileLoadingTask;
+import br.com.twinsflammer.factionsprivateer.mcmmo.util.player.UserManager;
 import com.google.common.collect.ImmutableSet;
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.entity.*;
+import org.bukkit.inventory.ItemStack;
+
 import java.util.Collection;
 import java.util.Random;
 import java.util.Set;
-
-import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.entity.ArmorStand;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.Item;
-import org.bukkit.entity.NPC;
-import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
 
 public final class Misc {
 

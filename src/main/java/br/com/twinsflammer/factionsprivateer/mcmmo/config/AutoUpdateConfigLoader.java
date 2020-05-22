@@ -1,17 +1,13 @@
 package br.com.twinsflammer.factionsprivateer.mcmmo.config;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.InputStreamReader;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
-
 import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
+
+import java.io.*;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 public abstract class AutoUpdateConfigLoader extends ConfigLoader {
 

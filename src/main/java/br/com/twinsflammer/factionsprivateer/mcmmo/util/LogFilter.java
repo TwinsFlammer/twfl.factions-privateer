@@ -1,9 +1,10 @@
 package br.com.twinsflammer.factionsprivateer.mcmmo.util;
 
-import java.util.logging.Filter;
-import java.util.logging.LogRecord;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+
+import java.util.logging.Filter;
+import java.util.logging.LogRecord;
 
 @NoArgsConstructor
 @AllArgsConstructor

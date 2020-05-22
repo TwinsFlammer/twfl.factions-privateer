@@ -1,9 +1,9 @@
 package br.com.twinsflammer.factionsprivateer.mcmmo.api;
 
-import br.com.twinsflammer.factionsprivateer.mcmmo.util.player.UserManager;
 import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.player.McMMOPlayer;
 import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.skills.AbilityType;
 import br.com.twinsflammer.factionsprivateer.mcmmo.runnables.skills.BleedTimerTask;
+import br.com.twinsflammer.factionsprivateer.mcmmo.util.player.UserManager;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 

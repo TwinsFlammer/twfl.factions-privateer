@@ -15,9 +15,6 @@ import br.com.twinsflammer.factionsprivateer.mcmmo.util.Misc;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.Permissions;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.skills.CombatUtils;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.skills.SkillUtils;
-import java.util.HashSet;
-import java.util.Set;
-
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
@@ -25,6 +22,9 @@ import org.bukkit.block.BlockState;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.material.Tree;
+
+import java.util.HashSet;
+import java.util.Set;
 
 public class WoodcuttingManager extends SkillManager {
 

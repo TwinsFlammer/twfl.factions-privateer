@@ -1,9 +1,9 @@
 package br.com.twinsflammer.factionsprivateer.cash.event;
 
-import br.com.twinsflammer.factionsprivateer.user.data.PrivateerUser;
 import br.com.twinsflammer.api.shared.cash.event.ICashChangeEvent;
 import br.com.twinsflammer.common.shared.permissions.user.data.User;
 import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
+import br.com.twinsflammer.factionsprivateer.user.data.PrivateerUser;
 
 /**
  * @author SrGutyerrez

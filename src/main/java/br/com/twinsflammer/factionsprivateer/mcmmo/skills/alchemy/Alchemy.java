@@ -3,12 +3,12 @@ package br.com.twinsflammer.factionsprivateer.mcmmo.skills.alchemy;
 import br.com.twinsflammer.factionsprivateer.mcmmo.config.AdvancedConfig;
 import br.com.twinsflammer.factionsprivateer.mcmmo.mcMMO;
 import br.com.twinsflammer.factionsprivateer.mcmmo.runnables.skills.AlchemyBrewTask;
+import org.bukkit.Location;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import org.bukkit.Location;
 
 public final class Alchemy {
 

@@ -1,7 +1,5 @@
 package br.com.twinsflammer.factionsprivateer.home.command;
 
-import br.com.twinsflammer.factionsprivateer.user.data.PrivateerUser;
-import com.google.common.collect.Maps;
 import br.com.twinsflammer.api.spigot.SpigotAPI;
 import br.com.twinsflammer.api.spigot.commands.CustomCommand;
 import br.com.twinsflammer.api.spigot.commands.enums.CommandRestriction;
@@ -11,6 +9,8 @@ import br.com.twinsflammer.common.shared.permissions.user.data.User;
 import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
 import br.com.twinsflammer.factionsprivateer.home.dao.HomeDao;
 import br.com.twinsflammer.factionsprivateer.home.data.Home;
+import br.com.twinsflammer.factionsprivateer.user.data.PrivateerUser;
+import com.google.common.collect.Maps;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.command.CommandSender;

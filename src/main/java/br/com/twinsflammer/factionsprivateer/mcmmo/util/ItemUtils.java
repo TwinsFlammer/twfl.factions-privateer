@@ -1,10 +1,10 @@
 package br.com.twinsflammer.factionsprivateer.mcmmo.util;
 
+import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
 import br.com.twinsflammer.factionsprivateer.mcmmo.config.Config;
 import br.com.twinsflammer.factionsprivateer.mcmmo.config.party.ItemWeightConfig;
 import br.com.twinsflammer.factionsprivateer.mcmmo.locale.LocaleLoader;
 import br.com.twinsflammer.factionsprivateer.mcmmo.mcMMO;
-import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
 import org.bukkit.ChatColor;
 import org.bukkit.CoalType;
 import org.bukkit.DyeColor;

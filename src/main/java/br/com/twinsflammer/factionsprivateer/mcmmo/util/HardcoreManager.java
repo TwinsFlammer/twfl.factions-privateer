@@ -1,14 +1,13 @@
 package br.com.twinsflammer.factionsprivateer.mcmmo.util;
 
 import br.com.twinsflammer.factionsprivateer.mcmmo.config.Config;
-import br.com.twinsflammer.factionsprivateer.mcmmo.locale.LocaleLoader;
-import br.com.twinsflammer.factionsprivateer.mcmmo.util.player.UserManager;
 import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.player.PlayerProfile;
 import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.skills.SkillType;
+import br.com.twinsflammer.factionsprivateer.mcmmo.locale.LocaleLoader;
+import br.com.twinsflammer.factionsprivateer.mcmmo.util.player.UserManager;
+import org.bukkit.entity.Player;
 
 import java.util.HashMap;
-
-import org.bukkit.entity.Player;
 
 public final class HardcoreManager {
 

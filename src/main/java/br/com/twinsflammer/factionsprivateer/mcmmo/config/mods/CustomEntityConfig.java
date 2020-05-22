@@ -1,13 +1,13 @@
 package br.com.twinsflammer.factionsprivateer.mcmmo.config.mods;
 
+import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
 import br.com.twinsflammer.factionsprivateer.mcmmo.config.ConfigLoader;
 import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.mods.CustomEntity;
-import java.util.HashMap;
-
-import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
 import org.apache.commons.lang.ClassUtils;
 import org.bukkit.Material;
 import org.bukkit.material.MaterialData;
+
+import java.util.HashMap;
 
 public class CustomEntityConfig extends ConfigLoader {
 

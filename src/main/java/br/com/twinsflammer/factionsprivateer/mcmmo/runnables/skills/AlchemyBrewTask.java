@@ -1,6 +1,8 @@
 package br.com.twinsflammer.factionsprivateer.mcmmo.runnables.skills;
 
 import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
+import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.skills.SecondaryAbility;
+import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.skills.SkillType;
 import br.com.twinsflammer.factionsprivateer.mcmmo.events.skills.alchemy.McMMOPlayerBrewEvent;
 import br.com.twinsflammer.factionsprivateer.mcmmo.events.skills.alchemy.McMMOPlayerCatalysisEvent;
 import br.com.twinsflammer.factionsprivateer.mcmmo.skills.alchemy.Alchemy;
@@ -8,8 +10,6 @@ import br.com.twinsflammer.factionsprivateer.mcmmo.skills.alchemy.AlchemyPotionB
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.Misc;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.Permissions;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.player.UserManager;
-import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.skills.SecondaryAbility;
-import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.skills.SkillType;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.BlockState;

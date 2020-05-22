@@ -2,6 +2,8 @@ package br.com.twinsflammer.factionsprivateer.mcmmo.listeners;
 
 import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
 import br.com.twinsflammer.factionsprivateer.mcmmo.config.Config;
+import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.skills.SecondaryAbility;
+import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.skills.SkillType;
 import br.com.twinsflammer.factionsprivateer.mcmmo.mcMMO;
 import br.com.twinsflammer.factionsprivateer.mcmmo.runnables.player.PlayerUpdateInventoryTask;
 import br.com.twinsflammer.factionsprivateer.mcmmo.skills.alchemy.Alchemy;
@@ -10,11 +12,6 @@ import br.com.twinsflammer.factionsprivateer.mcmmo.util.ItemUtils;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.Permissions;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.player.UserManager;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.skills.SkillUtils;
-import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.skills.SecondaryAbility;
-import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.skills.SkillType;
-
-import java.util.List;
-
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
@@ -25,24 +22,11 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
-import org.bukkit.event.inventory.ClickType;
-import org.bukkit.event.inventory.CraftItemEvent;
-import org.bukkit.event.inventory.FurnaceBurnEvent;
-import org.bukkit.event.inventory.FurnaceExtractEvent;
-import org.bukkit.event.inventory.FurnaceSmeltEvent;
-import org.bukkit.event.inventory.InventoryAction;
-import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.event.inventory.InventoryCloseEvent;
-import org.bukkit.event.inventory.InventoryDragEvent;
-import org.bukkit.event.inventory.InventoryMoveItemEvent;
-import org.bukkit.event.inventory.InventoryOpenEvent;
-import org.bukkit.event.inventory.InventoryType;
-import org.bukkit.inventory.BrewerInventory;
-import org.bukkit.inventory.FurnaceInventory;
-import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.InventoryHolder;
-import org.bukkit.inventory.ItemStack;
+import org.bukkit.event.inventory.*;
+import org.bukkit.inventory.*;
 import org.bukkit.metadata.MetadataValue;
+
+import java.util.List;
 
 public class InventoryListener implements Listener {
 

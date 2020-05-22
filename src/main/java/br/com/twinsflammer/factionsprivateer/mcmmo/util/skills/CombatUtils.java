@@ -1,10 +1,17 @@
 package br.com.twinsflammer.factionsprivateer.mcmmo.util.skills;
 
+import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
 import br.com.twinsflammer.factionsprivateer.mcmmo.config.experience.ExperienceConfig;
+import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.player.McMMOPlayer;
+import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.skills.SkillType;
+import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.skills.XPGainReason;
 import br.com.twinsflammer.factionsprivateer.mcmmo.events.fake.FakeEntityDamageByEntityEvent;
 import br.com.twinsflammer.factionsprivateer.mcmmo.events.fake.FakeEntityDamageEvent;
 import br.com.twinsflammer.factionsprivateer.mcmmo.locale.LocaleLoader;
+import br.com.twinsflammer.factionsprivateer.mcmmo.mcMMO;
 import br.com.twinsflammer.factionsprivateer.mcmmo.party.PartyManager;
+import br.com.twinsflammer.factionsprivateer.mcmmo.runnables.skills.AwardCombatXpTask;
+import br.com.twinsflammer.factionsprivateer.mcmmo.runnables.skills.BleedTimerTask;
 import br.com.twinsflammer.factionsprivateer.mcmmo.skills.acrobatics.AcrobaticsManager;
 import br.com.twinsflammer.factionsprivateer.mcmmo.skills.archery.ArcheryManager;
 import br.com.twinsflammer.factionsprivateer.mcmmo.skills.axes.AxesManager;
@@ -12,43 +19,21 @@ import br.com.twinsflammer.factionsprivateer.mcmmo.skills.swords.Swords;
 import br.com.twinsflammer.factionsprivateer.mcmmo.skills.swords.SwordsManager;
 import br.com.twinsflammer.factionsprivateer.mcmmo.skills.taming.TamingManager;
 import br.com.twinsflammer.factionsprivateer.mcmmo.skills.unarmed.UnarmedManager;
-import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.player.McMMOPlayer;
-import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.skills.SkillType;
-import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.skills.XPGainReason;
-import br.com.twinsflammer.factionsprivateer.mcmmo.mcMMO;
-import br.com.twinsflammer.factionsprivateer.mcmmo.runnables.skills.AwardCombatXpTask;
-import br.com.twinsflammer.factionsprivateer.mcmmo.runnables.skills.BleedTimerTask;
-import br.com.twinsflammer.factionsprivateer.mcmmo.util.EventUtils;
-import br.com.twinsflammer.factionsprivateer.mcmmo.util.ItemUtils;
-import br.com.twinsflammer.factionsprivateer.mcmmo.util.Misc;
-import br.com.twinsflammer.factionsprivateer.mcmmo.util.MobHealthbarUtils;
-import br.com.twinsflammer.factionsprivateer.mcmmo.util.Permissions;
+import br.com.twinsflammer.factionsprivateer.mcmmo.util.*;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.player.UserManager;
 import com.google.common.collect.ImmutableMap;
-import java.util.EnumMap;
-import java.util.HashMap;
-import java.util.Map;
-
-import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
 import org.bukkit.Material;
-import org.bukkit.entity.AnimalTamer;
-import org.bukkit.entity.Animals;
-import org.bukkit.entity.Arrow;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.EntityType;
-import org.bukkit.entity.Guardian;
-import org.bukkit.entity.IronGolem;
-import org.bukkit.entity.LivingEntity;
-import org.bukkit.entity.Player;
-import org.bukkit.entity.Skeleton;
-import org.bukkit.entity.Tameable;
-import org.bukkit.entity.Wolf;
+import org.bukkit.entity.*;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 import org.bukkit.event.entity.EntityDamageEvent.DamageModifier;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.projectiles.ProjectileSource;
+
+import java.util.EnumMap;
+import java.util.HashMap;
+import java.util.Map;
 
 public final class CombatUtils {
 

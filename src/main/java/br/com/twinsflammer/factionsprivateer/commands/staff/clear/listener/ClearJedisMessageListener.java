@@ -1,11 +1,11 @@
 package br.com.twinsflammer.factionsprivateer.commands.staff.clear.listener;
 
-import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
-import br.com.twinsflammer.factionsprivateer.user.data.PrivateerUser;
 import br.com.twinsflammer.common.shared.databases.redis.handler.JedisMessageListener;
 import br.com.twinsflammer.common.shared.databases.redis.handler.annonation.ChannelName;
 import br.com.twinsflammer.common.shared.databases.redis.handler.event.JedisMessageEvent;
 import br.com.twinsflammer.common.shared.server.data.Server;
+import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
+import br.com.twinsflammer.factionsprivateer.user.data.PrivateerUser;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.PlayerInventory;
 import org.json.simple.JSONObject;

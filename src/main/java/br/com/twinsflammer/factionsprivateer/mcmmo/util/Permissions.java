@@ -1,10 +1,10 @@
 package br.com.twinsflammer.factionsprivateer.mcmmo.util;
 
+import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
 import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.skills.ItemType;
 import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.skills.MaterialType;
 import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.skills.SecondaryAbility;
 import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.skills.SkillType;
-import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
 import org.bukkit.Material;
 import org.bukkit.Server;
 import org.bukkit.World;

@@ -1,17 +1,17 @@
 package br.com.twinsflammer.factionsprivateer.mcmmo.skills.taming;
 
+import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
 import br.com.twinsflammer.factionsprivateer.mcmmo.config.Config;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.Misc;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.skills.CombatUtils;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.skills.ParticleEffectUtils;
-import java.util.UUID;
-
-import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
 import org.bukkit.Location;
 import org.bukkit.Sound;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 import org.bukkit.scheduler.BukkitRunnable;
+
+import java.util.UUID;
 
 public class TrackedTamingEntity extends BukkitRunnable {
 

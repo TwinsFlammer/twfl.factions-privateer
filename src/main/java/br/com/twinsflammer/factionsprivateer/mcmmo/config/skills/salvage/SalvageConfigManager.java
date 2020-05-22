@@ -1,8 +1,8 @@
 package br.com.twinsflammer.factionsprivateer.mcmmo.config.skills.salvage;
 
-import br.com.twinsflammer.factionsprivateer.mcmmo.skills.salvage.salvageables.Salvageable;
-import br.com.twinsflammer.factionsprivateer.mcmmo.mcMMO;
 import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
+import br.com.twinsflammer.factionsprivateer.mcmmo.mcMMO;
+import br.com.twinsflammer.factionsprivateer.mcmmo.skills.salvage.salvageables.Salvageable;
 
 import java.io.File;
 import java.util.ArrayList;

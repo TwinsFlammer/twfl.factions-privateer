@@ -1,10 +1,10 @@
 package br.com.twinsflammer.factionsprivateer.listeners.general;
 
-import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
-import br.com.twinsflammer.factionsprivateer.user.data.PrivateerUser;
 import br.com.twinsflammer.api.spigot.teleport.data.TeleportRequest;
 import br.com.twinsflammer.api.spigot.teleport.event.UserTeleportEvent;
 import br.com.twinsflammer.api.spigot.util.serialize.LocationSerialize;
+import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
+import br.com.twinsflammer.factionsprivateer.user.data.PrivateerUser;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 

@@ -6,14 +6,14 @@ import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.party.PartyFeature;
 import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.skills.AbilityType;
 import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.skills.SkillType;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.StringUtils;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-
 import org.bukkit.Material;
 import org.bukkit.TreeSpecies;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.EntityType;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 public class Config extends AutoUpdateConfigLoader {
 

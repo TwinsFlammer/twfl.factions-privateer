@@ -5,11 +5,11 @@ import br.com.twinsflammer.factionsprivateer.mcmmo.config.treasure.TreasureConfi
 import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.skills.SkillType;
 import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.treasure.ExcavationTreasure;
 import br.com.twinsflammer.factionsprivateer.mcmmo.mcMMO;
-import java.util.ArrayList;
-import java.util.List;
-
 import org.bukkit.Material;
 import org.bukkit.block.BlockState;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Excavation {
 

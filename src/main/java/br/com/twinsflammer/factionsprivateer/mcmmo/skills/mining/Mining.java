@@ -1,14 +1,13 @@
 package br.com.twinsflammer.factionsprivateer.mcmmo.skills.mining;
 
 import br.com.twinsflammer.factionsprivateer.mcmmo.config.Config;
+import br.com.twinsflammer.factionsprivateer.mcmmo.config.experience.ExperienceConfig;
 import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.skills.SkillType;
 import br.com.twinsflammer.factionsprivateer.mcmmo.mcMMO;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.Misc;
 import org.bukkit.Material;
 import org.bukkit.block.BlockState;
 import org.bukkit.inventory.ItemStack;
-
-import br.com.twinsflammer.factionsprivateer.mcmmo.config.experience.ExperienceConfig;
 
 public class Mining {
 

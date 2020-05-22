@@ -1,7 +1,7 @@
 package br.com.twinsflammer.factionsprivateer.mcmmo.runnables.player;
 
-import br.com.twinsflammer.factionsprivateer.mcmmo.util.player.UserManager;
 import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.player.McMMOPlayer;
+import br.com.twinsflammer.factionsprivateer.mcmmo.util.player.UserManager;
 import org.bukkit.scheduler.BukkitRunnable;
 
 public class ClearRegisteredXPGainTask extends BukkitRunnable {

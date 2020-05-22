@@ -1,5 +1,6 @@
 package br.com.twinsflammer.factionsprivateer.mcmmo.util.blockmeta.conversion;
 
+import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
 import br.com.twinsflammer.factionsprivateer.mcmmo.mcMMO;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.blockmeta.ChunkletStore;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.blockmeta.HashChunkletManager;
@@ -7,10 +8,9 @@ import br.com.twinsflammer.factionsprivateer.mcmmo.util.blockmeta.PrimitiveChunk
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.blockmeta.PrimitiveExChunkletStore;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.blockmeta.chunkmeta.HashChunkManager;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.blockmeta.chunkmeta.PrimitiveChunkStore;
-import java.io.File;
-
-import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
 import org.bukkit.scheduler.BukkitScheduler;
+
+import java.io.File;
 
 public class BlockStoreConversionZDirectory implements Runnable {
 

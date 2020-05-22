@@ -1,12 +1,12 @@
 package br.com.twinsflammer.factionsprivateer.mcmmo.runnables.items;
 
 import br.com.twinsflammer.factionsprivateer.mcmmo.config.Config;
+import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.player.McMMOPlayer;
 import br.com.twinsflammer.factionsprivateer.mcmmo.locale.LocaleLoader;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.ChimaeraWing;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.ItemUtils;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.Misc;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.skills.SkillUtils;
-import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.player.McMMOPlayer;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;

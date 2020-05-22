@@ -1,8 +1,9 @@
 package br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.skills.alchemy;
 
-import java.util.List;
 import org.bukkit.potion.Potion;
 import org.bukkit.potion.PotionEffect;
+
+import java.util.List;
 
 public enum PotionStage {
 

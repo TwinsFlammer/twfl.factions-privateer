@@ -1,6 +1,7 @@
 package br.com.twinsflammer.factionsprivateer.mcmmo.util.blockmeta.chunkmeta;
 
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.blockmeta.ChunkletStore;
+
 import java.io.Serializable;
 
 /**

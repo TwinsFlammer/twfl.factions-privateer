@@ -1,8 +1,8 @@
 package br.com.twinsflammer.factionsprivateer.antilag.manager;
 
-import com.google.common.collect.Lists;
 import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
 import br.com.twinsflammer.factionsprivateer.antilag.data.DroppedItem;
+import com.google.common.collect.Lists;
 import org.bukkit.Bukkit;
 import org.bukkit.inventory.ItemStack;
 

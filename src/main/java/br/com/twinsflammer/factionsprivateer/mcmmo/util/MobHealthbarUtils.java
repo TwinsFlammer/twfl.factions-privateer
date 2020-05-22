@@ -1,13 +1,13 @@
 package br.com.twinsflammer.factionsprivateer.mcmmo.util;
 
+import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
 import br.com.twinsflammer.factionsprivateer.mcmmo.config.AdvancedConfig;
 import br.com.twinsflammer.factionsprivateer.mcmmo.config.Config;
 import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.MobHealthbarType;
-import br.com.twinsflammer.factionsprivateer.mcmmo.runnables.MobHealthDisplayUpdaterTask;
-import br.com.twinsflammer.factionsprivateer.mcmmo.util.player.UserManager;
 import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.player.PlayerProfile;
 import br.com.twinsflammer.factionsprivateer.mcmmo.mcMMO;
-import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
+import br.com.twinsflammer.factionsprivateer.mcmmo.runnables.MobHealthDisplayUpdaterTask;
+import br.com.twinsflammer.factionsprivateer.mcmmo.util.player.UserManager;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;

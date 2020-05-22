@@ -5,6 +5,7 @@ import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.database.DatabaseTy
 import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.database.PlayerStat;
 import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.player.PlayerProfile;
 import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.skills.SkillType;
+
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;

@@ -3,18 +3,17 @@ package br.com.twinsflammer.factionsprivateer.mcmmo.runnables.database;
 import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
 import br.com.twinsflammer.factionsprivateer.mcmmo.config.HiddenConfig;
 import br.com.twinsflammer.factionsprivateer.mcmmo.database.DatabaseManager;
+import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.database.UpgradeType;
 import br.com.twinsflammer.factionsprivateer.mcmmo.mcMMO;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.Misc;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.uuid.UUIDFetcher;
-import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.database.UpgradeType;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 import java.util.logging.Level;
-
-import org.bukkit.scheduler.BukkitRunnable;
 
 public class UUIDUpdateAsyncTask extends BukkitRunnable {
 

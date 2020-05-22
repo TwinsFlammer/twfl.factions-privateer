@@ -1,5 +1,6 @@
 package br.com.twinsflammer.factionsprivateer.mcmmo.skills.mining;
 
+import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
 import br.com.twinsflammer.factionsprivateer.mcmmo.config.Config;
 import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.player.McMMOPlayer;
 import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.skills.AbilityType;
@@ -16,18 +17,16 @@ import br.com.twinsflammer.factionsprivateer.mcmmo.util.EventUtils;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.Misc;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.Permissions;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.skills.SkillUtils;
-
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-
-import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.TNTPrimed;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 
 public class MiningManager extends SkillManager {
 

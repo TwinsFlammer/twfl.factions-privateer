@@ -1,9 +1,5 @@
 package br.com.twinsflammer.factionsprivateer.chat.commands;
 
-import br.com.twinsflammer.factionsprivateer.chat.commands.chat.factory.ChatFactory;
-import br.com.twinsflammer.factionsprivateer.chat.component.ChatComponent;
-import br.com.twinsflammer.factionsprivateer.chat.enums.Channel;
-import br.com.twinsflammer.factionsprivateer.user.data.PrivateerUser;
 import br.com.twinsflammer.api.spigot.SpigotAPI;
 import br.com.twinsflammer.api.spigot.commands.CustomCommand;
 import br.com.twinsflammer.api.spigot.commands.enums.CommandRestriction;
@@ -15,6 +11,10 @@ import br.com.twinsflammer.common.shared.preference.Preference;
 import br.com.twinsflammer.common.shared.util.Helper;
 import br.com.twinsflammer.common.shared.util.TimeFormatter;
 import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
+import br.com.twinsflammer.factionsprivateer.chat.commands.chat.factory.ChatFactory;
+import br.com.twinsflammer.factionsprivateer.chat.component.ChatComponent;
+import br.com.twinsflammer.factionsprivateer.chat.enums.Channel;
+import br.com.twinsflammer.factionsprivateer.user.data.PrivateerUser;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 

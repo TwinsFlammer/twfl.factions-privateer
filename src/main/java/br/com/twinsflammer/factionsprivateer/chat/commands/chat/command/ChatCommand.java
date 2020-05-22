@@ -1,10 +1,10 @@
 package br.com.twinsflammer.factionsprivateer.chat.commands.chat.command;
 
-import br.com.twinsflammer.factionsprivateer.chat.commands.chat.factory.ChatFactory;
 import br.com.twinsflammer.api.spigot.commands.CustomCommand;
 import br.com.twinsflammer.api.spigot.commands.enums.CommandRestriction;
 import br.com.twinsflammer.common.shared.permissions.group.GroupNames;
 import br.com.twinsflammer.common.shared.permissions.user.data.User;
+import br.com.twinsflammer.factionsprivateer.chat.commands.chat.factory.ChatFactory;
 import br.com.twinsflammer.factionsprivateer.chat.enums.Channel;
 import org.bukkit.command.CommandSender;
 

@@ -1,10 +1,10 @@
 package br.com.twinsflammer.factionsprivateer.economy.command.arguments;
 
-import br.com.twinsflammer.factionsprivateer.user.data.PrivateerUser;
 import br.com.twinsflammer.api.spigot.commands.CustomArgumentCommand;
 import br.com.twinsflammer.common.shared.permissions.user.data.User;
 import br.com.twinsflammer.factionsprivateer.economy.command.MoneyCommand;
 import br.com.twinsflammer.factionsprivateer.economy.manager.EconomyManager;
+import br.com.twinsflammer.factionsprivateer.user.data.PrivateerUser;
 import org.bukkit.command.CommandSender;
 
 import java.util.List;

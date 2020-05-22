@@ -1,9 +1,9 @@
 package br.com.twinsflammer.factionsprivateer.combat.runnable;
 
-import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
-import br.com.twinsflammer.factionsprivateer.user.data.PrivateerUser;
 import br.com.twinsflammer.api.spigot.util.action.data.CustomAction;
 import br.com.twinsflammer.common.shared.util.TimeFormatter;
+import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
+import br.com.twinsflammer.factionsprivateer.user.data.PrivateerUser;
 import org.bukkit.entity.Player;
 
 /**

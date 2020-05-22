@@ -3,13 +3,13 @@ package br.com.twinsflammer.factionsprivateer.mcmmo.skills.archery;
 import br.com.twinsflammer.factionsprivateer.mcmmo.config.AdvancedConfig;
 import br.com.twinsflammer.factionsprivateer.mcmmo.config.experience.ExperienceConfig;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.Misc;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-
 import org.bukkit.Material;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.inventory.ItemStack;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 public class Archery {
 

@@ -2,11 +2,11 @@ package br.com.twinsflammer.factionsprivateer.mcmmo.skills.unarmed;
 
 import br.com.twinsflammer.factionsprivateer.mcmmo.config.AdvancedConfig;
 import br.com.twinsflammer.factionsprivateer.mcmmo.config.Config;
-import java.util.Iterator;
-
 import org.bukkit.entity.Item;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
+
+import java.util.Iterator;
 
 public class Unarmed {
 

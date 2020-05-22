@@ -1,7 +1,7 @@
 package br.com.twinsflammer.factionsprivateer.commands.player.tpa.data;
 
-import br.com.twinsflammer.factionsprivateer.commands.player.tpa.channel.TpaChannel;
 import br.com.twinsflammer.api.spigot.SpigotAPI;
+import br.com.twinsflammer.factionsprivateer.commands.player.tpa.channel.TpaChannel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;

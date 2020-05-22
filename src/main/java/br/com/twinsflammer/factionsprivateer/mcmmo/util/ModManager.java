@@ -1,28 +1,27 @@
 package br.com.twinsflammer.factionsprivateer.mcmmo.util;
 
+import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
 import br.com.twinsflammer.factionsprivateer.mcmmo.config.Config;
 import br.com.twinsflammer.factionsprivateer.mcmmo.config.mods.CustomArmorConfig;
 import br.com.twinsflammer.factionsprivateer.mcmmo.config.mods.CustomBlockConfig;
 import br.com.twinsflammer.factionsprivateer.mcmmo.config.mods.CustomEntityConfig;
 import br.com.twinsflammer.factionsprivateer.mcmmo.config.mods.CustomToolConfig;
-import br.com.twinsflammer.factionsprivateer.mcmmo.skills.repair.repairables.Repairable;
 import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.mods.CustomBlock;
 import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.mods.CustomEntity;
 import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.mods.CustomTool;
 import br.com.twinsflammer.factionsprivateer.mcmmo.mcMMO;
-
-import java.io.File;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
-import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
+import br.com.twinsflammer.factionsprivateer.mcmmo.skills.repair.repairables.Repairable;
 import org.bukkit.Material;
 import org.bukkit.block.BlockState;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Entity;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.material.MaterialData;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 public class ModManager {
 

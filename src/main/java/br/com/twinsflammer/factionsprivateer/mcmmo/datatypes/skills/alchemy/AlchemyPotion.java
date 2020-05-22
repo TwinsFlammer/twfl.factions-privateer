@@ -1,13 +1,14 @@
 package br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.skills.alchemy;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.PotionMeta;
 import org.bukkit.potion.Potion;
 import org.bukkit.potion.PotionEffect;
+
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 public class AlchemyPotion {
 

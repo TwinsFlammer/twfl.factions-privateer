@@ -1,9 +1,9 @@
 package br.com.twinsflammer.factionsprivateer.chat.component;
 
-import br.com.twinsflammer.factionsprivateer.user.data.PrivateerUser;
 import br.com.twinsflammer.api.spigot.util.jsontext.data.JSONText;
 import br.com.twinsflammer.factionsprivateer.chat.enums.Channel;
 import br.com.twinsflammer.factionsprivateer.economy.manager.EconomyManager;
+import br.com.twinsflammer.factionsprivateer.user.data.PrivateerUser;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 

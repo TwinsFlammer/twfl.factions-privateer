@@ -2,13 +2,13 @@ package br.com.twinsflammer.factionsprivateer.mcmmo.listeners;
 
 import br.com.twinsflammer.factionsprivateer.mcmmo.config.Config;
 import br.com.twinsflammer.factionsprivateer.mcmmo.config.experience.ExperienceConfig;
+import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.player.McMMOPlayer;
+import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.skills.SkillType;
 import br.com.twinsflammer.factionsprivateer.mcmmo.events.experience.McMMOPlayerLevelUpEvent;
 import br.com.twinsflammer.factionsprivateer.mcmmo.events.experience.McMMOPlayerXpGainEvent;
 import br.com.twinsflammer.factionsprivateer.mcmmo.events.skills.abilities.McMMOPlayerAbilityActivateEvent;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.player.UserManager;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.scoreboards.ScoreboardManager;
-import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.player.McMMOPlayer;
-import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.skills.SkillType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;

@@ -1,21 +1,17 @@
 package br.com.twinsflammer.factionsprivateer.mcmmo.util.scoreboards;
 
+import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
 import br.com.twinsflammer.factionsprivateer.mcmmo.config.Config;
-import br.com.twinsflammer.factionsprivateer.mcmmo.locale.LocaleLoader;
-import br.com.twinsflammer.factionsprivateer.mcmmo.skills.child.FamilyTree;
 import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.database.PlayerStat;
 import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.player.McMMOPlayer;
 import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.player.PlayerProfile;
 import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.skills.AbilityType;
 import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.skills.SkillType;
+import br.com.twinsflammer.factionsprivateer.mcmmo.locale.LocaleLoader;
 import br.com.twinsflammer.factionsprivateer.mcmmo.mcMMO;
+import br.com.twinsflammer.factionsprivateer.mcmmo.skills.child.FamilyTree;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.Misc;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.player.UserManager;
-
-import java.util.List;
-import java.util.Map;
-
-import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
 import org.apache.commons.lang.Validate;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -25,6 +21,9 @@ import org.bukkit.scoreboard.DisplaySlot;
 import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Score;
 import org.bukkit.scoreboard.Scoreboard;
+
+import java.util.List;
+import java.util.Map;
 
 public class ScoreboardWrapper {
 

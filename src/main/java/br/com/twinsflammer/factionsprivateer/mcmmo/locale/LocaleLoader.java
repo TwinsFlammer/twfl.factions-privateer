@@ -1,14 +1,13 @@
 package br.com.twinsflammer.factionsprivateer.mcmmo.locale;
 
+import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
 import br.com.twinsflammer.factionsprivateer.mcmmo.config.Config;
+import org.bukkit.ChatColor;
 
 import java.text.MessageFormat;
 import java.util.Locale;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
-
-import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
-import org.bukkit.ChatColor;
 
 public final class LocaleLoader {
 

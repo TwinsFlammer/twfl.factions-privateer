@@ -1,5 +1,13 @@
 package br.com.twinsflammer.factionsprivateer.mcmmo.util;
 
+import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
+import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.party.Party;
+import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.player.McMMOPlayer;
+import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.player.PlayerProfile;
+import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.skills.AbilityType;
+import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.skills.SecondaryAbility;
+import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.skills.SkillType;
+import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.skills.XPGainReason;
 import br.com.twinsflammer.factionsprivateer.mcmmo.events.experience.McMMOPlayerLevelChangeEvent;
 import br.com.twinsflammer.factionsprivateer.mcmmo.events.experience.McMMOPlayerLevelDownEvent;
 import br.com.twinsflammer.factionsprivateer.mcmmo.events.experience.McMMOPlayerLevelUpEvent;
@@ -23,18 +31,6 @@ import br.com.twinsflammer.factionsprivateer.mcmmo.events.skills.secondaryabilit
 import br.com.twinsflammer.factionsprivateer.mcmmo.events.skills.unarmed.McMMOPlayerDisarmEvent;
 import br.com.twinsflammer.factionsprivateer.mcmmo.locale.LocaleLoader;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.player.UserManager;
-import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.party.Party;
-import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.player.McMMOPlayer;
-import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.player.PlayerProfile;
-import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.skills.AbilityType;
-import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.skills.SecondaryAbility;
-import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.skills.SkillType;
-import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.skills.XPGainReason;
-
-import java.util.HashMap;
-import java.util.Map;
-
-import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
 import org.bukkit.block.Block;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Fish;
@@ -42,6 +38,9 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerFishEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.PluginManager;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class EventUtils {
 

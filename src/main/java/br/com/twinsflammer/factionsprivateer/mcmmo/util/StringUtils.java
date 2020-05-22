@@ -3,10 +3,11 @@ package br.com.twinsflammer.factionsprivateer.mcmmo.util;
 import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.party.PartyFeature;
 import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.skills.AbilityType;
 import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.skills.SecondaryAbility;
-import java.text.Normalizer;
 import org.bukkit.Material;
 import org.bukkit.TreeSpecies;
 import org.bukkit.entity.EntityType;
+
+import java.text.Normalizer;
 
 public class StringUtils {
 

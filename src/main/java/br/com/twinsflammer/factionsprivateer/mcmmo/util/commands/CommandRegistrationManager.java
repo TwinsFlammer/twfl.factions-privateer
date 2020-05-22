@@ -1,10 +1,9 @@
 package br.com.twinsflammer.factionsprivateer.mcmmo.util.commands;
 
-import br.com.twinsflammer.factionsprivateer.mcmmo.locale.LocaleLoader;
-import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.skills.SkillType;
-import br.com.twinsflammer.factionsprivateer.mcmmo.util.StringUtils;
-
 import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
+import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.skills.SkillType;
+import br.com.twinsflammer.factionsprivateer.mcmmo.locale.LocaleLoader;
+import br.com.twinsflammer.factionsprivateer.mcmmo.util.StringUtils;
 import lombok.NoArgsConstructor;
 import org.bukkit.command.PluginCommand;
 

@@ -1,8 +1,8 @@
 package br.com.twinsflammer.factionsprivateer.mcmmo.events.hardcore;
 
-import java.util.HashMap;
-
 import org.bukkit.entity.Player;
+
+import java.util.HashMap;
 
 public class McMMOPlayerStatLossEvent extends McMMOPlayerDeathPenaltyEvent {
 

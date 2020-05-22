@@ -1,20 +1,20 @@
 package br.com.twinsflammer.factionsprivateer.mcmmo.config.skills.repair;
 
-import br.com.twinsflammer.factionsprivateer.mcmmo.skills.repair.repairables.Repairable;
-import br.com.twinsflammer.factionsprivateer.mcmmo.skills.repair.repairables.RepairableFactory;
+import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
 import br.com.twinsflammer.factionsprivateer.mcmmo.config.ConfigLoader;
 import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.skills.ItemType;
 import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.skills.MaterialType;
+import br.com.twinsflammer.factionsprivateer.mcmmo.skills.repair.repairables.Repairable;
+import br.com.twinsflammer.factionsprivateer.mcmmo.skills.repair.repairables.RepairableFactory;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.ItemUtils;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.skills.SkillUtils;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-
-import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
 import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.inventory.ItemStack;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 public class RepairConfig extends ConfigLoader {
 

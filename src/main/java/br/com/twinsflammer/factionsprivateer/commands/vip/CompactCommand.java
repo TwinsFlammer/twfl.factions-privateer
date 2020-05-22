@@ -1,10 +1,10 @@
 package br.com.twinsflammer.factionsprivateer.commands.vip;
 
-import com.google.common.collect.Maps;
 import br.com.twinsflammer.api.spigot.commands.CustomCommand;
 import br.com.twinsflammer.api.spigot.commands.enums.CommandRestriction;
 import br.com.twinsflammer.common.shared.permissions.group.GroupNames;
 import br.com.twinsflammer.common.shared.permissions.user.data.User;
+import com.google.common.collect.Maps;
 import org.bukkit.Material;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;

@@ -1,7 +1,7 @@
 package br.com.twinsflammer.factionsprivateer.economy.event;
 
-import br.com.twinsflammer.factionsprivateer.user.data.PrivateerUser;
 import br.com.twinsflammer.api.spigot.event.TwinsEvent;
+import br.com.twinsflammer.factionsprivateer.user.data.PrivateerUser;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.bukkit.event.Cancellable;

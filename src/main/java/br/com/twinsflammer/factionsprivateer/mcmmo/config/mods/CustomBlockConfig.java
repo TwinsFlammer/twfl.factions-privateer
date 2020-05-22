@@ -1,16 +1,16 @@
 package br.com.twinsflammer.factionsprivateer.mcmmo.config.mods;
 
+import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
 import br.com.twinsflammer.factionsprivateer.mcmmo.config.ConfigLoader;
 import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.mods.CustomBlock;
+import org.bukkit.Material;
+import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.material.MaterialData;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
-
-import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
-import org.bukkit.Material;
-import org.bukkit.configuration.ConfigurationSection;
-import org.bukkit.material.MaterialData;
 
 public class CustomBlockConfig extends ConfigLoader {
 

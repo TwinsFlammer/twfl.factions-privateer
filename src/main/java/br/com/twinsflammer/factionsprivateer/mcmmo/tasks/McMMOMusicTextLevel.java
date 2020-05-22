@@ -4,12 +4,14 @@ package br.com.twinsflammer.factionsprivateer.mcmmo.tasks;
 //import br.com.titanwar.api.user.SpigotUser;
 //import br.com.titanwar.common.spigot.utils.PlayerUtils;
 //import br.com.titanwar.common.spigot.v8.utils.NMS;
+
 import br.com.twinsflammer.factionsprivateer.mcmmo.mcMMO;
 import com.google.common.collect.Sets;
-import java.util.Objects;
-import java.util.Set;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+
+import java.util.Objects;
+import java.util.Set;
 
 public class McMMOMusicTextLevel implements Runnable {
 

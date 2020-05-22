@@ -1,9 +1,9 @@
 package br.com.twinsflammer.factionsprivateer.home.dao;
 
-import br.com.twinsflammer.factionsprivateer.home.data.Home;
-import com.google.common.collect.Sets;
 import br.com.twinsflammer.api.spigot.util.serialize.LocationSerialize;
 import br.com.twinsflammer.common.shared.databases.mysql.dao.Table;
+import br.com.twinsflammer.factionsprivateer.home.data.Home;
+import com.google.common.collect.Sets;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

@@ -1,9 +1,9 @@
 package br.com.twinsflammer.factionsprivateer.mcmmo.chat;
 
 import br.com.twinsflammer.factionsprivateer.mcmmo.config.Config;
+import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.party.Party;
 import br.com.twinsflammer.factionsprivateer.mcmmo.events.chat.McMMOPartyChatEvent;
 import br.com.twinsflammer.factionsprivateer.mcmmo.runnables.party.PartyChatTask;
-import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.party.Party;
 import org.bukkit.plugin.Plugin;
 
 public class PartyChatManager extends ChatManager {

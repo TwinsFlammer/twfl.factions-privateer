@@ -1,12 +1,12 @@
 package br.com.twinsflammer.factionsprivateer.mcmmo.skills.child;
 
+import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
 import br.com.twinsflammer.factionsprivateer.mcmmo.config.AutoUpdateConfigLoader;
 import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.skills.SkillType;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.StringUtils;
-import java.util.EnumSet;
-
-import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
 import org.bukkit.configuration.file.YamlConfiguration;
+
+import java.util.EnumSet;
 
 public class ChildConfig extends AutoUpdateConfigLoader {
 

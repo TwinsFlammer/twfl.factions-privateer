@@ -1,10 +1,11 @@
 package br.com.twinsflammer.factionsprivateer.mcmmo.util.blockmeta.chunkmeta;
 
-import java.io.IOException;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
 import org.bukkit.entity.Entity;
+
+import java.io.IOException;
 
 public class NullChunkManager implements ChunkManager {
 

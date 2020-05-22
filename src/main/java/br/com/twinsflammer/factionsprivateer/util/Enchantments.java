@@ -1,7 +1,7 @@
 package br.com.twinsflammer.factionsprivateer.util;
 
-import com.google.common.collect.Maps;
 import br.com.twinsflammer.common.shared.util.Helper;
+import com.google.common.collect.Maps;
 import org.bukkit.enchantments.Enchantment;
 
 import java.util.HashMap;

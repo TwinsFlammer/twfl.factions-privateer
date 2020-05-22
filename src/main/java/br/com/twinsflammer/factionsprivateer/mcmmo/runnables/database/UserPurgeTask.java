@@ -2,10 +2,9 @@ package br.com.twinsflammer.factionsprivateer.mcmmo.runnables.database;
 
 import br.com.twinsflammer.factionsprivateer.mcmmo.config.Config;
 import br.com.twinsflammer.factionsprivateer.mcmmo.mcMMO;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.concurrent.locks.ReentrantLock;
-
-import org.bukkit.scheduler.BukkitRunnable;
 
 public class UserPurgeTask extends BukkitRunnable {
 

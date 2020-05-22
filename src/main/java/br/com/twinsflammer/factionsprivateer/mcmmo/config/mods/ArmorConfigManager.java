@@ -1,8 +1,8 @@
 package br.com.twinsflammer.factionsprivateer.mcmmo.config.mods;
 
+import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
 import br.com.twinsflammer.factionsprivateer.mcmmo.mcMMO;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.ModManager;
-import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
 
 import java.io.File;
 import java.util.regex.Pattern;

@@ -2,14 +2,14 @@ package br.com.twinsflammer.factionsprivateer.mcmmo.runnables.database;
 
 import br.com.twinsflammer.factionsprivateer.mcmmo.config.experience.ExperienceConfig;
 import br.com.twinsflammer.factionsprivateer.mcmmo.database.DatabaseManager;
-import br.com.twinsflammer.factionsprivateer.mcmmo.locale.LocaleLoader;
-import br.com.twinsflammer.factionsprivateer.mcmmo.mcMMO;
-import br.com.twinsflammer.factionsprivateer.mcmmo.util.Misc;
-import br.com.twinsflammer.factionsprivateer.mcmmo.util.player.UserManager;
 import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.experience.FormulaType;
 import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.player.McMMOPlayer;
 import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.player.PlayerProfile;
 import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.skills.SkillType;
+import br.com.twinsflammer.factionsprivateer.mcmmo.locale.LocaleLoader;
+import br.com.twinsflammer.factionsprivateer.mcmmo.mcMMO;
+import br.com.twinsflammer.factionsprivateer.mcmmo.util.Misc;
+import br.com.twinsflammer.factionsprivateer.mcmmo.util.player.UserManager;
 import org.bukkit.command.CommandSender;
 import org.bukkit.scheduler.BukkitRunnable;
 

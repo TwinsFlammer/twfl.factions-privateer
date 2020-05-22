@@ -1,7 +1,8 @@
 package br.com.twinsflammer.factionsprivateer.mcmmo.util;
 
-import java.util.HashMap;
 import org.bukkit.enchantments.Enchantment;
+
+import java.util.HashMap;
 
 public class EnchantmentUtils {
 

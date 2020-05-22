@@ -1,15 +1,14 @@
 package br.com.twinsflammer.factionsprivateer.mcmmo.util;
 
+import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
 import br.com.twinsflammer.factionsprivateer.mcmmo.config.Config;
+import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.skills.SkillType;
 import br.com.twinsflammer.factionsprivateer.mcmmo.locale.LocaleLoader;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.skills.PerksUtils;
-import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.skills.SkillType;
-
-import java.text.DecimalFormat;
-
-import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginDescriptionFile;
+
+import java.text.DecimalFormat;
 
 public final class Motd {
 

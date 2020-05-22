@@ -1,9 +1,10 @@
 package br.com.twinsflammer.factionsprivateer.mcmmo.events.skills.fishing;
 
-import java.util.Map;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+
+import java.util.Map;
 
 public class McMMOPlayerMagicHunterEvent extends McMMOPlayerFishingTreasureEvent {
 

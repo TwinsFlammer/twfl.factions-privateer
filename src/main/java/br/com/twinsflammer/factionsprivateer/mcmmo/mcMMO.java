@@ -1,5 +1,8 @@
 package br.com.twinsflammer.factionsprivateer.mcmmo;
 
+import br.com.twinsflammer.api.spigot.commands.registry.CommandRegistry;
+import br.com.twinsflammer.common.shared.Common;
+import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
 import br.com.twinsflammer.factionsprivateer.mcmmo.api.McMMoAPI;
 import br.com.twinsflammer.factionsprivateer.mcmmo.commands.SkillsCommand;
 import br.com.twinsflammer.factionsprivateer.mcmmo.config.AdvancedConfig;
@@ -16,11 +19,19 @@ import br.com.twinsflammer.factionsprivateer.mcmmo.config.skills.salvage.Salvage
 import br.com.twinsflammer.factionsprivateer.mcmmo.config.treasure.TreasureConfig;
 import br.com.twinsflammer.factionsprivateer.mcmmo.database.DatabaseManager;
 import br.com.twinsflammer.factionsprivateer.mcmmo.database.DatabaseManagerFactory;
+import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.player.PlayerProfile;
+import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.skills.SkillType;
+import br.com.twinsflammer.factionsprivateer.mcmmo.listeners.*;
 import br.com.twinsflammer.factionsprivateer.mcmmo.party.PartyManager;
 import br.com.twinsflammer.factionsprivateer.mcmmo.runnables.SaveTimerTask;
 import br.com.twinsflammer.factionsprivateer.mcmmo.runnables.UpdaterResultAsyncTask;
 import br.com.twinsflammer.factionsprivateer.mcmmo.runnables.backups.CleanBackupsTask;
+import br.com.twinsflammer.factionsprivateer.mcmmo.runnables.database.UserPurgeTask;
 import br.com.twinsflammer.factionsprivateer.mcmmo.runnables.party.PartyAutoKickTask;
+import br.com.twinsflammer.factionsprivateer.mcmmo.runnables.player.ClearRegisteredXPGainTask;
+import br.com.twinsflammer.factionsprivateer.mcmmo.runnables.player.PlayerProfileLoadingTask;
+import br.com.twinsflammer.factionsprivateer.mcmmo.runnables.player.PowerLevelUpdatingTask;
+import br.com.twinsflammer.factionsprivateer.mcmmo.runnables.skills.BleedTimerTask;
 import br.com.twinsflammer.factionsprivateer.mcmmo.skills.alchemy.Alchemy;
 import br.com.twinsflammer.factionsprivateer.mcmmo.skills.child.ChildConfig;
 import br.com.twinsflammer.factionsprivateer.mcmmo.skills.repair.repairables.Repairable;
@@ -31,6 +42,7 @@ import br.com.twinsflammer.factionsprivateer.mcmmo.skills.salvage.salvageables.S
 import br.com.twinsflammer.factionsprivateer.mcmmo.skills.salvage.salvageables.SimpleSalvageableManager;
 import br.com.twinsflammer.factionsprivateer.mcmmo.tasks.McMMOMusicTextLevel;
 import br.com.twinsflammer.factionsprivateer.mcmmo.tasks.McMMORanksTask;
+import br.com.twinsflammer.factionsprivateer.mcmmo.util.*;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.blockmeta.chunkmeta.ChunkManager;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.blockmeta.chunkmeta.ChunkManagerFactory;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.commands.CommandRegistrationManager;
@@ -38,28 +50,15 @@ import br.com.twinsflammer.factionsprivateer.mcmmo.util.experience.FormulaManage
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.player.UserManager;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.scoreboards.ScoreboardManager;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.upgrade.UpgradeManager;
+import br.com.twinsflammer.factionsprivateer.user.data.PrivateerUser;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import br.com.twinsflammer.api.spigot.commands.registry.CommandRegistry;
-import br.com.twinsflammer.common.shared.Common;
-import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.player.PlayerProfile;
-import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.skills.SkillType;
-import br.com.twinsflammer.factionsprivateer.mcmmo.listeners.BlockListener;
-import br.com.twinsflammer.factionsprivateer.mcmmo.listeners.EntityListener;
-import br.com.twinsflammer.factionsprivateer.mcmmo.listeners.InventoryListener;
-import br.com.twinsflammer.factionsprivateer.mcmmo.listeners.PlayerListener;
-import br.com.twinsflammer.factionsprivateer.mcmmo.listeners.SelfListener;
-import br.com.twinsflammer.factionsprivateer.mcmmo.listeners.WorldListener;
-import br.com.twinsflammer.factionsprivateer.mcmmo.runnables.database.UserPurgeTask;
-import br.com.twinsflammer.factionsprivateer.mcmmo.runnables.player.ClearRegisteredXPGainTask;
-import br.com.twinsflammer.factionsprivateer.mcmmo.runnables.player.PlayerProfileLoadingTask;
-import br.com.twinsflammer.factionsprivateer.mcmmo.runnables.player.PowerLevelUpdatingTask;
-import br.com.twinsflammer.factionsprivateer.mcmmo.runnables.skills.BleedTimerTask;
-import br.com.twinsflammer.factionsprivateer.mcmmo.util.HolidayManager;
-import br.com.twinsflammer.factionsprivateer.mcmmo.util.LogFilter;
-import br.com.twinsflammer.factionsprivateer.mcmmo.util.Misc;
-import br.com.twinsflammer.factionsprivateer.mcmmo.util.ModManager;
-import br.com.twinsflammer.factionsprivateer.mcmmo.util.Permissions;
+import lombok.Getter;
+import net.shatteredlands.shatt.backup.ZipLibrary;
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
+import org.bukkit.metadata.FixedMetadataValue;
+import org.bukkit.plugin.PluginManager;
 
 import java.io.File;
 import java.io.IOException;
@@ -68,15 +67,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
-
-import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
-import br.com.twinsflammer.factionsprivateer.user.data.PrivateerUser;
-import lombok.Getter;
-import net.shatteredlands.shatt.backup.ZipLibrary;
-import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
-import org.bukkit.metadata.FixedMetadataValue;
-import org.bukkit.plugin.PluginManager;
 
 public class mcMMO {
 

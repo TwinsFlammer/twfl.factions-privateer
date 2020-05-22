@@ -6,15 +6,15 @@ import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.skills.MaterialType
 import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.skills.SkillType;
 import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.skills.alchemy.PotionStage;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.StringUtils;
-import java.util.ArrayList;
-import java.util.List;
-
 import org.bukkit.GrassSpecies;
 import org.bukkit.Material;
 import org.bukkit.TreeSpecies;
 import org.bukkit.entity.EntityType;
 import org.bukkit.material.LongGrass;
 import org.bukkit.material.MaterialData;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ExperienceConfig extends AutoUpdateConfigLoader {
 

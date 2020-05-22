@@ -1,14 +1,15 @@
 package br.com.twinsflammer.factionsprivateer.mcmmo.config;
 
+import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.skills.SecondaryAbility;
+import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.skills.SkillType;
 import br.com.twinsflammer.factionsprivateer.mcmmo.skills.alchemy.Alchemy;
 import br.com.twinsflammer.factionsprivateer.mcmmo.skills.fishing.Fishing;
 import br.com.twinsflammer.factionsprivateer.mcmmo.skills.mining.BlastMining;
 import br.com.twinsflammer.factionsprivateer.mcmmo.skills.repair.ArcaneForging;
 import br.com.twinsflammer.factionsprivateer.mcmmo.skills.salvage.Salvage;
 import br.com.twinsflammer.factionsprivateer.mcmmo.skills.smelting.Smelting;
-import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.skills.SecondaryAbility;
-import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.skills.SkillType;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.StringUtils;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;

@@ -1,16 +1,15 @@
 package br.com.twinsflammer.factionsprivateer.mcmmo.runnables.commands;
 
 import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
-import br.com.twinsflammer.factionsprivateer.mcmmo.mcMMO;
 import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.database.PlayerStat;
 import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.skills.SkillType;
-
-import java.util.List;
-
+import br.com.twinsflammer.factionsprivateer.mcmmo.mcMMO;
 import org.apache.commons.lang.Validate;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
+
+import java.util.List;
 
 public class MctopCommandAsyncTask extends BukkitRunnable {
 

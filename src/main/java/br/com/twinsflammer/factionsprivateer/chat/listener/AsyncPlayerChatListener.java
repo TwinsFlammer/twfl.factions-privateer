@@ -1,6 +1,5 @@
 package br.com.twinsflammer.factionsprivateer.chat.listener;
 
-import br.com.twinsflammer.factionsprivateer.user.data.PrivateerUser;
 import br.com.twinsflammer.api.spigot.util.action.data.CustomAction;
 import br.com.twinsflammer.common.shared.cooldown.manager.CooldownManager;
 import br.com.twinsflammer.common.shared.permissions.user.data.User;
@@ -11,6 +10,7 @@ import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
 import br.com.twinsflammer.factionsprivateer.chat.commands.chat.factory.ChatFactory;
 import br.com.twinsflammer.factionsprivateer.chat.component.ChatComponent;
 import br.com.twinsflammer.factionsprivateer.chat.enums.Channel;
+import br.com.twinsflammer.factionsprivateer.user.data.PrivateerUser;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -28,7 +28,7 @@ import java.util.stream.Collectors;
 public class AsyncPlayerChatListener implements Listener {
     private static final String OBJECT_NAME = "CHAT_LOCAL";
 
-    @EventHandler(ignoreCancelled = false, priority = EventPriority.MONITOR)
+    @EventHandler(priority = EventPriority.MONITOR)
     public void onMessage(AsyncPlayerChatEvent event) {
         if (event.isCancelled()) return;
 
@@ -71,7 +71,11 @@ public class AsyncPlayerChatListener implements Listener {
             return;
         }
 
-        if (players.isEmpty()) {
+        if (players.stream().filter(player1 -> {
+            PrivateerUser privateerUser = FactionsPrivateer.getInstance().getPrivateerUserFactory().getUser(player1.getUniqueId());
+
+            return !privateerUser.isInvisible();
+        }).count() <= 0) {
             new CustomAction()
                     .text(
                             "§cNão há ninguém por perto para você conversar :("

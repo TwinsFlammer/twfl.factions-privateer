@@ -3,9 +3,6 @@ package br.com.twinsflammer.factionsprivateer.mcmmo.listeners;
 import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
 import br.com.twinsflammer.factionsprivateer.mcmmo.mcMMO;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.blockmeta.conversion.BlockStoreConversionMain;
-
-import java.io.File;
-
 import org.bukkit.Chunk;
 import org.bukkit.World;
 import org.bukkit.block.BlockState;
@@ -16,6 +13,8 @@ import org.bukkit.event.world.ChunkUnloadEvent;
 import org.bukkit.event.world.StructureGrowEvent;
 import org.bukkit.event.world.WorldInitEvent;
 import org.bukkit.event.world.WorldUnloadEvent;
+
+import java.io.File;
 
 public class WorldListener implements Listener {
 

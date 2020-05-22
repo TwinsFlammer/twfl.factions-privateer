@@ -1,13 +1,12 @@
 package br.com.twinsflammer.factionsprivateer.mcmmo.events.fake;
 
-import java.util.EnumMap;
-import java.util.Map;
-
+import com.google.common.base.Function;
+import com.google.common.base.Functions;
 import org.bukkit.entity.Entity;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 
-import com.google.common.base.Function;
-import com.google.common.base.Functions;
+import java.util.EnumMap;
+import java.util.Map;
 
 /**
  * Called when mcMMO applies damage from an entity due to special abilities.

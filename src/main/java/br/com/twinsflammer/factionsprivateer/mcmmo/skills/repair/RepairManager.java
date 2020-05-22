@@ -1,6 +1,5 @@
 package br.com.twinsflammer.factionsprivateer.mcmmo.skills.repair;
 
-import br.com.twinsflammer.factionsprivateer.mcmmo.skills.repair.repairables.Repairable;
 import br.com.twinsflammer.factionsprivateer.mcmmo.config.Config;
 import br.com.twinsflammer.factionsprivateer.mcmmo.config.experience.ExperienceConfig;
 import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.player.McMMOPlayer;
@@ -10,14 +9,12 @@ import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.skills.XPGainReason
 import br.com.twinsflammer.factionsprivateer.mcmmo.locale.LocaleLoader;
 import br.com.twinsflammer.factionsprivateer.mcmmo.mcMMO;
 import br.com.twinsflammer.factionsprivateer.mcmmo.skills.SkillManager;
+import br.com.twinsflammer.factionsprivateer.mcmmo.skills.repair.repairables.Repairable;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.EventUtils;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.Misc;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.Permissions;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.StringUtils;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.skills.SkillUtils;
-import java.util.Map;
-import java.util.Map.Entry;
-
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.enchantments.Enchantment;
@@ -25,6 +22,9 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.material.MaterialData;
+
+import java.util.Map;
+import java.util.Map.Entry;
 
 public class RepairManager extends SkillManager {
 

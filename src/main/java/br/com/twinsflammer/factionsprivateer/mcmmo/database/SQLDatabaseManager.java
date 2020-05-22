@@ -1,7 +1,11 @@
 package br.com.twinsflammer.factionsprivateer.mcmmo.database;
 
-import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.MobHealthbarType;
+import br.com.twinsflammer.common.shared.Common;
+import br.com.twinsflammer.common.shared.databases.mysql.data.MySQL;
+import br.com.twinsflammer.common.shared.databases.mysql.manager.MySQLManager;
+import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
 import br.com.twinsflammer.factionsprivateer.mcmmo.config.Config;
+import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.MobHealthbarType;
 import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.database.DatabaseType;
 import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.database.PlayerStat;
 import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.database.UpgradeType;
@@ -11,27 +15,12 @@ import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.skills.SkillType;
 import br.com.twinsflammer.factionsprivateer.mcmmo.mcMMO;
 import br.com.twinsflammer.factionsprivateer.mcmmo.runnables.database.UUIDUpdateAsyncTask;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.Misc;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.EnumMap;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import org.bukkit.scheduler.BukkitRunnable;
+
+import java.sql.*;
+import java.util.*;
 import java.util.concurrent.locks.ReentrantLock;
 import java.util.stream.Collectors;
-
-import br.com.twinsflammer.common.shared.Common;
-import br.com.twinsflammer.common.shared.databases.mysql.data.MySQL;
-import br.com.twinsflammer.common.shared.databases.mysql.manager.MySQLManager;
-import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
-import org.bukkit.scheduler.BukkitRunnable;
 
 public final class SQLDatabaseManager implements DatabaseManager {
 

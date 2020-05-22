@@ -7,16 +7,16 @@ import br.com.twinsflammer.factionsprivateer.mcmmo.mcMMO;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.BlockUtils;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.Misc;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.skills.SkillUtils;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-
 import org.bukkit.Material;
 import org.bukkit.TreeSpecies;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.BlockState;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.material.Tree;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 public final class Woodcutting {
 

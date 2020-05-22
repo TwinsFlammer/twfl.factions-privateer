@@ -1,5 +1,6 @@
 package br.com.twinsflammer.factionsprivateer.mcmmo.skills.taming;
 
+import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
 import br.com.twinsflammer.factionsprivateer.mcmmo.config.AdvancedConfig;
 import br.com.twinsflammer.factionsprivateer.mcmmo.config.Config;
 import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.player.McMMOPlayer;
@@ -18,22 +19,14 @@ import br.com.twinsflammer.factionsprivateer.mcmmo.util.StringUtils;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.player.UserManager;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.skills.ParticleEffectUtils;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.skills.SkillUtils;
+import org.bukkit.Location;
+import org.bukkit.Sound;
+import org.bukkit.entity.*;
+import org.bukkit.inventory.ItemStack;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
-import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
-import org.bukkit.Location;
-import org.bukkit.Sound;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.EntityType;
-import org.bukkit.entity.Horse;
-import org.bukkit.entity.LivingEntity;
-import org.bukkit.entity.Ocelot;
-import org.bukkit.entity.Player;
-import org.bukkit.entity.Tameable;
-import org.bukkit.entity.Wolf;
-import org.bukkit.inventory.ItemStack;
 
 public class TamingManager extends SkillManager {
 

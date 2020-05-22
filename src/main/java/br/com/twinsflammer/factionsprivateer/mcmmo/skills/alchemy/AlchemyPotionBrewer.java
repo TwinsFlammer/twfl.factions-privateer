@@ -1,5 +1,6 @@
 package br.com.twinsflammer.factionsprivateer.mcmmo.skills.alchemy;
 
+import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
 import br.com.twinsflammer.factionsprivateer.mcmmo.config.skills.alchemy.PotionConfig;
 import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.skills.SecondaryAbility;
 import br.com.twinsflammer.factionsprivateer.mcmmo.datatypes.skills.alchemy.AlchemyPotion;
@@ -9,10 +10,6 @@ import br.com.twinsflammer.factionsprivateer.mcmmo.runnables.player.PlayerUpdate
 import br.com.twinsflammer.factionsprivateer.mcmmo.runnables.skills.AlchemyBrewCheckTask;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.Permissions;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.player.UserManager;
-import java.util.ArrayList;
-import java.util.List;
-
-import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
 import org.bukkit.Material;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.BrewingStand;
@@ -23,6 +20,9 @@ import org.bukkit.inventory.BrewerInventory;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryView;
 import org.bukkit.inventory.ItemStack;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public final class AlchemyPotionBrewer {
 

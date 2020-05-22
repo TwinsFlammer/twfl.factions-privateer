@@ -9,6 +9,10 @@ import br.com.twinsflammer.factionsprivateer.mcmmo.mcMMO;
 import br.com.twinsflammer.factionsprivateer.mcmmo.party.PartyManager;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.EventUtils;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.Misc;
+import org.bukkit.ChatColor;
+import org.bukkit.Sound;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -16,11 +20,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.UUID;
-
-import org.bukkit.ChatColor;
-import org.bukkit.Sound;
-import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
 
 public class Party {
 

@@ -1,9 +1,10 @@
 package br.com.twinsflammer.factionsprivateer.mcmmo.skills.salvage.salvageables;
 
-import java.util.HashMap;
-import java.util.List;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
+
+import java.util.HashMap;
+import java.util.List;
 
 public class SimpleSalvageableManager implements SalvageableManager {
 

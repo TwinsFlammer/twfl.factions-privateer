@@ -2,9 +2,9 @@ package br.com.twinsflammer.factionsprivateer.mcmmo.config.party;
 
 import br.com.twinsflammer.factionsprivateer.mcmmo.config.ConfigLoader;
 import br.com.twinsflammer.factionsprivateer.mcmmo.util.StringUtils;
-import java.util.HashSet;
-
 import org.bukkit.Material;
+
+import java.util.HashSet;
 
 public class ItemWeightConfig extends ConfigLoader {
 
