@@ -44,6 +44,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 import redis.clients.jedis.Jedis;
@@ -480,6 +482,38 @@ public class PrivateerUser extends SpigotUser {
         itemChannel.sendMessage(
                 jsonObject.toString()
         );
+    }
+
+    public void toggleAllMods() {
+        this.toggleVisibility();
+
+        this.toggleLightMode();
+    }
+
+    public void toggleVisibility() {
+        Player player = this.getPlayer();
+
+        Bukkit.getOnlinePlayers().forEach(player1 -> {
+            PrivateerUser privateerUser1 = FactionsPrivateer.getInstance().getPrivateerUserFactory().getUser(player1.getUniqueId());
+
+            if (this.isInvisible() && !privateerUser1.isStaff())
+                player1.hidePlayer(player);
+            else player1.showPlayer(player);
+        });
+    }
+
+    public void toggleLightMode() {
+        Player player = this.getPlayer();
+
+        if (this.hasLight())
+            player.addPotionEffect(new PotionEffect(
+                    PotionEffectType.NIGHT_VISION,
+                    9999,
+                    1
+            ));
+        else {
+            player.removePotionEffect(PotionEffectType.NIGHT_VISION);
+        }
     }
 
     public String getRolePrefix() {
