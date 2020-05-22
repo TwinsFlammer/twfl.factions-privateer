@@ -15,7 +15,7 @@ public class FlyCommand extends CustomCommand {
         super(
                 "fly",
                 CommandRestriction.IN_GAME,
-                GroupNames.DIRECTOR
+                GroupNames.ADMINISTRATOR
         );
     }
 
@@ -24,7 +24,7 @@ public class FlyCommand extends CustomCommand {
         Player player = (Player) commandSender;
 
         player.setAllowFlight(!player.getAllowFlight());
-        player.setFlying(!player.isFlying());
+        player.setFlying(player.getAllowFlight());
 
         commandSender.sendMessage(
                 String.format(
