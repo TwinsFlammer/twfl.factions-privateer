@@ -30,14 +30,6 @@ public class VanishCommand extends CustomCommand {
 
         commandSender.sendMessage("§aO modo invisível foi " + (privateerUser.isInvisible() ? "ativado." : "desativado."));
 
-        Player player = (Player) commandSender;
-
-        Bukkit.getOnlinePlayers().forEach(player1 -> {
-            PrivateerUser privateerUser1 = FactionsPrivateer.getInstance().getPrivateerUserFactory().getUser(player1.getUniqueId());
-
-            if (privateerUser.isInvisible() && !privateerUser1.isStaff())
-                player1.hidePlayer(player);
-            else player1.showPlayer(player);
-        });
+        privateerUser.toggleVisibility();
     }
 }
