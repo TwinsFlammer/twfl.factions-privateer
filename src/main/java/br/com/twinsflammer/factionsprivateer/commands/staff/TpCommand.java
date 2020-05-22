@@ -18,7 +18,7 @@ public class TpCommand extends CustomCommand {
         super(
                 "tp",
                 CommandRestriction.IN_GAME,
-                GroupNames.MODERATOR
+                GroupNames.DIRECTOR
         );
     }
 
@@ -48,13 +48,11 @@ public class TpCommand extends CustomCommand {
             return;
         }
 
-        Server server = targetUser.getServer();
-
         TeleportRequest teleportRequest = new TeleportRequest(
                 user.getId(),
                 targetUser.getId(),
                 null,
-                server.getId(),
+                targetUser.getServerId(),
                 0L
         );
 
