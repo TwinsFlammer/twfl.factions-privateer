@@ -25,6 +25,7 @@ public class LightCommand extends CustomCommand {
         PrivateerUser privateerUser = FactionsPrivateer.getInstance().getPrivateerUserFactory().getUser(user.getId());
 
         privateerUser.setLight(!privateerUser.hasLight());
+        privateerUser.toggleLightMode();
 
         commandSender.sendMessage(
                 String.format(
