@@ -26,7 +26,7 @@ import java.util.stream.Collectors;
 public class SpawnerSpawnListener implements Listener {
     public static final String STACK_METADATA = "STACKED_AMOUNT";
 
-    public static final Integer STACK_LIMIT = 5;
+    public static final Integer STACK_LIMIT = 300;
 
     public static final EntityType[] ALLOWED_ENTITY_TYPES = {
             EntityType.IRON_GOLEM,
