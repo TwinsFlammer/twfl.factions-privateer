@@ -26,6 +26,7 @@ public class FactionMembershipChangeListener implements Listener {
                 privateerUser.updateScoreboard(6, "");
                 privateerUser.updateScoreboard(7, "");
                 privateerUser.updateScoreboard(8, "");
+                privateerUser.removeScoreboard(9);
                 break;
             }
             case LEAVE:
