@@ -604,15 +604,12 @@ public class PrivateerUser extends SpigotUser {
     }
 
     public Integer getInventorySpace() {
-        Player player = this.getPlayer();
-
-        PlayerInventory playerInventory = player.getInventory();
+        Inventory playerInventory = this.getInventory();
 
         Integer space = 0;
 
         for (int i = 0; i < playerInventory.getSize(); i++)
-            if (playerInventory.getItem(i) == null
-                    || playerInventory.getItem(i).getType() == Material.AIR) {
+            if (playerInventory.getItem(i) == null || playerInventory.getItem(i).getType() == Material.AIR) {
                 space++;
             }
 
