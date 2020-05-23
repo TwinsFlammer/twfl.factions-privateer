@@ -86,11 +86,12 @@ public class SpawnerSpawnListener implements Listener {
         entity.setMetadata(SpawnerSpawnListener.STACK_METADATA, new FixedMetadataValue(FactionsPrivateer.getInstance(), currentAmount));
 
         entity.setCustomName(
-                String.format(
-                        "§a%dx %s",
-                        currentAmount,
-                        EntityUtil.translate(entity.getName())
-                )
+                "§a" + currentAmount + "x " + EntityUtil.translate(entity.getName())
+//                String.format(
+//                        "§a%dx %s",
+//                        currentAmount,
+//                        EntityUtil.translate(entity.getName())
+//                )
         );
     }
 
