@@ -12,8 +12,6 @@ import org.bukkit.event.player.PlayerTeleportEvent;
  * @author SrGutyerrez
  */
 public class PlayerTeleportListener implements Listener {
-
-
     @EventHandler
     public void onTeleport(PlayerTeleportEvent event) {
         Player player = event.getPlayer();
@@ -25,6 +23,6 @@ public class PlayerTeleportListener implements Listener {
 
         Double size = worldBorder.getSize();
 
-        System.out.println(size);
+        System.out.println(size.intValue());
     }
 }
