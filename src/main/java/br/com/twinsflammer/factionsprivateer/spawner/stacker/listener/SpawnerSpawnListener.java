@@ -79,7 +79,7 @@ public class SpawnerSpawnListener implements Listener {
     }
 
     protected void updateAmount(Entity entity) {
-        Integer currentAmount = entity.hasMetadata(SpawnerSpawnListener.STACK_METADATA) ? entity.getMetadata(this.STACK_METADATA).get(0).asInt() : 0;
+        Integer currentAmount = entity.hasMetadata(SpawnerSpawnListener.STACK_METADATA) ? entity.getMetadata(SpawnerSpawnListener.STACK_METADATA).get(0).asInt() : 0;
 
         currentAmount++;
 
