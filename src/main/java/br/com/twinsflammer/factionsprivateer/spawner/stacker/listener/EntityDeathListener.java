@@ -1,5 +1,6 @@
 package br.com.twinsflammer.factionsprivateer.spawner.stacker.listener;
 
+import br.com.twinsflammer.api.spigot.inventory.item.CustomItem;
 import br.com.twinsflammer.factionsprivateer.util.BlockUtil;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -16,6 +17,8 @@ import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author SrGutyerrez
@@ -74,17 +77,21 @@ public class EntityDeathListener implements Listener {
 
         Integer dropMultiplier = multiplier == 0 ? 1 : multiplier;
 
-        event.getDrops().forEach(itemStack -> {
-            Material material = itemStack.getType();
+        List<Material> drops = event.getDrops()
+                .stream()
+                .map(ItemStack::getType)
+                .distinct()
+                .collect(Collectors.toList());
 
-            System.out.println(material + ": " + itemStack.getAmount());
+        System.out.println(drops.size());
 
-            if (Arrays.asList(this.BLACKLISTED_TO_DROP).contains(material))
-                itemStack.setType(Material.AIR);
-            else {
-                itemStack.setAmount(
-                        itemStack.getAmount() * dropMultiplier
-                );
+        drops.forEach(material -> {
+            if (!Arrays.asList(this.BLACKLISTED_TO_DROP).contains(material)) {
+                ItemStack itemStack = new CustomItem(material)
+                        .amount(dropMultiplier)
+                        .build();
+
+                System.out.println(material + ": " + itemStack.getAmount());
             }
         });
         event.setDroppedExp(event.getDroppedExp() * dropMultiplier);
