@@ -23,7 +23,7 @@ public class PlayerTeleportListener implements Listener {
 
         Double size = worldBorder.getSize();
 
-        Boolean isAboveBorder = toLocation.getX() >= (size / 2);
+        Boolean isAboveBorder = toLocation.getX() >= (size / 2) || toLocation.getZ() >= (size / 2);
 
         if (isAboveBorder)
             player.setHealth(0.0D);
