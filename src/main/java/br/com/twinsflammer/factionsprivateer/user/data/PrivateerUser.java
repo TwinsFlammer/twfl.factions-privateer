@@ -64,17 +64,17 @@ public class PrivateerUser extends SpigotUser {
     private final String[] SCOREBOARD_LINES = {
             "§c  " + Common.SERVER_URL,
             "§4",
-            "§f Cash: §b%s",
-            "§f Coins: §a%s",
+            "§f Cash: §6%s",
+            "§f Coins: §c%s",
             "§3",
-            "§f   Terras: §e%s",
-            "§f   Membros: §e%s/%s",
-            "§f   Poder: §e%s/%s",
+            "§f   Terras: §c%s",
+            "§f   Membros: §c%s/%s",
+            "§f   Poder: §c%s/%s",
             "§4 [%s] %s",
+            "§7  Nenhuma facção",
             "§2",
-            "§f Poder: §a%s",
-            "§f Nível: §a%s",
-            "§f KDR: §e%s",
+            "§f Poder: §c%s",
+            "§f Nível: §c%s",
             "§1"
     };
 
@@ -271,7 +271,7 @@ public class PrivateerUser extends SpigotUser {
 
             Boolean isFactionScore = Arrays.asList(FACTION_SCORE).contains(i);
 
-            if (!this.hasFaction() && isFactionScore)
+            if ((!this.hasFaction() && isFactionScore) || (i == 3 && this.hasFaction()))
                 continue;
 
             this.customBoard.set(i, String.format(
