@@ -5,6 +5,7 @@ import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
 import br.com.twinsflammer.factionsprivateer.user.data.PrivateerUser;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.event.Event;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
@@ -30,6 +31,9 @@ public class PlayerInteractListener implements Listener {
         if (itemStack.getType() == Material.ENDER_PEARL && action.name().contains("RIGHT_")) {
             if (!privateerUser.canUseEnderPearlListener()) {
                 event.setCancelled(true);
+                event.setUseItemInHand(Event.Result.DENY);
+
+                player.updateInventory();
 
                 player.sendMessage(
                         String.format(
