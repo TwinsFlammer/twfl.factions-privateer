@@ -77,13 +77,17 @@ public class SpawnerSpawnListener implements Listener {
     }
 
     protected void updateAmount(Entity entity) {
-        Integer currentAmount = entity.hasMetadata(this.STACK_METADATA) ? entity.getMetadata(this.STACK_METADATA).get(0).asInt(): 0;
+        Integer currentAmount = entity.hasMetadata(this.STACK_METADATA) ? entity.getMetadata(this.STACK_METADATA).get(0).asInt() : 0;
 
         currentAmount++;
 
+        System.out.println(currentAmount);
+
         entity.setMetadata(this.STACK_METADATA, new FixedMetadataValue(FactionsPrivateer.getInstance(), currentAmount));
 
-        entity.setCustomNameVisible(true);
+        if (!entity.isCustomNameVisible())
+            entity.setCustomNameVisible(true);
+
         entity.setCustomName(
                 String.format(
                         "§a%dx %s",
