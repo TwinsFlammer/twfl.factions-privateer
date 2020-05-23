@@ -72,7 +72,10 @@ public class SpawnerSpawnListener implements Listener {
         } else {
             entity.remove();
 
-            Entity receiver = entities.get(0);
+            Entity receiver = entities.stream()
+                    .filter(entity1 -> entity1.hasMetadata(SpawnerSpawnListener.STACK_METADATA))
+                    .findFirst()
+                    .orElseGet(() -> entities.get(0));
 
             this.updateAmount(receiver);
         }
