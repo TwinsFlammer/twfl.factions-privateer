@@ -58,7 +58,7 @@ public class GlobalCommand extends CustomCommand {
 
         ChatFactory<Channel> chatFactory = new ChatFactory<>();
 
-        if (!chatFactory.isChannelActive(Channel.GLOBAL)) {
+        if (!chatFactory.isChannelActive(Channel.GLOBAL) && !user.hasGroup(GroupNames.DIRECTOR)) {
             commandSender.sendMessage("§cEste canal não está ativo no momento.");
             return;
         }
