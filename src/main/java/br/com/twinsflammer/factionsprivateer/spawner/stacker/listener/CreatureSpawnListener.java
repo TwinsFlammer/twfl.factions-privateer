@@ -13,7 +13,8 @@ import java.util.Arrays;
 public class CreatureSpawnListener implements Listener {
     private final CreatureSpawnEvent.SpawnReason[] ALLOWED_REASONS = {
             CreatureSpawnEvent.SpawnReason.SPAWNER,
-            CreatureSpawnEvent.SpawnReason.CUSTOM
+            CreatureSpawnEvent.SpawnReason.CUSTOM,
+            CreatureSpawnEvent.SpawnReason.EGG
     };
 
     @EventHandler(ignoreCancelled = true, priority = EventPriority.MONITOR)
