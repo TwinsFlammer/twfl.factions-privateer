@@ -85,10 +85,14 @@ public class SpawnerSpawnListener implements Listener {
 
         System.out.println(newAmount);
 
+        String aaa = "§a" + newAmount + "x " + EntityUtil.translate(entity.getType().getName());
+
+        System.out.println("AAAA " + aaa);
+
         String newName = String.format(
                 "§a%dx %s",
                 newAmount,
-                EntityUtil.translate(entity.getName())
+                EntityUtil.translate(entity.getType().getName())
         );
 
         System.out.println("New Name: " + newName);
@@ -99,7 +103,13 @@ public class SpawnerSpawnListener implements Listener {
 
         System.out.println(entity.getCustomName());
 
-        entity.setMetadata(SpawnerSpawnListener.STACK_METADATA, new FixedMetadataValue(FactionsPrivateer.getInstance(), newAmount));
+        entity.setMetadata(
+                SpawnerSpawnListener.STACK_METADATA,
+                new FixedMetadataValue(
+                        FactionsPrivateer.getInstance(),
+                        newAmount
+                )
+        );
         return;
     }
 
