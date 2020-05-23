@@ -245,7 +245,7 @@ public class PrivateerUser extends SpigotUser {
 
         String factionName = this.getFactionAtName(factionAt);
 
-        Integer[] FACTION_SCORE = {4, 5, 6, 7, 8};
+        Integer[] FACTION_SCORE = {5, 6, 7, 8};
 
         String[] SCORE_WITHOUT_FACTION = {
                 "",
