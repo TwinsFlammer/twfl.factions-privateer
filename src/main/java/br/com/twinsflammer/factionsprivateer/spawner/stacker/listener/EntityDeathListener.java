@@ -77,6 +77,8 @@ public class EntityDeathListener implements Listener {
         event.getDrops().forEach(itemStack -> {
             Material material = itemStack.getType();
 
+            System.out.println(material + ": " + itemStack.getAmount());
+
             if (Arrays.asList(this.BLACKLISTED_TO_DROP).contains(material))
                 itemStack.setType(Material.AIR);
             else {
