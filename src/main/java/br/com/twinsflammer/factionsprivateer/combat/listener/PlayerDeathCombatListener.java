@@ -15,6 +15,8 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 public class PlayerDeathCombatListener implements Listener {
     @EventHandler
     public void onDeath(PlayerDeathEvent event) {
+        event.setDeathMessage(null);
+
         Player player = event.getEntity();
 
         PrivateerUser privateerUser = FactionsPrivateer.getInstance().getPrivateerUserFactory().getUser(player.getUniqueId());
