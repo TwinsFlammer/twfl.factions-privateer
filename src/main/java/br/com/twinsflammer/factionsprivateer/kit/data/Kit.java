@@ -23,7 +23,7 @@ public class Kit {
     @Getter
     private final Material material;
     @Getter
-    private final Integer slot;
+    private final Integer data, slot;
     @Getter
     private final Category category;
     @Getter
@@ -38,6 +38,7 @@ public class Kit {
     
     public CustomItem getIcon() {
         CustomItem customItem = new CustomItem(this.material)
+                .data(this.data)
                 .name("§e" + this.displayName);
 
         if (!group.isDefault())
