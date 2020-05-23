@@ -34,7 +34,7 @@ public class PlayerInteractListener implements Listener {
                 player.sendMessage(
                         String.format(
                                 "§cAguarde %s para usar uma pérola do fim novamente.",
-                                TimeFormatter.formatMinimized(privateerUser.getLastEnderPearlTeleportTime())
+                                TimeFormatter.formatMinimized(privateerUser.getLastEnderPearlTeleportTime() - System.currentTimeMillis())
                         )
                 );
             } else privateerUser.setLastEnderPearlTeleportTime(System.currentTimeMillis());
