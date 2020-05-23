@@ -1,5 +1,6 @@
 package br.com.twinsflammer.factionsprivateer.spawner.listener;
 
+import br.com.twinsflammer.common.shared.util.TimeFormatter;
 import br.com.twinsflammer.factionsprivateer.spawner.manager.SpawnerManager;
 import br.com.twinsflammer.factionsprivateer.util.BlockUtil;
 import org.bukkit.Location;
@@ -25,12 +26,26 @@ public class SpawnerBreakListener implements Listener {
 
         if (block.getType() != Material.MOB_SPAWNER) return;
 
+        Location location = block.getLocation();
+
+        if (!SpawnerManager.canBreakSpawner(location)) {
+            player.sendMessage(
+                    String.format(
+                            "§cAguarde %s para poder quebrar este gerador.",
+                            TimeFormatter.formatMinimized(
+                                    SpawnerManager.getTimeToBreak(location) - System.currentTimeMillis()
+                            )
+                    )
+            );
+            return;
+        }
+
         ItemStack itemStack = player.getItemInHand();
 
         if (itemStack != null && itemStack.getType().name().endsWith("_PICKAXE") && itemStack.containsEnchantment(Enchantment.SILK_TOUCH)) {
             ItemStack spawner = SpawnerManager.getSpawner(block);
 
-            Location location = BlockUtil.getLocation(
+            location = BlockUtil.getLocation(
                     block.getLocation(),
                     BlockUtil.getPlayerBlockFaceLooking(
                             player,
