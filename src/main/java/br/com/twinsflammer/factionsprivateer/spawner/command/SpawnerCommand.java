@@ -2,18 +2,14 @@ package br.com.twinsflammer.factionsprivateer.spawner.command;
 
 import br.com.twinsflammer.api.spigot.commands.CustomCommand;
 import br.com.twinsflammer.api.spigot.commands.enums.CommandRestriction;
-import br.com.twinsflammer.api.spigot.util.NBTTag;
 import br.com.twinsflammer.common.shared.permissions.group.GroupNames;
 import br.com.twinsflammer.common.shared.permissions.user.data.User;
 import br.com.twinsflammer.common.shared.permissions.user.manager.UserManager;
 import br.com.twinsflammer.common.shared.util.Helper;
 import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
-import br.com.twinsflammer.factionsprivateer.spawner.item.Spawner;
 import br.com.twinsflammer.factionsprivateer.spawner.manager.SpawnerManager;
 import br.com.twinsflammer.factionsprivateer.spawner.stacker.listener.SpawnerSpawnListener;
 import br.com.twinsflammer.factionsprivateer.user.data.PrivateerUser;
-import net.minecraft.server.v1_8_R3.NBTBase;
-import net.minecraft.server.v1_8_R3.NBTTagCompound;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.EntityType;
 import org.bukkit.inventory.ItemStack;
@@ -77,7 +73,14 @@ public class SpawnerCommand extends CustomCommand {
 
             ItemStack spawner = SpawnerManager.createSpawner(entityType, amount);
 
+            if ((privateerUser.getInventorySpace() * spawner.getMaxStackSize()) < amount) {
+                commandSender.sendMessage("§cEste usuário não possui espaço suficiente no inventário.");
+                return;
+            }
+
             privateerUser.giveItem(spawner);
+
+            commandSender.sendMessage("§aVocê enviou ");
         } catch (IllegalArgumentException exception) {
             commandSender.sendMessage("§cEste gerador não existe.");
         }
