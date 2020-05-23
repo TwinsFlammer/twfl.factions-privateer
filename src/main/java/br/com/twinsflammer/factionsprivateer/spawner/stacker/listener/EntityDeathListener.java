@@ -3,6 +3,7 @@ package br.com.twinsflammer.factionsprivateer.spawner.stacker.listener;
 import br.com.twinsflammer.factionsprivateer.util.BlockUtil;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.World;
 import org.bukkit.block.CreatureSpawner;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Entity;
@@ -35,18 +36,27 @@ public class EntityDeathListener implements Listener {
 
         Integer amount = livingEntity.hasMetadata(SpawnerSpawnListener.STACK_METADATA) ? livingEntity.getMetadata(SpawnerSpawnListener.STACK_METADATA).get(0).asInt() : 1;
 
+        EntityType entityType = livingEntity.getType();
+        Location location = livingEntity.getLocation();
+        World world = location.getWorld();
+
         Integer multiplier = this.getSpawnerMultiplier(
-                livingEntity.getType(),
-                livingEntity.getLocation()
+                entityType,
+                location
         );
 
         if (multiplier > amount) multiplier = amount;
 
-        if (amount > multiplier)
+        if (amount > multiplier) {
+            livingEntity.remove();
+
+            Entity newEntity = world.spawnEntity(location, entityType);
+
             SpawnerSpawnListener.updateAmount(
-                    livingEntity,
+                    newEntity,
                     amount - multiplier
             );
+        }
 
         if (killer != null && killer.getType() == EntityType.PLAYER) {
             Player player = (Player) killer;
@@ -75,6 +85,7 @@ public class EntityDeathListener implements Listener {
                 );
             }
         });
+        event.setDroppedExp(event.getDroppedExp() * dropMultiplier);
     }
 
     private Integer getSpawnerMultiplier(EntityType entityType, Location location) {
