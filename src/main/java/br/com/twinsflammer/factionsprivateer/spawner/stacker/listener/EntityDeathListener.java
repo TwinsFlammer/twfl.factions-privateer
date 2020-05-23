@@ -70,7 +70,7 @@ public class EntityDeathListener implements Listener {
                 Integer lootingEnchantmentLevel = itemStack.containsEnchantment(Enchantment.LOOT_BONUS_MOBS) ? itemStack.getEnchantmentLevel(Enchantment.LOOT_BONUS_MOBS) : 0;
 
                 if (lootingEnchantmentLevel != 0) {
-                    multiplier = multiplier * lootingEnchantmentLevel/*(int) (lootingEnchantmentLevel > 1 ? lootingEnchantmentLevel / 1.5D : 1)*/;
+                    multiplier = multiplier * lootingEnchantmentLevel;
                 }
             }
         }
@@ -83,8 +83,6 @@ public class EntityDeathListener implements Listener {
                 .distinct()
                 .collect(Collectors.toList());
 
-        System.out.println(drops.size());
-
         event.getDrops().clear();
 
         drops.forEach(material -> {
@@ -92,8 +90,6 @@ public class EntityDeathListener implements Listener {
                 ItemStack itemStack = new CustomItem(material)
                         .amount(dropMultiplier)
                         .build();
-
-                System.out.println(material + ": " + itemStack.getAmount());
 
                 event.getDrops().add(itemStack);
             }
