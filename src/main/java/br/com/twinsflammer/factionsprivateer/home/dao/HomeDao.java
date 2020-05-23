@@ -37,7 +37,7 @@ public class HomeDao<T extends Home> extends Table {
                                 "`user_id` INTEGER NOT NULL," +
                                 "`name` VARCHAR(32) NOT NULL," +
                                 "`server_id` INTEGER NOT NULL," +
-                                "`faction_id` VARCHAR(32) NOT NULL," +
+                                "`faction_id` VARCHAR(36) NOT NULL," +
                                 "`location` VARCHAR(255) NOT NULL," +
                                 "`state` VARCHAR(12) NOT NULL" +
                                 ");",
@@ -74,7 +74,7 @@ public class HomeDao<T extends Home> extends Table {
                 LocationSerialize.toString(home.getLocation()),
                 home.getState().toString()
         );
-        System.out.println(query);
+
         try (
                 Connection connection = this.getConnection();
                 PreparedStatement preparedStatement = connection.prepareStatement(query);
