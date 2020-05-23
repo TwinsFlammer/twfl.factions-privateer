@@ -257,6 +257,7 @@ public class PrivateerUser extends SpigotUser {
                 "",
                 "",
                 "",
+                "",
                 "§2",
                 this.getPowerRounded() + "/" + this.getPowerMaxRounded(),
                 mcMMOPlayer == null ? "0" : String.valueOf(mcMMOPlayer.getPowerLevel()),
