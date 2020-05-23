@@ -55,7 +55,7 @@ public class MemoryCommand extends CustomCommand {
                 "§fStatus: §aOnline",
                 "§fNome do servidor: §7" + server.getName(),
                 "§fTPS atual: " + message,
-                "§fTempo online: §7" + TimeFormatter.format(System.currentTimeMillis() - FactionsPrivateer.getStartTime()),
+                "§fTempo online: §7" + TimeFormatter.formatMinimized(System.currentTimeMillis() - FactionsPrivateer.getStartTime()),
                 "§fJogadores atuais: §7" + server.getOnlinePlayers().size() + "/" + server.getMaxPlayers(),
                 "§fVersão do servidor: §7" + server.getBukkitVersion(),
                 "",
