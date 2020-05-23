@@ -31,7 +31,7 @@ public abstract class ChatComponent {
                 privateerUser.getRolePrefix() + privateerUser.getFactionTag()
         ) : "";
 
-        String space = privateerUser.hasGroup(GroupNames.DIRECTOR) ? "\n§r " : "";
+        String space = privateerUser.hasGroup(GroupNames.DIRECTOR) ? "\n§r" : "";
 
         switch (channel) {
             case GLOBAL:
