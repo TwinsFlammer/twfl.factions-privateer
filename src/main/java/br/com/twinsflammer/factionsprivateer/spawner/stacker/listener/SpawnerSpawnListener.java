@@ -24,9 +24,9 @@ import java.util.stream.Collectors;
  * @author SrGutyerrez
  */
 public class SpawnerSpawnListener implements Listener {
-    private final String STACK_METADATA = "STACKED_AMOUNT";
+    public static final String STACK_METADATA = "STACKED_AMOUNT";
 
-    private final EntityType[] ALLOWED_TO_SPAWN = {
+    public static final EntityType[] ALLOWED_ENTITY_TYPES = {
             EntityType.IRON_GOLEM,
             EntityType.BLAZE,
             EntityType.PIG_ZOMBIE,
@@ -53,7 +53,7 @@ public class SpawnerSpawnListener implements Listener {
 
         Entity entity = event.getEntity();
 
-        if (!Arrays.asList(this.ALLOWED_TO_SPAWN).contains(entity.getType())) {
+        if (!Arrays.asList(SpawnerSpawnListener.ALLOWED_ENTITY_TYPES).contains(entity.getType())) {
             event.setCancelled(true);
             return;
         }
@@ -77,16 +77,13 @@ public class SpawnerSpawnListener implements Listener {
     }
 
     protected void updateAmount(Entity entity) {
-        Integer currentAmount = entity.hasMetadata(this.STACK_METADATA) ? entity.getMetadata(this.STACK_METADATA).get(0).asInt() : 0;
+        Integer currentAmount = entity.hasMetadata(SpawnerSpawnListener.STACK_METADATA) ? entity.getMetadata(this.STACK_METADATA).get(0).asInt() : 0;
 
         currentAmount++;
 
         System.out.println(currentAmount);
 
-        entity.setMetadata(this.STACK_METADATA, new FixedMetadataValue(FactionsPrivateer.getInstance(), currentAmount));
-
-        if (!entity.isCustomNameVisible())
-            entity.setCustomNameVisible(true);
+        entity.setMetadata(SpawnerSpawnListener.STACK_METADATA, new FixedMetadataValue(FactionsPrivateer.getInstance(), currentAmount));
 
         entity.setCustomName(
                 String.format(
