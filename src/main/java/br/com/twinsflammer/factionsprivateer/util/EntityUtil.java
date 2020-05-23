@@ -5,7 +5,7 @@ import org.bukkit.entity.EntityType;
 /**
  * @author SrGutyerrez
  */
-public class EntityUtil {
+public class EntityUtil extends br.com.twinsflammer.api.spigot.util.EntityUtil {
     public static String translate(String name) {
         switch (name) {
             case "Spider":
