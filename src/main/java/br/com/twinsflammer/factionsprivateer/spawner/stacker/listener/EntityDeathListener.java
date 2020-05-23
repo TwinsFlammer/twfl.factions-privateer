@@ -67,7 +67,7 @@ public class EntityDeathListener implements Listener {
                 Integer lootingEnchantmentLevel = itemStack.containsEnchantment(Enchantment.LOOT_BONUS_MOBS) ? itemStack.getEnchantmentLevel(Enchantment.LOOT_BONUS_MOBS) : 0;
 
                 if (lootingEnchantmentLevel != 0) {
-                    multiplier = multiplier * (int) (lootingEnchantmentLevel > 1 ? lootingEnchantmentLevel / 1.5D : 1);
+                    multiplier = multiplier * 1/*(int) (lootingEnchantmentLevel > 1 ? lootingEnchantmentLevel / 1.5D : 1)*/;
                 }
             }
         }
