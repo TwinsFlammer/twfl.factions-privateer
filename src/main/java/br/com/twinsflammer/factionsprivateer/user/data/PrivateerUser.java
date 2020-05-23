@@ -524,6 +524,14 @@ public class PrivateerUser extends SpigotUser {
         }
     }
 
+    public void collectKit(Kit kit) {
+        Player player = this.getPlayer();
+
+        kit.getItems().forEach(player.getInventory()::addItem);
+
+        this.collectedKits.put(kit.getId(), System.currentTimeMillis());
+    }
+
     public String getRolePrefix() {
         MPlayer mPlayer = MPlayer.get(this.getUniqueId());
 
@@ -634,6 +642,10 @@ public class PrivateerUser extends SpigotUser {
 
     public Long getLastEnderPearlTeleportTime() {
         return this.lastEnderPearlTeleportTime + TimeUnit.SECONDS.toMillis(15);
+    }
+
+    public Long getTimeToCollectKitAgain(Kit kit) {
+        return this.collectedKits.get(kit.getId()) + kit.getCooldown();
     }
 
     public Float getMcMMoVIPBonus() {
