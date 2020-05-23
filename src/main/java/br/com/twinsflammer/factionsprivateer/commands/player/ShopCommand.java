@@ -1,9 +1,13 @@
 package br.com.twinsflammer.factionsprivateer.commands.player;
 
+import br.com.twinsflammer.api.spigot.SpigotAPI;
 import br.com.twinsflammer.api.spigot.commands.CustomCommand;
 import br.com.twinsflammer.api.spigot.commands.enums.CommandRestriction;
+import br.com.twinsflammer.api.spigot.teleport.data.TeleportRequest;
 import br.com.twinsflammer.common.shared.permissions.group.GroupNames;
 import br.com.twinsflammer.common.shared.permissions.user.data.User;
+import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
+import br.com.twinsflammer.factionsprivateer.user.data.PrivateerUser;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -35,8 +39,16 @@ public class ShopCommand extends CustomCommand {
 
     @Override
     public void onCommand(CommandSender commandSender, User user, String[] strings) {
-        Player player = (Player) commandSender;
+        PrivateerUser privateerUser = FactionsPrivateer.getInstance().getPrivateerUserFactory().getUser(user.getId());
 
-        player.teleport(this.SHOP_LOCATION);
+        TeleportRequest teleportRequest = new TeleportRequest(
+                user.getId(),
+                null,
+                this.SHOP_LOCATION,
+                SpigotAPI.getRootServerId(),
+                privateerUser.getTeleportTime()
+        );
+
+        teleportRequest.start();
     }
 }
