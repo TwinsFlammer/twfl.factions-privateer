@@ -101,6 +101,8 @@ public class TpaCommand extends CustomCommand {
         }
 
         JSONText jsonText = new JSONText()
+                .text("\n§r")
+                .next()
                 .text(
                         String.format(
                                 "§ePedido enviado para §7%s%s§e.",
@@ -117,8 +119,12 @@ public class TpaCommand extends CustomCommand {
                 .execute("/tpa cancelar " + privateerUser1.getName())
                 .next()
                 .text("§e para cancelar este pedido.")
+                .next()
+                .text("\n§r")
                 .next(),
                 jsonText1 = new JSONText()
+                        .text("\n§r")
+                        .next()
                         .text(
                                 String.format(
                                         "§7%s%s §edeseja teletransportar até você.",
@@ -140,6 +146,8 @@ public class TpaCommand extends CustomCommand {
                         .execute("/tpa negar " + privateerUser.getName())
                         .next()
                         .text("§e para negar.")
+                        .next()
+                        .text("\n§r")
                         .next();
 
         Player player = (Player) commandSender;
