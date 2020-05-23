@@ -22,23 +22,20 @@ public class FactionMembershipChangeListener implements Listener {
         switch (membershipChangeReason) {
             case CREATE:
             case JOIN: {
-                privateerUser.updateScoreboard(4, "");
                 privateerUser.updateScoreboard(5,  "");
                 privateerUser.updateScoreboard(6, "");
                 privateerUser.updateScoreboard(7, "");
                 privateerUser.updateScoreboard(8, "");
-
                 break;
             }
             case LEAVE:
             case KICK:
             case DISBAND: {
-                privateerUser.removeScoreboard(4);
                 privateerUser.removeScoreboard(5);
                 privateerUser.removeScoreboard(6);
                 privateerUser.removeScoreboard(7);
                 privateerUser.removeScoreboard(8);
-
+                privateerUser.updateScoreboard(9, "");
                 break;
             }
         }
