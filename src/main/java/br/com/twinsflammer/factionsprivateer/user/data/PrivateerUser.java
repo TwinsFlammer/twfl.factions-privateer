@@ -270,7 +270,7 @@ public class PrivateerUser extends SpigotUser {
 
             Boolean isFactionScore = Arrays.asList(FACTION_SCORE).contains(i);
 
-            if ((!this.hasFaction() && isFactionScore) || (i == 3 && this.hasFaction()))
+            if ((!this.hasFaction() && isFactionScore) || (i == 9 && this.hasFaction()))
                 continue;
 
             this.customBoard.set(i, String.format(
