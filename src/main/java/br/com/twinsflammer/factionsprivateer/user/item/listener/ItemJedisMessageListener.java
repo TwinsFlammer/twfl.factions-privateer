@@ -7,6 +7,7 @@ import br.com.twinsflammer.common.shared.databases.redis.handler.event.JedisMess
 import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
 import br.com.twinsflammer.factionsprivateer.user.data.PrivateerUser;
 import br.com.twinsflammer.factionsprivateer.user.item.channel.ItemChannel;
+import br.com.twinsflammer.factionsprivateer.user.item.event.PlayerItemReceiveEvent;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.json.simple.JSONObject;
@@ -32,6 +33,13 @@ public class ItemJedisMessageListener implements JedisMessageListener {
         Player player = privateerUser.getPlayer();
 
         if (player == null) return;
+
+        PlayerItemReceiveEvent playerItemReceiveEvent = new PlayerItemReceiveEvent(
+                player,
+                itemStack
+        );
+
+        playerItemReceiveEvent.run();
 
         player.getInventory().addItem(itemStack);
     }
