@@ -16,13 +16,9 @@ public class PlayerDeathCombatListener implements Listener {
     @EventHandler
     public void onDeath(PlayerDeathEvent event) {
         Player player = event.getEntity();
-        Player killer = player.getKiller();
-        
-        PrivateerUser privateerUser = FactionsPrivateer.getInstance().getPrivateerUserFactory().getUser(player.getUniqueId());
-        PrivateerUser privateerUser1 = FactionsPrivateer.getInstance().getPrivateerUserFactory().getUser(killer.getUniqueId());
 
+        PrivateerUser privateerUser = FactionsPrivateer.getInstance().getPrivateerUserFactory().getUser(player.getUniqueId());
         privateerUser.setCombatDuration(0L);
-        privateerUser1.setCombatDuration(0L);
 
         PrivateerUser.Back back = new PrivateerUser.Back(
                 SpigotAPI.getCurrentServer().getId(),
@@ -30,5 +26,12 @@ public class PlayerDeathCombatListener implements Listener {
         );
 
         privateerUser.setBack(back);
+
+        Player killer = player.getKiller();
+
+        if (killer != null) {
+            PrivateerUser privateerUser1 = FactionsPrivateer.getInstance().getPrivateerUserFactory().getUser(killer.getUniqueId());
+            privateerUser1.setCombatDuration(0L);
+        }
     }
 }
