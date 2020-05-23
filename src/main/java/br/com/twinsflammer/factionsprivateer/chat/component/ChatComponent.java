@@ -1,9 +1,11 @@
 package br.com.twinsflammer.factionsprivateer.chat.component;
 
 import br.com.twinsflammer.api.spigot.util.jsontext.data.JSONText;
+import br.com.twinsflammer.common.shared.permissions.group.GroupNames;
 import br.com.twinsflammer.factionsprivateer.chat.enums.Channel;
 import br.com.twinsflammer.factionsprivateer.economy.manager.EconomyManager;
 import br.com.twinsflammer.factionsprivateer.user.data.PrivateerUser;
+import org.apache.commons.lang3.StringUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
@@ -29,10 +31,14 @@ public abstract class ChatComponent {
                 privateerUser.getRolePrefix() + privateerUser.getFactionTag()
         ) : "";
 
+        String space = privateerUser.hasGroup(GroupNames.DIRECTOR) ? "" : "\n§r ";
+
         switch (channel) {
             case GLOBAL:
             case LOCAL: {
                 jsonText = new JSONText()
+                        .text(space)
+                        .next()
                         .text(channel.getColor() + "[" + channel.getPrefix() + "] ")
                         .next()
                         .text(tags)
@@ -58,7 +64,9 @@ public abstract class ChatComponent {
                         .next()
                         .text(channel.getColor() + ": ")
                         .next()
-                        .text(channel.getColor() + message)
+                        .text(channel.getColor() + this.colorize(message))
+                        .next()
+                        .text(space)
                         .next();
                 break;
             }
@@ -100,5 +108,29 @@ public abstract class ChatComponent {
 
     public void send(Player player) {
         this.jsonText.send(player);
+    }
+
+    protected String colorize(String message) {
+        return StringUtils.replaceEach(
+                message,
+                new String[] {
+                        "&l",
+                        "&k",
+                        "&m",
+                        "&n",
+                        "&o",
+                        "&"
+                },
+                new String[] {
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        String.valueOf(
+                                ChatColor.COLOR_CHAR
+                        )
+                }
+        );
     }
 }
