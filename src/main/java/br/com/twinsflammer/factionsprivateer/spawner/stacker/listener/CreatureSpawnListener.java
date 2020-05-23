@@ -14,7 +14,7 @@ public class CreatureSpawnListener implements Listener {
     private final CreatureSpawnEvent.SpawnReason[] ALLOWED_REASONS = {
             CreatureSpawnEvent.SpawnReason.SPAWNER,
             CreatureSpawnEvent.SpawnReason.CUSTOM,
-            CreatureSpawnEvent.SpawnReason.EGG
+            CreatureSpawnEvent.SpawnReason.SPAWNER_EGG
     };
 
     @EventHandler(ignoreCancelled = true, priority = EventPriority.MONITOR)
