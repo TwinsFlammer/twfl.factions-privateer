@@ -81,7 +81,7 @@ public class SpawnerSpawnListener implements Listener {
     protected void updateAmount(Entity entity) {
         Integer currentAmount = entity.hasMetadata(SpawnerSpawnListener.STACK_METADATA) ? entity.getMetadata(SpawnerSpawnListener.STACK_METADATA).get(0).asInt() : 0;
 
-        currentAmount++;
+        currentAmount += 1;
 
         if (currentAmount > SpawnerSpawnListener.STACK_LIMIT) return;
 
