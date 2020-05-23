@@ -26,6 +26,8 @@ import java.util.stream.Collectors;
 public class SpawnerSpawnListener implements Listener {
     public static final String STACK_METADATA = "STACKED_AMOUNT";
 
+    public static final Integer STACK_LIMIT = 300;
+
     public static final EntityType[] ALLOWED_ENTITY_TYPES = {
             EntityType.IRON_GOLEM,
             EntityType.BLAZE,
@@ -81,18 +83,21 @@ public class SpawnerSpawnListener implements Listener {
 
         currentAmount++;
 
+        if (currentAmount > SpawnerSpawnListener.STACK_LIMIT) return;
+
         System.out.println(currentAmount);
 
         entity.setMetadata(SpawnerSpawnListener.STACK_METADATA, new FixedMetadataValue(FactionsPrivateer.getInstance(), currentAmount));
 
         entity.setCustomName(
-                "§a" + currentAmount + "x " + EntityUtil.translate(entity.getName())
-//                String.format(
-//                        "§a%dx %s",
-//                        currentAmount,
-//                        EntityUtil.translate(entity.getName())
-//                )
+                String.format(
+                        "§a%dx %s",
+                        currentAmount,
+                        EntityUtil.translate(entity.getName())
+                )
         );
+
+        System.out.println(entity.getCustomName());
     }
 
     protected Boolean isDefaultFaction(Faction faction) {
