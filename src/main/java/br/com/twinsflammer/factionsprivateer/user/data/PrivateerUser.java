@@ -43,7 +43,6 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.json.simple.JSONObject;
@@ -60,6 +59,8 @@ import java.util.stream.Collectors;
  * @author SrGutyerrez
  */
 public class PrivateerUser extends SpigotUser {
+    public static final String ENDER_CHEST_TITLE = "Báu do fim";
+
     protected final Integer COMBAT_DURATION = 15;
     private final String[] SCOREBOARD_LINES = {
             "§c  " + Common.SERVER_URL,
@@ -118,6 +119,10 @@ public class PrivateerUser extends SpigotUser {
     private final HashMap<SkillType, Integer> skills = Maps.newHashMap();
 
     private final HashMap<Integer, Long> collectedKits = Maps.newHashMap();
+
+    @Getter
+    @Setter
+    private Inventory seeingInventory, enderChest;
 
     public PrivateerUser(User user) {
         super(user);
@@ -532,6 +537,14 @@ public class PrivateerUser extends SpigotUser {
         this.collectedKits.put(kit.getId(), System.currentTimeMillis());
     }
 
+    public void removeInventory() {
+        try (Jedis jedis = this.getRedis().getJedisPool().getResource()) {
+            jedis.hdel("player_inventory", this.getId().toString());
+        } catch (JedisDataException exception) {
+            exception.printStackTrace();
+        }
+    }
+
     public String getRolePrefix() {
         MPlayer mPlayer = MPlayer.get(this.getUniqueId());
 
@@ -622,6 +635,17 @@ public class PrivateerUser extends SpigotUser {
             }
 
         return space;
+    }
+
+    public Integer getEnderChestRows() {
+        if (this.hasGroupExact(GroupNames.NOBLE))
+            return 6;
+        else if (this.hasGroupExact(GroupNames.KNIGHT))
+            return 5;
+        else if (this.hasGroupExact(GroupNames.FARMER))
+            return 4;
+
+        return 3;
     }
 
     public String getFactionAtId() {
