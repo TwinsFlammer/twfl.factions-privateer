@@ -17,7 +17,7 @@ public class GameModeCommand extends CustomCommand {
         super(
                 "gamemode",
                 CommandRestriction.IN_GAME,
-                GroupNames.DIRECTOR,
+                GroupNames.MODERATOR,
                 new String[] {
                         "gm"
                 }
@@ -32,13 +32,18 @@ public class GameModeCommand extends CustomCommand {
 
                 GameMode gameMode = this.matchGameMode(args[0]);
 
+                if ((user.hasGroupExact(GroupNames.MODERATOR) || user.hasGroupExact(GroupNames.ADMINISTRATOR)) && gameMode != GameMode.SPECTATOR) {
+                    commandSender.sendMessage("§cEste modo de jogo não é permitido para você.");
+                    return;
+                }
+
                 player.setGameMode(gameMode);
 
                 commandSender.sendMessage("§aSeu modo de jogo foi atualizado para " + gameMode.name().toLowerCase() + ".");
                 return;
             }
             case 2: {
-                String targetName = args[0];
+                String targetName = args[1];
                 Player targetPlayer = Bukkit.getPlayerExact(targetName);
 
                 if (targetPlayer == null){
@@ -46,7 +51,7 @@ public class GameModeCommand extends CustomCommand {
                     return;
                 }
 
-                GameMode gameMode = this.matchGameMode(args[1]);
+                GameMode gameMode = this.matchGameMode(args[0]);
                 targetPlayer.setGameMode(gameMode);
 
                 commandSender.sendMessage("§aO modo de jogo de " + targetPlayer.getName() + " foi atualizado para " + gameMode.name().toLowerCase() + ".");
