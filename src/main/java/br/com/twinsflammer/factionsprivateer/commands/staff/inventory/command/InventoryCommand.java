@@ -7,10 +7,9 @@ import br.com.twinsflammer.common.shared.permissions.user.data.User;
 import br.com.twinsflammer.common.shared.permissions.user.manager.UserManager;
 import br.com.twinsflammer.factionsprivateer.FactionsPrivateer;
 import br.com.twinsflammer.factionsprivateer.user.data.PrivateerUser;
-import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.PlayerInventory;
+import org.bukkit.inventory.Inventory;
 
 /**
  * @author SrGutyerrez
@@ -38,18 +37,19 @@ public class InventoryCommand extends CustomCommand {
                 return;
             }
 
-            PrivateerUser privateerUser = FactionsPrivateer.getInstance().getPrivateerUserFactory().getUser(user1.getId());
+            PrivateerUser privateerUser = FactionsPrivateer.getInstance().getPrivateerUserFactory().getUser(user.getUniqueId());
+            PrivateerUser privateerUser1 = FactionsPrivateer.getInstance().getPrivateerUserFactory().getUser(user1.getId());
 
-            if (privateerUser == null) {
+            if (privateerUser1 == null) {
                 commandSender.sendMessage("§cEste usário nunca entrou neste servidor.");
                 return;
             }
 
-            Player player1 = Bukkit.getPlayerExact(targetName);
-
-            PlayerInventory playerInventory = player1.getInventory();
+            Inventory playerInventory = privateerUser1.getInventory();
 
             player.openInventory(playerInventory);
+
+            privateerUser.setSeeingInventory(playerInventory);
         } else {
             commandSender.sendMessage("§cUtilize /invsee <usuário>.");
         }
