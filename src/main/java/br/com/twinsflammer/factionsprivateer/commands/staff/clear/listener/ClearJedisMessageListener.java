@@ -36,6 +36,11 @@ public class ClearJedisMessageListener implements JedisMessageListener {
 
             playerInventory.clear();
             playerInventory.setArmorContents(null);
+
+            privateerUser.setInventory(
+                    playerInventory,
+                    playerInventory.getArmorContents()
+            );
         }
     }
 }
