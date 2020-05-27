@@ -34,6 +34,12 @@ public class EnderChestCommand extends CustomCommand {
 
         Integer size = privateerUser.getEnderChestRows() * 9;
 
+        if (inventory == null) {
+            inventory = Bukkit.createInventory(player, size, PrivateerUser.ENDER_CHEST_TITLE);
+
+            privateerUser.setEnderChest(inventory);
+        }
+
         if (inventory.getSize() != size) {
             Inventory newInventory = Bukkit.createInventory(player, size, PrivateerUser.ENDER_CHEST_TITLE);
 
@@ -44,6 +50,8 @@ public class EnderChestCommand extends CustomCommand {
             }
 
             inventory = newInventory;
+
+            privateerUser.setEnderChest(inventory);
         }
 
         player.openInventory(inventory);
