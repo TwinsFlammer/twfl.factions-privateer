@@ -25,12 +25,43 @@ public class ShopValidator {
         if (amount == null || amount < 1 || amount > 2304)
             errors.add(Error.INVALID_AMOUNT);
 
-        String prePrice = lines[2];
+        String preTypeAndPrice = lines[2];
 
-        SignShop.Type type = SignShop.Type.matcher(prePrice);
+        SignShop.Type type = SignShop.Type.matcher(preTypeAndPrice);
 
         if (type == null)
             errors.add(Error.INVALID_TYPE);
+
+        Integer buyPrice = null, sellPrice = null;
+
+        switch (type) {
+            case BUY:
+            case SELL: {
+                String prePrice = preTypeAndPrice.split(type.getPrefix() + " ")[1];
+
+                Integer price = Helper.isInteger(prePrice) ? Integer.parseInt(prePrice) : null;
+
+                if (type == SignShop.Type.BUY)
+                    buyPrice = price;
+                else
+                    sellPrice = price;
+                break;
+            }
+            case BUY_AND_SELL: {
+                String preBuyPrice = preTypeAndPrice.split("C.*")[1].split(" :")[0];
+                String preSellPrice = preTypeAndPrice.split("V.*")[1];
+
+                Integer price = Helper.isInteger(preBuyPrice) ? Integer.parseInt(preBuyPrice) : null;
+                Integer price1 = Helper.isInteger(preSellPrice) ? Integer.parseInt(preSellPrice) :  null;
+
+                buyPrice = price;
+                sellPrice = price1;
+                break;
+            }
+        }
+
+        if (buyPrice == null || buyPrice <= 0 || sellPrice == null || sellPrice < 0)
+            errors.add(Error.INVALID_PRICE);
 
         return errors;
     }
