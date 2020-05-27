@@ -54,7 +54,7 @@ public class EntityDeathListener implements Listener {
 
         Integer newAmount = amount - multiplier;
 
-        if (amount > multiplier && newAmount > 0) {
+        if (amount > multiplier && newAmount > 1) {
             livingEntity.remove();
 
             Entity newEntity = world.spawnEntity(location, entityType);
