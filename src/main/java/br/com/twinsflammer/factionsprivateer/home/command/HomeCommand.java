@@ -124,7 +124,7 @@ public class HomeCommand extends CustomCommand {
 
         Boolean owner = privateerUser.getId().equals(targetUser.getId());
 
-        List<Home> homes = privateerUser.getHomes();
+        List<Home> homes = targetUser.getHomes();
 
         HomeComponent publics = new HomeComponent(homes, Home.State.PUBLIC) {
             @Override
