@@ -32,6 +32,8 @@ public class EntityDeathListener implements Listener {
     public void onDeath(EntityDeathEvent event) {
         LivingEntity livingEntity = event.getEntity();
 
+        if (!livingEntity.hasMetadata(SpawnerSpawnListener.STACK_METADATA)) return;
+
         Entity killer = livingEntity.getKiller();
 
         if (!Arrays.asList(SpawnerSpawnListener.ALLOWED_ENTITY_TYPES).contains(livingEntity.getType()))
