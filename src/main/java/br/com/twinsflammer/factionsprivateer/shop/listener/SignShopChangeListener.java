@@ -1,10 +1,13 @@
 package br.com.twinsflammer.factionsprivateer.shop.listener;
 
-import br.com.twinsflammer.factionsprivateer.shop.data.SignShop;
-import org.bukkit.block.Block;
+import br.com.twinsflammer.factionsprivateer.shop.validator.ShopValidator;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.SignChangeEvent;
+
+import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * @author SrGutyerrez
@@ -12,15 +15,22 @@ import org.bukkit.event.block.SignChangeEvent;
 public class SignShopChangeListener implements Listener {
     @EventHandler
     public void onChange(SignChangeEvent event) {
-        Block block = event.getBlock();
+        Player player = event.getPlayer();
 
-        String shopName = event.getLine(0);
+        Set<ShopValidator.Error> errors = ShopValidator.validateSignShop(event.getLines());
 
-        if (!shopName.equals(SignShop.SHOP_NAME)) {
-            block.breakNaturally();
-            return;
+        if (!errors.isEmpty()) {
+            String errorsMessage = errors.stream()
+                    .map(ShopValidator.Error::getMessage)
+                    .distinct()
+                    .collect(Collectors.joining(", "));
+
+            player.sendMessage(
+                    String.format(
+                            "§cNão foi possível criar a loja pelos seguintes motivos: %s",
+                            errorsMessage
+                    )
+            );
         }
-
-
     }
 }
